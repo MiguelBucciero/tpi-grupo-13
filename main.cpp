@@ -1,9 +1,14 @@
 #include <iostream>
+#include "Domicilio.h"
+#include "Especialidad.h"
+#include "Fecha.h"
+#include "Hora.h"
+#include "Persona.h"
 
 using namespace std;
 
 int main()
 {
-    cout << "Hello world!" << endl;
+
     return 0;
 }

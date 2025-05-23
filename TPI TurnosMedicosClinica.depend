@@ -1,0 +1,61 @@
+# depslib dependency file v1.0
+1747977197 source:c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\main.cpp
+	<iostream>
+	"Domicilio.h"
+	"Especialidad.h"
+	"Fecha.h"
+	"Hora.h"
+	"Persona.h"
+
+1747975560 c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\domicilio.h
+	<string>
+
+1747937423 source:c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\menumedico.cpp
+	<iostream>
+	<cstdlib>
+
+1747937423 source:c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\menusadministrador.cpp
+	<iostream>
+	<cstdlib>
+
+1747937423 source:c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\menusrecepcionista.cpp
+	<iostream>
+	<cstdlib>
+
+1747972963 source:c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\especialidad.cpp
+	<iostream>
+	"Especialidad.h"
+	<cstring>
+
+1747971618 c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\especialidad.h
+	<string>
+
+1747977648 source:c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\domicilio.cpp
+	<iostream>
+	"Domicilio.h"
+	<cstring>
+
+1747974194 source:c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\fecha.cpp
+	<iostream>
+	"Fecha.h"
+
+1747973167 c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\fecha.h
+	<string>
+
+1747975242 c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\hora.h
+	<string>
+
+1747975204 source:c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\hora.cpp
+	<iostream>
+	"Hora.h"
+
+1747975665 c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\persona.h
+	<string>
+	"Fecha.h"
+	"Domicilio.h"
+
+1747977547 source:c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\persona.cpp
+	<iostream>
+	<cstring>
+	"Persona.h"
+

@@ -34,12 +34,20 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Domicilio.cpp" />
 		<Unit filename="Domicilio.h" />
+		<Unit filename="Especialidad.cpp" />
 		<Unit filename="Especialidad.h" />
+		<Unit filename="Fecha.cpp" />
 		<Unit filename="Fecha.h" />
+		<Unit filename="Hora.cpp" />
 		<Unit filename="Hora.h" />
 		<Unit filename="Medico.h" />
+		<Unit filename="MenuMedico.cpp" />
+		<Unit filename="MenusAdministrador.cpp" />
+		<Unit filename="MenusRecepcionista.cpp" />
 		<Unit filename="Paciente.h" />
+		<Unit filename="Persona.cpp" />
 		<Unit filename="Persona.h" />
 		<Unit filename="Rol.h" />
 		<Unit filename="Turno.h" />

@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 class Fecha{
 public:
@@ -20,6 +21,7 @@ public:
     void cargarFecha();
     void mostrarFecha();
 
+    std::string toString();
 protected:
     int _dia;
     int _mes;
