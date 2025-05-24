@@ -1,14 +1,12 @@
 #include <iostream>
-#include "Domicilio.h"
-#include "Especialidad.h"
-#include "Fecha.h"
-#include "Hora.h"
-#include "Persona.h"
+#include "MenuAdministrador.h"
 
 using namespace std;
 
 int main()
 {
+    MenuAdministrador menu;
+    menu.menuAdministrador();
 
     return 0;
 }

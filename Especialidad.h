@@ -16,6 +16,7 @@ public:
     void setIDEspecialidad(int id);
     void setNombre(const std::string &nombre);
     void setEstado(bool estado);
+
     void cargarEspecialidad();
     void mostrarEspecialidad();
 

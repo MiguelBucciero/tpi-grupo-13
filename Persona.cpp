@@ -142,6 +142,8 @@ void Persona::cargarDatos() {
 
     cout << "Ingrese domicilio:" << endl;
     _domicilio.cargarDomicilio();
+
+
 }
 
 void Persona::mostrarDatos() {

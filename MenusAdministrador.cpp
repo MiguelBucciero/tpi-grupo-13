@@ -1,11 +1,11 @@
 #include<iostream>
 #include<cstdlib>
+#include "MenuAdministrador.h"
+
 
 using namespace std;
 
-int MenuInformesAdministrador();
-
-int MenuAdministrador() {
+int MenuAdministrador::menuAdministrador() {
 int opc;
  while(true){
     system("cls");
@@ -14,19 +14,25 @@ int opc;
     cout<<"- 2.Eliminar usuario "<<endl;
     cout<<"- 3.Listado de usuarios del sistema registrados "<<endl;
     cout<<"- 4.Informes"<<endl;
+    cout<<"- 5.Cargar Especialidad "<<endl;
+    cout<<"- 6.Mostrar Especialidad "<<endl;
     cout<<"- 0.Cerrar sesion "<<endl;
     cout<<endl;
     cout<<"Seleccione la opcion que busca..."<<endl;
     cin>>opc;
     system("cls");
     switch(opc){
-    case 1: MenuInformesAdministrador();
+    case 1: menuInformesAdministrador();
         break;
     case 2:
         break;
     case 3:
         break;
-    case 4: MenuInformesAdministrador();
+    case 4: menuInformesAdministrador();
+        break;
+    case 5:;_espManager.cargarEspecialidad();
+        break;
+    case 6:_espManager.mostrarEspecialidad();
         break;
     case 0: cout<<"Cerrando sesion"<<endl;
         return 0;
@@ -39,7 +45,7 @@ int opc;
  }
 }
 
-int MenuInformesAdministrador(){
+int MenuAdministrador::menuInformesAdministrador(){
 int opc;
 while(true){
     system("cls");

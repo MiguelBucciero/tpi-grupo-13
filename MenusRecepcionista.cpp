@@ -1,12 +1,12 @@
 #include<iostream>
 #include<cstdlib>
+#include "MenuRecepcionista.h"
 
 using namespace std;
 
-int MenuConsultasRecepcionista();
-int MenuInformesRecepcionista();
 
-int MenuRecepcionista() {
+
+int MenuRecepcionista::menuRecepcionista() {
 int opc;
  while(true){
     system("cls");
@@ -31,9 +31,9 @@ int opc;
         break;
     case 4:
         break;
-    case 5: MenuConsultasRecepcionista();
+    case 5: menuConsultasRecepcionista();
         break;
-    case 6: MenuInformesRecepcionista();
+    case 6: menuInformesRecepcionista();
         break;
     case 0: cout<<"Cerrando sesion"<<endl;
         return 0;
@@ -46,7 +46,7 @@ int opc;
  }
 }
 
-int MenuConsultasRecepcionista(){
+int MenuRecepcionista::menuConsultasRecepcionista(){
 int opc;
 while(true){
     system("cls");
@@ -80,7 +80,7 @@ while(true){
 }
 }
 
-int MenuInformesRecepcionista(){
+int MenuRecepcionista::menuInformesRecepcionista(){
 int opc;
 while(true){
     system("cls");
