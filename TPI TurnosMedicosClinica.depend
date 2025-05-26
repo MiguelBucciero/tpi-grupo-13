@@ -282,3 +282,116 @@
 	"PacienteManager.h"
 	<iostream>
 
+1748236664 source:c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\domicilio.cpp
+	<iostream>
+	"Domicilio.h"
+	<cstring>
+
+1748236664 c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\domicilio.h
+	<string>
+
+1748236664 source:c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\especialidad.cpp
+	<iostream>
+	"Especialidad.h"
+	<cstring>
+
+1748236664 c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\especialidad.h
+	<string>
+
+1748236664 source:c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\especialidadarchivo.cpp
+	"EspecialidadArchivo.h"
+
+1748236664 c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\especialidadarchivo.h
+	<string>
+	"Especialidad.h"
+
+1748236664 source:c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\especialidadmanager.cpp
+	"EspecialidadManager.h"
+	<iostream>
+	<string>
+
+1748236664 c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\especialidadmanager.h
+	"EspecialidadArchivo.h"
+
+1748236664 source:c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\fecha.cpp
+	<iostream>
+	"Fecha.h"
+
+1748236664 c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\fecha.h
+	<string>
+
+1748236664 source:c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\hora.cpp
+	<iostream>
+	"Hora.h"
+
+1748236664 c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\hora.h
+	<string>
+
+1748236664 source:c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\main.cpp
+	<iostream>
+	"MenuAdministrador.h"
+	"MenuRecepcionista.h"
+
+1748236664 c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\menuadministrador.h
+	"Especialidad.h"
+	"EspecialidadManager.h"
+
+1748236664 c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\menurecepcionista.h
+	"Paciente.h"
+	"PacienteManager.h"
+
+1748236664 c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\paciente.h
+	"Persona.h"
+	"Domicilio.h"
+	"Fecha.h"
+
+1748236664 c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\persona.h
+	<string>
+	"Fecha.h"
+	"Domicilio.h"
+
+1748236664 c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\pacientemanager.h
+	"PacienteArchivo.h"
+
+1748236664 c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\pacientearchivo.h
+	<string>
+	"Paciente.h"
+
+1748236664 source:c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\menumedico.cpp
+	<iostream>
+	"MenuMedico.h"
+
+1748236664 c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\menumedico.h
+
+1748236664 source:c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\menusadministrador.cpp
+	<iostream>
+	<cstdlib>
+	"MenuAdministrador.h"
+
+1748236664 source:c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\menusrecepcionista.cpp
+	<iostream>
+	<cstdlib>
+	"MenuRecepcionista.h"
+	"PacienteManager.h"
+	"Paciente.h"
+
+1748280473 source:c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\paciente.cpp
+	<iostream>
+	<cstring>
+	"Paciente.h"
+
+1748236664 source:c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\pacientearchivo.cpp
+	"PacienteArchivo.h"
+	"PacienteManager.h"
+	<iostream>
+
+1748280659 source:c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\persona.cpp
+	<iostream>
+	<cstring>
+	"Persona.h"
+
+1748281237 source:c:\users\slkf_\desktop\tpi-grupo-13-main (1)\tpi-grupo-13-main\pacientemanager.cpp
+	"PacienteManager.h"
+	<iostream>
+	<string>
+

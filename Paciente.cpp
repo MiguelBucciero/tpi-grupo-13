@@ -46,15 +46,3 @@ void Paciente::setEstado(bool est){
     _estado=est;
 }
 
-//void Paciente::cargarPaciente(){}
-void Paciente::mostrarPaciente(){
-    Persona::mostrarDatos();
-    cout<<"ID: "<<getIDPaciente()<<endl;
-    cout<<"Carnet: "<<getCarnet()<<endl;
-    cout<<"Estado: ";
-    if(_estado){
-        cout<<"Activo"<<endl;
-    }else{
-        cout<<"Inactivo"<<endl;
-    }
-}
