@@ -5,9 +5,9 @@
 using namespace std;
 
 Especialidad::Especialidad() {
-    _IDEspecialidad = 0;
-    strcpy(_nombre, "");
-    _estado = true;
+    setIDEspecialidad(0);
+    setNombre("");
+    setEstado(true);
 }
 
 Especialidad::Especialidad(int IDEspecialidad, string nombre, bool estado) {

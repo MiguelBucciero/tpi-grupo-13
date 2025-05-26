@@ -8,12 +8,10 @@ void EspecialidadManager::cargarEspecialidad() {
     Especialidad registro;
     string nombre;
     char respuesta;
-    int id;
+    int id = _archivo.getNuevoID();
     bool estado;
 
-    cout<<"Ingrese ID de especialidad: ";
-    cin>>id;
-    cin.ignore();
+    cout<<"ID: "<<id<<endl;
 
     cout<<"Ingrese nombre de la especialidad: ";
     getline(cin, nombre);
@@ -77,7 +75,7 @@ void EspecialidadManager::DarBajaEspecialidad(){
     }
 
     esp.setEstado(false);
-    if(_archivo.Guardar(esp, pos)){
+    if(_archivo.guardar(esp, pos)){
         cout<<"Especialidad dada de baja correctamente"<<endl;
     } else{
     cout<<"No se pudo modificar el archivo"<<endl;

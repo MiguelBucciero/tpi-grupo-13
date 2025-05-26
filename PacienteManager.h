@@ -3,8 +3,9 @@
 
 class PacienteManager{
 public:
-    Paciente cargarPaciente();
+    void cargarPaciente();
     void mostrarPaciente(Paciente& paciente);
+    void mostrarPaciente();
 
 private:
     PacienteArchivo _archivo;

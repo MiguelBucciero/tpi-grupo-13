@@ -14,29 +14,21 @@ int opc;
     system("cls");
     cout<<"- MENU RECEPCIONISTA - "<<endl;
     cout<<"- 1.Registrar paciente "<<endl;
-    cout<<"- 2.Asignar nuevo turno "<<endl;
-    cout<<"- 3.Reprogramar turno "<<endl;
-    cout<<"- 4.Cancelar turno "<<endl;
-    cout<<"- 5.Consultas "<<endl;
-    cout<<"- 6.Informes "<<endl;
+    cout<<"- 2.Listar pacientes "<<endl;
+    cout<<"- 3.Asignar nuevo turno "<<endl;
+    cout<<"- 4.Reprogramar turno "<<endl;
+    cout<<"- 5.Cancelar turno "<<endl;
+    cout<<"- 6.Consultas "<<endl;
+    cout<<"- 7.Informes "<<endl;
     cout<<"- 0.Cerrar sesion "<<endl;
     cout<<endl;
     cout<<"Seleccione la opcion que busca..."<<endl;
     cin>>opc;
     system("cls");
     switch(opc){
-    case 1: {
-            PacienteManager manager;
-            PacienteArchivo ArchiP("pacientes.dat");
-            Paciente nuevoP=manager.cargarPaciente();
-            if(ArchiP.guardar(nuevoP)){
-                cout<<"Paciente guardado correctamente"<<endl;
-            } else{
-                cout<<"Error al guardar paciente"<<endl;
-            }
-            }
+    case 1: _pacienteManager.cargarPaciente();
         break;
-    case 2:
+    case 2:_pacienteManager.mostrarPaciente();
         break;
     case 3:
         break;
@@ -45,6 +37,8 @@ int opc;
     case 5: menuConsultasRecepcionista();
         break;
     case 6: menuInformesRecepcionista();
+        break;
+    case 7:
         break;
     case 0: cout<<"Cerrando sesion"<<endl;
         return 0;

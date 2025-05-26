@@ -1,13 +1,23 @@
 #include<iostream>
+#include <cstring>
 #include "Paciente.h"
 
 using namespace std;
 
-Paciente::Paciente(){
-    _IDPaciente=0;
-    _carnet=0;
-    _estado=true;
+Paciente::Paciente():Persona(){
+    setIDPaciente(0);
+    setCarnet(0);
+    setEstado(true);
 }
+Paciente::Paciente(string apellido, string nombre, int dni, Fecha fechaNacimiento, string genero,
+                 string email, string telefono, Domicilio domicilio,int id, int carnet, bool estado)
+:Persona(apellido, nombre, dni, fechaNacimiento, genero,
+                 email, telefono, domicilio){
+    setIDPaciente(id);
+    setCarnet(carnet);
+    setEstado(estado);
+                 }
+
 
 int Paciente::getIDPaciente(){
     return _IDPaciente;

@@ -7,7 +7,8 @@ class Paciente:public Persona{
 public:
 
     Paciente();
-    Paciente(int id, int carnet, bool estado);
+    Paciente(std::string apellido,std::string nombre, int dni, Fecha fechaNacimiento,std::string genero,
+                 std::string email, std::string telefono, Domicilio domicilio, int id, int carnet, bool estado);
 
     // Getters
     int getIDPaciente();

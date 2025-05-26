@@ -21,22 +21,31 @@ bool PacienteArchivo::guardar(Paciente registro){
 
     return resultado;
 }
-bool PacienteArchivo::Guardar(Paciente registro, int posicion){
-    FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb+");
+bool PacienteArchivo::guardar(Paciente registro, int posicion){
+    bool resultado;
+    FILE *pArchivo;
+    pArchivo = fopen(_nombreArchivo.c_str(), "rb+");
+
     if(pArchivo == NULL){
         return false;
     }
+
     fseek(pArchivo, sizeof(Paciente) * posicion, SEEK_SET);
-    bool ok = fwrite(&registro, sizeof(Paciente), 1, pArchivo);
+    resultado = fwrite(&registro, sizeof(Paciente), 1, pArchivo);
+
     fclose(pArchivo);
-    return ok;
+
+    return resultado;
 }
 
 int PacienteArchivo::Buscar(int IDPaciente){
-    FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb");
+    FILE *pArchivo;
+    pArchivo = fopen(_nombreArchivo.c_str(), "rb");
+
     if(pArchivo == NULL){
         return -1;
     }
+
     Paciente registro;
     int i = 0;
     while(fread(&registro, sizeof(Paciente), 1, pArchivo)){
@@ -46,19 +55,26 @@ int PacienteArchivo::Buscar(int IDPaciente){
         }
         i++;
     }
+
     fclose(pArchivo);
+
     return -1;
 }
 
 Paciente PacienteArchivo::Leer(int posicion){
-    FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb");
+    FILE *pArchivo =
+    pArchivo = fopen(_nombreArchivo.c_str(), "rb");
+
     if(pArchivo == NULL){
         return Paciente();
     }
+
     Paciente registro;
     fseek(pArchivo, sizeof(Paciente) * posicion, SEEK_SET);
     fread(&registro, sizeof(Paciente), 1, pArchivo);
+
     fclose(pArchivo);
+
     return registro;
 }
 
@@ -104,3 +120,8 @@ bool PacienteArchivo::leerMuchos(Paciente reg[], int cantidad){
 
     return true;
 }
+
+int PacienteArchivo::getNuevoID(){
+    return getCantidadRegistros()+1;
+}
+

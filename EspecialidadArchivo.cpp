@@ -20,15 +20,20 @@ bool EspecialidadArchivo::guardar(Especialidad registro){
 
     return resultado;
 }
-bool EspecialidadArchivo::Guardar(Especialidad registro, int posicion){
-    FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb+");
+bool EspecialidadArchivo::guardar(Especialidad registro, int posicion){
+    bool resultado;
+    FILE *pArchivo;
+    pArchivo = fopen(_nombreArchivo.c_str(), "rb+");
+
     if(pArchivo == NULL){
         return false;
     }
     fseek(pArchivo, sizeof(Especialidad) * posicion, SEEK_SET);
-    bool ok = fwrite(&registro, sizeof(Especialidad), 1, pArchivo);
+    resultado = fwrite(&registro, sizeof(Especialidad), 1, pArchivo);
+
     fclose(pArchivo);
-    return ok;
+
+    return resultado;
 }
 
 int EspecialidadArchivo::Buscar(int IDEspecialidad){
@@ -102,4 +107,8 @@ bool EspecialidadArchivo::leerMuchos(Especialidad reg[], int cantidad){
     fclose(pArchivo);
 
     return true;
+}
+
+int EspecialidadArchivo::getNuevoID(){
+    return getCantidadRegistros()+1;
 }
