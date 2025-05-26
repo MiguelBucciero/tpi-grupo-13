@@ -1,33 +1,33 @@
 #pragma once
+#include <string>
 #include "Fecha.h"
 #include "Domicilio.h"
 
 class Persona {
 public:
-
     Persona();
-    Persona(const char* apellido, const char* nombre, int dni, Fecha fechaNacimiento, const char* genero,
-            const char* email, const char* telefono, Domicilio domicilio);
+    Persona(std::string apellido, std::string nombre, int dni, Fecha fechaNacimiento, std::string genero,
+            std::string email, std::string telefono, Domicilio domicilio);
 
     // Getters
-    char* getApellido();
-    char* getNombre();
+    const std::string getApellido();
+    const std::string getNombre();
     int getDni();
     Fecha getFechaNacimiento();
-    char* getGenero();
-    char* getEmail();
-    char* getTelefono();
+    const std::string getGenero();
+    const std::string getEmail();
+    const std::string getTelefono();
     Domicilio getDomicilioCompleto();
 
     // Setters
-    void setApellido(const char* valor);
-    void setNombre(const char* valor);
-    void setDni(int valor);
-    void setFechaNacimiento(Fecha valor);
-    void setGenero(const char* valor);
-    void setEmail(const char* valor);
-    void setTelefono(const char* valor);
-    void setDomicilio(Domicilio valor);
+    void setApellido(const std::string &apellido);
+    void setNombre(const std::string &nombre);
+    void setDni(int dni);
+    void setFechaNacimiento(const Fecha &fecha);
+    void setGenero(const std::string &genero);
+    void setEmail(const std::string &email);
+    void setTelefono(const std::string &telefono);
+    void setDomicilio(const Domicilio &domicilio);
 
     // Métodos
     void cargarDatos();

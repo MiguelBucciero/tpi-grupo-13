@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 class Hora{
 public:
@@ -11,12 +12,14 @@ public:
     int getMinutos();
 
     // Setters
-    void setHora(int valor);
-    void setMinutos(int valor);
+    void setHora(int hora);
+    void setMinutos(int minutos);
 
     // Métodos
     void cargarHora();
     void mostrarHora();
+
+    std::string toString();
 
 protected:
     int _hora;

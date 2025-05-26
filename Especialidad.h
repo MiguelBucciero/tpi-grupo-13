@@ -1,26 +1,28 @@
 #pragma once
+#include <string>
 
 class Especialidad {
 public:
 
     Especialidad();
-    Especialidad(int IDEspecialidad, char nombre, bool estado);
+    Especialidad(int IDEspecialidad, std::string nombre, bool estado);
 
     //Getters
     int getIDEspecialidad() const;
-    char getNombre() const;
+    const std::string getNombre() const;
     bool getEstado() const;
 
     //Setters
     void setIDEspecialidad(int id);
-    void setNombre(char *);
+    void setNombre(const std::string &nombre);
     void setEstado(bool estado);
-    void cargarEspecialidad();
-    void mostrarEspecialidad();
+
+    //void cargarEspecialidad();
+    //void mostrarEspecialidad();
 
 protected:
     int _IDEspecialidad;
-    char _nombre [50];
+    char _nombre[50];
     bool _estado;
 };
 

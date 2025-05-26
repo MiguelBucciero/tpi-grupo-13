@@ -1,9 +1,9 @@
 #include<iostream>
-#include<cstdlib>
+#include "MenuMedico.h"
 
 using namespace std;
 
-int MenuMedico(){
+int MenuMedico::menu(){
 int opc;
  while(true){
     system("cls");

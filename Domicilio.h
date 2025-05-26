@@ -1,24 +1,25 @@
 #pragma once
+#include <string>
 
 class Domicilio{
 public:
 
     Domicilio();
-    Domicilio(const char* calle, int altura, const char* localidad, const char* provincia, const char* codigoPostal);
+    Domicilio(std::string calle, int altura, std::string localidad, std::string provincia, std::string codigoPostal);
 
     // Getters
-    char* getCalle();
-    int getAltura();
-    char* getLocalidad();
-    char* getProvincia();
-    char* getCodigoPostal();
+    const std::string getCalle() const;
+    int getAltura()const;
+    const std::string getLocalidad()const;
+    const std::string getProvincia()const;
+    const std::string getCodigoPostal()const;
 
     // Setters
-    void setCalle(const char* valor);
-    void setAltura(int valor);
-    void setLocalidad(const char* valor);
-    void setProvincia(const char* valor);
-    void setCodigoPostal(const char* valor);
+    void setCalle(const std::string &calle);
+    void setAltura(int altura);
+    void setLocalidad(const std::string &localidad);
+    void setProvincia(const std::string &provincia);
+    void setCodigoPostal(const std::string &cpostal);
 
     //Metedos
     void cargarDomicilio();

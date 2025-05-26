@@ -1,12 +1,14 @@
 #include<iostream>
 #include<cstdlib>
+#include "MenuRecepcionista.h"
+#include "PacienteManager.h"
+#include "Paciente.h"
 
 using namespace std;
 
-int MenuConsultasRecepcionista();
-int MenuInformesRecepcionista();
 
-int MenuRecepcionista() {
+
+int MenuRecepcionista::menuRecepcionista() {
 int opc;
  while(true){
     system("cls");
@@ -23,7 +25,16 @@ int opc;
     cin>>opc;
     system("cls");
     switch(opc){
-    case 1:
+    case 1: {
+            PacienteManager manager;
+            PacienteArchivo ArchiP("pacientes.dat");
+            Paciente nuevoP=manager.cargarPaciente();
+            if(ArchiP.guardar(nuevoP)){
+                cout<<"Paciente guardado correctamente"<<endl;
+            } else{
+                cout<<"Error al guardar paciente"<<endl;
+            }
+            }
         break;
     case 2:
         break;
@@ -31,9 +42,9 @@ int opc;
         break;
     case 4:
         break;
-    case 5: MenuConsultasRecepcionista();
+    case 5: menuConsultasRecepcionista();
         break;
-    case 6: MenuInformesRecepcionista();
+    case 6: menuInformesRecepcionista();
         break;
     case 0: cout<<"Cerrando sesion"<<endl;
         return 0;
@@ -46,7 +57,7 @@ int opc;
  }
 }
 
-int MenuConsultasRecepcionista(){
+int MenuRecepcionista::menuConsultasRecepcionista(){
 int opc;
 while(true){
     system("cls");
@@ -61,7 +72,7 @@ while(true){
     cin>>opc;
     system("cls");
     switch(opc) {
-    case 1: cout<<"Hola"<<endl;
+    case 1:
         break;
     case 2:
         break;
@@ -80,7 +91,7 @@ while(true){
 }
 }
 
-int MenuInformesRecepcionista(){
+int MenuRecepcionista::menuInformesRecepcionista(){
 int opc;
 while(true){
     system("cls");

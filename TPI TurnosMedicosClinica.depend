@@ -1,0 +1,252 @@
+# depslib dependency file v1.0
+1747977197 source:c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\main.cpp
+	<iostream>
+	"Domicilio.h"
+	"Especialidad.h"
+	"Fecha.h"
+	"Hora.h"
+	"Persona.h"
+
+1747975560 c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\domicilio.h
+	<string>
+
+1747937423 source:c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\menumedico.cpp
+	<iostream>
+	<cstdlib>
+
+1747937423 source:c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\menusadministrador.cpp
+	<iostream>
+	<cstdlib>
+
+1747937423 source:c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\menusrecepcionista.cpp
+	<iostream>
+	<cstdlib>
+
+1747972963 source:c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\especialidad.cpp
+	<iostream>
+	"Especialidad.h"
+	<cstring>
+
+1747971618 c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\especialidad.h
+	<string>
+
+1747977648 source:c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\domicilio.cpp
+	<iostream>
+	"Domicilio.h"
+	<cstring>
+
+1747974194 source:c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\fecha.cpp
+	<iostream>
+	"Fecha.h"
+
+1747973167 c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\fecha.h
+	<string>
+
+1747975242 c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\hora.h
+	<string>
+
+1747975204 source:c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\hora.cpp
+	<iostream>
+	"Hora.h"
+
+1747975665 c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\persona.h
+	<string>
+	"Fecha.h"
+	"Domicilio.h"
+
+1747977547 source:c:\users\slkf_\downloads\tpi-grupo-13-main (1)\tpi-grupo-13-main\persona.cpp
+	<iostream>
+	<cstring>
+	"Persona.h"
+
+1747978617 source:c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\domicilio.cpp
+	<iostream>
+	"Domicilio.h"
+	<cstring>
+
+1747978617 c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\domicilio.h
+	<string>
+
+1748115179 source:c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\especialidad.cpp
+	<iostream>
+	"Especialidad.h"
+	<cstring>
+
+1748115235 c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\especialidad.h
+	<string>
+
+1747978617 source:c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\fecha.cpp
+	<iostream>
+	"Fecha.h"
+
+1747978617 c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\fecha.h
+	<string>
+
+1747978617 source:c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\hora.cpp
+	<iostream>
+	"Hora.h"
+
+1747978617 c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\hora.h
+	<string>
+
+1748119723 source:c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\menusadministrador.cpp
+	<iostream>
+	<cstdlib>
+	"MenuAdministrador.h"
+
+1748018309 source:c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\menusrecepcionista.cpp
+	<iostream>
+	<cstdlib>
+	"MenuRecepcionista.h"
+
+1748088332 source:c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\persona.cpp
+	<iostream>
+	<cstring>
+	"Persona.h"
+
+1747978617 c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\persona.h
+	<string>
+	"Fecha.h"
+	"Domicilio.h"
+
+1748113443 source:c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\main.cpp
+	<iostream>
+	"MenuAdministrador.h"
+
+1748018388 c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\menumedico.h
+
+1748018560 source:c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\menumedico.cpp
+	<iostream>
+	"MenuMedico.h"
+
+1748116065 c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\menuadministrador.h
+	"Especialidad.h"
+	"EspecialidadManager.h"
+
+1748018234 c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\menurecepcionista.h
+
+1748119591 source:c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\especialidadarchivo.cpp
+	"EspecialidadArchivo.h"
+
+1748120087 c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\especialidadarchivo.h
+	<string>
+	"Especialidad.h"
+
+1748120405 source:c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\especialidadmanager.cpp
+	"EspecialidadManager.h"
+	<iostream>
+	<string>
+
+1748115307 c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\especialidadmanager.h
+	"EspecialidadArchivo.h"
+
+1748207584 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\domicilio.cpp
+	<iostream>
+	"Domicilio.h"
+	<cstring>
+
+1748207581 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\domicilio.h
+	<string>
+
+1748196203 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadarchivo.cpp
+	"EspecialidadArchivo.h"
+
+1748200931 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadarchivo.h
+	<string>
+	"Especialidad.h"
+
+1748199656 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidad.h
+	<string>
+
+1748205645 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadmanager.cpp
+	"EspecialidadManager.h"
+	<iostream>
+	<string>
+
+1748197938 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadmanager.h
+	"EspecialidadArchivo.h"
+
+1748205645 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\fecha.cpp
+	<iostream>
+	"Fecha.h"
+
+1748205487 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\fecha.h
+	<string>
+
+1748195774 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\hora.cpp
+	<iostream>
+	"Hora.h"
+
+1748195774 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\hora.h
+	<string>
+
+1748217441 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\main.cpp
+	<iostream>
+	"MenuAdministrador.h"
+	"MenuRecepcionista.h"
+
+1748195774 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menuadministrador.h
+	"Especialidad.h"
+	"EspecialidadManager.h"
+
+1748217441 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menumedico.cpp
+	<iostream>
+	"MenuMedico.h"
+
+1748195774 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menumedico.h
+
+1748216813 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menusadministrador.cpp
+	<iostream>
+	<cstdlib>
+	"MenuAdministrador.h"
+
+1748215409 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menusrecepcionista.cpp
+	<iostream>
+	<cstdlib>
+	"MenuRecepcionista.h"
+	"PacienteManager.h"
+	"Paciente.h"
+
+1748195774 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menurecepcionista.h
+
+1748212571 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\persona.cpp
+	<iostream>
+	<cstring>
+	"Persona.h"
+
+1748196243 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\persona.h
+	<string>
+	"Fecha.h"
+	"Domicilio.h"
+
+1748199184 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidad.cpp
+	<iostream>
+	"Especialidad.h"
+	<cstring>
+
+1748215826 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\paciente.cpp
+	<iostream>
+	"Paciente.h"
+
+1748207683 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\paciente.h
+	"Persona.h"
+	"Domicilio.h"
+	"Fecha.h"
+
+1748214731 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\pacientearchivo.cpp
+	"PacienteArchivo.h"
+	"PacienteManager.h"
+	<iostream>
+
+1748214074 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\pacientearchivo.h
+	<string>
+	"Paciente.h"
+
+1748217667 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\pacientemanager.cpp
+	"PacienteManager.h"
+	<iostream>
+	<string>
+
+1748217441 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\pacientemanager.h
+	"PacienteArchivo.h"
+

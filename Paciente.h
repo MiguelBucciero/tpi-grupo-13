@@ -1,7 +1,9 @@
 #pragma once
 #include "Persona.h"
+#include "Domicilio.h"
+#include "Fecha.h"
 
-class Paciente : public Persona {
+class Paciente:public Persona{
 public:
 
     Paciente();
@@ -13,9 +15,9 @@ public:
     bool getEstado();
 
     // Setters
-    void setIDPaciente(int valor);
-    void setCarnet(int valor);
-    void setEstado(bool valor);
+    void setIDPaciente(int id);
+    void setCarnet(int car);
+    void setEstado(bool est);
 
     // Métodos
     void cargarPaciente();
