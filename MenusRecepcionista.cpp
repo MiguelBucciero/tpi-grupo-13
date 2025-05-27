@@ -1,12 +1,14 @@
 #include<iostream>
 #include<cstdlib>
-
-using namespace std;
 #include "MenuRecepcionista.h"
 #include "PacienteManager.h"
 #include "Paciente.h"
 #include "TurnoManager.h"
 #include "TurnoArchivo.h"
+#include "MedicoManager.h"
+#include "Medico.h"
+
+using namespace std;
 
 int MenuRecepcionista::menuRecepcionista() {
     TurnoManager turnomanager;
@@ -16,11 +18,13 @@ int opc;
     cout<<"- MENU RECEPCIONISTA - "<<endl;
     cout<<"- 1.Registrar paciente "<<endl;
     cout<<"- 2.Listar pacientes "<<endl;
-    cout<<"- 3.Asignar nuevo turno "<<endl;
-    cout<<"- 4.Reprogramar turno "<<endl;
-    cout<<"- 5.Cancelar turno "<<endl;
-    cout<<"- 6.Consultas//mostrar "<<endl;
-    cout<<"- 7.Informes "<<endl;
+    cout<<"- 3.Registrar medico "<<endl;
+    cout<<"- 4.Listar medico "<<endl;
+    cout<<"- 5.Asignar nuevo turno "<<endl;
+    cout<<"- 6.Reprogramar turno "<<endl;
+    cout<<"- 7.Cancelar turno "<<endl;
+    cout<<"- 8.Consultas//mostrar "<<endl;
+    cout<<"- 9.Informes "<<endl;
     cout<<"- 0.Cerrar sesion "<<endl;
     cout<<endl;
     cout<<"Seleccione la opcion que busca..."<<endl;
@@ -29,17 +33,21 @@ int opc;
     switch(opc){
     case 1: _pacienteManager.cargarPaciente();
         break;
-    case 2:_pacienteManager.mostrarPaciente();
+    case 2: _pacienteManager.mostrarPaciente();
         break;
-    case 3: turnomanager.cargarTurno();
+    case 3: _medicoManager.cargarMedico();
         break;
-    case 4: turnomanager.reprogramarTurno();
+    case 4: _medicoManager.mostrarMedico();
         break;
-    case 5: turnomanager.cancelarTurno();
+    case 5: turnomanager.cargarTurno();
         break;
-    case 6: menuConsultasRecepcionista();
+    case 6: turnomanager.reprogramarTurno();
         break;
-    case 7: menuInformesRecepcionista();
+    case 7: turnomanager.cancelarTurno();
+        break;
+    case 8: menuConsultasRecepcionista();
+        break;
+    case 9: menuInformesRecepcionista();
         break;
     case 0: cout<<"Cerrando sesion"<<endl;
         return 0;

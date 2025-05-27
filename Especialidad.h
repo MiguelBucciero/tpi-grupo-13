@@ -17,10 +17,8 @@ public:
     void setNombre(const std::string &nombre);
     void setEstado(bool estado);
 
-    //void cargarEspecialidad();
-    //void mostrarEspecialidad();
 
-protected:
+private:
     int _IDEspecialidad;
     char _nombre[50];
     bool _estado;

@@ -1,6 +1,7 @@
 #pragma once
 #include "Paciente.h"
 #include "PacienteManager.h"
+#include "MedicoManager.h"
 
 class MenuRecepcionista{
 public:
@@ -10,4 +11,5 @@ public:
 
 private:
     PacienteManager _pacienteManager;
+    MedicoManager _medicoManager;
 };

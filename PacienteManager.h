@@ -4,7 +4,6 @@
 class PacienteManager{
 public:
     void cargarPaciente();
-    void mostrarPaciente(Paciente& paciente);
     void mostrarPaciente();
 
 private:

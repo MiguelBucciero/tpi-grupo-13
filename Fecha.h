@@ -24,7 +24,7 @@ public:
     bool esIgual(Fecha &otra);
 
     std::string toString();
-protected:
+private:
     int _dia;
     int _mes;
     int _anio;

@@ -33,7 +33,7 @@ public:
     void cargarDatos();
     void mostrarDatos();
 
-protected:
+private:
     char _apellido[50];
     char _nombre[50];
     int _dni;

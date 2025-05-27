@@ -22,7 +22,7 @@ public:
 
     std::string toString();
 
-protected:
+private:
     int _hora;
     int _minutos;
 };

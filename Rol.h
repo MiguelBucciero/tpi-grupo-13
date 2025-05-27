@@ -18,7 +18,7 @@ public:
     void validarRol();
     void cargarRol();
 
-protected:
+private:
     int _tipoRol;
     char _nombreRol[20];
 };

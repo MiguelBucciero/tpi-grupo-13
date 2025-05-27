@@ -6,7 +6,7 @@ using namespace std;
 void PacienteManager::cargarPaciente() {
     Paciente paciente;
     string aux;
-    int dni, carnet, id, altura;
+    int dni, carnet, id, altura, dia, mes, anio;
     Fecha fechaNacimiento;
     Domicilio domicilio;
 
@@ -20,27 +20,35 @@ void PacienteManager::cargarPaciente() {
     cout << "Nombre: ";
     getline(cin, aux);
     paciente.setNombre(aux);
+
     cout << "DNI: ";
     cin >> dni;
     cin.ignore();
     paciente.setDni(dni);
+
     cout << "Fecha de nacimiento" << endl;
-    int dia, mes, anio;
-    cout << "Dia: "; cin >> dia;
-    cout << "Mes: "; cin >> mes;
-    cout << "Anio: "; cin >> anio;
+    cout << "Dia: ";
+    cin >> dia;
+    cout << "Mes: ";
+    cin >> mes;
+    cout << "Anio: ";
+    cin >> anio;
     cin.ignore();
     fechaNacimiento = Fecha(dia, mes, anio);
     paciente.setFechaNacimiento(fechaNacimiento);
+
     cout << "Genero: ";
     getline(cin, aux);
     paciente.setGenero(aux);
+
     cout << "Email: ";
     getline(cin, aux);
     paciente.setEmail(aux);
+
     cout << "Telefono: ";
     getline(cin, aux);
     paciente.setTelefono(aux);
+
     cout << "Domicilio:" << endl;
     cout << "Calle: ";
     getline(cin, aux);
@@ -59,9 +67,11 @@ void PacienteManager::cargarPaciente() {
     getline(cin, aux);
     domicilio.setCodigoPostal(aux);
     paciente.setDomicilio(domicilio);
+
     id = _archivo.getNuevoID();
     cout << "ID asignado automáticamente: " << id << endl;
     paciente.setIDPaciente(id);
+
     cout << "Numero de carnet: ";
     cin >> carnet;
     cin.ignore();

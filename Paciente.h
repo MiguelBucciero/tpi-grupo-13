@@ -24,7 +24,7 @@ public:
     void cargarPaciente();
     void mostrarPaciente();
 
-protected:
+private:
     int _IDPaciente;
     int _carnet;
     bool _estado;

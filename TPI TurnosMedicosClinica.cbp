@@ -46,7 +46,12 @@
 		<Unit filename="Fecha.h" />
 		<Unit filename="Hora.cpp" />
 		<Unit filename="Hora.h" />
+		<Unit filename="Medico.cpp" />
 		<Unit filename="Medico.h" />
+		<Unit filename="MedicoArchivo.cpp" />
+		<Unit filename="MedicoArchivo.h" />
+		<Unit filename="MedicoManager.cpp" />
+		<Unit filename="MedicoManager.h" />
 		<Unit filename="MenuAdministrador.h" />
 		<Unit filename="MenuMedico.cpp" />
 		<Unit filename="MenuMedico.h" />

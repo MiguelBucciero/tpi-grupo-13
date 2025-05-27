@@ -427,3 +427,171 @@
 	<iostream>
 	"Turno.h"
 
+1748304464 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\domicilio.cpp
+	<iostream>
+	"Domicilio.h"
+	<cstring>
+
+1748326128 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\domicilio.h
+	<string>
+
+1748304464 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\especialidad.cpp
+	<iostream>
+	"Especialidad.h"
+	<cstring>
+
+1748326135 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\especialidad.h
+	<string>
+
+1748304464 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\especialidadarchivo.cpp
+	"EspecialidadArchivo.h"
+
+1748304464 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\especialidadarchivo.h
+	<string>
+	"Especialidad.h"
+
+1748304464 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\especialidadmanager.cpp
+	"EspecialidadManager.h"
+	<iostream>
+	<string>
+
+1748304464 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\especialidadmanager.h
+	"EspecialidadArchivo.h"
+
+1748304464 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\fecha.cpp
+	<iostream>
+	"Fecha.h"
+
+1748326149 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\fecha.h
+	<string>
+
+1748304464 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\hora.cpp
+	<iostream>
+	"Hora.h"
+
+1748326163 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\hora.h
+	<string>
+
+1748304464 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\main.cpp
+	<iostream>
+	"MenuAdministrador.h"
+	"MenuRecepcionista.h"
+
+1748304464 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\menuadministrador.h
+	"Especialidad.h"
+	"EspecialidadManager.h"
+
+1748328885 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\menurecepcionista.h
+	"Paciente.h"
+	"PacienteManager.h"
+	"MedicoManager.h"
+
+1748326185 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\paciente.h
+	"Persona.h"
+	"Domicilio.h"
+	"Fecha.h"
+
+1748326203 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\persona.h
+	<string>
+	"Fecha.h"
+	"Domicilio.h"
+
+1748327176 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\pacientemanager.h
+	"PacienteArchivo.h"
+
+1748304464 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\pacientearchivo.h
+	<string>
+	"Paciente.h"
+
+1748304464 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\menumedico.cpp
+	<iostream>
+	"MenuMedico.h"
+
+1748304464 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\menumedico.h
+
+1748304464 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\menusadministrador.cpp
+	<iostream>
+	<cstdlib>
+	"MenuAdministrador.h"
+
+1748329240 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\menusrecepcionista.cpp
+	<iostream>
+	<cstdlib>
+	"MenuRecepcionista.h"
+	"PacienteManager.h"
+	"Paciente.h"
+	"TurnoManager.h"
+	"TurnoArchivo.h"
+	"MedicoManager.h"
+	"Medico.h"
+
+1748304464 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\turnomanager.h
+	"TurnoArchivo.h"
+
+1748304464 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\turnoarchivo.h
+	<string>
+	"Turno.h"
+
+1748304464 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\turno.h
+	"Fecha.h"
+	"Hora.h"
+
+1748304464 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\paciente.cpp
+	<iostream>
+	<cstring>
+	"Paciente.h"
+
+1748304464 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\pacientearchivo.cpp
+	"PacienteArchivo.h"
+	"PacienteManager.h"
+	<iostream>
+
+1748328252 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\pacientemanager.cpp
+	"PacienteManager.h"
+	<iostream>
+	<string>
+
+1748304464 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\persona.cpp
+	<iostream>
+	<cstring>
+	"Persona.h"
+
+1748304464 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\turno.cpp
+	<iostream>
+	"Turno.h"
+
+1748304464 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\turnoarchivo.cpp
+	"TurnoArchivo.h"
+	"TurnoManager.h"
+	<iostream>
+
+1748304464 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\turnomanager.cpp
+	"TurnoManager.h"
+	"PacienteArchivo.h"
+	"TurnoArchivo.h"
+	"EspecialidadArchivo.h"
+	<iostream>
+
+1748326533 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\medico.cpp
+	<iostream>
+	<string>
+	"Medico.h"
+
+1748326612 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\medico.h
+	"Persona.h"
+
+1748326862 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\medicoarchivo.cpp
+	"MedicoArchivo.h"
+
+1748326755 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\medicoarchivo.h
+	<string>
+	"Medico.h"
+
+1748328351 c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\medicomanager.h
+	"MedicoArchivo.h"
+
+1748328487 source:c:\users\slkf_\downloads\tpi-grupo-13-main2\tpi-grupo-13-main\medicomanager.cpp
+	<iostream>
+	<string>
+	"MedicoManager.h"
+

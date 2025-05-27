@@ -25,7 +25,7 @@ public:
     void cargarDomicilio();
     void mostrarDomicilio();
 
-protected:
+private:
     char _calle [30];
     int _altura;
     char _localidad[30];
