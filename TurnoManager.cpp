@@ -1,7 +1,9 @@
 #include "TurnoManager.h"
 #include "PacienteArchivo.h"
+#include "MedicoArchivo.h"
 #include "TurnoArchivo.h"
 #include "EspecialidadArchivo.h"
+#include "Fecha.h"
 #include <iostream>
 
 using namespace std;
@@ -10,8 +12,9 @@ void TurnoManager::cargarTurno(){
     TurnoArchivo archiT("Turnos.dat");
     Turno turno;
     PacienteArchivo archiP;
+    MedicoArchivo archiM;
     EspecialidadArchivo archiE;
-    int idPaciente, idMedico, idEspecialidad, estado;
+    int idPaciente, idMedico, idEspecialidad;
     Fecha fecha;
     Hora hora;
 
@@ -27,8 +30,13 @@ void TurnoManager::cargarTurno(){
     turno.setIDPaciente(idPaciente);
 
     //hay que validad al medico
-    cout<<"Ingrese el ID del medico: ";
-    cin>> idMedico;
+    do{
+        cout<<"Ingrese el ID del medico: ";
+        cin>> idMedico;
+        if(!archiM.esMedicoActivo(idMedico)){
+            cout<<"ID invalido o dado de baja. Intentar de neuvo"<<endl;
+        }
+    }while(!archiM.esMedicoActivo(idMedico));
     turno.setIDMedico(idMedico);
 
     //validacion del turno para las superposiciones
@@ -62,13 +70,8 @@ void TurnoManager::cargarTurno(){
     }while(!archiE.esEspecialidadValida(idEspecialidad));
     turno.setEspecialidad(idEspecialidad);
 
-    cout<<"Estado del turno (1=activo, 2=cancelado, 3=reprogramado, 4=no asistido): ";
-    cin>>estado;
-    while(estado<1||estado>4){
-        cout<<"Estado invalido. Ingrese un valor entre 1 y 4"<<endl;
-        cin>>estado;
-    }
-    turno.setEstado(estado);
+    cout<<"Estado del turno: Activo "<<endl;
+    turno.setEstado(1);
 
     if(archiT.guardar(turno)){
         cout<<"Turno guardado correctamente"<<endl;
@@ -92,10 +95,10 @@ void TurnoManager::mostrarTurno(){
         delete[] vecTurno;
         return;
     }
-    cout << "-------LISTADO DE TURNOS("<<cantidad<<")-------" << endl;
+    cout<<"-------LISTADO DE TURNOS("<<cantidad<<")-------"<<endl;
     for(int i=0; i<cantidad; i++){
-        cout << "----------------------------------" << endl;
-        cout << "----------------------------------" << endl;
+        cout<<"----------------------------------"<<endl;
+        cout<<"----------------------------------"<<endl;
        vecTurno[i].mostrarTurno();
     }
     delete[] vecTurno;
@@ -104,7 +107,7 @@ void TurnoManager::mostrarTurno(){
 
 void TurnoManager::reprogramarTurno(){
     int idTurno;
-    cout<<"Ingrese el ID del paciente al que desea modificar la consulta: ";
+    cout<<"Ingrese el ID del turno al que desea modificar la consulta: ";
     cin>> idTurno;
 
     int cantidad=_archivo.getCantidadRegistros();
@@ -123,6 +126,7 @@ void TurnoManager::reprogramarTurno(){
     }
     if(!encontrado){
         cout<<"Turno no encontrado o no activo"<<endl;
+        return;
     }
 
     //nueva fecha y hora, evitando la superposicion
@@ -158,7 +162,7 @@ void TurnoManager::reprogramarTurno(){
 }
 void TurnoManager::cancelarTurno(){
     int idTurno;
-    cout<<"Ingrese el ID del paciente al que desea modificar la consulta: ";
+    cout<<"Ingrese el ID del turno que desea cancelar: ";
     cin>> idTurno;
 
     int pos=_archivo.Buscar(idTurno);
@@ -180,3 +184,56 @@ void TurnoManager::cancelarTurno(){
         cout<<"Error al cancelar el turno"<<endl;
     }
 }
+
+void TurnoManager::BuscarTurnoEstado(){
+    int estado;
+    cout<<"Indique el estado de turnos que desee buscar (1.Activo - 2.Cancelado - 3.Reprogramado - 4.No Asistido): ";
+    cin>>estado;
+
+    int cantidad=_archivo.getCantidadRegistros();
+    Turno* turnos=new Turno[cantidad];
+    int encontrados=0;
+
+    for(int i=0; i<cantidad; i++){
+        Turno t=_archivo.Leer(i);
+        if(t.getEstado()==estado){
+            turnos[encontrados]=t;
+            encontrados++;
+        }
+    }
+    if(encontrados==0){
+        cout<<"No se encontraron turnos con ese estado"<<endl;
+    }else{
+        cout<<"-------LISTADO DE TURNOS("<<encontrados<<")-------"<<endl;
+        for(int i=0; i<encontrados; i++){
+            cout<<"----------------------------------"<<endl;
+            cout<<"----------------------------------"<<endl;
+            turnos[i].mostrarTurno();
+        }
+    }
+    delete[] turnos;
+}
+
+void TurnoManager::TurnosDelDia(){
+    int cantidad=_archivo.getCantidadRegistros();
+    Turno* lista;
+    lista=new Turno[cantidad];
+
+    cout<<"Fecha de hoy: ";
+    if(_archivo.leerMuchos(lista, cantidad)){
+        Fecha hoy;
+        hoy.cargarFecha();
+        cout<<endl;
+        cout<<"-------LISTADO DE TURNOS DEL DIA-------"<<endl;
+        for(int i=0; i<cantidad; i++){
+            if(lista[i].getFechaTurno().esIgual(hoy)&&lista[i].getEstado()==1){
+                cout<<"---------------------------------------"<<endl;
+                lista[i].mostrarTurno();
+            }
+        }
+    }else{
+        cout<<"No se pudieron leer los turnos"<<endl;
+    }
+    delete[] lista;
+}
+

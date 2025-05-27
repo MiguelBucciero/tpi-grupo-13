@@ -14,6 +14,7 @@ public:
     bool leerMuchos(Medico reg[], int cantidad);
     void CargarYguardar();
     int getNuevoID();
+    bool esMedicoActivo(int IDMedico);
 
 private:
     std::string _nombreArchivo;

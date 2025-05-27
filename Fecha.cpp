@@ -71,7 +71,7 @@ void Fecha::cargarFecha(int dia, int mes, int anio){
 }
 
 void Fecha::mostrarFecha() {
-    cout << toString() << endl;
+    cout<< toString() <<endl;
 }
 string Fecha::toString(){
     return to_string(_dia) + "/" + to_string(_mes) + "/" + to_string(_anio);
@@ -80,3 +80,4 @@ string Fecha::toString(){
 bool Fecha::esIgual(Fecha &otra) {
     return(_dia==otra.getDia()&&_mes==otra.getMes()&&_anio==otra.getAnio());
 }
+

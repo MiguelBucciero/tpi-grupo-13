@@ -11,20 +11,18 @@
 using namespace std;
 
 int MenuRecepcionista::menuRecepcionista() {
-    TurnoManager turnomanager;
 int opc;
  while(true){
     system("cls");
     cout<<"- MENU RECEPCIONISTA - "<<endl;
     cout<<"- 1.Registrar paciente "<<endl;
     cout<<"- 2.Listar pacientes "<<endl;
-    cout<<"- 3.Registrar medico "<<endl;
-    cout<<"- 4.Listar medico "<<endl;
-    cout<<"- 5.Asignar nuevo turno "<<endl;
-    cout<<"- 6.Reprogramar turno "<<endl;
-    cout<<"- 7.Cancelar turno "<<endl;
-    cout<<"- 8.Consultas//mostrar "<<endl;
-    cout<<"- 9.Informes "<<endl;
+    cout<<"- 3.Asignar nuevo turno "<<endl;
+    cout<<"- 4.Reprogramar turno "<<endl;
+    cout<<"- 5.Cancelar turno "<<endl;
+    cout<<"- 6.Consultas "<<endl;
+    cout<<"- 7.Informes "<<endl;
+    cout<<"- 8.Lista de turnos "<<endl;
     cout<<"- 0.Cerrar sesion "<<endl;
     cout<<endl;
     cout<<"Seleccione la opcion que busca..."<<endl;
@@ -35,19 +33,17 @@ int opc;
         break;
     case 2: _pacienteManager.mostrarPaciente();
         break;
-    case 3: _medicoManager.cargarMedico();
+    case 3: _turnoManager.cargarTurno();
         break;
-    case 4: _medicoManager.mostrarMedico();
+    case 4: _turnoManager.reprogramarTurno();
         break;
-    case 5: turnomanager.cargarTurno();
+    case 5: _turnoManager.cancelarTurno();
         break;
-    case 6: turnomanager.reprogramarTurno();
+    case 6: menuConsultasRecepcionista();
         break;
-    case 7: turnomanager.cancelarTurno();
+    case 7: menuInformesRecepcionista();
         break;
-    case 8: menuConsultasRecepcionista();
-        break;
-    case 9: menuInformesRecepcionista();
+    case 8: _turnoManager.mostrarTurno();
         break;
     case 0: cout<<"Cerrando sesion"<<endl;
         return 0;
@@ -75,13 +71,13 @@ while(true){
     cin>>opc;
     system("cls");
     switch(opc) {
-    case 1:
+    case 1: _turnoManager.BuscarTurnoEstado();
         break;
     case 2:
         break;
-    case 3:
+    case 3: _turnoManager.TurnosDelDia();
         break;
-    case 4:
+    case 4: //_turnoManager.TurnosDeLaSemana();
         break;
     case 0: cout<<"Volviendo al menu principal"<<endl;
         return 0;

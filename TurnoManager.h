@@ -7,6 +7,8 @@ public:
     void mostrarTurno();
     void reprogramarTurno();
     void cancelarTurno();
+    void BuscarTurnoEstado();
+    void TurnosDelDia();
 
 private:
     TurnoArchivo _archivo;
