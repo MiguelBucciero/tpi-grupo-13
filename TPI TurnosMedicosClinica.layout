@@ -2,49 +2,9 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="MenusAdministrador.cpp" open="0" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="7" zoom_2="0">
+	<File name="Hora.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="66" topLine="12" />
-		</Cursor>
-	</File>
-	<File name="Turno.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="386" topLine="13" />
-		</Cursor>
-	</File>
-	<File name="TurnoManager.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5121" topLine="146" />
-		</Cursor>
-	</File>
-	<File name="Hora.cpp" open="0" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1054" topLine="43" />
-		</Cursor>
-	</File>
-	<File name="PacienteManager.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="73" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="TurnoArchivo.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="547" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="Paciente.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="542" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="MenuAdministrador.h" open="0" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="9" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="222" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="EspecialidadManager.h" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="11" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="224" topLine="0" />
+			<Cursor1 position="326" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="TurnoManager.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -52,69 +12,14 @@
 			<Cursor1 position="225" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="PacienteManager.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="87" topLine="13" />
-		</Cursor>
-	</File>
-	<File name="EspecialidadArchivo.cpp" open="0" top="0" tabpos="16" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2903" topLine="100" />
-		</Cursor>
-	</File>
-	<File name="Especialidad.cpp" open="0" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="10" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="145" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="Domicilio.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2382" topLine="81" />
-		</Cursor>
-	</File>
-	<File name="MenusRecepcionista.cpp" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1144" topLine="12" />
-		</Cursor>
-	</File>
 	<File name="MenuRecepcionista.h" open="0" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="10" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="253" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Fecha.cpp" open="0" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+	<File name="PacienteManager.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1324" topLine="58" />
-		</Cursor>
-	</File>
-	<File name="Paciente.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="8" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="947" topLine="11" />
-		</Cursor>
-	</File>
-	<File name="Turno.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="894" topLine="39" />
-		</Cursor>
-	</File>
-	<File name="Fecha.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="447" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="MenuMedico.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="661" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="EspecialidadManager.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="11" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="188" topLine="23" />
-		</Cursor>
-	</File>
-	<File name="EspecialidadArchivo.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="567" topLine="0" />
+			<Cursor1 position="73" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="TurnoArchivo.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -132,11 +37,6 @@
 			<Collapse line="136" />
 		</Folding>
 	</File>
-	<File name="Hora.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="326" topLine="0" />
-		</Cursor>
-	</File>
 	<File name="PacienteArchivo.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="2858" topLine="2" />
@@ -153,19 +53,24 @@
 			<Collapse line="123" />
 		</Folding>
 	</File>
-	<File name="PacienteArchivo.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="MenuMedico.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="194" topLine="0" />
+			<Cursor1 position="661" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Especialidad.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="10" zoom_2="0">
+	<File name="EspecialidadArchivo.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="548" topLine="0" />
+			<Cursor1 position="567" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Persona.h" open="0" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="6" zoom_2="0">
+	<File name="EspecialidadManager.h" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="11" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="288" topLine="0" />
+			<Cursor1 position="224" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Especialidad.cpp" open="0" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="10" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="145" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="main.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="9" zoom_2="0">
@@ -173,14 +78,109 @@
 			<Cursor1 position="122" topLine="0" />
 		</Cursor>
 	</File>
+	<File name="Paciente.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="8" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="947" topLine="11" />
+		</Cursor>
+	</File>
+	<File name="MenusRecepcionista.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1144" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="Fecha.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="447" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="TurnoArchivo.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="547" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="EspecialidadManager.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="11" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="188" topLine="23" />
+		</Cursor>
+	</File>
 	<File name="Domicilio.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="758" topLine="1" />
 		</Cursor>
 	</File>
+	<File name="MenuAdministrador.h" open="0" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="9" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="222" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Fecha.cpp" open="0" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1324" topLine="58" />
+		</Cursor>
+	</File>
+	<File name="PacienteArchivo.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="194" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="MenusAdministrador.cpp" open="0" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="7" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="66" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="EspecialidadArchivo.cpp" open="1" top="1" tabpos="10" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2903" topLine="101" />
+		</Cursor>
+	</File>
+	<File name="PacienteManager.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="87" topLine="13" />
+		</Cursor>
+	</File>
+	<File name="TurnoManager.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5121" topLine="146" />
+		</Cursor>
+	</File>
+	<File name="Turno.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="894" topLine="39" />
+		</Cursor>
+	</File>
+	<File name="Hora.cpp" open="0" top="0" tabpos="18" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1054" topLine="43" />
+		</Cursor>
+	</File>
+	<File name="Persona.h" open="0" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="6" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="288" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Especialidad.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="10" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="548" topLine="0" />
+		</Cursor>
+	</File>
 	<File name="Persona.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="10" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="2210" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Domicilio.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2382" topLine="81" />
+		</Cursor>
+	</File>
+	<File name="Turno.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="386" topLine="13" />
+		</Cursor>
+	</File>
+	<File name="Paciente.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="542" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
