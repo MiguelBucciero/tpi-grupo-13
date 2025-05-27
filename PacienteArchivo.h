@@ -15,6 +15,8 @@ public:
     bool leerMuchos(Paciente reg[], int cantidad);
     void CargarYguardar();
     int getNuevoID();
+    bool esPacienteActivo(int IDPaciente);
+
 private:
     std::string _nombreArchivo;
 };

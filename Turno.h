@@ -15,7 +15,7 @@ public:
     Fecha getFechaTurno();
     Hora getHoraTurno();
     int getEspecialidad();
-    bool getEstado();
+    int getEstado();
 
     // Setters
     void setIDTurno(int valor);
@@ -24,10 +24,9 @@ public:
     void setFechaTurno(Fecha valor);
     void setHoraTurno(Hora valor);
     void setEspecialidad(int valor);
-    void setEstado(bool valor);
+    void setEstado(int valor);
 
     // Métodos
-    void cargarTurno();
     void mostrarTurno();
 
 private:

@@ -112,3 +112,13 @@ bool EspecialidadArchivo::leerMuchos(Especialidad reg[], int cantidad){
 int EspecialidadArchivo::getNuevoID(){
     return getCantidadRegistros()+1;
 }
+
+bool EspecialidadArchivo::esEspecialidadValida(int idEspecialidad){
+    int pos=Buscar(idEspecialidad);
+    if(pos==-1){
+        return false;
+    }
+    Especialidad esp=Leer(pos);
+    //devuelve true=activado, false=no activado
+    return esp.getEstado();
+}

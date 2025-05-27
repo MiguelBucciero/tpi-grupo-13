@@ -18,6 +18,7 @@ public:
     // Métodos
     void cargarHora();
     void mostrarHora();
+    bool esIgual(Hora &otra);
 
     std::string toString();
 

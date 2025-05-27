@@ -1,14 +1,15 @@
 #include<iostream>
 #include<cstdlib>
+
+using namespace std;
 #include "MenuRecepcionista.h"
 #include "PacienteManager.h"
 #include "Paciente.h"
-
-using namespace std;
-
-
+#include "TurnoManager.h"
+#include "TurnoArchivo.h"
 
 int MenuRecepcionista::menuRecepcionista() {
+    TurnoManager turnomanager;
 int opc;
  while(true){
     system("cls");
@@ -18,7 +19,7 @@ int opc;
     cout<<"- 3.Asignar nuevo turno "<<endl;
     cout<<"- 4.Reprogramar turno "<<endl;
     cout<<"- 5.Cancelar turno "<<endl;
-    cout<<"- 6.Consultas "<<endl;
+    cout<<"- 6.Consultas//mostrar "<<endl;
     cout<<"- 7.Informes "<<endl;
     cout<<"- 0.Cerrar sesion "<<endl;
     cout<<endl;
@@ -30,15 +31,15 @@ int opc;
         break;
     case 2:_pacienteManager.mostrarPaciente();
         break;
-    case 3:
+    case 3: turnomanager.cargarTurno();
         break;
-    case 4:
+    case 4: turnomanager.reprogramarTurno();
         break;
-    case 5: menuConsultasRecepcionista();
+    case 5: turnomanager.cancelarTurno();
         break;
-    case 6: menuInformesRecepcionista();
+    case 6: menuConsultasRecepcionista();
         break;
-    case 7:
+    case 7: menuInformesRecepcionista();
         break;
     case 0: cout<<"Cerrando sesion"<<endl;
         return 0;

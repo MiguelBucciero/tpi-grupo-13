@@ -76,3 +76,7 @@ void Fecha::mostrarFecha() {
 string Fecha::toString(){
     return to_string(_dia) + "/" + to_string(_mes) + "/" + to_string(_anio);
 }
+
+bool Fecha::esIgual(Fecha &otra) {
+    return(_dia==otra.getDia()&&_mes==otra.getMes()&&_anio==otra.getAnio());
+}

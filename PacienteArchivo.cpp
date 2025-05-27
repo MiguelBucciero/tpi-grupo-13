@@ -125,3 +125,12 @@ int PacienteArchivo::getNuevoID(){
     return getCantidadRegistros()+1;
 }
 
+bool PacienteArchivo::esPacienteActivo(int IDPaciente){
+    int pos=Buscar(IDPaciente);
+    if(pos==-1){
+        return false;
+    }
+    Paciente registro=Leer(pos);
+    //devuelve true=activado, false=no activado
+    return registro.getEstado();
+}

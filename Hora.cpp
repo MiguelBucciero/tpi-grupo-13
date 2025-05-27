@@ -61,3 +61,7 @@ void Hora::mostrarHora() {
 string Hora::toString() {
     return to_string(_hora) + ":" + to_string(_minutos) + " hs.";
 }
+
+bool Hora::esIgual(Hora &otra){
+    return (_hora==otra.getHora()&&_minutos==otra.getMinutos());
+}

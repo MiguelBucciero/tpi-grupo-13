@@ -72,7 +72,22 @@
 		<Unit filename="Persona.cpp" />
 		<Unit filename="Persona.h" />
 		<Unit filename="Rol.h" />
+		<Unit filename="Turno.cpp">
+			<Option target="Debug" />
+		</Unit>
 		<Unit filename="Turno.h" />
+		<Unit filename="TurnoArchivo.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="TurnoArchivo.h">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="TurnoManager.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="TurnoManager.h">
+			<Option target="Debug" />
+		</Unit>
 		<Unit filename="Usuario.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>

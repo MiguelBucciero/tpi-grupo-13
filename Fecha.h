@@ -21,6 +21,7 @@ public:
     void cargarFecha();
     void cargarFecha(int dia, int mes, int anio);
     void mostrarFecha();
+    bool esIgual(Fecha &otra);
 
     std::string toString();
 protected:
