@@ -42,15 +42,27 @@ bool Medico::getEstado(){
 
 // Setters
 void Medico::setIDMedico(int IDMedico) {
-    _IDMedico = IDMedico;
+    if (IDMedico > 0) {
+        _IDMedico = IDMedico;
+    } else {
+        _IDMedico = 0;
+    }
 }
 
 void Medico::setMatricula(int matricula) {
-    _matricula = matricula;
+    if (matricula >= 1 && matricula <= 999999) {
+        _matricula = matricula;
+    } else {
+        _matricula = 0;
+    }
 }
 
 void Medico::setIDEspecialidad(int IDEspecialidad) {
-    _IDEspecialidad = IDEspecialidad;
+    if (IDEspecialidad > 0) {
+        _IDEspecialidad = IDEspecialidad;
+    } else {
+        _IDEspecialidad = 0;
+    }
 }
 
 void Medico::setEstado(bool estado) {

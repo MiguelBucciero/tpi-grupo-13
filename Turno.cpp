@@ -9,6 +9,7 @@ Turno::Turno(){
     _IDMedico=0;
     _FechaTurno=Fecha();
     _HoraTurno=Hora();
+
     _IDEspecialidad=0;
     _EstadoTurno=0;
 }

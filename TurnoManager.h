@@ -9,6 +9,7 @@ public:
     void cancelarTurno();
     void BuscarTurnoEstado();
     void TurnosDelDia();
+    void TurnosDeLaSemana();
 
 private:
     TurnoArchivo _archivo;

@@ -12,7 +12,7 @@ void EspecialidadManager::cargarEspecialidad() {
     bool estado;
 
     cout<<"ID: "<<id<<endl;
-
+    cin.ignore();
     cout<<"Ingrese nombre de la especialidad: ";
     getline(cin, nombre);
 

@@ -5,6 +5,7 @@ class MedicoManager{
 public:
     void cargarMedico();
     void mostrarMedico();
+    void buscarMedicoPorEspecialidad();
 
 private:
     MedicoArchivo _archivo;

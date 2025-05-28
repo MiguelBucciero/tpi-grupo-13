@@ -73,11 +73,11 @@ while(true){
     switch(opc) {
     case 1: _turnoManager.BuscarTurnoEstado();
         break;
-    case 2:
+    case 2:_medicoManager.buscarMedicoPorEspecialidad();
         break;
     case 3: _turnoManager.TurnosDelDia();
         break;
-    case 4: //_turnoManager.TurnosDeLaSemana();
+    case 4: _turnoManager.TurnosDeLaSemana();
         break;
     case 0: cout<<"Volviendo al menu principal"<<endl;
         return 0;

@@ -219,7 +219,7 @@ void TurnoManager::TurnosDelDia(){
     Turno* lista;
     lista=new Turno[cantidad];
 
-    cout<<"Fecha de hoy: ";
+    cout<<"Fecha de hoy: "<<endl;
     if(_archivo.leerMuchos(lista, cantidad)){
         Fecha hoy;
         hoy.cargarFecha();
@@ -234,6 +234,41 @@ void TurnoManager::TurnosDelDia(){
     }else{
         cout<<"No se pudieron leer los turnos"<<endl;
     }
+    delete[] lista;
+}
+
+void TurnoManager::TurnosDeLaSemana() {
+    int cantidad = _archivo.getCantidadRegistros();
+    if (cantidad == 0) {
+        cout << "No hay turnos cargados." << endl;
+        return;
+    }
+
+    Turno* lista = new Turno[cantidad];
+    if (!_archivo.leerMuchos(lista, cantidad)) {
+        cout << "No se pudieron leer los turnos." << endl;
+        delete[] lista;
+        return;
+    }
+
+    Fecha fechaActual;
+    cout << "Ingrese la fecha (inicio de la semana): ";
+    fechaActual.cargarFecha();
+
+    cout << "\n------- LISTADO DE TURNOS DE LA SEMANA -------" << endl;
+
+    for (int i = 0; i < cantidad; i++) {
+        Fecha f = lista[i].getFechaTurno();
+        if (lista[i].getEstado() == 1 &&
+            f.getAnio() == fechaActual.getAnio() &&
+            f.getMes() == fechaActual.getMes() &&
+            f.getDia() >= fechaActual.getDia() &&
+            f.getDia() <= fechaActual.getDia() + 6) {
+            cout << "----------------------------------" << endl;
+            lista[i].mostrarTurno();
+        }
+    }
+
     delete[] lista;
 }
 
