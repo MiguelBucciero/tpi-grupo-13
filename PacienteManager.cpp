@@ -1,4 +1,5 @@
 #include "PacienteManager.h"
+#include "rlutil.h"
 #include <iostream>
 #include <string>
 using namespace std;

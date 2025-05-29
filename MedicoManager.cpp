@@ -142,35 +142,35 @@ void MedicoManager::mostrarMedico() {
 
 void MedicoManager::buscarMedicoPorEspecialidad() {
     int idEspecialidad;
-    cout << "Ingrese el ID de especialidad que desea buscar: ";
-    cin >> idEspecialidad;
+    cout<<"Ingrese el ID de especialidad que desea buscar: ";
+    cin>>idEspecialidad;
 
-    int cantidad = _archivo.getCantidadRegistros();
-    if (cantidad == 0) {
-        cout << "No hay medicos cargados." << endl;
+    int cantidad=_archivo.getCantidadRegistros();
+    if (cantidad==0) {
+        cout<<"No hay medicos cargados."<<endl;
         return;
     }
 
-    Medico* vecMedico = new Medico[cantidad];
+    Medico* vecMedico=new Medico[cantidad];
     _archivo.leerMuchos(vecMedico, cantidad);
 
-    bool encontrados = false;
-    cout << "\n--- Medicos con ID de especialidad " << idEspecialidad << " ---" << endl;
+    bool encontrados=false;
+    cout << "\n--- Medicos con ID de especialidad "<<idEspecialidad<<" ---"<<endl;
 
-    for (int i = 0; i < cantidad; i++) {
-        if (vecMedico[i].getIDEspecialidad() == idEspecialidad && vecMedico[i].getEstado()) {
-            cout << "----------------------------------" << endl;
-            cout << "ID Medico: " << vecMedico[i].getIDMedico() << endl;
-            cout << "Nombre: " << vecMedico[i].getNombre() << " " << vecMedico[i].getApellido() << endl;
-            cout << "DNI: " << vecMedico[i].getDni() << endl;
-            cout << "Email: " << vecMedico[i].getEmail() << endl;
-            cout << "Telefono: " << vecMedico[i].getTelefono() << endl;
+    for (int i=0; i<cantidad; i++) {
+        if (vecMedico[i].getIDEspecialidad()==idEspecialidad && vecMedico[i].getEstado()) {
+            cout<<"----------------------------------"<<endl;
+            cout<<"ID Medico: "<<vecMedico[i].getIDMedico()<<endl;
+            cout<<"Nombre: "<<vecMedico[i].getNombre()<<" " <<vecMedico[i].getApellido()<<endl;
+            cout<<"DNI: "<<vecMedico[i].getDni()<<endl;
+            cout<<"Email: " << vecMedico[i].getEmail()<<endl;
+            cout<<"Telefono: "<<vecMedico[i].getTelefono()<<endl;
             encontrados = true;
         }
     }
 
     if (!encontrados) {
-        cout << "No se encontraron medicos activos con esa especialidad." << endl;
+        cout << "No se encontraron medicos activos con esa especialidad."<<endl;
     }
 
     delete[] vecMedico;
