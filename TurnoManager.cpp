@@ -78,6 +78,8 @@ void TurnoManager::cargarTurno(){
     } else{
         cout<<"Error al guardar turno"<<endl;
     }
+    system ("pause");
+    system("cls");
 }
 
 void TurnoManager::mostrarTurno(){
@@ -102,6 +104,8 @@ void TurnoManager::mostrarTurno(){
        vecTurno[i].mostrarTurno();
     }
     delete[] vecTurno;
+    system ("pause");
+    system("cls");
 
 }
 
@@ -159,6 +163,8 @@ void TurnoManager::reprogramarTurno(){
     } else{
         cout<<"Error al reprogramar el turno"<<endl;
     }
+    system ("pause");
+    system("cls");
 }
 void TurnoManager::cancelarTurno(){
     int idTurno;
@@ -183,6 +189,8 @@ void TurnoManager::cancelarTurno(){
     } else{
         cout<<"Error al cancelar el turno"<<endl;
     }
+    system ("pause");
+    system("cls");
 }
 
 void TurnoManager::BuscarTurnoEstado(){
@@ -212,6 +220,8 @@ void TurnoManager::BuscarTurnoEstado(){
         }
     }
     delete[] turnos;
+    system ("pause");
+    system("cls");
 }
 
 void TurnoManager::TurnosDelDia(){
@@ -235,6 +245,8 @@ void TurnoManager::TurnosDelDia(){
         cout<<"No se pudieron leer los turnos"<<endl;
     }
     delete[] lista;
+    system ("pause");
+    system("cls");
 }
 
 void TurnoManager::TurnosDeLaSemana() {
@@ -270,5 +282,7 @@ void TurnoManager::TurnosDeLaSemana() {
     }
 
     delete[] lista;
+    system ("pause");
+    system("cls");
 }
 

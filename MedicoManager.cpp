@@ -14,7 +14,7 @@ void MedicoManager::cargarMedico() {
     cout << "INGRESO DE UN NUEVO MEDICO" << endl;
     cout << "---------------------------" << endl;
 
-    cin.ignore();
+   // cin.ignore();
 
     cout << "Apellido: ";
     getline(cin, aux);
@@ -95,6 +95,8 @@ void MedicoManager::cargarMedico() {
     } else {
         cout << "Error al guardar medico." << endl;
     }
+    system ("pause");
+    system("cls");
 }
 
 void MedicoManager::mostrarMedico() {
@@ -138,6 +140,8 @@ void MedicoManager::mostrarMedico() {
     }
 
     delete[] vecMedico;
+    system ("pause");
+    system("cls");
 }
 
 void MedicoManager::buscarMedicoPorEspecialidad() {
@@ -174,6 +178,8 @@ void MedicoManager::buscarMedicoPorEspecialidad() {
     }
 
     delete[] vecMedico;
+    system ("pause");
+    system("cls");
 }
 
 

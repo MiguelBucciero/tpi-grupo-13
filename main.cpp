@@ -2,53 +2,91 @@
 #include "rlutil.h"
 #include "MenuAdministrador.h"
 #include "MenuRecepcionista.h"
+#include "MenuMedico.h"
 
 using namespace std;
 
-int main(){
-    int opcion;
-//mini menu para ir probando las cosas, luego lo sacamos xd
-    do {
-        cout<<"=================================="<<endl;
-        cout<<"    SISTEMA DE GESTION DE TURNOS  "<<endl;
-        cout<<"=================================="<<endl;
-        cout<<"1. Ingresar como Administrador"<<endl;
-        cout<<"2. Ingresar como Recepcionista"<<endl;
-        cout<<"0. Salir"<<endl;
-        cout<<"Seleccione una opcion: ";
-        cin>>opcion;
-        cin.ignore();  // limpia el \n del buffer
+static void showItem(const char* text, int posx, int posy, bool selected){
+    if(selected){
+        rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+    } else{
+        rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+    }
+    rlutil::locate(posx, posy);
+    cout<<text<<endl;
+    rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+}
 
-        switch (opcion) {
-            case 1: {
+//mini menu para ir probando las cosas, luego lo sacamos xd
+
+int main(){
+    int y=0;
+    int opc=1;
+     do{
+        rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::hidecursor();
+        rlutil::locate(50, 3);
+        cout<<" SISTEMA DE GESTION DE TURNOS ";
+        showItem(" 1. INGRESAR COMO ADMINISTRADOR ", 50, 5, y==0);
+        showItem(" 2. INGRESAR COMO RECEPCIONISTA ", 50, 6, y==1);
+        showItem(" 3. INGRESAR COMO MEDICO ", 50, 7, y==2);
+        showItem(" 4. SALIR", 50, 8, y==3);
+
+        rlutil::locate(48, 5 + y);
+        cout<<(char)175;
+
+        switch(rlutil::getkey()){
+        case 14: //UP
+            rlutil::locate(48, 5 + y);
+            cout<<" "<<endl;
+            y--;
+            if(y<0){
+                y=0;
+            }
+        break;
+        case 15: //DOWN
+            rlutil::locate(48, 5 + y);
+            cout<<" "<<endl;
+            y++;
+            if(y>3){
+                y=3;
+            }
+        break;
+        case 1: //ENTER
+            rlutil::cls();
+            switch(y){
+            case 0:{
                 MenuAdministrador menu;
                 menu.menuAdministrador();
                 break;
             }
-            case 2: {
+            case 1:{
                 MenuRecepcionista menu;
                 menu.menuRecepcionista();
                 break;
             }
-            case 0:
-                cout<<"Saliendo del sistema..."<<endl;
+            case 2:{
+                MenuMedico menu;
+                menu.menuMedico();
                 break;
+            }
+            case 3:opc=0;
+                    break;
             default:
-                cout<<"Opcion invalida. Intente nuevamente."<<endl;
+                    break;
+            }
+            if(opc!=0){
                 rlutil::anykey();
+            }
+            break;
+        default:
+            break;
         }
+     }while(opc!=0);
 
-        cout<<endl;
-    } while (opcion != 0);
     return 0;
 }
 
-/*int main(){
-    //int opcion;
-               MenuRecepcionista menu;
-                menu.menuRecepcionista();
-              // MenuAdministrador menu;
-               //menu.menuAdministrador();
-    return 0;
-}*/
+
 

@@ -1,92 +1,162 @@
 #include<iostream>
 #include<cstdlib>
+#include "rlutil.h"
 #include "MenuAdministrador.h"
 
 
 using namespace std;
 
-int MenuAdministrador::menuAdministrador() {
-int opc;
- while(true){
-    system("cls");
-    cout<<"- MENU ADMINISTRADOR - "<<endl;
-    cout<<"- 1.Cargar nuevo usuario "<<endl;
-    cout<<"- 2.Eliminar usuario "<<endl;
-    cout<<"- 3.Listado de usuarios del sistema registrados "<<endl;
-    cout<<"- 4.Informes "<<endl;
-    cout<<"- 5.Cargar Especialidad "<<endl;
-    cout<<"- 6.Mostrar Especialidad "<<endl;
-    cout<<"- 7.Cargar Medico "<<endl;
-    cout<<"- 8.Mostrar Medico "<<endl;
-    cout<<"- 0.Cerrar sesion "<<endl;
-    cout<<endl;
-    cout<<"Seleccione la opcion que busca..."<<endl;
-    cin>>opc;
-    system("cls");
-    switch(opc){
-    case 1: menuInformesAdministrador();
-        break;
-    case 2:
-        break;
-    case 3:
-        break;
-    case 4: menuInformesAdministrador();
-        break;
-    case 5:;_espManager.cargarEspecialidad();
-        break;
-    case 6:_espManager.mostrarEspecialidad();
-        break;
-    case 7: _medicoManger.cargarMedico();
-        break;
-    case 8: _medicoManger.mostrarMedico();
-        break;
-    case 0: cout<<"Cerrando sesion"<<endl;
-        return 0;
-    default:
-        cout<<"Opcion incorrecta. Vuelva a intentar"<<endl;
-        break;
+static void showItem(const char* text, int posx, int posy, bool selected){
+    if(selected){
+        rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+    } else{
+        rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
     }
-    cout<<endl;
-    system("pause");
- }
+    rlutil::locate(posx, posy);
+    cout<<text<<endl;
+    rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+}
+
+int MenuAdministrador::menuAdministrador() {
+    int opc=1;
+    int y=0;
+    do{
+        rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::hidecursor();
+        rlutil::locate(50, 3);
+        cout<<" MENU ADMINISTRADOR ";
+        showItem(" 1. CARGAR NUEVO USUARIO ", 50, 5, y==0);
+        showItem(" 2. ELIMINAR USUARIO ", 50, 6, y==1);
+        showItem(" 3. LISTAR USUARIOS ", 50, 7, y==2);
+        showItem(" 4. INFORMES ", 50, 8, y==3);
+        showItem(" 5. CARGAR ESPECIALIDAD ", 50, 9, y==4);
+        showItem(" 6. LISTAR ESPECIALIDAD ", 50, 10, y==5);
+        showItem(" 7. CARGAR MEDICO ", 50, 11, y==6);
+        showItem(" 8. LISTAR MEDICOS ", 50, 12, y==7);
+        showItem(" 0. CERRAR SESION ", 50, 13, y==8);
+
+        rlutil::locate(48, 5 + y);
+        cout<<(char)175;
+
+        switch(rlutil::getkey()){
+        case 14: //UP
+            rlutil::locate(48, 5 + y);
+            cout<<" "<<endl;
+            y--;
+            if(y<0){
+                y=0;
+            }
+        break;
+        case 15: //DOWN
+            rlutil::locate(48, 5 + y);
+            cout<<" "<<endl;
+            y++;
+            if(y>8){
+                y=8;
+            }
+        break;
+        case 1: //ENTER
+            rlutil::cls();
+            switch(y){
+            case 0:
+                    break;
+            case 1:
+                    break;
+            case 2:
+                    break;
+            case 3:
+                menuInformesAdministrador();
+                    break;
+            case 4:
+               _espManager.cargarEspecialidad();
+                    break;
+            case 5:
+                _espManager.mostrarEspecialidad();
+                    break;
+            case 6:
+                _medicoManger.cargarMedico();
+                    break;
+            case 7:
+                _medicoManger.mostrarMedico();
+                    break;
+            case 8:opc=0;
+                    break;
+            default:
+                    break;
+            }
+            if(opc!=0){
+                rlutil::anykey();
+            }
+            break;
+        default:
+            break;
+        }
+     }while(opc!=0);
 }
 
 int MenuAdministrador::menuInformesAdministrador(){
-int opc;
-while(true){
-    system("cls");
-    cout<<" - INFORMES ADMINISTRADOR - "<<endl;
-    cout<<"- 1.Cantidad de turnos por medico "<<endl;
-    cout<<"- 2.Cantidad de turnos por paciente "<<endl;
-    cout<<"- 3.Cantidad de turnos cancelados por mes "<<endl;
-    cout<<"- 4.Cantidad de turnos reprogrados por mes "<<endl;
-    cout<<"- 5.Cantidad de turnos por especialidad "<<endl;
-    cout<<"- 6.Cantidad de usuarios activos "<<endl;
-    cout<<"- 0.Volver al menu anterior "<<endl;
-    cout<<endl;
-    cout<<"Seleccione la opcion que busca..."<<endl;
-    cin>>opc;
-    system("cls");
-    switch(opc) {
-    case 1:
+    int y=0;
+    int opc=1;
+    do{
+        system("cls");
+        rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::hidecursor();
+        rlutil::locate(55, 3);
+        cout<<" - INFORMES ADMINISTRADOR - ";
+        showItem(" 1. CANTIDAD DE TURNOS POR MEDICO ", 50, 5, y==0);
+        showItem(" 2. CANTIDAD DE TURNOS POR PACIENTE ", 50, 6, y==1);
+        showItem(" 3. CANTIDAD DE TURNOS CANCELADOS POR MES ", 50, 7, y==2);
+        showItem(" 4. CANTIDAD DE TURNOS REPROGRAMADOS POR MES ", 50, 8, y==3);
+        showItem(" 5. CANTIDAD DE TURNOS POR ESPECIALIDAD ", 50, 9, y==4);
+        showItem(" 6. CANTIDAD DE USURIOS ACTIVOS ", 50, 10, y==5);
+        showItem(" 0. VOLVER AL MENU ANTERIOR ", 50, 11, y==6);
+
+        rlutil::locate(48, 5 + y);
+        cout<<(char)175;
+
+        switch(rlutil::getkey()){
+        case 14: //UP
+            rlutil::locate(53, 5 + y);
+            cout<<" "<<endl;
+            y--;
+            if(y<0){
+                y=0;
+            }
         break;
-    case 2:
+        case 15: //DOWN
+            rlutil::locate(53, 5 + y);
+            cout<<" "<<endl;
+            y++;
+            if(y>6){
+                y=6;
+            }
         break;
-    case 3:
-        break;
-    case 4:
-        break;
-    case 5:
-        break;
-    case 6:
-        break;
-    case 0: cout<<"Volviendo al menu principal"<<endl;
-        return 0;
-    default:
-        cout<<"Opcion incorrecta"<<endl;
+        case 1: //ENTER
+            rlutil::cls();
+            switch(y){
+            case 0:
+                    break;
+            case 1:
+                    break;
+            case 2:
+                    break;
+            case 3:
+                    break;
+            case 4:
+                    break;
+            case 5:
+                    break;
+            case 6: opc=0;
+                    break;
+            default:
+                    break;
+            }
+            if(opc!=0){
+                rlutil::anykey();
+            }
             break;
         }
-        cout<<endl;
-        system("pause");
-}
+    }while(opc!=0);
 }

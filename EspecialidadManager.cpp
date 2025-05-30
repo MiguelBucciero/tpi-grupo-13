@@ -32,6 +32,8 @@ void EspecialidadManager::cargarEspecialidad() {
     else{
         cout<<"No se pudo guardar la especialidad."<<endl;
     }
+    system ("pause");
+    system("cls");
 }
 
 void EspecialidadManager::mostrarEspecialidad() {
@@ -55,6 +57,8 @@ void EspecialidadManager::mostrarEspecialidad() {
     }
 
     delete[] vecEspecialidad;
+    system ("pause");
+    system("cls");
 }
 
 void EspecialidadManager::DarBajaEspecialidad(){
@@ -80,4 +84,6 @@ void EspecialidadManager::DarBajaEspecialidad(){
     } else{
     cout<<"No se pudo modificar el archivo"<<endl;
     }
+    system ("pause");
+    system("cls");
 }

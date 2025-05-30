@@ -2,7 +2,7 @@
 
 class MenuMedico {
 public:
-    int menu();
+    int menuMedico();
 private:
 
 };

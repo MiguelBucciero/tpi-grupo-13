@@ -84,6 +84,8 @@ void PacienteManager::cargarPaciente() {
     } else {
         cout << "Error al guardar paciente." << endl;
     }
+    system ("pause");
+    system("cls");
 }
 
 
@@ -129,5 +131,7 @@ void PacienteManager::mostrarPaciente() {
     }
 
     delete[] vecPaciente;
+    system ("pause");
+    system("cls");
 }
 
