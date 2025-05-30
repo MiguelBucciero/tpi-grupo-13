@@ -1,6 +1,7 @@
 #include "TurnoManager.h"
 #include "PacienteArchivo.h"
 #include "MedicoArchivo.h"
+#include "Medico.h"
 #include "TurnoArchivo.h"
 #include "EspecialidadArchivo.h"
 #include "Fecha.h"
@@ -130,6 +131,8 @@ void TurnoManager::reprogramarTurno(){
     }
     if(!encontrado){
         cout<<"Turno no encontrado o no activo"<<endl;
+        system ("pause");
+        system("cls");
         return;
     }
 
@@ -166,6 +169,7 @@ void TurnoManager::reprogramarTurno(){
     system ("pause");
     system("cls");
 }
+
 void TurnoManager::cancelarTurno(){
     int idTurno;
     cout<<"Ingrese el ID del turno que desea cancelar: ";
@@ -179,8 +183,11 @@ void TurnoManager::cancelarTurno(){
 
     Turno turno;
     turno=_archivo.Leer(pos);
-    if(turno.getEstado()==2){
+
+    if(turno.getEstado()!=1&&turno.getEstado()!=3){
         cout<<"Turno ya cancelado"<<endl;
+        system ("pause");
+        system("cls");
         return;
     }
     turno.setEstado(2);
@@ -188,6 +195,35 @@ void TurnoManager::cancelarTurno(){
         cout<<"El turno fue cancelado correctamente"<<endl;
     } else{
         cout<<"Error al cancelar el turno"<<endl;
+    }
+    system ("pause");
+    system("cls");
+}
+
+void TurnoManager::TurnoNoAsistido(){
+    int idTurno;
+    cout<<"Ingrese el ID del turno: ";
+    cin>> idTurno;
+
+    int pos=_archivo.Buscar(idTurno);
+    if(pos==-1){
+        cout<<"No hay un turno con ese ID"<<endl;
+        return;
+    }
+
+    Turno turno;
+    turno=_archivo.Leer(pos);
+    if(turno.getEstado()!=1&&turno.getEstado()!=3){
+        cout<<"No se puede marcar como turno no asistido"<<endl;
+        system ("pause");
+        system("cls");
+        return;
+    }
+    turno.setEstado(4);
+    if(_archivo.modificar(turno, pos)){
+        cout<<"El turno marcado como 'no asistido' correctamente"<<endl;
+    } else{
+        cout<<"Error al guardar el cambio"<<endl;
     }
     system ("pause");
     system("cls");
@@ -286,3 +322,77 @@ void TurnoManager::TurnosDeLaSemana() {
     system("cls");
 }
 
+void TurnoManager::CantidadTurnosPorEspecialidad(){
+    EspecialidadArchivo archiEsp;
+    int cantidadEsp=archiEsp.getCantidadRegistros();
+    Especialidad *especialidades=new Especialidad[cantidadEsp];
+
+    archiEsp.leerMuchos(especialidades, cantidadEsp);
+
+    int* cont=new int[cantidadEsp];
+    for(int i=0; i<cantidadEsp; i++){
+        cont[i]=0;
+    }
+
+    int cantidadTurno=_archivo.getCantidadRegistros();
+    Turno *turno=new Turno[cantidadTurno];
+    _archivo.leerMuchos(turno, cantidadTurno);
+
+    for(int i=0; i<cantidadTurno; i++){
+        if(turno[i].getEstado()==1||turno[i].getEstado()==3){ //1=activo || 3=reprogramado pero tambien seria un activo
+            int idEspTurno=turno[i].getEspecialidad();
+            for(int j=0; j<cantidadEsp; j++){
+                if(especialidades[j].getIDEspecialidad()==idEspTurno){
+                    cont[j]++;
+                    break;
+                }
+            }
+        }
+    }
+    for(int i=0; i<cantidadEsp; i++){
+        cout<<especialidades[i].getNombre()<<": "<<cont[i]<<" turnos"<<endl;
+    }
+    delete[] turno;
+    delete[] especialidades;
+    delete[] cont;
+
+    system ("pause");
+    system("cls");
+}
+
+void TurnoManager::CantidadTurnosNoAsistidos(){
+    MedicoArchivo archiM;
+    int cantidadM=archiM.getCantidadRegistros();
+    Medico *medico=new Medico[cantidadM];
+    archiM.leerMuchos(medico, cantidadM);
+
+    int *cont=new int[cantidadM];
+    for(int i=0; i<cantidadM; i++){
+        cont[i]=0;
+    }
+
+    int cantidadTurno=_archivo.getCantidadRegistros();
+    Turno *turno=new Turno[cantidadTurno];
+    _archivo.leerMuchos(turno, cantidadTurno);
+
+    for(int i=0; i<cantidadTurno; i++){
+        if(turno[i].getEstado()==4){ //4=no asistido
+            for(int j=0; j<cantidadM; j++){
+               if(medico[j].getIDMedico()==turno[i].getIDMedico()){
+                cont[j]++;
+                break;
+               }
+            }
+        }
+    }
+    cout<<"Cantidad de turnos no asistidos por medico"<<endl;
+    for(int i=0; i<cantidadM; i++){
+        cout<<medico[i].getNombre()<<": "<<cont[i]<<endl;
+    }
+
+    delete[] medico;
+    delete[] turno;
+    delete[] cont;
+    system ("pause");
+    system("cls");
+}

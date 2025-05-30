@@ -38,10 +38,11 @@ int MenuRecepcionista::menuRecepcionista() {
         showItem(" 3. ASIGNAR NUEVO TURNO ", 50, 7, y==2);
         showItem(" 4. REPROGRAMAR TURNO ", 50, 8, y==3);
         showItem(" 5. CANCELAR TURNO ", 50, 9, y==4);
-        showItem(" 6. CONSULTAS ", 50, 10, y==5);
-        showItem(" 7. INFORMES ", 50, 11, y==6);
-        showItem(" 8. LISTAR TURNOS ", 50, 12, y==7);
-        showItem(" 0. CERRAR SESION ", 50, 13, y==8);
+        showItem(" 6. TURNO NO ASISTIDO ", 50, 10, y==5);
+        showItem(" 7. CONSULTAS ", 50, 11, y==6);
+        showItem(" 8. INFORMES ", 50, 12, y==7);
+        showItem(" 9. LISTAR TURNOS ", 50, 13, y==8);
+        showItem(" 0. CERRAR SESION ", 50, 14, y==9);
 
         rlutil::locate(48, 5 + y);
         cout<<(char)175;
@@ -59,8 +60,8 @@ int MenuRecepcionista::menuRecepcionista() {
             rlutil::locate(48, 5 + y);
             cout<<" "<<endl;
             y++;
-            if(y>8){
-                y=8;
+            if(y>9){
+                y=9;
             }
         break;
         case 1: //ENTER
@@ -82,21 +83,24 @@ int MenuRecepcionista::menuRecepcionista() {
                 _turnoManager.cancelarTurno();
                     break;
             case 5:
+                _turnoManager.TurnoNoAsistido();
+                    break;
+            case 6:
                 salir = menuConsultasRecepcionista();
                 if(salir != 0){
                     rlutil::anykey();
                 }
                 break;
-            case 6:
+            case 7:
                 salir = menuInformesRecepcionista();
                 if(salir != 0){
                     rlutil::anykey();
                 }
                 break;
-            case 7:
+            case 8:
                 _turnoManager.mostrarTurno();
                     break;
-            case 8: opc=0;
+            case 9: opc=0;
                     break;
             default:
                     break;
@@ -184,7 +188,7 @@ int MenuRecepcionista::menuInformesRecepcionista(){
         rlutil::hidecursor();
         rlutil::locate(55, 3);
         cout<<" - INFORMES RECEPCIONISTA - ";
-        showItem(" 1. CANTIDAD TURNO POR ESPECIALIDAD ", 50, 5, y==0);
+        showItem(" 1. CANTIDAD TURNOS POR ESPECIALIDAD ", 50, 5, y==0);
         showItem(" 2. CANTIDAD DE TURNOS NO ASISTIDOS POR MEDICO ", 50, 6, y==1);
         showItem(" 0. VOLVER AL MENU PRINICPAL ", 50, 7, y==2);
 
@@ -211,9 +215,9 @@ int MenuRecepcionista::menuInformesRecepcionista(){
         case 1: //ENTER
             rlutil::cls();
             switch(y){
-            case 0:
+            case 0: _turnoManager.CantidadTurnosPorEspecialidad();
                     break;
-            case 1:
+            case 1: _turnoManager.CantidadTurnosNoAsistidos();
                     break;
             case 2: opc=0;
                     break;
