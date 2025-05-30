@@ -22,6 +22,7 @@ static void showItem(const char* text, int posx, int posy, bool selected){
 int main(){
     int y=0;
     int opc=1;
+     bool salir = false;
      do{
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
@@ -58,17 +59,17 @@ int main(){
             switch(y){
             case 0:{
                 MenuAdministrador menu;
-                menu.menuAdministrador();
+                salir =(menu.menuAdministrador()==0);
                 break;
             }
             case 1:{
                 MenuRecepcionista menu;
-                menu.menuRecepcionista();
+                salir = (menu.menuRecepcionista() == 0);
                 break;
             }
             case 2:{
                 MenuMedico menu;
-                menu.menuMedico();
+                salir = (menu.menuMedico() == 0);
                 break;
             }
             case 3:opc=0;
@@ -76,7 +77,7 @@ int main(){
             default:
                     break;
             }
-            if(opc!=0){
+            if(opc!=0 && !salir){
                 rlutil::anykey();
             }
             break;

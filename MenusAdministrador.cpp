@@ -20,6 +20,7 @@ static void showItem(const char* text, int posx, int posy, bool selected){
 int MenuAdministrador::menuAdministrador() {
     int opc=1;
     int y=0;
+    int salir;
     do{
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
@@ -60,46 +61,47 @@ int MenuAdministrador::menuAdministrador() {
             rlutil::cls();
             switch(y){
             case 0:
-                    break;
+                break;
             case 1:
-                    break;
+                break;
             case 2:
-                    break;
+                break;
             case 3:
-                menuInformesAdministrador();
-                    break;
+                salir = menuInformesAdministrador();
+                if(salir != 0){
+                    rlutil::anykey();
+                }
+                break;
             case 4:
                _espManager.cargarEspecialidad();
-                    break;
+                break;
             case 5:
                 _espManager.mostrarEspecialidad();
-                    break;
+                break;
             case 6:
                 _medicoManger.cargarMedico();
-                    break;
+                break;
             case 7:
                 _medicoManger.mostrarMedico();
-                    break;
+                break;
             case 8:opc=0;
-                    break;
+                break;
             default:
-                    break;
-            }
-            if(opc!=0){
-                rlutil::anykey();
+                break;
             }
             break;
         default:
             break;
         }
      }while(opc!=0);
+     return 0;
 }
 
 int MenuAdministrador::menuInformesAdministrador(){
     int y=0;
     int opc=1;
     do{
-        system("cls");
+        rlutil::cls();
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::hidecursor();
@@ -159,4 +161,5 @@ int MenuAdministrador::menuInformesAdministrador(){
             break;
         }
     }while(opc!=0);
+    return 0;
 }

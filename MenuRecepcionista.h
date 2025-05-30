@@ -6,9 +6,9 @@
 
 class MenuRecepcionista{
 public:
-    void menuRecepcionista();
-    void menuConsultasRecepcionista();
-    void menuInformesRecepcionista();
+    int menuRecepcionista();
+    int menuConsultasRecepcionista();
+    int menuInformesRecepcionista();
 
 private:
     PacienteManager _pacienteManager;

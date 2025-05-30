@@ -51,27 +51,28 @@ int MenuMedico::menuMedico(){
             }
         break;
         case 1: //ENTER
-            rlutil::cls();
-            switch(y){
-            case 0:
-                    break;
-            case 1:
-                    break;
-            case 2:
-                    break;
-            case 3:
-                    break;
-            case 4:opc=0;
-                    break;
+            if (y == 4) {
+                    opc = 0;
+                    rlutil::cls();
+                } else {
+                    rlutil::cls();
+                    switch (y) {
+                        case 0: /* Ver turnos asignados */
+                            break;
+                        case 1: /* Buscar turnos por fechas */
+                            break;
+                        case 2: /* Historial de turnos atendidos */
+                            break;
+                        case 3: /* Buscar paciente por DNI */
+                            break;
+                    }
+                    rlutil::anykey();
+                }
+                break;
             default:
-                    break;
-            }
-            if(opc!=0){
-                rlutil::anykey();
-            }
-            break;
-        default:
-            break;
+                break;
         }
      }while(opc!=0);
+
+     return 0;
 }

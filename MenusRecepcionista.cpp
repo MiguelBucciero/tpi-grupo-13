@@ -22,9 +22,11 @@ static void showItem(const char* text, int posx, int posy, bool selected){
     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
 }
 
-void MenuRecepcionista::menuRecepcionista() {
+int MenuRecepcionista::menuRecepcionista() {
     int y=0;
     int opc=1;
+    int salir;
+
      do{
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
@@ -80,11 +82,17 @@ void MenuRecepcionista::menuRecepcionista() {
                 _turnoManager.cancelarTurno();
                     break;
             case 5:
-                menuConsultasRecepcionista();
-                    break;
+                salir = menuConsultasRecepcionista();
+                if(salir != 0){
+                    rlutil::anykey();
+                }
+                break;
             case 6:
-                menuInformesRecepcionista();
-                    break;
+                salir = menuInformesRecepcionista();
+                if(salir != 0){
+                    rlutil::anykey();
+                }
+                break;
             case 7:
                 _turnoManager.mostrarTurno();
                     break;
@@ -93,19 +101,19 @@ void MenuRecepcionista::menuRecepcionista() {
             default:
                     break;
             }
-            if(opc!=0){
-                rlutil::anykey();
-            }
             break;
         default:
             break;
         }
      }while(opc!=0);
+
+     return 0;
 }
 
-void MenuRecepcionista::menuConsultasRecepcionista(){
+int MenuRecepcionista::menuConsultasRecepcionista(){
     int y=0;
     int opc=1;
+    bool salir=false;
     do{
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
@@ -117,6 +125,7 @@ void MenuRecepcionista::menuConsultasRecepcionista(){
         showItem(" 3. VER TURNOS DEL DIA ", 30, 7, y==2);
         showItem(" 4. VER TURNOS DE LA SEMANA ", 30, 8, y==3);
         showItem(" 0. VOLVER AL MENU ANTERIOR ", 30, 9, y==4);
+
         rlutil::locate(28, 5 + y);
         cout<<(char)175;
 
@@ -144,7 +153,7 @@ void MenuRecepcionista::menuConsultasRecepcionista(){
                 _turnoManager.BuscarTurnoEstado();
                     break;
             case 1:
-            _medicoManager.buscarMedicoPorEspecialidad();
+                _medicoManager.buscarMedicoPorEspecialidad();
                     break;
             case 2:
                 _turnoManager.TurnosDelDia();
@@ -163,9 +172,10 @@ void MenuRecepcionista::menuConsultasRecepcionista(){
             break;
         }
     }while(opc!=0);
+    return 0;
 }
 
-void MenuRecepcionista::menuInformesRecepcionista(){
+int MenuRecepcionista::menuInformesRecepcionista(){
     int y=0;
     int opc=1;
     do{
@@ -177,6 +187,7 @@ void MenuRecepcionista::menuInformesRecepcionista(){
         showItem(" 1. CANTIDAD TURNO POR ESPECIALIDAD ", 50, 5, y==0);
         showItem(" 2. CANTIDAD DE TURNOS NO ASISTIDOS POR MEDICO ", 50, 6, y==1);
         showItem(" 0. VOLVER AL MENU PRINICPAL ", 50, 7, y==2);
+
         rlutil::locate(48, 5 + y);
         cout<<(char)175;
 
@@ -205,7 +216,7 @@ void MenuRecepcionista::menuInformesRecepcionista(){
             case 1:
                     break;
             case 2: opc=0;
-                    return;
+                    break;
             default:
                     break;
             }
@@ -215,4 +226,5 @@ void MenuRecepcionista::menuInformesRecepcionista(){
             break;
         }
     }while(opc!=0);
+    return 0;
 }
