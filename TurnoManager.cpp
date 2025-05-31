@@ -6,40 +6,8 @@
 #include "EspecialidadArchivo.h"
 #include "Fecha.h"
 #include <iostream>
-#include <ctime>
 
 using namespace std;
-
-
-Fecha obtenerFechaActual() {
-    int dia, mes, anio;
-    time_t fechaActual = time(0);
-    tm* fecha = localtime(&fechaActual);
-
-    dia = fecha->tm_mday;
-    mes = fecha->tm_mon + 1;
-    anio = fecha->tm_year + 1900;
-
-    return Fecha(dia, mes, anio);
-}
-Fecha obtenerInicioDeSemana() {
-    time_t fechaActual = time(0);
-    tm* fecha = localtime(&fechaActual);
-
-    // Restar días hasta llegar al lunes
-    fecha->tm_mday -= (fecha->tm_wday - 1);
-
-     // Si es domingo (wday = 0), se suma 1
-    if (fecha->tm_wday == 0) {
-        fecha->tm_mday += 1;
-    }
-
-     // Normaliza y actualiza fecha
-    mktime(fecha);
-
-    return Fecha(fecha->tm_mday, fecha->tm_mon + 1, fecha->tm_year + 1900);
-}
-
 
 void TurnoManager::cargarTurno(){
     TurnoArchivo archiT("Turnos.dat");
@@ -298,7 +266,8 @@ void TurnoManager::TurnosDelDia(){
     lista=new Turno[cantidad];
 
     if(_archivo.leerMuchos(lista, cantidad)){
-        Fecha hoy = obtenerFechaActual();
+        Fecha hoy;
+        hoy.obtenerFechaActual();
         cout<<endl;
         cout<<"-------LISTADO DE TURNOS DEL DIA-------"<<endl;
         cout << "---------------" << hoy.toString() << "---------------" << endl;
@@ -331,7 +300,7 @@ void TurnoManager::TurnosDeLaSemana() {
     }
 
     Fecha fechaActual;
-    fechaActual = obtenerInicioDeSemana();
+    fechaActual.obtenerInicioDeSemana();
 
     cout << "\n------- LISTADO DE TURNOS DE LA SEMANA -------" << endl;
     cout << "----------------- " << fechaActual.toString() << " ------------------" << endl;
@@ -343,7 +312,7 @@ void TurnoManager::TurnosDeLaSemana() {
             f.getMes() == fechaActual.getMes() &&
             f.getDia() >= fechaActual.getDia() &&
             f.getDia() <= fechaActual.getDia() + 6) {
-            cout << "----------------------------------" << endl;
+            cout << "----------------------------------------------" << endl;
             lista[i].mostrarTurno();
         }
     }

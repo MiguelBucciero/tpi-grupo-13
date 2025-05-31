@@ -23,6 +23,9 @@ public:
     void cargarFecha(int dia, int mes, int anio);
     void mostrarFecha();
     bool esIgual(Fecha &otra);
+    void obtenerFechaActual();
+    void obtenerInicioDeSemana();
+
 
     std::string toString();
 private:

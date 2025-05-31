@@ -81,3 +81,30 @@ bool Fecha::esIgual(Fecha &otra) {
     return(_dia==otra.getDia()&&_mes==otra.getMes()&&_anio==otra.getAnio());
 }
 
+void Fecha::obtenerFechaActual(){
+    time_t fechaActual = time(0);
+    tm* fecha = localtime(&fechaActual);
+    setDia(fecha->tm_mday);
+    setMes(fecha->tm_mon + 1);
+    setAnio(fecha->tm_year + 1900);
+}
+
+void Fecha::obtenerInicioDeSemana(){
+    time_t fechaActual = time(0);
+    tm* fecha = localtime(&fechaActual);
+
+    if (fecha->tm_wday == 0) {
+        // Si es domingo (wday = 0), sumamos 1 para que sea lunes
+        fecha->tm_mday += 1;
+    } else {
+        // Si es lunes a sábado
+        fecha->tm_mday -= (fecha->tm_wday - 1);
+    }
+
+    mktime(fecha); // normaliza la fecha
+
+    setDia(fecha->tm_mday);
+    setMes(fecha->tm_mon + 1);
+    setAnio(fecha->tm_year + 1900);
+}
+
