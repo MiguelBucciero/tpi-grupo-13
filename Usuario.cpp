@@ -9,16 +9,15 @@ using namespace std;
 
 Usuario::Usuario()
 {
-    _idUsuario=0;
     strcpy(_nombreUsuario, "");
     strcpy(_contrasenia, "");
     _tipoRol= Rol();
     _estado=true;
 }
 
-Usuario::Usuario(int id, const char* nombre, const char* contrasenia, Rol tipoRol, bool estado)
+Usuario::Usuario(const char* nombre, const char* contrasenia, Rol tipoRol, bool estado)
 {
-    setIDUsuario(id);
+
     setNombreUsuario(nombre);
     setContrasenia(contrasenia);
     setTipoRol(tipoRol);
@@ -26,10 +25,6 @@ Usuario::Usuario(int id, const char* nombre, const char* contrasenia, Rol tipoRo
 }
 
 //Getters
-
-int Usuario::getIDUsuario(){
-return _idUsuario;
-}
 
 char* Usuario::getNombreUsuario(){
 return _nombreUsuario;
@@ -47,4 +42,27 @@ bool Usuario::getEstado(){
 return _estado;
 }
 
+//Setters
 
+
+void Usuario::setNombreUsuario (const char* valor){
+if (strlen(valor)<sizeof(_nombreUsuario)){
+    strcpy(_nombreUsuario, valor);
+
+}
+}
+
+void Usuario::setContrasenia (const char* valor){
+if (strlen(valor)<sizeof(_contrasenia)){
+    strcpy(_contrasenia, valor);
+
+}
+}
+
+void Usuario::setTipoRol (Rol valor){
+_tipoRol=valor;
+}
+
+void Usuario::setEstado (bool valor){
+_estado=valor;
+}
