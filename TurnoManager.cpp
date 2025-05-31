@@ -35,7 +35,7 @@ void TurnoManager::cargarTurno(){
         cout<<"Ingrese el ID del medico: ";
         cin>> idMedico;
         if(!archiM.esMedicoActivo(idMedico)){
-            cout<<"ID invalido o dado de baja. Intentar de neuvo"<<endl;
+            cout<<"ID invalido o dado de baja. Intentar de nuevo"<<endl;
         }
     }while(!archiM.esMedicoActivo(idMedico));
     turno.setIDMedico(idMedico);
