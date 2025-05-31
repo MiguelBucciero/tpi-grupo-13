@@ -163,7 +163,7 @@ int MenuRecepcionista::menuConsultasRecepcionista(){
                 _turnoManager.TurnosDelDia();
                     break;
             case 3:
-            _turnoManager.TurnosDeLaSemana();
+                _turnoManager.TurnosDeLaSemana();
                     break;
             case 4: opc=0;
                     break;

@@ -56,10 +56,24 @@ void Hora::cargarHora() {
 }
 
 void Hora::mostrarHora() {
-    cout << "Hora: " << toString() << std::endl;
+    cout << toString() << std::endl;
 }
 string Hora::toString() {
-    return to_string(_hora) + ":" + to_string(_minutos) + " hs.";
+    string h, m;
+
+    if (_hora < 10) {
+        h = "0" + to_string(_hora);
+    } else {
+        h = to_string(_hora);
+    }
+
+    if (_minutos < 10) {
+        m = "0" + to_string(_minutos);
+    } else {
+        m = to_string(_minutos);
+    }
+
+    return h + ":" + m + " hs.";
 }
 
 bool Hora::esIgual(Hora &otra){
