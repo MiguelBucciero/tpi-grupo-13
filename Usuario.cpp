@@ -7,8 +7,7 @@ using namespace std;
 
 //Constructores
 
-Usuario::Usuario()
-{
+Usuario::Usuario(){
     strcpy(_nombreUsuario, "");
     strcpy(_contrasenia, "");
     _tipoRol= Rol();

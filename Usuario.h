@@ -19,12 +19,12 @@ public:
     void setTipoRol(Rol valor);
     void setEstado(bool valor);
 
-    // Métodos
+    // Metodos
     void validarUsuario();
     void cargarUsuario();
 
 private:
-    //Acá quitamos el IDUsuario porque basicamente cumplia la misma funcion que Rol.
+    //Aca quitamos el IDUsuario porque basicamente cumplia la misma funcion que Rol.
     char _nombreUsuario[50];
     char _contrasenia[50];
     Rol _tipoRol;

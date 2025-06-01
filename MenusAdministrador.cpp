@@ -2,6 +2,7 @@
 #include<cstdlib>
 #include "rlutil.h"
 #include "MenuAdministrador.h"
+#include "UsuarioManager.h"
 
 
 using namespace std;
@@ -60,7 +61,7 @@ int MenuAdministrador::menuAdministrador() {
         case 1: //ENTER
             rlutil::cls();
             switch(y){
-            case 0:
+            case 0: _usuarioManager.cargarUsuario();
                 break;
             case 1:
                 break;

@@ -1,8 +1,6 @@
 #include <iostream>
 #include "rlutil.h"
-#include "MenuAdministrador.h"
-#include "MenuRecepcionista.h"
-#include "MenuMedico.h"
+#include "UsuarioManager.h"
 
 using namespace std;
 
@@ -17,9 +15,19 @@ static void showItem(const char* text, int posx, int posy, bool selected){
     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
 }
 
+int main(){
+    ///depende de si quieren cargar cosas antes del login (si borran el listado), por las dudas, les dejo listo cargar :d
+    UsuarioManager usuario;
+    //usuario.cargarUsuario();
+    usuario.login();
+return 0;
+}
+
+
+
 //mini menu para ir probando las cosas, luego lo sacamos xd
 
-int main(){
+/*int main(){
     int y=0;
     int opc=1;
      bool salir = false;
@@ -87,7 +95,7 @@ int main(){
      }while(opc!=0);
 
     return 0;
-}
+}*/
 
 
 

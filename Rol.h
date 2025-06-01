@@ -16,7 +16,6 @@ public:
 
     // Métodos
     void validarRol();
-    void cargarRol();
 
 private:
     int _tipoRol;
