@@ -11,7 +11,7 @@ UsuarioArchivo::UsuarioArchivo(std::string nombreArchivo){
 
 //guardar al final del archivo
 bool UsuarioArchivo::guardar(Usuario registro){
-    bool resultado;
+   bool resultado;
     FILE *pFile;
     pFile = fopen(_nombreArchivo.c_str(),"ab");
 
@@ -25,6 +25,7 @@ bool UsuarioArchivo::guardar(Usuario registro){
 
     return resultado;
 }
+
 bool UsuarioArchivo::guardar(Usuario registro, int posicion){
     bool resultado;
     FILE *pArchivo;
@@ -82,6 +83,7 @@ Usuario UsuarioArchivo::Leer(int posicion){
     return registro;
 }
 
+
 int UsuarioArchivo::getCantidadRegistros(){
     FILE *pArchivo;
     pArchivo = fopen(_nombreArchivo.c_str(), "rb");
@@ -133,7 +135,5 @@ bool UsuarioArchivo::leerMuchos(Usuario reg[], int cantidad){
     return true;
 }
 
-//int UsuarioArchivo::getNuevoID(){
-//    return getCantidadRegistros()+1;
-//}
+
 

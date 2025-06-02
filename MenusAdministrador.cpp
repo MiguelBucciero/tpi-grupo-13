@@ -37,7 +37,7 @@ int MenuAdministrador::menuAdministrador() {
         showItem(" 7. CARGAR MEDICO ", 50, 11, y==6);
         showItem(" 8. LISTAR MEDICOS ", 50, 12, y==7);
         showItem(" 0. CERRAR SESION ", 50, 13, y==8);
-
+//hacer que el rol sea mismo id mismo nro que
         rlutil::locate(48, 5 + y);
         cout<<(char)175;
 

@@ -1,6 +1,9 @@
 #include <iostream>
 #include "rlutil.h"
 #include "UsuarioManager.h"
+#include "MenuAdministrador.h"
+#include "MenuRecepcionista.h"
+#include "MenuMedico.h"
 
 using namespace std;
 
@@ -18,7 +21,7 @@ static void showItem(const char* text, int posx, int posy, bool selected){
 int main(){
     ///depende de si quieren cargar cosas antes del login (si borran el listado), por las dudas, les dejo listo cargar :d
     UsuarioManager usuario;
-    //usuario.cargarUsuario();
+   // usuario.cargarUsuario();
     usuario.login();
 return 0;
 }

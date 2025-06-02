@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void MedicoManager::cargarMedico() {
+int MedicoManager::cargarMedico() {
     Medico medico;
     string aux;
     int dni, matricula, id, idEspecialidad, altura,dia, mes, anio;
@@ -92,11 +92,15 @@ void MedicoManager::cargarMedico() {
 
     if (_archivo.guardar(medico)) {
         cout << "Medico guardado correctamente." << endl;
+        system ("pause");
+        system("cls");
+        return id;
     } else {
         cout << "Error al guardar medico." << endl;
+        system ("pause");
+        system("cls");
+        return -1;
     }
-    system ("pause");
-    system("cls");
 }
 
 void MedicoManager::mostrarMedico() {

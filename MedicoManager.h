@@ -3,7 +3,7 @@
 
 class MedicoManager{
 public:
-    void cargarMedico();
+    int cargarMedico();
     void mostrarMedico();
     void buscarMedicoPorEspecialidad();
 

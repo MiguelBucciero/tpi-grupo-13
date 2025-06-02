@@ -62,7 +62,7 @@ int PacienteArchivo::Buscar(int IDPaciente){
 }
 
 Paciente PacienteArchivo::Leer(int posicion){
-    FILE *pArchivo =
+    FILE *pArchivo;
     pArchivo = fopen(_nombreArchivo.c_str(), "rb");
 
     if(pArchivo == NULL){

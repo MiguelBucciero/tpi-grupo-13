@@ -72,7 +72,10 @@ Medico MedicoArchivo::Leer(int posicion){
 
     Medico registro;
     fseek(pArchivo, sizeof(Medico) * posicion, SEEK_SET);
-    fread(&registro, sizeof(Medico), 1, pArchivo);
+    if(fread(&registro, sizeof(Medico), 1, pArchivo)!=1){
+        fclose(pArchivo);
+        return Medico(); //o marca error
+    }
 
     fclose(pArchivo);
 
@@ -122,8 +125,17 @@ bool MedicoArchivo::leerMuchos(Medico reg[], int cantidad){
     return true;
 }
 
-int MedicoArchivo::getNuevoID(){
-    return getCantidadRegistros()+1;
+int MedicoArchivo::getNuevoID(){ //id activo
+    int cantidad=getCantidadRegistros();
+    int maxID=0;
+    Medico medico;
+    for(int i=0; i<cantidad; i++){
+        medico=Leer(i);
+        if(medico.getIDMedico()>maxID){
+            maxID=medico.getIDMedico();
+        }
+    }
+    return maxID+1;
 }
 
 bool MedicoArchivo::esMedicoActivo(int IDMedico){

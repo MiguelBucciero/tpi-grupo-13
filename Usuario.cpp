@@ -14,22 +14,22 @@ Usuario::Usuario(){
     _estado=true;
 }
 
-Usuario::Usuario(const char* nombre, const char* contrasenia, Rol tipoRol, bool estado)
+Usuario::Usuario(const char* nombre, const char* contrasenia, Rol tipoRol, bool estado, int IDMedico=-1)
 {
-
     setNombreUsuario(nombre);
     setContrasenia(contrasenia);
     setTipoRol(tipoRol);
     setEstado(estado);
+    setIDMedico(IDMedico);
 }
 
 //Getters
 
-char* Usuario::getNombreUsuario(){
+const char* Usuario::getNombreUsuario(){
 return _nombreUsuario;
 }
 
-char* Usuario::getContrasenia(){
+const char* Usuario::getContrasenia(){
 return _contrasenia;
 }
 
@@ -41,21 +41,22 @@ bool Usuario::getEstado(){
 return _estado;
 }
 
+int Usuario::getIDMedico(){
+    return _IDMedico;
+}
 //Setters
 
 
 void Usuario::setNombreUsuario (const char* valor){
-if (strlen(valor)<sizeof(_nombreUsuario)){
-    strcpy(_nombreUsuario, valor);
-
-}
+    //asi que arreglo no se rompe.
+    strncpy(_nombreUsuario, valor, 49);
+    _nombreUsuario[49]='\0';
 }
 
 void Usuario::setContrasenia (const char* valor){
-if (strlen(valor)<sizeof(_contrasenia)){
-    strcpy(_contrasenia, valor);
-
-}
+     //asi que arreglo no se rompe
+    strncpy(_contrasenia, valor, 49);
+    _contrasenia[49]='\0';
 }
 
 void Usuario::setTipoRol (Rol valor){
@@ -64,4 +65,8 @@ _tipoRol=valor;
 
 void Usuario::setEstado (bool valor){
 _estado=valor;
+}
+
+void Usuario::setIDMedico(int valor){
+    _IDMedico=valor;
 }

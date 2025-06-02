@@ -2,13 +2,13 @@
 #include "MenuRecepcionista.h"
 #include "MenuAdministrador.h"
 #include "MenuMedico.h"
+#include "MedicoManager.h"
 #include <iostream>
 #include <cstring>
 
 using namespace std;
 
-void UsuarioManager::login()
-{
+void UsuarioManager::login(){
     UsuarioArchivo archiU("Usuarios.dat");
     int cantidad=archiU.getCantidadRegistros();
     MenuRecepcionista menuR;
@@ -23,11 +23,25 @@ void UsuarioManager::login()
     cin.getline(nombre, 50);
     cout<<"Contrasenia: ";
     cin.getline(contrasenia, 50);
+    /*// DEBUG - ver códigos ASCII
+    cout << "DEBUG usuario ingresado: ";
+    for(int i=0; i < strlen(nombre); i++){
+        cout << (int)nombre[i] << " ";
+    }
+    cout << endl;
 
+    cout << "DEBUG contraseña ingresada: ";
+    for(int i=0; i < strlen(contrasenia); i++){
+        cout << (int)contrasenia[i] << " ";
+    }
+    cout << endl;
+*/
     for(int i=0; i<cantidad; i++)
     {
         Usuario usuario=archiU.Leer(i);
-        if(strcmp(usuario.getNombreUsuario(), nombre)==0&&strcmp(usuario.getContrasenia(), contrasenia)==0&&usuario.getEstado()==true)
+        if(strcmp(usuario.getNombreUsuario(), nombre)==0&&
+           strcmp(usuario.getContrasenia(), contrasenia)==0&&
+           usuario.getEstado()==true)
         {
             cout<<"Acceso concedido"<<endl;
             system ("pause");
@@ -57,8 +71,19 @@ void UsuarioManager::login()
     system("cls");
 }
 
-void UsuarioManager::cargarUsuario()
-{
+bool UsuarioManager::VerificarLoginDuplicados(const char *nombre, const char *contrasenia){
+    int cantidad=_archivo.getCantidadRegistros();
+    for(int i=0; i<cantidad; i++){
+        Usuario usuario=_archivo.Leer(i);
+        if(strcmp(usuario.getNombreUsuario(), nombre)==0&&
+           strcmp(usuario.getContrasenia(), contrasenia)==0){
+            return true;
+        }
+    }
+    return false;
+}
+
+void UsuarioManager::cargarUsuario(){
     char nombre[50]= {}, constrasenia[50]= {};
     int tipoRol;
 
@@ -71,28 +96,42 @@ void UsuarioManager::cargarUsuario()
     cin>>tipoRol;
     cin.ignore();
 
+    if(VerificarLoginDuplicados(nombre, constrasenia)){
+        cout<<"Ya existe un usuario con ese mismo nombre y contrasenia"<<endl;
+        system ("pause");
+        system("cls");
+        return;
+    }
+
+    Usuario usuario;
     const char *nombreRol;
-    if(tipoRol==-1)
-    {
+    if(tipoRol==-1){
         nombreRol="Administrador";
-    }
-    else if(tipoRol==0)
-    {
+    }else if(tipoRol==0){
         nombreRol="Recepcionista";
-    }
-    else
-    {
+    }else{
         nombreRol="Medico";
+        cout<<endl;
+        MedicoManager medicM;
+        int idMedico=medicM.cargarMedico(); //se carga directo
+        if(idMedico==-1){
+            cout<<"No se pudo cargar correctamente el id Medico"<<endl;
+            system ("pause");
+            system("cls");
+            return;
+        }
+        usuario.setIDMedico(idMedico);
     }
     Rol rol(tipoRol, nombreRol);
 
-    Usuario usuario(nombre, constrasenia, rol, true);
-    if(_archivo.guardar(usuario))
-    {
+    usuario.setNombreUsuario(nombre);
+    usuario.setContrasenia(constrasenia);
+    usuario.setTipoRol(rol);
+    usuario.setEstado(true);
+
+    if(_archivo.guardar(usuario)){
         cout<<"Usuario guardado con exito"<<endl;
-    }
-    else
-    {
+    }else{
         cout<<"Error al guardar el usuario"<<endl;
     }
     system ("pause");
@@ -106,6 +145,8 @@ void UsuarioManager::mostrarUsuario()
     if (cantidad == 0)
     {
         cout << "No hay Usuarios cargados." << endl;
+        system ("pause");
+        system("cls");
         return;
     }
 

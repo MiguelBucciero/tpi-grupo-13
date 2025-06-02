@@ -5,19 +5,21 @@ class Usuario {
 public:
 
     Usuario();
-    Usuario(const char* nombre, const char* contrasenia, Rol tipoRol, bool estado);
+    Usuario(const char* nombre, const char* contrasenia, Rol tipoRol, bool estado, int IDMedico);
 
     // Getters
-    char* getNombreUsuario();
-    char* getContrasenia();
+    const char* getNombreUsuario();
+    const char* getContrasenia();
     Rol getRol();
     bool getEstado();
+    int getIDMedico();
 
     // Setters
     void setNombreUsuario(const char* valor);
     void setContrasenia(const char* valor);
     void setTipoRol(Rol valor);
     void setEstado(bool valor);
+    void setIDMedico(int valor);
 
     // Metodos
     void validarUsuario();
@@ -29,5 +31,6 @@ private:
     char _contrasenia[50];
     Rol _tipoRol;
     bool _estado;
+    int _IDMedico;
 };
 
