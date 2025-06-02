@@ -65,7 +65,7 @@ int MenuAdministrador::menuAdministrador() {
                 break;
             case 1:
                 break;
-            case 2:
+            case 2: _usuarioManager.mostrarUsuario();
                 break;
             case 3:
                 salir = menuInformesAdministrador();

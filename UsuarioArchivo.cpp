@@ -118,7 +118,7 @@ bool UsuarioArchivo::esUsuarioActivo(const char* nombreUsuario){
     return registro.getEstado();
 }
 
-/*bool UsuarioArchivo::leerMuchos(Usuario reg[], int cantidad){
+bool UsuarioArchivo::leerMuchos(Usuario reg[], int cantidad){
     FILE *pArchivo;
     pArchivo=fopen(_nombreArchivo.c_str(), "rb");
 
@@ -133,7 +133,7 @@ bool UsuarioArchivo::esUsuarioActivo(const char* nombreUsuario){
     return true;
 }
 
-int UsuarioArchivo::getNuevoID(){
-    return getCantidadRegistros()+1;
-}*/
+//int UsuarioArchivo::getNuevoID(){
+//    return getCantidadRegistros()+1;
+//}
 

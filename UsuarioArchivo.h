@@ -13,9 +13,8 @@ public:
     void Leer(int cantidadRegistros, Usuario *vector);
     int getCantidadRegistros();
     bool esUsuarioActivo(const char* nombreUsuario);
-
+    bool leerMuchos(Usuario reg[], int cantidad);
     ///por ahora dejo estos porque creo que no se usan.
-    //bool leerMuchos(Usuario reg[], int cantidad);
     //void CargarYguardar();
     //int getNuevoID();
 
