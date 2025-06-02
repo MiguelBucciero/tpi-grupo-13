@@ -34,10 +34,9 @@ int MenuAdministrador::menuAdministrador() {
         showItem(" 4. INFORMES ", 50, 8, y==3);
         showItem(" 5. CARGAR ESPECIALIDAD ", 50, 9, y==4);
         showItem(" 6. LISTAR ESPECIALIDAD ", 50, 10, y==5);
-        showItem(" 7. CARGAR MEDICO ", 50, 11, y==6);
-        showItem(" 8. LISTAR MEDICOS ", 50, 12, y==7);
-        showItem(" 0. CERRAR SESION ", 50, 13, y==8);
-//hacer que el rol sea mismo id mismo nro que
+       // showItem(" 7. CARGAR MEDICO ", 50, 11, y==6);
+        showItem(" 7. LISTAR MEDICOS ", 50, 11, y==6);
+        showItem(" 0. CERRAR SESION ", 50, 12, y==7);
         rlutil::locate(48, 5 + y);
         cout<<(char)175;
 
@@ -54,8 +53,8 @@ int MenuAdministrador::menuAdministrador() {
             rlutil::locate(48, 5 + y);
             cout<<" "<<endl;
             y++;
-            if(y>8){
-                y=8;
+            if(y>7){
+                y=7;
             }
         break;
         case 1: //ENTER
@@ -79,13 +78,13 @@ int MenuAdministrador::menuAdministrador() {
             case 5:
                 _espManager.mostrarEspecialidad();
                 break;
+            //case 6:
+              //  _medicoManger.cargarMedico();
+               // break;
             case 6:
-                _medicoManger.cargarMedico();
-                break;
-            case 7:
                 _medicoManger.mostrarMedico();
                 break;
-            case 8:opc=0;
+            case 7:opc=0;
                 break;
             default:
                 break;
