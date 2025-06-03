@@ -2,7 +2,7 @@
 #include<cstdlib>
 #include "rlutil.h"
 #include "MenuAdministrador.h"
-#include "UsuarioManager.h"
+//#include "UsuarioManager.h"
 
 
 using namespace std;
@@ -29,14 +29,16 @@ int MenuAdministrador::menuAdministrador() {
         rlutil::locate(50, 3);
         cout<<" MENU ADMINISTRADOR ";
         showItem(" 1. CARGAR NUEVO USUARIO ", 50, 5, y==0);
-        showItem(" 2. ELIMINAR USUARIO ", 50, 6, y==1);
-        showItem(" 3. LISTAR USUARIOS ", 50, 7, y==2);
-        showItem(" 4. INFORMES ", 50, 8, y==3);
-        showItem(" 5. CARGAR ESPECIALIDAD ", 50, 9, y==4);
-        showItem(" 6. LISTAR ESPECIALIDAD ", 50, 10, y==5);
-       // showItem(" 7. CARGAR MEDICO ", 50, 11, y==6);
-        showItem(" 7. LISTAR MEDICOS ", 50, 11, y==6);
-        showItem(" 0. CERRAR SESION ", 50, 12, y==7);
+        showItem(" 2. MODIFICAR USUARIO ", 50, 6, y==1) ;//flor
+        showItem(" 3. ELIMINAR USUARIO ", 50, 7, y==2);//flor
+        showItem(" 4. LISTAR USUARIOS ", 50, 8, y==3);
+        showItem(" 5. INFORMES ", 50, 9, y==4);
+        showItem(" 6. CARGAR ESPECIALIDAD ", 50, 10, y==5);
+        showItem(" 7. MODIFICAR ESPECIALIDAD ", 50, 11, y==6); //vero
+        showItem(" 9. ELIMINAR ESPECIALIDAD ", 50, 12, y==7); //vero
+        showItem(" 10. LISTAR ESPECIALIDAD ", 50, 13, y==8);
+        showItem(" 11. LISTAR MEDICOS ", 50, 14, y==9);
+        showItem(" 0. CERRAR SESION ", 50, 15, y==10);
         rlutil::locate(48, 5 + y);
         cout<<(char)175;
 
@@ -53,8 +55,8 @@ int MenuAdministrador::menuAdministrador() {
             rlutil::locate(48, 5 + y);
             cout<<" "<<endl;
             y++;
-            if(y>7){
-                y=7;
+            if(y>10){
+                y=10;
             }
         break;
         case 1: //ENTER
@@ -64,27 +66,30 @@ int MenuAdministrador::menuAdministrador() {
                 break;
             case 1:
                 break;
-            case 2: _usuarioManager.mostrarUsuario();
+            case 2:
                 break;
-            case 3:
+            case 3: _usuarioManager.mostrarUsuario();
+                break;
+            case 4:
                 salir = menuInformesAdministrador();
                 if(salir != 0){
                     rlutil::anykey();
                 }
                 break;
-            case 4:
+            case 5:
                _espManager.cargarEspecialidad();
                 break;
-            case 5:
+            case 6: _espManager.ModificarEspecialidad();
+                break;
+            case 7: _espManager.DarBajaEspecialidad();
+                break;
+            case 8:
                 _espManager.mostrarEspecialidad();
                 break;
-            //case 6:
-              //  _medicoManger.cargarMedico();
-               // break;
-            case 6:
+            case 9:
                 _medicoManger.mostrarMedico();
                 break;
-            case 7:opc=0;
+            case 10:opc=0;
                 break;
             default:
                 break;

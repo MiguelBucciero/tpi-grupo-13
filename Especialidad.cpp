@@ -21,7 +21,10 @@ int Especialidad::getIDEspecialidad() const {
     return _IDEspecialidad;
 }
 
-const string Especialidad::getNombre() const {
+/*const string Especialidad::getNombre() const {
+    return _nombre;
+}*/
+const char* Especialidad::getNombre() const {
     return _nombre;
 }
 
@@ -35,8 +38,11 @@ void Especialidad::setIDEspecialidad(int id) {
 }
 
 void Especialidad::setNombre(const string &nombre) {
-    if(nombre.size()<=49){
+    if(nombre.size()<sizeof(_nombre)){ //si el nombre el menor al tam, se copia.
         strcpy(_nombre, nombre.c_str());
+    }else{
+        strncpy(_nombre, nombre.c_str(), sizeof(_nombre)-1); //asegura que no copie de mas.
+        _nombre[sizeof(_nombre)-1]='\0';
     }
 }
 

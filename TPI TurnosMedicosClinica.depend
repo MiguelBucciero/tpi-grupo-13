@@ -166,22 +166,23 @@
 1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\domicilio.h
 	<string>
 
-1748796163 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadarchivo.cpp
+1748983721 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadarchivo.cpp
 	"EspecialidadArchivo.h"
 
-1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadarchivo.h
+1748983579 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadarchivo.h
 	<string>
 	"Especialidad.h"
 
-1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidad.h
+1748975400 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidad.h
 	<string>
 
-1748796163 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadmanager.cpp
+1748982934 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadmanager.cpp
 	"EspecialidadManager.h"
+	"Especialidad.h"
 	<iostream>
 	<string>
 
-1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadmanager.h
+1748982912 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadmanager.h
 	"EspecialidadArchivo.h"
 
 1748796163 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\fecha.cpp
@@ -220,12 +221,11 @@
 
 1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menumedico.h
 
-1748896499 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menusadministrador.cpp
+1748982912 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menusadministrador.cpp
 	<iostream>
 	<cstdlib>
 	"rlutil.h"
 	"MenuAdministrador.h"
-	"UsuarioManager.h"
 
 1748796163 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menusrecepcionista.cpp
 	<iostream>
@@ -255,7 +255,7 @@
 	"Fecha.h"
 	"Domicilio.h"
 
-1748796163 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidad.cpp
+1748976611 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidad.cpp
 	<iostream>
 	"Especialidad.h"
 	<cstring>

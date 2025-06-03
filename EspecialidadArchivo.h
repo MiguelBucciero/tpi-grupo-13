@@ -15,6 +15,7 @@ public:
     bool leerMuchos(Especialidad reg[], int cantidad);
     int getNuevoID();
     bool esEspecialidadValida(int idEspecialidad);
+    int IDdisponible();
 
 private:
     std::string _nombreArchivo;

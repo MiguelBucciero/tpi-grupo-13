@@ -6,6 +6,7 @@ public:
     void cargarEspecialidad();
     void mostrarEspecialidad();
     void DarBajaEspecialidad();
+    void ModificarEspecialidad();
 
 private:
     EspecialidadArchivo _archivo;
