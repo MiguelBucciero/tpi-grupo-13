@@ -965,3 +965,478 @@
 	<string>
 	<iostream>
 
+1749001210 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\domicilio.cpp
+	<iostream>
+	"Domicilio.h"
+	<cstring>
+
+1749001210 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\domicilio.h
+	<string>
+
+1749001210 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\especialidad.cpp
+	<iostream>
+	"Especialidad.h"
+	<cstring>
+
+1749001210 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\especialidad.h
+	<string>
+
+1749001210 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\especialidadarchivo.cpp
+	"EspecialidadArchivo.h"
+
+1749001210 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\especialidadarchivo.h
+	<string>
+	"Especialidad.h"
+
+1749001210 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\especialidadmanager.cpp
+	"EspecialidadManager.h"
+	"Especialidad.h"
+	<iostream>
+	<string>
+
+1749001210 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\especialidadmanager.h
+	"EspecialidadArchivo.h"
+
+1749001211 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\fecha.cpp
+	<iostream>
+	"Fecha.h"
+
+1749001211 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\fecha.h
+	<string>
+	<ctime>
+
+1749001211 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\hora.cpp
+	<iostream>
+	"Hora.h"
+
+1749001211 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\hora.h
+	<string>
+
+1749001213 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\main.cpp
+	<iostream>
+	"rlutil.h"
+	"UsuarioManager.h"
+	"MenuAdministrador.h"
+	"MenuRecepcionista.h"
+	"MenuMedico.h"
+
+1749001213 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1749001464 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\usuariomanager.h
+	"UsuarioArchivo.h"
+
+1749001213 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\usuarioarchivo.h
+	<string>
+	<cstring>
+	"Usuario.h"
+
+1749001212 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\usuario.h
+	"Rol.h"
+
+1749001212 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\rol.h
+
+1749001211 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\menuadministrador.h
+	"Especialidad.h"
+	"EspecialidadManager.h"
+	"MedicoManager.h"
+	"UsuarioManager.h"
+
+1749001211 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\medicomanager.h
+	"MedicoArchivo.h"
+
+1749001211 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\medicoarchivo.h
+	<string>
+	"Medico.h"
+
+1749001211 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\medico.h
+	"Persona.h"
+
+1749001212 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\persona.h
+	<string>
+	"Fecha.h"
+	"Domicilio.h"
+
+1749001211 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\menurecepcionista.h
+	"Paciente.h"
+	"PacienteManager.h"
+	"MedicoManager.h"
+	"TurnoManager.h"
+
+1749001211 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\paciente.h
+	"Persona.h"
+	"Domicilio.h"
+	"Fecha.h"
+
+1749001212 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\pacientemanager.h
+	"PacienteArchivo.h"
+
+1749001212 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\pacientearchivo.h
+	<string>
+	"Paciente.h"
+
+1749001212 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\turnomanager.h
+	"TurnoArchivo.h"
+
+1749001212 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\turnoarchivo.h
+	<string>
+	"Turno.h"
+
+1749001212 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\turno.h
+	"Fecha.h"
+	"Hora.h"
+
+1749001211 c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\menumedico.h
+
+1749001211 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\medico.cpp
+	<iostream>
+	<string>
+	"Medico.h"
+
+1749001211 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\medicoarchivo.cpp
+	"MedicoArchivo.h"
+
+1749001211 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\medicomanager.cpp
+	<iostream>
+	<string>
+	"MedicoManager.h"
+
+1749001211 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\menumedico.cpp
+	<iostream>
+	"rlutil.h"
+	"MenuMedico.h"
+
+1749001473 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\menusadministrador.cpp
+	<iostream>
+	<cstdlib>
+	"rlutil.h"
+	"MenuAdministrador.h"
+
+1749001211 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\menusrecepcionista.cpp
+	<iostream>
+	<cstdlib>
+	"rlutil.h"
+	"MenuRecepcionista.h"
+	"PacienteManager.h"
+	"Paciente.h"
+	"TurnoManager.h"
+	"TurnoArchivo.h"
+	"MedicoManager.h"
+	"Medico.h"
+
+1749001211 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\paciente.cpp
+	<iostream>
+	<cstring>
+	"Paciente.h"
+
+1749001211 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\pacientearchivo.cpp
+	"PacienteArchivo.h"
+	"PacienteManager.h"
+	<iostream>
+
+1749001212 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\pacientemanager.cpp
+	"PacienteManager.h"
+	"rlutil.h"
+	<iostream>
+	<string>
+
+1749001212 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\persona.cpp
+	<iostream>
+	<cstring>
+	"Persona.h"
+
+1749001212 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\rol.cpp
+	"Rol.h"
+	<cstring>
+	<string>
+	<iostream>
+
+1749001212 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\turno.cpp
+	<iostream>
+	"Turno.h"
+
+1749001212 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\turnoarchivo.cpp
+	"TurnoArchivo.h"
+	"TurnoManager.h"
+	<iostream>
+
+1749001212 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\turnomanager.cpp
+	"TurnoManager.h"
+	"PacienteArchivo.h"
+	"MedicoArchivo.h"
+	"Medico.h"
+	"TurnoArchivo.h"
+	"EspecialidadArchivo.h"
+	"Fecha.h"
+	<iostream>
+
+1749001212 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\usuario.cpp
+	<iostream>
+	<cstring>
+	"Usuario.h"
+
+1749001213 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\usuarioarchivo.cpp
+	"UsuarioArchivo.h"
+	"UsuarioManager.h"
+	<cstring>
+	<string>
+	<iostream>
+
+1749002060 source:c:\users\flore\downloads\tpi-grupo-13-main\tpi-grupo-13-main\usuariomanager.cpp
+	"UsuarioManager.h"
+	"MenuRecepcionista.h"
+	"MenuAdministrador.h"
+	"MenuMedico.h"
+	"MedicoManager.h"
+	<iostream>
+	<cstring>
+
+1749001210 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\domicilio.cpp
+	<iostream>
+	"Domicilio.h"
+	<cstring>
+
+1749001210 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\domicilio.h
+	<string>
+
+1749001210 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\especialidad.cpp
+	<iostream>
+	"Especialidad.h"
+	<cstring>
+
+1749001210 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\especialidad.h
+	<string>
+
+1749001210 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\especialidadarchivo.cpp
+	"EspecialidadArchivo.h"
+
+1749001210 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\especialidadarchivo.h
+	<string>
+	"Especialidad.h"
+
+1749001210 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\especialidadmanager.cpp
+	"EspecialidadManager.h"
+	"Especialidad.h"
+	<iostream>
+	<string>
+
+1749001210 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\especialidadmanager.h
+	"EspecialidadArchivo.h"
+
+1749001211 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\fecha.cpp
+	<iostream>
+	"Fecha.h"
+
+1749001211 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\fecha.h
+	<string>
+	<ctime>
+
+1749001211 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\hora.cpp
+	<iostream>
+	"Hora.h"
+
+1749001211 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\hora.h
+	<string>
+
+1749001213 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\main.cpp
+	<iostream>
+	"rlutil.h"
+	"UsuarioManager.h"
+	"MenuAdministrador.h"
+	"MenuRecepcionista.h"
+	"MenuMedico.h"
+
+1749001213 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1749002359 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\usuariomanager.h
+	"UsuarioArchivo.h"
+
+1749001213 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\usuarioarchivo.h
+	<string>
+	<cstring>
+	"Usuario.h"
+
+1749001212 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\usuario.h
+	"Rol.h"
+
+1749001212 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\rol.h
+
+1749001211 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\menuadministrador.h
+	"Especialidad.h"
+	"EspecialidadManager.h"
+	"MedicoManager.h"
+	"UsuarioManager.h"
+
+1749001211 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\medicomanager.h
+	"MedicoArchivo.h"
+
+1749001211 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\medicoarchivo.h
+	<string>
+	"Medico.h"
+
+1749001211 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\medico.h
+	"Persona.h"
+
+1749001212 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\persona.h
+	<string>
+	"Fecha.h"
+	"Domicilio.h"
+
+1749001211 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\menurecepcionista.h
+	"Paciente.h"
+	"PacienteManager.h"
+	"MedicoManager.h"
+	"TurnoManager.h"
+
+1749001211 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\paciente.h
+	"Persona.h"
+	"Domicilio.h"
+	"Fecha.h"
+
+1749001212 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\pacientemanager.h
+	"PacienteArchivo.h"
+
+1749001212 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\pacientearchivo.h
+	<string>
+	"Paciente.h"
+
+1749001212 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\turnomanager.h
+	"TurnoArchivo.h"
+
+1749001212 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\turnoarchivo.h
+	<string>
+	"Turno.h"
+
+1749001212 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\turno.h
+	"Fecha.h"
+	"Hora.h"
+
+1749001211 c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\menumedico.h
+
+1749001211 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\medico.cpp
+	<iostream>
+	<string>
+	"Medico.h"
+
+1749001211 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\medicoarchivo.cpp
+	"MedicoArchivo.h"
+
+1749001211 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\medicomanager.cpp
+	<iostream>
+	<string>
+	"MedicoManager.h"
+
+1749001211 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\menumedico.cpp
+	<iostream>
+	"rlutil.h"
+	"MenuMedico.h"
+
+1749004250 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\menusadministrador.cpp
+	<iostream>
+	<cstdlib>
+	"rlutil.h"
+	"MenuAdministrador.h"
+	"UsuarioManager.h"
+
+1749001211 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\menusrecepcionista.cpp
+	<iostream>
+	<cstdlib>
+	"rlutil.h"
+	"MenuRecepcionista.h"
+	"PacienteManager.h"
+	"Paciente.h"
+	"TurnoManager.h"
+	"TurnoArchivo.h"
+	"MedicoManager.h"
+	"Medico.h"
+
+1749001211 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\paciente.cpp
+	<iostream>
+	<cstring>
+	"Paciente.h"
+
+1749001211 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\pacientearchivo.cpp
+	"PacienteArchivo.h"
+	"PacienteManager.h"
+	<iostream>
+
+1749001212 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\pacientemanager.cpp
+	"PacienteManager.h"
+	"rlutil.h"
+	<iostream>
+	<string>
+
+1749001212 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\persona.cpp
+	<iostream>
+	<cstring>
+	"Persona.h"
+
+1749001212 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\rol.cpp
+	"Rol.h"
+	<cstring>
+	<string>
+	<iostream>
+
+1749001212 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\turno.cpp
+	<iostream>
+	"Turno.h"
+
+1749001212 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\turnoarchivo.cpp
+	"TurnoArchivo.h"
+	"TurnoManager.h"
+	<iostream>
+
+1749001212 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\turnomanager.cpp
+	"TurnoManager.h"
+	"PacienteArchivo.h"
+	"MedicoArchivo.h"
+	"Medico.h"
+	"TurnoArchivo.h"
+	"EspecialidadArchivo.h"
+	"Fecha.h"
+	<iostream>
+
+1749001212 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\usuario.cpp
+	<iostream>
+	<cstring>
+	"Usuario.h"
+
+1749001213 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\usuarioarchivo.cpp
+	"UsuarioArchivo.h"
+	"UsuarioManager.h"
+	<cstring>
+	<string>
+	<iostream>
+
+1749004485 source:c:\users\flore\downloads\hasta dar de baja va ok backupp\tpi-grupo-13-main\usuariomanager.cpp
+	"UsuarioManager.h"
+	"MenuRecepcionista.h"
+	"MenuAdministrador.h"
+	"MenuMedico.h"
+	"MedicoManager.h"
+	<iostream>
+	<cstring>
+

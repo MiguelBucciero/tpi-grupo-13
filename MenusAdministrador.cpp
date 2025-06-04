@@ -2,7 +2,7 @@
 #include<cstdlib>
 #include "rlutil.h"
 #include "MenuAdministrador.h"
-//#include "UsuarioManager.h"
+#include "UsuarioManager.h"
 
 
 using namespace std;
@@ -23,6 +23,7 @@ int MenuAdministrador::menuAdministrador() {
     int y=0;
     int salir;
     do{
+        system("cls");
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::hidecursor();
@@ -65,8 +66,10 @@ int MenuAdministrador::menuAdministrador() {
             case 0: _usuarioManager.cargarUsuario();
                 break;
             case 1:
+                 _usuarioManager.modificarUsuario();
                 break;
             case 2:
+                _usuarioManager.DarBajaUsuario();
                 break;
             case 3: _usuarioManager.mostrarUsuario();
                 break;

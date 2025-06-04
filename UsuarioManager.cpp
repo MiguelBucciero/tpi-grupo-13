@@ -192,3 +192,96 @@ void UsuarioManager::mostrarUsuario()
     system ("pause");
     system("cls");
 }
+
+
+void UsuarioManager::DarBajaUsuario(){
+    char user[50]= {};
+    cout<<"Ingrese el nombre del usuario a dar de baja: ";
+    cin>>user;
+
+    int pos=_archivo.Buscar(user);
+    if(pos==-1){
+        cout<<"Usuario no encontrado"<<endl;
+        system("pause");
+        return;
+    }
+
+    Usuario posUsuario=_archivo.Leer(pos);
+
+    if(!posUsuario.getEstado()){
+        cout<<"Usuario ya dado de baja"<<endl;
+        system("pause");
+        return;
+
+    }
+
+    posUsuario.setEstado(false);
+
+    if(_archivo.guardar(posUsuario, pos)){
+        cout<<"Usuario dado de baja correctamente"<<endl;
+    } else{
+    cout<<"No se pudo modificar el archivo"<<endl;
+    }
+    system ("pause");
+    system("cls");
+}
+
+
+void UsuarioManager::modificarUsuario(){
+    char user[50];
+    cout<<"Ingrese nombre del usuario que desea modificar: ";
+    cin>>user;
+
+    int pos=_archivo.Buscar(user);
+    if(pos==-1){
+        cout<<"Usuario no encontrado"<<endl;
+            system ("pause");
+        return;
+    }
+    Usuario usuario=_archivo.Leer(pos);
+    if(!usuario.getEstado()){
+        cout<<"El usuario ingresado esta dado de baja, no se puede modificar"<<endl;
+    system ("pause");
+        return;
+    }
+
+    char nombre[50];
+    char contrasenia[50];
+    Rol nuevoRol;
+int rol;
+
+    cin.ignore();
+
+    cout<<"Nombre actual del usuario: "<<usuario.getNombreUsuario()<<endl;
+    cout<<"Ingrese el nuevo nombre de usuario: ";
+    cin>>nombre;
+cout<<endl;
+
+    cout<<"Contrasenia actual del usuario: "<<usuario.getContrasenia()<<endl;
+    cout<<"Ingrese el nuevo nombre de usuario: ";
+    cin>>contrasenia;
+cout<<endl;
+
+    cout<<"Rol ID actual del usuario: "<<usuario.getRol().getRol()<<endl;
+    cout<<"Ingrese el nuevo Rol ID del usuario: ";
+    cin>>rol;
+
+cout<<endl;
+
+nuevoRol.setTipoRol(rol);
+usuario.setTipoRol(nuevoRol);
+
+usuario.setNombreUsuario(nombre);
+usuario.setContrasenia(contrasenia);
+usuario.setTipoRol(nuevoRol);
+
+   if(_archivo.guardar(usuario, pos)){
+        cout<<"Usuario modificada correctamente"<<endl;
+
+    }else{
+        cout<<"No se pudo modificar el archivo"<<endl;
+
+    }
+    system ("pause");
+    system("cls");
+}
