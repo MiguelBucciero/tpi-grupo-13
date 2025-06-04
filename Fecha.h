@@ -25,6 +25,7 @@ public:
     bool esIgual(Fecha &otra);
     void obtenerFechaActual();
     void obtenerInicioDeSemana();
+    bool esAnterior(Fecha &otra);
 
 
     std::string toString();

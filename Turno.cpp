@@ -86,6 +86,8 @@ void Turno::mostrarTurno(){
             break;
     case 4: cout<<"No asistido"<<endl;
             break;
+    case 5: cout<<"Asistido"<<endl;
+            break;
     default: cout<<"Desconocido"<<endl;
             break;
     }

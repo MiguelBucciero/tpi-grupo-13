@@ -108,3 +108,16 @@ void Fecha::obtenerInicioDeSemana(){
     setAnio(fecha->tm_year + 1900);
 }
 
+bool Fecha::esAnterior(Fecha &otra) {
+    if (_anio < otra.getAnio()) {
+        return true;
+    }
+    if (_anio == otra.getAnio() && _mes < otra.getMes()) {
+        return true;
+    }
+    if (_anio == otra.getAnio() && _mes == otra.getMes() && _dia < otra.getDia()) {
+        return true;
+    }
+    return false;
+}
+

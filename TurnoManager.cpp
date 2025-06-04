@@ -201,37 +201,79 @@ void TurnoManager::cancelarTurno(){
 }
 
 void TurnoManager::TurnoNoAsistido(){
-    int idTurno;
-    cout<<"Ingrese el ID del turno: ";
-    cin>> idTurno;
-
-    int pos=_archivo.Buscar(idTurno);
-    if(pos==-1){
-        cout<<"No hay un turno con ese ID"<<endl;
-        return;
-    }
-
-    Turno turno;
-    turno=_archivo.Leer(pos);
-    if(turno.getEstado()!=1&&turno.getEstado()!=3){
-        cout<<"No se puede marcar como turno no asistido"<<endl;
-        system ("pause");
+    int cantidad = _archivo.getCantidadRegistros();
+    if (cantidad == 0) {
+        cout << "No hay turnos cargados." << endl;
+        system("pause");
         system("cls");
         return;
     }
-    turno.setEstado(4);
-    if(_archivo.modificar(turno, pos)){
-        cout<<"El turno marcado como 'no asistido' correctamente"<<endl;
-    } else{
-        cout<<"Error al guardar el cambio"<<endl;
+
+    Turno* lista = new Turno[cantidad];
+    if (!_archivo.leerMuchos(lista, cantidad)) {
+        cout << "No se pudieron leer los turnos." << endl;
+        delete[] lista;
+        system("pause");
+        system("cls");
+        return;
     }
-    system ("pause");
+
+    Fecha hoy;
+    hoy.obtenerFechaActual();
+    bool algunTurnoProcesado = false;
+
+    for (int i = 0; i < cantidad; i++) {
+        Fecha fechaTurno = lista[i].getFechaTurno();
+
+        // Solo considerar turnos anteriores a hoy con estado Activo (1) o Reprogramado (3)
+        if ((lista[i].getEstado() == 1 || lista[i].getEstado() == 3) &&
+            fechaTurno.esAnterior(hoy)) {
+
+            cout << "------------------------------------------" << endl;
+            lista[i].mostrarTurno();
+            cout << "El paciente asistio al turno? (s/n): ";
+            char opcion;
+            cin >> opcion;
+
+            int pos = _archivo.Buscar(lista[i].getIDTurno());
+            if (pos != -1) {
+                if (opcion == 's' || opcion == 'S') {
+                    lista[i].setEstado(5); // Asistido
+                    if (_archivo.modificar(lista[i], pos)) {
+                        cout << "Turno marcado como 'Asistido' correctamente." << endl;
+                    } else {
+                        cout << "Error al modificar el turno." << endl;
+                    }
+                } else if (opcion == 'n' || opcion == 'N') {
+                    lista[i].setEstado(4); // No asistido
+                    if (_archivo.modificar(lista[i], pos)) {
+                        cout << "Turno marcado como 'No Asistido' correctamente." << endl;
+                    } else {
+                        cout << "Error al modificar el turno." << endl;
+                    }
+                } else {
+                    cout << "Opcion invalida. No se modifico el turno." << endl;
+                }
+            } else {
+                cout << "No se encontro el turno en el archivo." << endl;
+            }
+
+            algunTurnoProcesado = true;
+        }
+    }
+
+    if (!algunTurnoProcesado) {
+        cout << "No hay turnos anteriores a la fecha actual que esten activos o reprogramados." << endl;
+    }
+
+    delete[] lista;
+    system("pause");
     system("cls");
 }
 
 void TurnoManager::BuscarTurnoEstado(){
     int estado;
-    cout<<"Indique el estado de turnos que desee buscar (1.Activo - 2.Cancelado - 3.Reprogramado - 4.No Asistido): ";
+    cout<<"Indique el estado de turnos que desee buscar (1.Activo - 2.Cancelado - 3.Reprogramado - 4.No Asistido -5.Asistido): ";
     cin>>estado;
 
     int cantidad=_archivo.getCantidadRegistros();

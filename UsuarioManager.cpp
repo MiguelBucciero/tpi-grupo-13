@@ -3,6 +3,7 @@
 #include "MenuAdministrador.h"
 #include "MenuMedico.h"
 #include "MedicoManager.h"
+#include "rlutil.h"
 #include <iostream>
 #include <cstring>
 
@@ -10,65 +11,63 @@ using namespace std;
 
 void UsuarioManager::login(){
     UsuarioArchivo archiU("Usuarios.dat");
-    int cantidad=archiU.getCantidadRegistros();
     MenuRecepcionista menuR;
     MenuAdministrador menuA;
     MenuMedico menuM;
-    bool encontrado=false;
 
-    char nombre[50]= {}, contrasenia[50]= {};
+    bool encontrado = false;
+    char nombre[50] = {}, contrasenia[50] = {};
 
-    cout<<"======Login======"<<endl;
-    cout<<"Usuario: ";
-    cin.getline(nombre, 50);
-    cout<<"Contrasenia: ";
-    cin.getline(contrasenia, 50);
-    /*// DEBUG - ver códigos ASCII
-    cout << "DEBUG usuario ingresado: ";
-    for(int i=0; i < strlen(nombre); i++){
-        cout << (int)nombre[i] << " ";
-    }
-    cout << endl;
+    while (!encontrado) {
+        rlutil::cls();
+        rlutil::setColor(rlutil::YELLOW);
+        rlutil::locate(50, 5); cout << " SISTEMA DE LOGIN ";
+        rlutil::setColor(rlutil::WHITE);
 
-    cout << "DEBUG contraseña ingresada: ";
-    for(int i=0; i < strlen(contrasenia); i++){
-        cout << (int)contrasenia[i] << " ";
-    }
-    cout << endl;
-*/
-    for(int i=0; i<cantidad; i++)
-    {
-        Usuario usuario=archiU.Leer(i);
-        if(strcmp(usuario.getNombreUsuario(), nombre)==0&&
-           strcmp(usuario.getContrasenia(), contrasenia)==0&&
-           usuario.getEstado()==true)
-        {
-            cout<<"Acceso concedido"<<endl;
-            system ("pause");
-            system("cls");
-            int tipoRol=usuario.getRol().getRol();
-            if(tipoRol==-1)
-            {
-                menuA.menuAdministrador();
+        rlutil::locate(35, 8); cout << "Usuario: ";
+        rlutil::locate(45, 8); cin.getline(nombre, 50);
+        rlutil::locate(35, 9); cout << "Contrasenia: ";
+        rlutil::locate(48, 9); cin.getline(contrasenia, 50);
+
+        int cantidad = archiU.getCantidadRegistros();
+
+        for (int i = 0; i < cantidad; i++) {
+            Usuario usuario = archiU.Leer(i);
+
+            if (strcmp(usuario.getNombreUsuario(), nombre) == 0 &&
+                strcmp(usuario.getContrasenia(), contrasenia) == 0 &&
+                usuario.getEstado() == true) {
+
+                rlutil::cls();
+                rlutil::setColor(rlutil::GREEN);
+                rlutil::locate(50, 12); cout << "ACCESO CONCEDIDO";
+                rlutil::setColor(rlutil::WHITE);
+                rlutil::anykey();
+                rlutil::cls();
+
+                int tipoRol = usuario.getRol().getRol();
+                if (tipoRol == -1) {
+                    menuA.menuAdministrador();
+                } else if (tipoRol == 0) {
+                    menuR.menuRecepcionista();
+                } else {
+                    menuM.menuMedico();
+                }
+
+                encontrado = true;
+                break;
             }
-            else if(tipoRol==0)
-            {
-                menuR.menuRecepcionista();
-            }
-            else
-            {
-                menuM.menuMedico();
-            }
-            encontrado=true;
-            break;
+        }
+
+        if (!encontrado) {
+            rlutil::setColor(rlutil::RED);
+            rlutil::locate(35, 12); cout << "Usuario y/o contrasenia incorrecta. Intenta de nuevo...";
+            rlutil::setColor(rlutil::WHITE);
+            rlutil::anykey();
         }
     }
-    if(!encontrado)
-    {
-        cout<<"Usuario y/o contrasenia incorrecta"<<endl;
-    }
-    system ("pause");
-    system("cls");
+
+    rlutil::cls();
 }
 
 bool UsuarioManager::VerificarLoginDuplicados(const char *nombre, const char *contrasenia){
