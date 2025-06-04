@@ -15,7 +15,7 @@ static void showItem(const char* text, int posx, int posy, bool selected){
     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
 }
 
-int MenuMedico::menuMedico(){
+int MenuMedico::menuMedico(Usuario usuarioLogeado){
     int y=0;
     int opc=1;
      do{
@@ -61,12 +61,14 @@ int MenuMedico::menuMedico(){
                             break;
                         case 1: /* Buscar turnos por fechas */
                             break;
-                        case 2: /* Historial de turnos atendidos */
+                        case 2:{
+                            int idMedico= usuarioLogeado.getIDMedico();
+                            _turnoManger.HistorialTurnosAtendidos(idMedico);
                             break;
+                        }
                         case 3: /* Buscar paciente por DNI */
                             break;
                     }
-                    rlutil::anykey();
                 }
                 break;
             default:

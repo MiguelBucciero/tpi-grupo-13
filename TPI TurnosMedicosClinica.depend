@@ -1557,7 +1557,7 @@
 	<string>
 	"Paciente.h"
 
-1749011720 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turnomanager.h
+1749050884 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turnomanager.h
 	"TurnoArchivo.h"
 
 1749011720 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turnoarchivo.h
@@ -1568,7 +1568,10 @@
 	"Fecha.h"
 	"Hora.h"
 
-1749011720 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menumedico.h
+1749050926 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menumedico.h
+	"TurnoManager.h"
+	"PacienteManager.h"
+	"UsuarioManager.h"
 
 1749011720 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medico.cpp
 	<iostream>
@@ -1583,19 +1586,19 @@
 	<string>
 	"MedicoManager.h"
 
-1749011720 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menumedico.cpp
+1749051336 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menumedico.cpp
 	<iostream>
 	"rlutil.h"
 	"MenuMedico.h"
 
-1749011720 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menusadministrador.cpp
+1749052838 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menusadministrador.cpp
 	<iostream>
 	<cstdlib>
 	"rlutil.h"
 	"MenuAdministrador.h"
 	"UsuarioManager.h"
 
-1749013697 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menusrecepcionista.cpp
+1749049108 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menusrecepcionista.cpp
 	<iostream>
 	<cstdlib>
 	"rlutil.h"
@@ -1643,7 +1646,7 @@
 	"TurnoManager.h"
 	<iostream>
 
-1749011720 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuario.cpp
+1749056954 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuario.cpp
 	<iostream>
 	<cstring>
 	"Usuario.h"
@@ -1659,7 +1662,7 @@
 	<iostream>
 	"Fecha.h"
 
-1749012874 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuariomanager.cpp
+1749057561 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuariomanager.cpp
 	"UsuarioManager.h"
 	"MenuRecepcionista.h"
 	"MenuAdministrador.h"
@@ -1669,7 +1672,7 @@
 	<iostream>
 	<cstring>
 
-1749013258 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turnomanager.cpp
+1749049948 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turnomanager.cpp
 	"TurnoManager.h"
 	"PacienteArchivo.h"
 	"MedicoArchivo.h"

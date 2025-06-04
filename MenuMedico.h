@@ -1,8 +1,12 @@
 #pragma once
+#include "TurnoManager.h"
+#include "PacienteManager.h"
+#include "UsuarioManager.h"
 
 class MenuMedico {
 public:
-    int menuMedico();
+    int menuMedico(Usuario usuarioLogeado);
 private:
-
+    TurnoManager _turnoManger;
+    PacienteManager _pacienteManager;
 };

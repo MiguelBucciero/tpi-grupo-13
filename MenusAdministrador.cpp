@@ -36,10 +36,13 @@ int MenuAdministrador::menuAdministrador() {
         showItem(" 5. INFORMES ", 50, 9, y==4);
         showItem(" 6. CARGAR ESPECIALIDAD ", 50, 10, y==5);
         showItem(" 7. MODIFICAR ESPECIALIDAD ", 50, 11, y==6); //vero
-        showItem(" 9. ELIMINAR ESPECIALIDAD ", 50, 12, y==7); //vero
-        showItem(" 10. LISTAR ESPECIALIDAD ", 50, 13, y==8);
-        showItem(" 11. LISTAR MEDICOS ", 50, 14, y==9);
-        showItem(" 0. CERRAR SESION ", 50, 15, y==10);
+        showItem(" 8. ELIMINAR ESPECIALIDAD ", 50, 12, y==7); //vero
+        showItem(" 9. LISTAR ESPECIALIDAD ", 50, 13, y==8);
+        showItem(" 10. CARGAR MEDICO ", 50, 14, y==9);
+        showItem(" 11. MODIFICAR MEDICO ", 50, 15, y==10);
+        showItem(" 12. ELIMINAR MEDICO ", 50, 16, y==11);
+        showItem(" 13. LISTAR MEDICOS ", 50, 17, y==12);
+        showItem(" 0. CERRAR SESION ", 50, 18, y==13);
         rlutil::locate(48, 5 + y);
         cout<<(char)175;
 
@@ -56,8 +59,8 @@ int MenuAdministrador::menuAdministrador() {
             rlutil::locate(48, 5 + y);
             cout<<" "<<endl;
             y++;
-            if(y>10){
-                y=10;
+            if(y>13){
+                y=13;
             }
         break;
         case 1: //ENTER
@@ -90,9 +93,19 @@ int MenuAdministrador::menuAdministrador() {
                 _espManager.mostrarEspecialidad();
                 break;
             case 9:
+                _medicoManger.cargarMedico();
+                break;
+            case 10:
+                //FALTA HACER EL MODIFICAR MEDICO
+                break;
+            case 11:
+                //FALTA HACER EL ELIMINAR MEDICO (BAJA LOGICA)
+                break;
+            case 12:
                 _medicoManger.mostrarMedico();
                 break;
-            case 10:opc=0;
+            case 13:
+                opc=0;
                 break;
             default:
                 break;

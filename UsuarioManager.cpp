@@ -51,7 +51,7 @@ void UsuarioManager::login(){
                 } else if (tipoRol == 0) {
                     menuR.menuRecepcionista();
                 } else {
-                    menuM.menuMedico();
+                    menuM.menuMedico(usuario);
                 }
 
                 encontrado = true;
@@ -171,6 +171,7 @@ void UsuarioManager::mostrarUsuario()
         else
         {
             cout << " Medico " << endl;
+            cout << "IDMedico: "<<vecUsuarios[i].getIDMedico() <<endl;
         };
         cout<<endl;
 

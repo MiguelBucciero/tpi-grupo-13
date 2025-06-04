@@ -13,6 +13,7 @@ public:
     void TurnosDeLaSemana();
     void CantidadTurnosPorEspecialidad();
     void CantidadTurnosNoAsistidos();
+    void HistorialTurnosAtendidos(int idMedico);
 
 private:
     TurnoArchivo _archivo;

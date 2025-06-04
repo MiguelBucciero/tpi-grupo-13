@@ -12,6 +12,7 @@ Usuario::Usuario(){
     strcpy(_contrasenia, "");
     _tipoRol= Rol();
     _estado=true;
+    _IDMedico=0;
 }
 
 Usuario::Usuario(const char* nombre, const char* contrasenia, Rol tipoRol, bool estado, int IDMedico=-1)

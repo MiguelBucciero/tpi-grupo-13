@@ -438,3 +438,35 @@ void TurnoManager::CantidadTurnosNoAsistidos(){
     system ("pause");
     system("cls");
 }
+
+void TurnoManager::HistorialTurnosAtendidos(int idMedico) {
+    int cantidad = _archivo.getCantidadRegistros();
+    if (cantidad == 0) {
+        cout << "No hay turnos cargados." << endl;
+        system("pause");
+        return;
+    }
+
+    Turno* turnos = new Turno[cantidad];
+    _archivo.leerMuchos(turnos, cantidad);
+
+    int encontrados = 0;
+    cout << "------- HISTORIAL DE TURNOS ATENDIDOS -------" << endl;
+
+    for (int i = 0; i < cantidad; i++) {
+        if (turnos[i].getIDMedico() == idMedico && turnos[i].getEstado() == 5) {
+            cout << "--------------------------------------------" << endl;
+            turnos[i].mostrarTurno();
+            encontrados++;
+        }
+    }
+
+    if (encontrados == 0) {
+        cout << "No se encontraron turnos asistidos para este médico." << endl;
+    }
+
+    delete[] turnos;
+    system("pause");
+    system("cls");
+}
+

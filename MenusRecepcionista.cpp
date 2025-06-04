@@ -35,6 +35,7 @@ int MenuRecepcionista::menuRecepcionista() {
         cout<<" MENU RECEPCIONISTA ";
         showItem(" 1. REGISTRAR PACIENTE ", 50, 5, y==0);
         showItem(" 2. LISTAR PACIENTES ", 50, 6, y==1);
+        //FALTA EL MODIFICAR/ELIMINAR PACIENTES(BAJA LOGICA) SEGUN INFORME
         showItem(" 3. ASIGNAR NUEVO TURNO ", 50, 7, y==2);
         showItem(" 4. REPROGRAMAR TURNO ", 50, 8, y==3);
         showItem(" 5. CANCELAR TURNO ", 50, 9, y==4);
