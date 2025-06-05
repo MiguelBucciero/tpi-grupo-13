@@ -258,7 +258,7 @@ void UsuarioManager::modificarUsuario(){
     cout<<endl;
 
     cout<<"Contrasenia actual del usuario: "<<usuario.getContrasenia()<<endl;
-    cout<<"Ingrese la nueva contraseña de usuario: ";
+    cout<<"Ingrese la nueva contrasenia de usuario: ";
     cin>>contrasenia;
     cout<<endl;
 
