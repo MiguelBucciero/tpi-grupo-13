@@ -40,7 +40,7 @@ void UsuarioManager::login(){
 
                 rlutil::cls();
                 rlutil::setColor(rlutil::GREEN);
-                rlutil::locate(50, 12); cout << "ACCESO CONCEDIDO";
+                rlutil::locate(50, 12); cout << "ACCESO CONCEDIDO!";
                 rlutil::setColor(rlutil::WHITE);
                 rlutil::anykey();
                 rlutil::cls();
@@ -248,32 +248,32 @@ void UsuarioManager::modificarUsuario(){
     char nombre[50];
     char contrasenia[50];
     Rol nuevoRol;
-int rol;
+    int rol;
 
     cin.ignore();
 
     cout<<"Nombre actual del usuario: "<<usuario.getNombreUsuario()<<endl;
     cout<<"Ingrese el nuevo nombre de usuario: ";
     cin>>nombre;
-cout<<endl;
+    cout<<endl;
 
     cout<<"Contrasenia actual del usuario: "<<usuario.getContrasenia()<<endl;
-    cout<<"Ingrese el nuevo nombre de usuario: ";
+    cout<<"Ingrese la nueva contraseña de usuario: ";
     cin>>contrasenia;
-cout<<endl;
+    cout<<endl;
 
     cout<<"Rol ID actual del usuario: "<<usuario.getRol().getRol()<<endl;
     cout<<"Ingrese el nuevo Rol ID del usuario: ";
     cin>>rol;
 
-cout<<endl;
+    cout<<endl;
 
-nuevoRol.setTipoRol(rol);
-usuario.setTipoRol(nuevoRol);
+    nuevoRol.setTipoRol(rol);
+    usuario.setTipoRol(nuevoRol);
 
-usuario.setNombreUsuario(nombre);
-usuario.setContrasenia(contrasenia);
-usuario.setTipoRol(nuevoRol);
+    usuario.setNombreUsuario(nombre);
+    usuario.setContrasenia(contrasenia);
+    usuario.setTipoRol(nuevoRol);
 
    if(_archivo.guardar(usuario, pos)){
         cout<<"Usuario modificada correctamente"<<endl;

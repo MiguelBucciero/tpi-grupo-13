@@ -51,28 +51,34 @@ int MenuMedico::menuMedico(Usuario usuarioLogeado){
             }
         break;
         case 1: //ENTER
-            if (y == 4) {
-                    opc = 0;
-                    rlutil::cls();
-                } else {
-                    rlutil::cls();
-                    switch (y) {
-                        case 0: /* Ver turnos asignados */
-                            break;
-                        case 1: /* Buscar turnos por fechas */
-                            break;
-                        case 2:{
-                            int idMedico= usuarioLogeado.getIDMedico();
-                            _turnoManger.HistorialTurnosAtendidos(idMedico);
-                            break;
-                        }
-                        case 3: /* Buscar paciente por DNI */
-                            break;
-                    }
+            rlutil::cls();
+            switch (y) {
+                case 0: /* Ver turnos asignados *///Nahuel
+                    break;
+                case 1: /* Buscar turnos por fechas */ //Nahuel
+                    break;
+                case 2:{
+                    int idMedico= usuarioLogeado.getIDMedico();
+                    _turnoManger.HistorialTurnosAtendidos(idMedico);
+                    break;
                 }
-                break;
-            default:
-                break;
+                case 3: /* Buscar paciente por DNI */ //Nahuel
+                    break;
+                case 4:
+                    rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+                    rlutil::setColor(rlutil::COLOR::YELLOW);
+                    rlutil::locate(50, 12);
+                    cout << "Cerrando sesion..." << endl;
+                    rlutil::setColor(rlutil::COLOR::WHITE);
+                    rlutil::anykey();
+                    opc = 0;
+                    break;
+                default:
+                    break;
+            }
+            break;
+        default:
+            break;
         }
      }while(opc!=0);
 

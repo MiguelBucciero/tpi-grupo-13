@@ -35,7 +35,7 @@ int MenuRecepcionista::menuRecepcionista() {
         cout<<" MENU RECEPCIONISTA ";
         showItem(" 1. REGISTRAR PACIENTE ", 50, 5, y==0);
         showItem(" 2. LISTAR PACIENTES ", 50, 6, y==1);
-        //FALTA EL MODIFICAR/ELIMINAR PACIENTES(BAJA LOGICA) SEGUN INFORME
+        //FALTA EL MODIFICAR/ELIMINAR PACIENTES(BAJA LOGICA) Flor
         showItem(" 3. ASIGNAR NUEVO TURNO ", 50, 7, y==2);
         showItem(" 4. REPROGRAMAR TURNO ", 50, 8, y==3);
         showItem(" 5. CANCELAR TURNO ", 50, 9, y==4);
@@ -101,8 +101,15 @@ int MenuRecepcionista::menuRecepcionista() {
             case 8:
                 _turnoManager.mostrarTurno();
                     break;
-            case 9: opc=0;
-                    break;
+            case 9:
+                rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+                rlutil::setColor(rlutil::COLOR::YELLOW);
+                rlutil::locate(50, 12);
+                cout << "Cerrando sesion..." << endl;
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+                opc = 0;
+                break;
             default:
                     break;
             }

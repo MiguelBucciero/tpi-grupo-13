@@ -38,81 +38,83 @@ int MenuAdministrador::menuAdministrador() {
         showItem(" 7. MODIFICAR ESPECIALIDAD ", 50, 11, y==6); //vero
         showItem(" 8. ELIMINAR ESPECIALIDAD ", 50, 12, y==7); //vero
         showItem(" 9. LISTAR ESPECIALIDAD ", 50, 13, y==8);
-        showItem(" 10. CARGAR MEDICO ", 50, 14, y==9);
-        showItem(" 11. MODIFICAR MEDICO ", 50, 15, y==10);
-        showItem(" 12. ELIMINAR MEDICO ", 50, 16, y==11);
-        showItem(" 13. LISTAR MEDICOS ", 50, 17, y==12);
-        showItem(" 0. CERRAR SESION ", 50, 18, y==13);
+        showItem(" 10. MODIFICAR MEDICO ", 50, 14, y==9);
+        showItem(" 11. ELIMINAR MEDICO ", 50, 15, y==10);
+        showItem(" 12. LISTAR MEDICOS ", 50, 16, y==11);
+        showItem(" 0. CERRAR SESION  ", 50, 17, y==12);
         rlutil::locate(48, 5 + y);
         cout<<(char)175;
 
         switch(rlutil::getkey()){
-        case 14: //UP
-            rlutil::locate(48, 5 + y);
-            cout<<" "<<endl;
-            y--;
-            if(y<0){
-                y=0;
-            }
-        break;
-        case 15: //DOWN
-            rlutil::locate(48, 5 + y);
-            cout<<" "<<endl;
-            y++;
-            if(y>13){
-                y=13;
-            }
-        break;
-        case 1: //ENTER
-            rlutil::cls();
-            switch(y){
-            case 0: _usuarioManager.cargarUsuario();
-                break;
-            case 1:
-                 _usuarioManager.modificarUsuario();
-                break;
-            case 2:
-                _usuarioManager.DarBajaUsuario();
-                break;
-            case 3: _usuarioManager.mostrarUsuario();
-                break;
-            case 4:
-                salir = menuInformesAdministrador();
-                if(salir != 0){
-                    rlutil::anykey();
+            case 14: //UP
+                rlutil::locate(48, 5 + y);
+                cout<<" "<<endl;
+                y--;
+                if(y<0){
+                    y=0;
                 }
-                break;
-            case 5:
-               _espManager.cargarEspecialidad();
-                break;
-            case 6: _espManager.ModificarEspecialidad();
-                break;
-            case 7: _espManager.DarBajaEspecialidad();
-                break;
-            case 8:
-                _espManager.mostrarEspecialidad();
-                break;
-            case 9:
-                _medicoManger.cargarMedico();
-                break;
-            case 10:
-                //FALTA HACER EL MODIFICAR MEDICO
-                break;
-            case 11:
-                //FALTA HACER EL ELIMINAR MEDICO (BAJA LOGICA)
-                break;
-            case 12:
-                _medicoManger.mostrarMedico();
-                break;
-            case 13:
-                opc=0;
+            break;
+            case 15: //DOWN
+                rlutil::locate(48, 5 + y);
+                cout<<" "<<endl;
+                y++;
+                if(y>12){
+                    y=12;
+                }
+            break;
+            case 1: //ENTER
+                rlutil::cls();
+                switch(y){
+                case 0: _usuarioManager.cargarUsuario();
+                    break;
+                case 1:
+                     _usuarioManager.modificarUsuario();
+                    break;
+                case 2:
+                    _usuarioManager.DarBajaUsuario();
+                    break;
+                case 3: _usuarioManager.mostrarUsuario();
+                    break;
+                case 4:
+                    salir = menuInformesAdministrador();
+                    if(salir != 0){
+                        rlutil::anykey();
+                    }
+                    break;
+                case 5:
+                   _espManager.cargarEspecialidad();
+                    break;
+                case 6: _espManager.ModificarEspecialidad();
+                    break;
+                case 7: _espManager.DarBajaEspecialidad();
+                    break;
+                case 8:
+                    _espManager.mostrarEspecialidad();
+                    break;
+                case 9:
+                    //FALTA HACER EL MODIFICAR MEDICO Flor
+                    break;
+                case 10:
+                    //FALTA HACER EL ELIMINAR MEDICO (BAJA LOGICA) Flor
+                    break;
+                case 11:
+                    _medicoManger.mostrarMedico();
+                    break;
+                case 12:
+                    rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+                    rlutil::setColor(rlutil::COLOR::YELLOW);
+                    rlutil::locate(50, 12);
+                    cout << "Cerrando sesion..." << endl;
+                    rlutil::setColor(rlutil::COLOR::WHITE);
+                    rlutil::anykey();
+                    opc = 0;
+                    break;
+                default:
+                    break;
+                }
                 break;
             default:
                 break;
-            }
-            break;
-        default:
-            break;
         }
      }while(opc!=0);
      return 0;
@@ -160,16 +162,22 @@ int MenuAdministrador::menuInformesAdministrador(){
             rlutil::cls();
             switch(y){
             case 0:
+                //Miguel
                     break;
             case 1:
+                //Miguel
                     break;
             case 2:
+                //Miguel
                     break;
             case 3:
+                //Vero
                     break;
             case 4:
+                //Vero
                     break;
             case 5:
+                //Vero
                     break;
             case 6: opc=0;
                     break;
