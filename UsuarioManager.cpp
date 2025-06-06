@@ -83,114 +83,193 @@ bool UsuarioManager::VerificarLoginDuplicados(const char *nombre, const char *co
 }
 
 void UsuarioManager::cargarUsuario(){
-    char nombre[50]= {}, constrasenia[50]= {};
+    char nombre[50] = {}, contrasenia[50] = {};
     int tipoRol;
 
-    cout<<"======CARGA DE NUEVO USUARIO======"<<endl;
-    cout<<"Nombre del usuario: ";
+    rlutil::cls();
+    rlutil::setColor(rlutil::YELLOW);
+    rlutil::locate(45, 2);
+    cout << "CARGA DE NUEVO USUARIO";
+    rlutil::setColor(rlutil::WHITE);
+
+    rlutil::locate(35, 4);
+    rlutil::setColor(rlutil::CYAN);
+    cout << "Nombre de usuario: ";
+    rlutil::setColor(rlutil::WHITE);
+    rlutil::locate(55, 4);
     cin.getline(nombre, 50);
-    cout<<"Contrasenia: ";
-    cin.getline(constrasenia, 50);
-    cout<<"Tipo de Rol: ";
-    cin>>tipoRol;
+
+    rlutil::locate(35, 5);
+    rlutil::setColor(rlutil::CYAN);
+    cout << "Contrasenia: ";
+    rlutil::setColor(rlutil::WHITE);
+    rlutil::locate(55, 5);
+    cin.getline(contrasenia, 50);
+
+    rlutil::locate(35, 6);
+    rlutil::setColor(rlutil::CYAN);
+    cout << "Tipo de Rol (-1=Administrador | 0=Recepcionista | 1=Medico): ";
+    rlutil::setColor(rlutil::WHITE);
+    rlutil::locate(97, 6);
+    cin >> tipoRol;
     cin.ignore();
 
-    if(VerificarLoginDuplicados(nombre, constrasenia)){
-        cout<<"Ya existe un usuario con ese mismo nombre y contrasenia"<<endl;
-        system ("pause");
-        system("cls");
+    // Validación duplicados
+    if (VerificarLoginDuplicados(nombre, contrasenia)) {
+        rlutil::setColor(rlutil::COLOR::RED);
+        rlutil::locate(35, 8);
+        cout << "Ya existe un usuario con ese nombre y contrasenia.";
+        rlutil::setColor(rlutil::WHITE);
+        rlutil::anykey();
+        rlutil::cls();
         return;
     }
 
     Usuario usuario;
-    const char *nombreRol;
-    if(tipoRol==-1){
-        nombreRol="Administrador";
-    }else if(tipoRol==0){
-        nombreRol="Recepcionista";
-    }else{
-        nombreRol="Medico";
-        cout<<endl;
+    const char* nombreRol;
+
+    if (tipoRol == -1) {
+        nombreRol = "Administrador";
+    } else if (tipoRol == 0) {
+        nombreRol = "Recepcionista";
+    } else {
+        nombreRol = "Medico";
+        rlutil::cls();
+        rlutil::locate(40, 3);
+        cout << "Cargando datos del medico asociado...";
         MedicoManager medicM;
-        int idMedico=medicM.cargarMedico(); //se carga directo
-        if(idMedico==-1){
-            cout<<"No se pudo cargar correctamente el id Medico"<<endl;
-            system ("pause");
-            system("cls");
+        int idMedico = medicM.cargarMedico();
+        if (idMedico == -1) {
+            rlutil::locate(40, 5);
+            rlutil::setColor(rlutil::RED);
+            cout << "No se pudo cargar correctamente el ID del medico.";
+            rlutil::setColor(rlutil::WHITE);
+            rlutil::anykey();
+            rlutil::cls();
             return;
         }
         usuario.setIDMedico(idMedico);
     }
+
     Rol rol(tipoRol, nombreRol);
 
     usuario.setNombreUsuario(nombre);
-    usuario.setContrasenia(constrasenia);
+    usuario.setContrasenia(contrasenia);
     usuario.setTipoRol(rol);
     usuario.setEstado(true);
 
-    if(_archivo.guardar(usuario)){
-        cout<<"Usuario guardado con exito"<<endl;
-    }else{
-        cout<<"Error al guardar el usuario"<<endl;
+    rlutil::locate(35, 9);
+    if (_archivo.guardar(usuario)) {
+        rlutil::setColor(rlutil::GREEN);
+        cout << "Usuario guardado con exito.";
+    } else {
+        rlutil::setColor(rlutil::RED);
+        cout << "Error al guardar el usuario.";
     }
-    system ("pause");
-    system("cls");
+
+    rlutil::setColor(rlutil::WHITE);
+    rlutil::anykey();
+    rlutil::cls();
 }
 
 
-void UsuarioManager::mostrarUsuario()
-{
-    int cantidad = _archivo.getCantidadRegistros();
-    if (cantidad == 0)
-    {
-        cout << "No hay Usuarios cargados." << endl;
-        system ("pause");
-        system("cls");
+void UsuarioManager::mostrarUsuario(){
+    int contadorPantalla, fila, cantidad = _archivo.getCantidadRegistros();
+    if (cantidad == 0) {
+        rlutil::cls();
+        rlutil::locate(40, 10);
+        rlutil::setColor(rlutil::RED);
+        cout << "No hay usuarios cargados." << endl;
+        rlutil::setColor(rlutil::WHITE);
+        rlutil::anykey();
+        rlutil::cls();
         return;
     }
 
     Usuario* vecUsuarios = new Usuario[cantidad];
     _archivo.leerMuchos(vecUsuarios, cantidad);
 
-    cout << "------- LISTADO DE USUARIOS -------" << endl;
-    for (int i = 0; i < cantidad; i++)
-    {
-        cout << "----------------------------------" << endl;
-        cout << "Nombre de Usuario: " << vecUsuarios[i].getNombreUsuario() << endl;
-        cout << "Contrasenia: " << vecUsuarios[i].getContrasenia() << endl;
+    rlutil::cls();
+    rlutil::setColor(rlutil::YELLOW);
+    rlutil::locate(45, 2);
+    cout << " LISTADO DE USUARIOS ";
+    rlutil::setColor(rlutil::WHITE);
+
+    contadorPantalla = 0;
+    fila = 4;
+
+    for (int i = 0; i < cantidad; i++) {
+        rlutil::setBackgroundColor(rlutil::BLACK);
+        rlutil::locate(30, fila); cout << "------------------------------------------------------------";
+        rlutil::locate(30, fila + 7); cout << "------------------------------------------------------------";
+
+        rlutil::locate(32, fila + 1);
+        rlutil::setColor(rlutil::CYAN);
+        cout << "Usuario: ";
+        rlutil::setColor(rlutil::WHITE);
+        cout << vecUsuarios[i].getNombreUsuario();
+
+        rlutil::locate(32, fila + 2);
+        rlutil::setColor(rlutil::CYAN);
+        cout << "Contrasenia: ";
+        rlutil::setColor(rlutil::WHITE);
+        cout << vecUsuarios[i].getContrasenia();
+
+        rlutil::locate(32, fila + 3);
+        rlutil::setColor(rlutil::CYAN);
         cout << "Rol: ";
-        if (vecUsuarios[i].getRol().getRol() < 0)
-        {
-            cout << "Administrador" << endl;
+        rlutil::setColor(rlutil::WHITE);
+
+        if (vecUsuarios[i].getRol().getRol() < 0) {
+            cout << "Administrador";
+        } else if (vecUsuarios[i].getRol().getRol() == 0) {
+            cout << "Recepcionista";
+        } else {
+            cout << "Medico";
+            rlutil::locate(32, fila + 4);
+            rlutil::setColor(rlutil::CYAN);
+            cout << "ID Medico: ";
+            rlutil::setColor(rlutil::WHITE);
+            cout << vecUsuarios[i].getIDMedico();
         }
-        else if (vecUsuarios[i].getRol().getRol()==0)
-            {
-                cout << "Recepcionista" << endl;
-            }
 
-        else
-        {
-            cout << " Medico " << endl;
-            cout << "IDMedico: "<<vecUsuarios[i].getIDMedico() <<endl;
-        };
-        cout<<endl;
-
-
+        rlutil::locate(32, fila + 5);
+        rlutil::setColor(rlutil::CYAN);
         cout << "Estado: ";
-        if (vecUsuarios[i].getEstado())
-        {
-            cout << "Activo" << endl;
+        rlutil::setColor(rlutil::WHITE);
+        if(vecUsuarios[i].getEstado()){
+            cout << "Activo";
+        } else {
+            cout << "Inactivo";
         }
-        else
-        {
-            cout << "Inactivo" << endl;
+
+        fila += 9;
+        contadorPantalla++;
+
+        if (contadorPantalla == 2 && i < cantidad - 1) {
+            rlutil::locate(40, fila);
+            rlutil::setColor(rlutil::YELLOW);
+            cout << "Presione una tecla para ver más usuarios...";
+            rlutil::setColor(rlutil::WHITE);
+            rlutil::anykey();
+            rlutil::cls();
+            rlutil::locate(45, 2);
+            rlutil::setColor(rlutil::YELLOW);
+            cout << " LISTADO DE USUARIOS ";
+            rlutil::setColor(rlutil::WHITE);
+            fila = 4;
+            contadorPantalla = 0;
         }
-        cout << "----------------------------------" << endl;
     }
 
     delete[] vecUsuarios;
-    system ("pause");
-    system("cls");
+
+    rlutil::locate(40, fila);
+    rlutil::setColor(rlutil::YELLOW);
+    cout << "Fin del listado. Presione una tecla para continuar...";
+    rlutil::setColor(rlutil::WHITE);
+    rlutil::anykey();
+    rlutil::cls();
 }
 
 

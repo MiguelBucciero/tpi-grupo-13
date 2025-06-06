@@ -8,98 +8,167 @@ using namespace std;
 int MedicoManager::cargarMedico() {
     Medico medico;
     string aux;
-    int dni, matricula, id, idEspecialidad, altura,dia, mes, anio;
+    int dni, matricula, id, idEspecialidad, altura, dia, mes, anio;
     Fecha fechaNacimiento;
     Domicilio domicilio;
 
-    cout << "INGRESO DE UN NUEVO MEDICO" << endl;
-    cout << "---------------------------" << endl;
+    rlutil::cls();
+    rlutil::setColor(rlutil::COLOR::YELLOW);
+    rlutil::locate(40, 2);
+    cout << "INGRESO DE NUEVO MEDICO";
+    rlutil::setColor(rlutil::COLOR::WHITE);
 
-   // cin.ignore();
-
+    rlutil::locate(30, 4);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Apellido: ";
-    getline(cin, aux);
-    medico.setApellido(aux);
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(45, 4);
+    getline(cin, aux); medico.setApellido(aux);
 
+    rlutil::locate(30, 5);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Nombre: ";
-    getline(cin, aux);
-    medico.setNombre(aux);
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(45, 5);
+    getline(cin, aux); medico.setNombre(aux);
 
+    rlutil::locate(30, 6);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "DNI: ";
-    cin >> dni;
-    cin.ignore();
-    medico.setDni(dni);
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(45, 6);
+    cin >> dni; cin.ignore(); medico.setDni(dni);
 
-    cout << "Fecha de nacimiento" << endl;
+    rlutil::locate(30, 7);
+    rlutil::setColor(rlutil::COLOR::CYAN);
+    cout << "Fecha de nacimiento:";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(30, 8);
     cout << "Dia: ";
+    rlutil::locate(45, 8);
     cin >> dia;
+    rlutil::locate(30, 9);
     cout << "Mes: ";
+    rlutil::locate(45, 9);
     cin >> mes;
+    rlutil::locate(30, 10);
     cout << "Anio: ";
+    rlutil::locate(45, 10);
     cin >> anio;
     cin.ignore();
     medico.setFechaNacimiento(Fecha(dia, mes, anio));
 
+    rlutil::locate(30, 11);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Genero: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(45, 11);
     getline(cin, aux);
     medico.setGenero(aux);
 
+    rlutil::locate(30, 12);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Email: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(45, 12);
     getline(cin, aux);
     medico.setEmail(aux);
 
+    rlutil::locate(30, 13);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Telefono: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(45, 13);
     getline(cin, aux);
     medico.setTelefono(aux);
 
-    cout << "Domicilio:" << endl;
+    rlutil::locate(30, 14);
+    rlutil::setColor(rlutil::COLOR::CYAN);
+    cout << "Domicilio: ";
+
+    rlutil::locate(32, 15);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Calle: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(45, 15);
     getline(cin, aux);
     domicilio.setCalle(aux);
 
+    rlutil::locate(32, 16);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Altura: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(45, 16);
     cin >> altura;
     domicilio.setAltura(altura);
     cin.ignore();
 
+    rlutil::locate(32, 17);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Localidad: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(45, 17);
     getline(cin, aux);
     domicilio.setLocalidad(aux);
 
+    rlutil::locate(32, 18);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Provincia: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(45, 18);
     getline(cin, aux);
     domicilio.setProvincia(aux);
 
-    cout << "Codigo postal: ";
+    rlutil::locate(32, 19);
+    rlutil::setColor(rlutil::COLOR::CYAN);
+    cout << "Codigo Postal: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(45, 19);
     getline(cin, aux);
     domicilio.setCodigoPostal(aux);
 
     medico.setDomicilio(domicilio);
 
-
     id = _archivo.getNuevoID();
     medico.setIDMedico(id);
-    cout << "ID asignado: " << id << endl;
+    rlutil::locate(30, 20);
+    rlutil::setColor(rlutil::COLOR::CYAN);
+    cout << "ID asignado: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    cout << id;
 
+    rlutil::locate(30, 21);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Matricula: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(45, 21);
     cin >> matricula;
     medico.setMatricula(matricula);
 
+    rlutil::locate(30, 22);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "ID de Especialidad: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(52, 22);
     cin >> idEspecialidad;
     medico.setIDEspecialidad(idEspecialidad);
 
     medico.setEstado(true);
 
+    rlutil::locate(30, 24);
     if (_archivo.guardar(medico)) {
-        cout << "Medico guardado correctamente." << endl;
-        system ("pause");
-        system("cls");
+        rlutil::setColor(rlutil::COLOR::GREEN);
+        cout << "Medico guardado correctamente.";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::anykey();
+        rlutil::cls();
         return id;
     } else {
-        cout << "Error al guardar medico." << endl;
-        system ("pause");
-        system("cls");
+        rlutil::setColor(rlutil::COLOR::RED);
+        cout << "Error al guardar medico.";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::anykey();
+        rlutil::cls();
         return -1;
     }
 }
