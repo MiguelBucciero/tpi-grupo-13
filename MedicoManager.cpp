@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "MedicoManager.h"
+#include "rlutil.h"
 
 using namespace std;
 
@@ -106,46 +107,109 @@ int MedicoManager::cargarMedico() {
 void MedicoManager::mostrarMedico() {
     int cantidad = _archivo.getCantidadRegistros();
     if (cantidad == 0) {
-        cout << "No hay medicos cargados." << endl;
+        rlutil::cls();
+        rlutil::locate(40, 10);
+        rlutil::setColor(rlutil::COLOR::RED);
+        cout << "No hay medicos cargados.";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::anykey();
         return;
     }
 
     Medico* vecMedico = new Medico[cantidad];
     _archivo.leerMuchos(vecMedico, cantidad);
 
-    cout << "------- LISTADO DE MEDICOS -------" << endl;
     for (int i = 0; i < cantidad; i++) {
-        cout << "----------------------------------" << endl;
-        cout << "Apellido: " << vecMedico[i].getApellido() << endl;
-        cout << "Nombre: " << vecMedico[i].getNombre() << endl;
-        cout << "DNI: " << vecMedico[i].getDni() << endl;
-
-        cout << "Fecha de nacimiento: ";
-        vecMedico[i].getFechaNacimiento().mostrarFecha();
-
-        cout << "Genero: " << vecMedico[i].getGenero() << endl;
-        cout << "Email: " << vecMedico[i].getEmail() << endl;
-        cout << "Telefono: " << vecMedico[i].getTelefono() << endl;
-
-        cout << "Domicilio:" << endl;
-        vecMedico[i].getDomicilioCompleto().mostrarDomicilio();
-
-        cout << "ID Medico: " << vecMedico[i].getIDMedico() << endl;
-        cout << "Matricula: " << vecMedico[i].getMatricula() << endl;
-        cout << "ID Especialidad: " << vecMedico[i].getIDEspecialidad() << endl;
-
-        cout << "Estado: ";
         if (vecMedico[i].getEstado()) {
-            cout << "Activo" << endl;
-        } else {
-            cout << "Inactivo" << endl;
+            rlutil::cls();
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(45, 2);
+            cout << " LISTADO DE MEDICOS " << (i + 1) << " DE " << cantidad;
+            rlutil::setColor(rlutil::COLOR::WHITE);
+
+            int fila = 4;
+
+            rlutil::locate(30, fila);
+            cout << "------------------------------------------------------------";
+            rlutil::locate(30, fila + 13);
+            cout << "------------------------------------------------------------";
+
+            rlutil::locate(32, fila + 1);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Apellido: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getApellido();
+            rlutil::locate(32, fila + 2);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Nombre: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getNombre();
+            rlutil::locate(32, fila + 3);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "DNI: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getDni();
+
+            rlutil::locate(32, fila + 4);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Fecha de nacimiento: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getFechaNacimiento().toString();
+
+            rlutil::locate(32, fila + 5);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Genero: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getGenero();
+            rlutil::locate(32, fila + 6);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Email: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getEmail();
+            rlutil::locate(32, fila + 7);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Telefono: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getTelefono();
+
+            rlutil::locate(32, fila + 8);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Matricula: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getMatricula();
+            rlutil::locate(32, fila + 9);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "ID Especialidad: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getIDEspecialidad();
+            rlutil::locate(32, fila + 10);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "ID Medico: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getIDMedico();
+
+            rlutil::locate(32, fila + 11);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Estado: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << (vecMedico[i].getEstado() ? "Activo" : "Inactivo");
+
+            rlutil::locate(32, fila + 14);
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            cout << "Presione una tecla para ver el siguiente medico...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
         }
-        cout << "----------------------------------" << endl;
     }
 
     delete[] vecMedico;
-    system ("pause");
-    system("cls");
+    rlutil::cls();
+    rlutil::locate(40, 10);
+    rlutil::setColor(rlutil::COLOR::GREEN);
+    cout << "Fin del listado. Presione una tecla para continuar...";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::anykey();
+    rlutil::cls();
 }
 
 void MedicoManager::buscarMedicoPorEspecialidad() {

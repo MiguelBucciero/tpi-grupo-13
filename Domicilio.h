@@ -23,7 +23,7 @@ public:
 
     //Metedos
     void cargarDomicilio();
-    void mostrarDomicilio();
+    void mostrarDomicilio(int columna, int filaBase);
 
 private:
     char _calle [30];

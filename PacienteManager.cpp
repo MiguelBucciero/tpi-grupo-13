@@ -11,81 +11,115 @@ void PacienteManager::cargarPaciente() {
     Fecha fechaNacimiento;
     Domicilio domicilio;
 
-    cout << "INGRESO DE UN NUEVO PACIENTE" << endl;
-    cout << "-----------------------------" << endl;
-    cin.ignore();
+    rlutil::cls();
+    rlutil::setColor(rlutil::COLOR::YELLOW);
+    rlutil::locate(40, 2);
+    cout << "INGRESO DE NUEVO PACIENTE";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+
+    rlutil::locate(30, 4);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Apellido: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(40, 4);
     getline(cin, aux);
     paciente.setApellido(aux);
 
+    rlutil::locate(30, 5);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Nombre: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(40, 5);
     getline(cin, aux);
     paciente.setNombre(aux);
 
+    rlutil::locate(30, 6);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "DNI: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(40, 6);
     cin >> dni;
     cin.ignore();
     paciente.setDni(dni);
 
-    cout << "Fecha de nacimiento" << endl;
+    rlutil::setColor(rlutil::COLOR::CYAN);
+    rlutil::locate(30, 7);
+    cout << "Fecha de nacimiento:";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+
+    rlutil::locate(30, 8);
     cout << "Dia: ";
+    rlutil::locate(40, 8);
     cin >> dia;
+    rlutil::locate(30, 9);
     cout << "Mes: ";
+    rlutil::locate(40, 9);
     cin >> mes;
+    rlutil::locate(30, 10);
     cout << "Anio: ";
+    rlutil::locate(40, 10);
     cin >> anio;
     cin.ignore();
     fechaNacimiento = Fecha(dia, mes, anio);
     paciente.setFechaNacimiento(fechaNacimiento);
 
+    rlutil::locate(30, 11);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Genero: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(40, 11);
     getline(cin, aux);
     paciente.setGenero(aux);
 
+    rlutil::locate(30, 12);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Email: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(40, 12);
     getline(cin, aux);
     paciente.setEmail(aux);
 
+    rlutil::locate(30, 13);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Telefono: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(40, 13);
     getline(cin, aux);
     paciente.setTelefono(aux);
 
-    cout << "Domicilio:" << endl;
-    cout << "Calle: ";
-    getline(cin, aux);
-    domicilio.setCalle(aux);
-    cout << "Altura: ";
-    cin >> altura;
-    domicilio.setAltura(altura);
-    cin.ignore();
-    cout << "Localidad: ";
-    getline(cin, aux);
-    domicilio.setLocalidad(aux);
-    cout << "Provincia: ";
-    getline(cin, aux);
-    domicilio.setProvincia(aux);
-    cout << "Codigo postal: ";
-    getline(cin, aux);
-    domicilio.setCodigoPostal(aux);
+    domicilio.cargarDomicilio();
     paciente.setDomicilio(domicilio);
 
     id = _archivo.getNuevoID();
-    cout << "ID asignado automáticamente: " << id << endl;
+    rlutil::locate(30, 4);
+    rlutil::setColor(rlutil::COLOR::CYAN);
+    cout << "ID asignado: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    cout << id;
     paciente.setIDPaciente(id);
 
+    rlutil::locate(30, 5);
+    rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Numero de carnet: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(40, 5);
     cin >> carnet;
     cin.ignore();
     paciente.setCarnet(carnet);
-    paciente.setEstado(true); // activo por defecto
+    paciente.setEstado(true);
 
+    rlutil::locate(30, 7);
     if (_archivo.guardar(paciente)) {
-        cout << "Paciente guardado correctamente." << endl;
+        rlutil::setColor(rlutil::COLOR::GREEN);
+        cout << "Paciente guardado correctamente.";
     } else {
-        cout << "Error al guardar paciente." << endl;
+        rlutil::setColor(rlutil::COLOR::RED);
+        cout << "Error al guardar paciente.";
     }
-    system ("pause");
-    system("cls");
+
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::anykey();
+    rlutil::cls();
 }
 
 
@@ -93,45 +127,98 @@ void PacienteManager::cargarPaciente() {
 void PacienteManager::mostrarPaciente() {
     int cantidad = _archivo.getCantidadRegistros();
     if (cantidad == 0) {
+        rlutil::cls();
+        rlutil::locate(40, 10);
+        rlutil::setColor(rlutil::COLOR::RED);
         cout << "No hay pacientes cargados." << endl;
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::anykey();
         return;
     }
 
     Paciente* vecPaciente = new Paciente[cantidad];
     _archivo.leerMuchos(vecPaciente, cantidad);
 
-    cout << "------- LISTADO DE PACIENTES -------" << endl;
-    for (int i = 0; i < cantidad; i++) {
-        cout << "----------------------------------" << endl;
-        cout << "Apellido: " << vecPaciente[i].getApellido() << endl;
-        cout << "Nombre: " << vecPaciente[i].getNombre() << endl;
-        cout << "DNI: " << vecPaciente[i].getDni() << endl;
+    rlutil::cls();
+    rlutil::setColor(rlutil::COLOR::YELLOW);
+    rlutil::locate(45, 2);
+    cout << " LISTADO DE PACIENTES ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
 
-        cout << "Fecha de nacimiento: ";
-        vecPaciente[i].getFechaNacimiento().mostrarFecha();
+    int fila = 4;
 
-        cout << "Genero: " << vecPaciente[i].getGenero() << endl;
-        cout << "Email: " << vecPaciente[i].getEmail() << endl;
-        cout << "Telefono: " << vecPaciente[i].getTelefono() << endl;
+        for (int i = 0; i < cantidad; i++) {
+            if (vecPaciente[i].getEstado()) {
+            rlutil::cls();
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(45, 2);
+            cout << " PACIENTE " << (i + 1) << " DE " << cantidad;
+            rlutil::setColor(rlutil::COLOR::WHITE);
 
-        cout << "Domicilio:" << endl;
-        vecPaciente[i].getDomicilioCompleto().mostrarDomicilio();
+            int fila = 4;
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+            rlutil::locate(30, fila);     cout << "------------------------------------------------------------";
+            rlutil::locate(30, fila + 15); cout << "------------------------------------------------------------";
 
-        cout << "ID Paciente: " << vecPaciente[i].getIDPaciente() << endl;
-        cout << "Carnet: " << vecPaciente[i].getCarnet() << endl;
+            rlutil::locate(32, fila + 1);
+            rlutil::setColor(rlutil::COLOR::CYAN); cout << "Apellido: "; rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecPaciente[i].getApellido();
 
-        cout << "Estado: ";
-        if (vecPaciente[i].getEstado()) {
-            cout << "Activo" << endl;
-        } else {
-            cout << "Inactivo" << endl;
+            rlutil::locate(32, fila + 2);
+            rlutil::setColor(rlutil::COLOR::CYAN); cout << "Nombre: "; rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecPaciente[i].getNombre();
+
+            rlutil::locate(32, fila + 3);
+            rlutil::setColor(rlutil::COLOR::CYAN); cout << "DNI: "; rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecPaciente[i].getDni();
+
+            rlutil::locate(32, fila + 4);
+            rlutil::setColor(rlutil::COLOR::CYAN); cout << "Fecha de nacimiento: "; rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecPaciente[i].getFechaNacimiento().toString();
+
+            rlutil::locate(32, fila + 5);
+            rlutil::setColor(rlutil::COLOR::CYAN); cout << "Genero: "; rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecPaciente[i].getGenero();
+
+            rlutil::locate(32, fila + 6);
+            rlutil::setColor(rlutil::COLOR::CYAN); cout << "Email: "; rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecPaciente[i].getEmail();
+
+            rlutil::locate(32, fila + 7);
+            rlutil::setColor(rlutil::COLOR::CYAN); cout << "Telefono: "; rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecPaciente[i].getTelefono();
+
+            rlutil::locate(32, fila + 8);
+            rlutil::setColor(rlutil::COLOR::CYAN); cout << "Domicilio: "; rlutil::setColor(rlutil::COLOR::WHITE);
+            vecPaciente[i].getDomicilioCompleto().mostrarDomicilio(32, fila + 8);
+
+            rlutil::locate(32, fila + 13);
+            rlutil::setColor(rlutil::COLOR::CYAN); cout << "Carnet: "; rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecPaciente[i].getCarnet();
+
+            rlutil::locate(32, fila + 14);
+            rlutil::setColor(rlutil::COLOR::CYAN); cout << "ID Paciente: "; rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecPaciente[i].getIDPaciente();
+
+            rlutil::locate(35, fila + 17);
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            cout << "Presione una tecla para ver el siguiente paciente...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
         }
-
-        cout << "----------------------------------" << endl;
     }
 
     delete[] vecPaciente;
-    system ("pause");
-    system("cls");
+    rlutil::cls();
+    rlutil::locate(40, 10);
+    rlutil::setColor(rlutil::COLOR::GREEN);
+    cout << "Fin del listado. Presione una tecla para continuar...";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::anykey();
+    rlutil::cls();
 }
+
+
+
+
 
