@@ -132,7 +132,7 @@ int MenuRecepcionista::menuConsultasRecepcionista(){
         rlutil::hidecursor();
         rlutil::locate(50, 3);
         cout<<" - CONSULTAS RECEPCIONISTA - ";
-        showItem(" 1. BUSCAR TURNO POR ESTADO (ACTIVO, CANCELADO, REPROGRAMADO, NO ASISTIDO, ASISTIDo) ", 30, 5, y==0);
+        showItem(" 1. BUSCAR TURNO POR ESTADO (ACTIVO, CANCELADO, REPROGRAMADO, NO ASISTIDO, ASISTIDO) ", 30, 5, y==0);
         showItem(" 2. BUSCAR MEDICOS POR ESPECIALIDAD ", 30, 6, y==1);
         showItem(" 3. VER TURNOS DEL DIA ", 30, 7, y==2);
         showItem(" 4. VER TURNOS DE LA SEMANA ", 30, 8, y==3);

@@ -3,6 +3,7 @@
 #include "EspecialidadManager.h"
 #include "MedicoManager.h"
 #include "UsuarioManager.h"
+#include "TurnoManager.h"
 
 
 class MenuAdministrador {
@@ -13,4 +14,5 @@ private:
     EspecialidadManager _espManager;
     MedicoManager _medicoManger;
     UsuarioManager _usuarioManager;
+    TurnoManager _turnoManager;
 };

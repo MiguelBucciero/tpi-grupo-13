@@ -158,49 +158,50 @@
 1748559943 c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\especialidadmanager.h
 	"EspecialidadArchivo.h"
 
-1748796163 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\domicilio.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\domicilio.cpp
 	<iostream>
 	"Domicilio.h"
 	<cstring>
 
-1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\domicilio.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\domicilio.h
 	<string>
 
-1748983721 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadarchivo.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadarchivo.cpp
 	"EspecialidadArchivo.h"
 
-1748983579 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadarchivo.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadarchivo.h
 	<string>
 	"Especialidad.h"
 
-1748975400 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidad.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidad.h
 	<string>
 
-1748982934 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadmanager.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadmanager.cpp
 	"EspecialidadManager.h"
 	"Especialidad.h"
+	"rlutil.h"
 	<iostream>
 	<string>
 
-1748982912 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadmanager.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadmanager.h
 	"EspecialidadArchivo.h"
 
-1748796163 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\fecha.cpp
+1749177593 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\fecha.cpp
 	<iostream>
 	"Fecha.h"
 
-1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\fecha.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\fecha.h
 	<string>
 	<ctime>
 
-1748796163 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\hora.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\hora.cpp
 	<iostream>
 	"Hora.h"
 
-1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\hora.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\hora.h
 	<string>
 
-1748893334 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\main.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\main.cpp
 	<iostream>
 	"rlutil.h"
 	"UsuarioManager.h"
@@ -208,26 +209,31 @@
 	"MenuRecepcionista.h"
 	"MenuMedico.h"
 
-1748805168 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menuadministrador.h
+1749177786 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menuadministrador.h
 	"Especialidad.h"
 	"EspecialidadManager.h"
 	"MedicoManager.h"
 	"UsuarioManager.h"
+	"TurnoManager.h"
 
-1748796163 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menumedico.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menumedico.cpp
 	<iostream>
 	"rlutil.h"
 	"MenuMedico.h"
 
-1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menumedico.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menumedico.h
+	"TurnoManager.h"
+	"PacienteManager.h"
+	"UsuarioManager.h"
 
-1748982912 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menusadministrador.cpp
+1749183737 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menusadministrador.cpp
 	<iostream>
 	<cstdlib>
 	"rlutil.h"
 	"MenuAdministrador.h"
+	"UsuarioManager.h"
 
-1748796163 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menusrecepcionista.cpp
+1749181413 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menusrecepcionista.cpp
 	<iostream>
 	<cstdlib>
 	"rlutil.h"
@@ -239,53 +245,53 @@
 	"MedicoManager.h"
 	"Medico.h"
 
-1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menurecepcionista.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menurecepcionista.h
 	"Paciente.h"
 	"PacienteManager.h"
 	"MedicoManager.h"
 	"TurnoManager.h"
 
-1748796163 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\persona.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\persona.cpp
 	<iostream>
 	<cstring>
 	"Persona.h"
 
-1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\persona.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\persona.h
 	<string>
 	"Fecha.h"
 	"Domicilio.h"
 
-1748976611 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidad.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidad.cpp
 	<iostream>
 	"Especialidad.h"
 	<cstring>
 
-1748796163 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\paciente.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\paciente.cpp
 	<iostream>
 	<cstring>
 	"Paciente.h"
 
-1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\paciente.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\paciente.h
 	"Persona.h"
 	"Domicilio.h"
 	"Fecha.h"
 
-1748892745 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\pacientearchivo.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\pacientearchivo.cpp
 	"PacienteArchivo.h"
 	"PacienteManager.h"
 	<iostream>
 
-1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\pacientearchivo.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\pacientearchivo.h
 	<string>
 	"Paciente.h"
 
-1748796163 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\pacientemanager.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\pacientemanager.cpp
 	"PacienteManager.h"
 	"rlutil.h"
 	<iostream>
 	<string>
 
-1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\pacientemanager.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\pacientemanager.h
 	"PacienteArchivo.h"
 
 1748559943 c:\users\slkf_\downloads\tpi-grupo-13-main\tpi-grupo-13-main\pacientemanager.h
@@ -429,23 +435,23 @@
 	<iostream>
 	<string>
 
-1748796163 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\turnoarchivo.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\turnoarchivo.cpp
 	"TurnoArchivo.h"
 	"TurnoManager.h"
 	<iostream>
 
-1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\turnoarchivo.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\turnoarchivo.h
 	<string>
 	"Turno.h"
 
-1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\turno.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\turno.h
 	"Fecha.h"
 	"Hora.h"
 
-1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\turnomanager.h
+1749181452 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\turnomanager.h
 	"TurnoArchivo.h"
 
-1748796163 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\turnomanager.cpp
+1749183588 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\turnomanager.cpp
 	"TurnoManager.h"
 	"PacienteArchivo.h"
 	"MedicoArchivo.h"
@@ -455,7 +461,7 @@
 	"Fecha.h"
 	<iostream>
 
-1748796163 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\turno.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\turno.cpp
 	<iostream>
 	"Turno.h"
 
@@ -627,25 +633,25 @@
 	<string>
 	"MedicoManager.h"
 
-1748889911 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medicomanager.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medicomanager.h
 	"MedicoArchivo.h"
 
-1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medicoarchivo.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medicoarchivo.h
 	<string>
 	"Medico.h"
 
-1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medico.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medico.h
 	"Persona.h"
 
-1748796163 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medico.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medico.cpp
 	<iostream>
 	<string>
 	"Medico.h"
 
-1748889910 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medicoarchivo.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medicoarchivo.cpp
 	"MedicoArchivo.h"
 
-1748889911 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medicomanager.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medicomanager.cpp
 	<iostream>
 	<string>
 	"MedicoManager.h"
@@ -702,7 +708,7 @@
 	"Fecha.h"
 	<iostream>
 
-1748796163 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\rlutil.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\rlutil.h
 	<iostream>
 	<string>
 	<cstdio>
@@ -925,41 +931,42 @@
 	<iostream>
 	<ctime>
 
-1748894569 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuariomanager.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuariomanager.h
 	"UsuarioArchivo.h"
 
-1748864635 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuarioarchivo.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuarioarchivo.h
 	<string>
 	<cstring>
 	"Usuario.h"
 
-1748890437 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuario.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuario.h
 	"Rol.h"
 
-1748806515 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\rol.h
+1749176331 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\rol.h
 
-1748894556 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuarioarchivo.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuarioarchivo.cpp
 	"UsuarioArchivo.h"
 	"UsuarioManager.h"
 	<cstring>
 	<string>
 	<iostream>
 
-1748895102 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuariomanager.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuariomanager.cpp
 	"UsuarioManager.h"
 	"MenuRecepcionista.h"
 	"MenuAdministrador.h"
 	"MenuMedico.h"
 	"MedicoManager.h"
+	"rlutil.h"
 	<iostream>
 	<cstring>
 
-1748894556 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuario.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuario.cpp
 	<iostream>
 	<cstring>
 	"Usuario.h"
 
-1748806515 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\rol.cpp
+1749176331 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\rol.cpp
 	"Rol.h"
 	<cstring>
 	<string>

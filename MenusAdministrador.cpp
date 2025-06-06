@@ -30,13 +30,13 @@ int MenuAdministrador::menuAdministrador() {
         rlutil::locate(50, 3);
         cout<<" MENU ADMINISTRADOR ";
         showItem(" 1. CARGAR NUEVO USUARIO ", 50, 5, y==0);
-        showItem(" 2. MODIFICAR USUARIO ", 50, 6, y==1) ;//flor
-        showItem(" 3. ELIMINAR USUARIO ", 50, 7, y==2);//flor
+        showItem(" 2. MODIFICAR USUARIO ", 50, 6, y==1) ;
+        showItem(" 3. ELIMINAR USUARIO ", 50, 7, y==2);
         showItem(" 4. LISTAR USUARIOS ", 50, 8, y==3);
         showItem(" 5. INFORMES ", 50, 9, y==4);
         showItem(" 6. CARGAR ESPECIALIDAD ", 50, 10, y==5);
-        showItem(" 7. MODIFICAR ESPECIALIDAD ", 50, 11, y==6); //vero
-        showItem(" 8. ELIMINAR ESPECIALIDAD ", 50, 12, y==7); //vero
+        showItem(" 7. MODIFICAR ESPECIALIDAD ", 50, 11, y==6);
+        showItem(" 8. ELIMINAR ESPECIALIDAD ", 50, 12, y==7);
         showItem(" 9. LISTAR ESPECIALIDAD ", 50, 13, y==8);
         showItem(" 10. MODIFICAR MEDICO ", 50, 14, y==9);
         showItem(" 11. ELIMINAR MEDICO ", 50, 15, y==10);
@@ -134,7 +134,7 @@ int MenuAdministrador::menuInformesAdministrador(){
         showItem(" 2. CANTIDAD DE TURNOS POR PACIENTE ", 50, 6, y==1);
         showItem(" 3. CANTIDAD DE TURNOS CANCELADOS POR MES ", 50, 7, y==2);
         showItem(" 4. CANTIDAD DE TURNOS REPROGRAMADOS POR MES ", 50, 8, y==3);
-        showItem(" 5. CANTIDAD DE TURNOS POR ESPECIALIDAD ", 50, 9, y==4);
+        showItem(" 5. CANTIDAD DE TURNOS POR ESPECIALIDAD EN EL ANIO ", 50, 9, y==4);//lo cambie un poco porque era igual que el de menu recepcionista
         showItem(" 6. CANTIDAD DE USURIOS ACTIVOS ", 50, 10, y==5);
         showItem(" 0. VOLVER AL MENU ANTERIOR ", 50, 11, y==6);
 
@@ -171,13 +171,13 @@ int MenuAdministrador::menuInformesAdministrador(){
                 //Miguel
                     break;
             case 3:
-                //Vero
+                _turnoManager.CantidadTurnosReprogramadosMes();
                     break;
             case 4:
-                //Vero
-                    break;
+                _turnoManager.CantidadTurnosPorEspecialidadAdmin(2025);
+                break;
             case 5:
-                //Vero
+                //CANTIDAD DE USURIOS ACTIVOS
                     break;
             case 6: opc=0;
                     break;

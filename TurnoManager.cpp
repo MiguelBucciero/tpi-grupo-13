@@ -470,3 +470,71 @@ void TurnoManager::HistorialTurnosAtendidos(int idMedico) {
     system("cls");
 }
 
+void TurnoManager::CantidadTurnosReprogramadosMes(){
+    int cantidad=_archivo.getCantidadRegistros();
+    int vecMes[12]={}; //numeros meses
+    const char* vecMeses[12]={"ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO",
+     "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"}; //nombres meses
+     int anio=2025;
+
+    Turno turno;
+    for(int i=0; i<cantidad; i++){
+        turno=_archivo.Leer(i);
+        if(turno.getEstado()==3){
+            Fecha fecha=turno.getFechaTurno();
+            if(fecha.getAnio()==anio){ //tambien hay turnos de otros anios.
+                if(fecha.getMes()>=1&&fecha.getMes()<=12){
+                vecMes[fecha.getMes()-1]++;
+            }
+            }
+        }
+    }
+    cout<<"CANTIDAD DE TURNOS REPROGRAMADOS POR MES"<<endl;
+    cout<<"----------------------------------------"<<endl;
+    for(int i=0; i<12; i++){
+        cout<<vecMeses[i]<<": "<<vecMes[i]<<endl;
+    }
+    system("pause");
+    system("cls");
+}
+
+void TurnoManager::CantidadTurnosPorEspecialidadAdmin(int anio){
+    EspecialidadArchivo archiEsp;
+    int cantidadEsp=archiEsp.getCantidadRegistros();
+    Especialidad *especialidades=new Especialidad[cantidadEsp];
+    archiEsp.leerMuchos(especialidades, cantidadEsp);
+
+    int* cont=new int[cantidadEsp];
+    for(int i=0; i<cantidadEsp; i++){
+        cont[i]=0;
+    }
+
+    int cantidadTurno=_archivo.getCantidadRegistros();
+    Turno turno;
+
+    for(int i=0; i<cantidadTurno; i++){
+        turno=_archivo.Leer(i);
+        Fecha fecha=turno.getFechaTurno();
+        if(turno.getEstado()==1||turno.getEstado()==3||turno.getEstado()==5){
+            if(fecha.getAnio()==anio){
+                int idEspTurno=turno.getEspecialidad();
+                for(int j=0; j<cantidadEsp; j++){
+                    if(especialidades[j].getIDEspecialidad()==idEspTurno){
+                        cont[j]++;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    cout<<"CANTIDAD DE TURNOS TOTALES POR ESPECIALIDAD, EN EL ANIO"<<endl;
+    cout<<"-------------------------------------------------------"<<endl;
+    for(int i=0; i<cantidadEsp; i++){
+        cout<<especialidades[i].getNombre()<<": "<<cont[i]<<" turnos"<<endl;
+    }
+    delete[] especialidades;
+    delete[] cont;
+
+    system ("pause");
+    system("cls");
+}

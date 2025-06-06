@@ -14,6 +14,8 @@ public:
     void CantidadTurnosPorEspecialidad();
     void CantidadTurnosNoAsistidos();
     void HistorialTurnosAtendidos(int idMedico);
+    void CantidadTurnosReprogramadosMes();
+    void CantidadTurnosPorEspecialidadAdmin(int anio);
 
 private:
     TurnoArchivo _archivo;
