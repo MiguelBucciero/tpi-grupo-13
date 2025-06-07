@@ -7,6 +7,12 @@
 #include "Fecha.h"
 #include <iostream>
 
+#include "Turno.h"
+#include "Paciente.h"
+#include "Especialidad.h"
+#include "rlutil.h"
+
+
 using namespace std;
 
 void TurnoManager::cargarTurno(){
@@ -537,4 +543,39 @@ void TurnoManager::CantidadTurnosPorEspecialidadAdmin(int anio){
 
     system ("pause");
     system("cls");
+}
+
+void TurnoManager::buscarTurnosPorFecha() {
+    Fecha fechaBuscada;
+    cout << "Ingrese la fecha para buscar turnos:" << endl;
+    fechaBuscada.cargarFecha();
+
+    TurnoArchivo archivo("Turnos.dat");
+    PacienteArchivo archivoPacientes("pacientes.dat");
+    EspecialidadArchivo archivoEspecialidades("especialidad.dat");
+
+    int cantidad = archivo.getCantidadRegistros();
+    bool hayTurnos = false;
+
+    for (int i = 0; i < cantidad; i++) {
+        Turno t = archivo.Leer(i);
+        if (t.getFechaTurno().esIgual(fechaBuscada) && t.getEstado() == 1) {
+            hayTurnos = true;
+
+            Paciente p = archivoPacientes.Leer(archivoPacientes.Buscar(t.getIDPaciente()));
+            Especialidad e = archivoEspecialidades.Leer(archivoEspecialidades.Buscar(t.getEspecialidad()));
+
+            cout << "\n----------------------------" << endl;
+            cout << "ID Turno: " << t.getIDTurno() << endl;
+            cout << "Hora: " << t.getHoraTurno().toString() << endl;
+            cout << "Paciente: " << p.getNombre() << " " << p.getApellido() << endl;
+            cout << "Especialidad: " << e.getNombre() << endl;
+        }
+    }
+
+    if (!hayTurnos) {
+        cout << "\nNo se encontraron turnos activos en esa fecha." << endl;
+    }
+
+    rlutil::anykey();
 }

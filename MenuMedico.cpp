@@ -53,16 +53,16 @@ int MenuMedico::menuMedico(Usuario usuarioLogeado){
         case 1: //ENTER
             rlutil::cls();
             switch (y) {
-                case 0: /* Ver turnos asignados *///Nahuel
+                case 0: _medicoManager.verTurnosAsignados(usuarioLogeado.getIDMedico());///Nahuel
                     break;
-                case 1: /* Buscar turnos por fechas */ //Nahuel
+                case 1:  _turnoManger.buscarTurnosPorFecha(); ///Nahuel
                     break;
                 case 2:{
                     int idMedico= usuarioLogeado.getIDMedico();
                     _turnoManger.HistorialTurnosAtendidos(idMedico);
                     break;
                 }
-                case 3: /* Buscar paciente por DNI */ //Nahuel
+                case 3: /* Buscar paciente por DNI */ //Nahuel(en proceso)
                     break;
                 case 4:
                     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);

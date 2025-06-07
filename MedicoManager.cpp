@@ -3,6 +3,10 @@
 #include "MedicoManager.h"
 #include "rlutil.h"
 
+#include "TurnoArchivo.h"
+#include "Turno.h"
+
+
 using namespace std;
 
 int MedicoManager::cargarMedico() {
@@ -320,3 +324,22 @@ void MedicoManager::buscarMedicoPorEspecialidad() {
 }
 
 
+void MedicoManager::verTurnosAsignados(int idMedico) {
+    TurnoArchivo archivo("Turnos.dat");
+    int cantidad = archivo.getCantidadRegistros();
+    bool hayTurnos = false;
+
+    for (int i = 0; i < cantidad; i++) {
+        Turno t = archivo.Leer(i);
+        if (t.getIDMedico() == idMedico && t.getEstado() == 1) {
+            t.mostrarTurno();
+            hayTurnos = true;
+        }
+    }
+
+    if (!hayTurnos) {
+        cout << "No hay turnos asignados para este médico." << endl;
+    }
+
+    rlutil::anykey("Presione una tecla para continuar...");
+}
