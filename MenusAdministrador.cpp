@@ -185,9 +185,6 @@ int MenuAdministrador::menuInformesAdministrador(){
             default:
                     break;
             }
-            if(opc!=0){
-                rlutil::anykey();
-            }
             break;
         }
     }while(opc!=0);

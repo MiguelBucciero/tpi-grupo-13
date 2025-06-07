@@ -286,41 +286,116 @@ void MedicoManager::mostrarMedico() {
 }
 
 void MedicoManager::buscarMedicoPorEspecialidad() {
-    int idEspecialidad;
-    cout<<"Ingrese el ID de especialidad que desea buscar: ";
-    cin>>idEspecialidad;
+    int idEspecialidad, fila;
+    bool encontrados = false;
 
-    int cantidad=_archivo.getCantidadRegistros();
-    if (cantidad==0) {
-        cout<<"No hay medicos cargados."<<endl;
+    rlutil::cls();
+    rlutil::setColor(rlutil::COLOR::YELLOW);
+    rlutil::locate(40, 2);
+    cout << "BUSCAR MEDICOS POR ESPECIALIDAD";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+
+    rlutil::locate(30, 4);
+    rlutil::setColor(rlutil::COLOR::CYAN);
+    cout << "Ingrese el ID de especialidad que desea buscar: ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(75, 4);
+    cin >> idEspecialidad;
+
+    int cantidad = _archivo.getCantidadRegistros();
+    if (cantidad == 0) {
+        rlutil::locate(40, 6);
+        rlutil::setColor(rlutil::COLOR::RED);
+        cout << "No hay medicos cargados.";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::anykey();
+        rlutil::cls();
         return;
     }
 
-    Medico* vecMedico=new Medico[cantidad];
+    Medico* vecMedico = new Medico[cantidad];
     _archivo.leerMuchos(vecMedico, cantidad);
 
-    bool encontrados=false;
-    cout << "\n--- Medicos con ID de especialidad "<<idEspecialidad<<" ---"<<endl;
 
-    for (int i=0; i<cantidad; i++) {
-        if (vecMedico[i].getIDEspecialidad()==idEspecialidad && vecMedico[i].getEstado()) {
-            cout<<"----------------------------------"<<endl;
-            cout<<"ID Medico: "<<vecMedico[i].getIDMedico()<<endl;
-            cout<<"Nombre: "<<vecMedico[i].getNombre()<<" " <<vecMedico[i].getApellido()<<endl;
-            cout<<"DNI: "<<vecMedico[i].getDni()<<endl;
-            cout<<"Email: " << vecMedico[i].getEmail()<<endl;
-            cout<<"Telefono: "<<vecMedico[i].getTelefono()<<endl;
+    fila = 6;
+
+    rlutil::cls();
+    rlutil::setColor(rlutil::COLOR::YELLOW);
+    rlutil::locate(40, 2);
+    cout << " MEDICOS CON ID DE ESPECIALIDAD " << idEspecialidad;
+    rlutil::setColor(rlutil::COLOR::WHITE);
+
+    for (int i = 0; i < cantidad; i++) {
+        if (vecMedico[i].getIDEspecialidad() == idEspecialidad && vecMedico[i].getEstado()) {
+            rlutil::locate(30, fila);
+            cout << "------------------------------------------------------------";
+            rlutil::locate(30, fila + 6);
+            cout << "------------------------------------------------------------";
+
+            rlutil::locate(32, fila + 1);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "ID Medico: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getIDMedico();
+
+            rlutil::locate(32, fila + 2);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Nombre: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getNombre() << " " << vecMedico[i].getApellido();
+
+            rlutil::locate(32, fila + 3);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "DNI: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getDni();
+
+            rlutil::locate(32, fila + 4);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Email: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getEmail();
+
+            rlutil::locate(32, fila + 5);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Telefono: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getTelefono();
+
+            fila += 8;
+
+            // Paginación si se sale de pantalla
+            if (fila + 6 > 45) {
+                rlutil::locate(40, fila);
+                rlutil::setColor(rlutil::COLOR::YELLOW);
+                cout << "Presione una tecla para continuar...";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+                rlutil::cls();
+                rlutil::locate(40, 2);
+                cout << " MEDICOS CON ID DE ESPECIALIDAD " << idEspecialidad;
+                fila = 6;
+            }
+
             encontrados = true;
         }
     }
 
     if (!encontrados) {
-        cout << "No se encontraron medicos activos con esa especialidad."<<endl;
+        rlutil::locate(40, fila);
+        rlutil::setColor(rlutil::COLOR::RED);
+        cout << "No se encontraron medicos activos con esa especialidad.";
+        rlutil::setColor(rlutil::COLOR::WHITE);
     }
 
     delete[] vecMedico;
-    system ("pause");
-    system("cls");
+
+    rlutil::locate(40, fila + 2);
+    rlutil::setColor(rlutil::COLOR::YELLOW);
+    cout << "Fin de la busqueda. Presione una tecla para continuar...";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::anykey();
+    rlutil::cls();
 }
 
 

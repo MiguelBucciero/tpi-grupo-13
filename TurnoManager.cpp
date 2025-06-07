@@ -90,29 +90,83 @@ void TurnoManager::cargarTurno(){
 }
 
 void TurnoManager::mostrarTurno(){
-    int cantidad=_archivo.getCantidadRegistros();
-    if(cantidad==0){
-        cout<<"No hay turnos cargados"<<endl;
+    int cantidad = _archivo.getCantidadRegistros();
+
+    if (cantidad == 0) {
+        rlutil::cls();
+        rlutil::locate(40, 10);
+        rlutil::setColor(rlutil::RED);
+        cout << "No hay turnos cargados." << endl;
+        rlutil::setColor(rlutil::WHITE);
+        rlutil::anykey();
         return;
     }
 
-    Turno *vecTurno;
-    vecTurno=new Turno[cantidad];
-
-    if(!_archivo.leerMuchos(vecTurno, cantidad)){
-        cout<<"Error al leer los turnos del archivo"<<endl;
+    Turno* vecTurno = new Turno[cantidad];
+    if (!_archivo.leerMuchos(vecTurno, cantidad)) {
+        rlutil::cls();
+        rlutil::locate(40, 10);
+        rlutil::setColor(rlutil::RED);
+        cout << "Error al leer los turnos del archivo." << endl;
+        rlutil::setColor(rlutil::WHITE);
+        rlutil::anykey();
         delete[] vecTurno;
         return;
     }
-    cout<<"-------LISTADO DE TURNOS("<<cantidad<<")-------"<<endl;
-    for(int i=0; i<cantidad; i++){
-        cout<<"----------------------------------"<<endl;
-        cout<<"----------------------------------"<<endl;
-       vecTurno[i].mostrarTurno();
+
+    for (int i = 0; i < cantidad; i++) {
+        rlutil::cls();
+        rlutil::setColor(rlutil::YELLOW);
+        rlutil::locate(45, 2);
+        cout << " MOSTRANDO TURNO " << (i + 1) << " DE " << cantidad;
+        rlutil::setColor(rlutil::WHITE);
+
+        int fila = 4;
+        rlutil::locate(30, fila++);
+        cout << "------------------------------------------------------------";
+        rlutil::locate(32, fila++);
+        cout << "ID Turno: " << vecTurno[i].getIDTurno();
+        rlutil::locate(32, fila++);
+        cout << "ID Paciente: " << vecTurno[i].getIDPaciente();
+        rlutil::locate(32, fila++);
+        cout << "ID Medico: " << vecTurno[i].getIDMedico();
+
+        rlutil::locate(32, fila++);
+        cout << "Fecha: " << vecTurno[i].getFechaTurno().toString();
+
+        rlutil::locate(32, fila++);
+        cout << "Hora: " << vecTurno[i].getHoraTurno().toString();
+
+        rlutil::locate(32, fila++);
+        cout << "ID Especialidad: " << vecTurno[i].getEspecialidad();
+
+        rlutil::locate(32, fila++);
+        cout << "Estado: ";
+        switch (vecTurno[i].getEstado()) {
+            case 1: cout << "Activo"; break;
+            case 2: cout << "Cancelado"; break;
+            case 3: cout << "Reprogramado"; break;
+            case 4: cout << "No Asistido"; break;
+            case 5: cout << "Asistido"; break;
+            default: cout << "Desconocido"; break;
+        }
+
+        rlutil::locate(30, fila + 2);
+        rlutil::setColor(rlutil::YELLOW);
+        cout << "Presione una tecla para ver el siguiente turno...";
+        rlutil::setColor(rlutil::WHITE);
+        rlutil::anykey();
     }
+
     delete[] vecTurno;
-    system ("pause");
-    system("cls");
+
+    rlutil::cls();
+    rlutil::locate(40, 10);
+    rlutil::setColor(rlutil::GREEN);
+    cout << "Fin del listado de turnos.";
+    rlutil::setColor(rlutil::WHITE);
+    rlutil::anykey();
+    rlutil::cls();
 
 }
 
