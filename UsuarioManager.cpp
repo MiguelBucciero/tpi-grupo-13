@@ -200,8 +200,10 @@ void UsuarioManager::mostrarUsuario(){
 
     for (int i = 0; i < cantidad; i++) {
         rlutil::setBackgroundColor(rlutil::BLACK);
-        rlutil::locate(30, fila); cout << "------------------------------------------------------------";
-        rlutil::locate(30, fila + 7); cout << "------------------------------------------------------------";
+        rlutil::locate(30, fila);
+        cout << "------------------------------------------------------------";
+        rlutil::locate(30, fila + 7);
+        cout << "------------------------------------------------------------";
 
         rlutil::locate(32, fila + 1);
         rlutil::setColor(rlutil::CYAN);
@@ -274,93 +276,185 @@ void UsuarioManager::mostrarUsuario(){
 
 
 void UsuarioManager::DarBajaUsuario(){
-    char user[50]= {};
-    cout<<"Ingrese el nombre del usuario a dar de baja: ";
-    cin>>user;
+    char user[50];
+    bool encontrado = false;
 
-    int pos=_archivo.Buscar(user);
-    if(pos==-1){
-        cout<<"Usuario no encontrado"<<endl;
-        system("pause");
-        return;
+    while (!encontrado) {
+        rlutil::cls();
+        rlutil::setColor(rlutil::COLOR::YELLOW);
+        rlutil::locate(40, 3);
+        cout << " DAR DE BAJA USUARIO ";
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 6);
+        cout << "Ingrese el nombre del usuario a dar de baja: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(75, 6);
+        cin >> user;
+
+        int pos = _archivo.Buscar(user);
+        Usuario posUsuario;
+
+        if (pos == -1) {
+            rlutil::setColor(rlutil::COLOR::RED);
+            rlutil::locate(30, 8);
+            cout << "Usuario no encontrado. Intente nuevamente.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            continue;
+        }
+
+        posUsuario = _archivo.Leer(pos);
+        if (!posUsuario.getEstado()) {
+            rlutil::setColor(rlutil::COLOR::RED);
+            rlutil::locate(30, 8);
+            cout << "El usuario ya esta dado de baja.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            continue;
+        }
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 9);
+        cout << "Esta seguro que desea dar de baja a '" << user << "'? (s/n): ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        char confirmacion;
+        cin >> confirmacion;
+
+        if (confirmacion == 's' || confirmacion == 'S') {
+            posUsuario.setEstado(false);
+            if (_archivo.guardar(posUsuario, pos)) {
+                rlutil::setColor(rlutil::COLOR::GREEN);
+                rlutil::locate(30, 11);
+                cout << "Usuario dado de baja correctamente.";
+            } else {
+                rlutil::setColor(rlutil::COLOR::RED);
+                rlutil::locate(30, 11);
+                cout << "Error al intentar modificar el archivo.";
+            }
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            encontrado = true;
+        } else {
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 11);
+            cout << "Accion cancelada por el usuario.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            encontrado = true;
+        }
     }
 
-    Usuario posUsuario=_archivo.Leer(pos);
-
-    if(!posUsuario.getEstado()){
-        cout<<"Usuario ya dado de baja"<<endl;
-        system("pause");
-        return;
-
-    }
-
-    posUsuario.setEstado(false);
-
-    if(_archivo.guardar(posUsuario, pos)){
-        cout<<"Usuario dado de baja correctamente"<<endl;
-    } else{
-    cout<<"No se pudo modificar el archivo"<<endl;
-    }
-    system ("pause");
-    system("cls");
+    rlutil::cls();
 }
 
 
 void UsuarioManager::modificarUsuario(){
-    char user[50];
-    cout<<"Ingrese nombre del usuario que desea modificar: ";
-    cin>>user;
+    char user[50], nuevoNombre[50], nuevaContrasenia[50];;
+    char confirmacion;
+    int nuevoRol;
+    bool modificado = false;
 
-    int pos=_archivo.Buscar(user);
-    if(pos==-1){
-        cout<<"Usuario no encontrado"<<endl;
-            system ("pause");
-        return;
+    while (!modificado) {
+        rlutil::cls();
+        rlutil::setColor(rlutil::COLOR::YELLOW);
+        rlutil::locate(40, 3);
+        cout << " MODIFICAR USUARIO ";
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 6);
+        cout << "Ingrese el nombre del usuario a modificar: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(73, 6);
+        cin >> user;
+
+        int pos = _archivo.Buscar(user);
+        Usuario usuario;
+
+        if (pos == -1) {
+            rlutil::setColor(rlutil::COLOR::RED);
+            rlutil::locate(30, 8);
+            cout << "Usuario no encontrado. Intente nuevamente.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            continue;
+        }
+
+        usuario = _archivo.Leer(pos);
+
+        if (!usuario.getEstado()) {
+            rlutil::setColor(rlutil::COLOR::RED);
+            rlutil::locate(30, 8);
+            cout << "El usuario está dado de baja. No se puede modificar.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            continue;
+        }
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 9);
+        cout << "Esta seguro que desea modificar al usuario '" << user << "'? (s/n): ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        cin >> confirmacion;
+        cin.ignore();
+
+        if (confirmacion != 's' && confirmacion != 'S') {
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 11);
+            cout << "Modificacion cancelada por el usuario.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            break;
+        }
+
+        rlutil::cls();
+        rlutil::setColor(rlutil::COLOR::YELLOW);
+        rlutil::locate(40, 3);
+        cout << " INGRESO DE NUEVOS DATOS ";
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 6);
+        cout << "Nuevo nombre de usuario: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(55, 6);
+        cin.getline(nuevoNombre, 50);
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 7);
+        cout << "Nueva contrasenia: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(55, 7);
+        cin.getline(nuevaContrasenia, 50);
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 8);
+        cout << "Nuevo Rol ID ( -1:Administrador | 0:Recepcionista | 1:Medico ): ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(94, 8);
+        cin >> nuevoRol;
+        cin.ignore();
+
+        Rol nuevoRolObj;
+        nuevoRolObj.setTipoRol(nuevoRol);
+
+        usuario.setNombreUsuario(nuevoNombre);
+        usuario.setContrasenia(nuevaContrasenia);
+        usuario.setTipoRol(nuevoRolObj);
+
+        if (_archivo.guardar(usuario, pos)) {
+            rlutil::setColor(rlutil::COLOR::GREEN);
+            rlutil::locate(30, 10);
+            cout << "Usuario modificado correctamente.";
+        } else {
+            rlutil::setColor(rlutil::COLOR::RED);
+            rlutil::locate(30, 10);
+            cout << "Error al intentar modificar el usuario.";
+        }
+
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::anykey();
+        modificado = true;
     }
-    Usuario usuario=_archivo.Leer(pos);
-    if(!usuario.getEstado()){
-        cout<<"El usuario ingresado esta dado de baja, no se puede modificar"<<endl;
-    system ("pause");
-        return;
-    }
 
-    char nombre[50];
-    char contrasenia[50];
-    Rol nuevoRol;
-    int rol;
-
-    cin.ignore();
-
-    cout<<"Nombre actual del usuario: "<<usuario.getNombreUsuario()<<endl;
-    cout<<"Ingrese el nuevo nombre de usuario: ";
-    cin>>nombre;
-    cout<<endl;
-
-    cout<<"Contrasenia actual del usuario: "<<usuario.getContrasenia()<<endl;
-    cout<<"Ingrese la nueva contrasenia de usuario: ";
-    cin>>contrasenia;
-    cout<<endl;
-
-    cout<<"Rol ID actual del usuario: "<<usuario.getRol().getRol()<<endl;
-    cout<<"Ingrese el nuevo Rol ID del usuario: ";
-    cin>>rol;
-
-    cout<<endl;
-
-    nuevoRol.setTipoRol(rol);
-    usuario.setTipoRol(nuevoRol);
-
-    usuario.setNombreUsuario(nombre);
-    usuario.setContrasenia(contrasenia);
-    usuario.setTipoRol(nuevoRol);
-
-   if(_archivo.guardar(usuario, pos)){
-        cout<<"Usuario modificada correctamente"<<endl;
-
-    }else{
-        cout<<"No se pudo modificar el archivo"<<endl;
-
-    }
-    system ("pause");
-    system("cls");
+    rlutil::cls();
 }
