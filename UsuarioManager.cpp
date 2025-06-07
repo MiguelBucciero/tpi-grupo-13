@@ -458,3 +458,34 @@ void UsuarioManager::modificarUsuario(){
 
     rlutil::cls();
 }
+
+void UsuarioManager::CantidadUsuariosActivos(){
+    int cantidad=_archivo.getCantidadRegistros();
+
+    int cont=0;
+    Usuario usuario;
+
+    for(int i=0; i<cantidad; i++){
+        usuario=_archivo.Leer(i);
+        if(usuario.getEstado()){
+            cont++;
+        }
+    }
+    rlutil::cls();
+    if(cont==0){
+        rlutil::locate(45, 10);
+        rlutil::setColor(rlutil::RED);
+        cout<<"NO HAY USUARIOS ACTIVOS."<<endl;
+    }else{
+        rlutil::setColor(rlutil::COLOR::GREEN);
+        rlutil::locate(45, 10);
+        cout<<"CANTIDAD DE USUARIOS ACTIVOS: "<<cont<<endl;
+    }
+
+    rlutil::locate(45, 20);
+    rlutil::setColor(rlutil::YELLOW);
+    cout << "Presione una tecla para continuar...";
+    rlutil::setColor(rlutil::WHITE);
+    rlutil::anykey();
+    rlutil::cls();
+}

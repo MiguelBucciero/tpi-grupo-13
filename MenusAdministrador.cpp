@@ -178,6 +178,7 @@ int MenuAdministrador::menuInformesAdministrador(){
                 break;
             case 5:
                 //CANTIDAD DE USURIOS ACTIVOS
+                _usuarioManager.CantidadUsuariosActivos();
                     break;
             case 6: opc=0;
                     break;

@@ -9,6 +9,7 @@ public:
     void mostrarUsuario();
     void DarBajaUsuario();
     void modificarUsuario();
+    void CantidadUsuariosActivos();
 
 private:
     UsuarioArchivo _archivo;
