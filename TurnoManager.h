@@ -18,6 +18,8 @@ public:
     void CantidadTurnosPorEspecialidadAdmin(int anio);
     void buscarTurnosPorFecha();
     void cantidadTurnosPorMedico();
+    void cantidadTurnosPorPaciente();
+    void cantidadTurnosCanceladosPorMes();
 
 private:
     TurnoArchivo _archivo;

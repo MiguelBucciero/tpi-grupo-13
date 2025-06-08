@@ -935,3 +935,140 @@ void TurnoManager::cantidadTurnosPorMedico() {
     rlutil::anykey();
     rlutil::cls();
 }
+
+void TurnoManager::cantidadTurnosPorPaciente() {
+    PacienteArchivo archiP;
+    int cantidadP, cantidadT, idPaciente, fila;
+
+    cantidadP = archiP.getCantidadRegistros();
+    if (cantidadP == 0) {
+        rlutil::cls();
+        rlutil::setColor(rlutil::RED);
+        rlutil::locate(40, 10);
+        cout << "No hay pacientes cargados." << endl;
+        rlutil::setColor(rlutil::WHITE);
+        rlutil::anykey();
+        return;
+    }
+
+    Paciente* pacientes = new Paciente[cantidadP];
+    archiP.leerMuchos(pacientes, cantidadP);
+
+    int* contadores = new int[cantidadP];
+    for (int i = 0; i < cantidadP; i++) {
+        contadores[i] = 0;
+    }
+
+    cantidadT = _archivo.getCantidadRegistros();
+    Turno* turnos = new Turno[cantidadT];
+    _archivo.leerMuchos(turnos, cantidadT);
+
+    for (int i = 0; i < cantidadT; i++) {
+        idPaciente = turnos[i].getIDPaciente();
+        for (int j = 0; j < cantidadP; j++) {
+            if (pacientes[j].getIDPaciente() == idPaciente && pacientes[j].getEstado()) {
+                contadores[j]++;
+                break;
+            }
+        }
+    }
+
+    rlutil::cls();
+    rlutil::setColor(rlutil::YELLOW);
+    rlutil::locate(40, 2);
+    cout << "CANTIDAD DE TURNOS POR PACIENTE";
+    rlutil::setColor(rlutil::WHITE);
+
+    fila = 4;
+    for (int i = 0; i < cantidadP; i++) {
+        if (pacientes[i].getEstado()) {
+            rlutil::locate(30, fila++);
+            cout << "- " << pacientes[i].getApellido() << ", " << pacientes[i].getNombre()
+                 << " (ID: " << pacientes[i].getIDPaciente() << ") -> "
+                 << contadores[i] << " turno(s)";
+        }
+
+        if (fila >= 45) {
+            rlutil::locate(40, fila);
+            rlutil::setColor(rlutil::YELLOW);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::WHITE);
+            rlutil::anykey();
+            rlutil::cls();
+            rlutil::locate(40, 2);
+            cout << "CANTIDAD DE TURNOS POR PACIENTE";
+            fila = 4;
+        }
+    }
+
+    delete[] pacientes;
+    delete[] turnos;
+    delete[] contadores;
+
+    rlutil::locate(40, fila + 2);
+    rlutil::setColor(rlutil::COLOR::YELLOW);
+    cout << "Fin del listado. Presione una tecla para continuar...";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::anykey();
+    rlutil::cls();
+}
+
+void TurnoManager::cantidadTurnosCanceladosPorMes() {
+    const int MESES = 12;
+    int* contadores = new int[MESES];
+    int cantidad, fila, mes;
+    const char* meses[MESES] = {
+        "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+        "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+    };
+
+    for (int i = 0; i < MESES; i++) {
+        contadores[i] = 0;
+    }
+
+    cantidad = _archivo.getCantidadRegistros();
+    if (cantidad == 0) {
+        rlutil::cls();
+        rlutil::locate(40, 10);
+        rlutil::setColor(rlutil::RED);
+        cout << "No hay turnos cargados.";
+        rlutil::setColor(rlutil::WHITE);
+        rlutil::anykey();
+        return;
+    }
+
+    Turno* turnos = new Turno[cantidad];
+    _archivo.leerMuchos(turnos, cantidad);
+
+    for (int i = 0; i < cantidad; i++) {
+        if (turnos[i].getEstado() == 2) {  // Cancelado
+            mes = turnos[i].getFechaTurno().getMes();  // De 1 a 12
+            if (mes >= 1 && mes <= 12) {
+                contadores[mes - 1]++;
+            }
+        }
+    }
+
+    rlutil::cls();
+    rlutil::setColor(rlutil::YELLOW);
+    rlutil::locate(40, 2);
+    cout << "TURNOS CANCELADOS POR MES";
+    rlutil::setColor(rlutil::WHITE);
+
+    fila = 4;
+    for (int i = 0; i < MESES; i++) {
+        rlutil::locate(35, fila++);
+        cout << meses[i] << ": " << contadores[i] << " turno(s) cancelado(s)";
+    }
+
+    delete[] contadores;
+    delete[] turnos;
+
+    rlutil::locate(35, fila + 1);
+    rlutil::setColor(rlutil::COLOR::YELLOW);
+    cout << "Fin del resumen. Presione una tecla para continuar...";
+    rlutil::setColor(rlutil::WHITE);
+    rlutil::anykey();
+    rlutil::cls();
+}
+

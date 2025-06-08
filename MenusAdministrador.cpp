@@ -165,10 +165,10 @@ int MenuAdministrador::menuInformesAdministrador(){
                 _turnoManager.cantidadTurnosPorMedico();
                     break;
             case 1:
-                //Miguel
+                _turnoManager.cantidadTurnosPorPaciente();
                     break;
             case 2:
-                //Miguel
+                _turnoManager.cantidadTurnosCanceladosPorMes();
                     break;
             case 3:
                 _turnoManager.CantidadTurnosReprogramadosMes();
