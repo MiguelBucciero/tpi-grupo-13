@@ -17,6 +17,7 @@ public:
     void CantidadTurnosReprogramadosMes();
     void CantidadTurnosPorEspecialidadAdmin(int anio);
     void buscarTurnosPorFecha();
+    void cantidadTurnosPorMedico();
 
 private:
     TurnoArchivo _archivo;

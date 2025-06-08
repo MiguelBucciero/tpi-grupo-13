@@ -409,37 +409,80 @@ void TurnoManager::reprogramarTurno(){
 }
 
 void TurnoManager::cancelarTurno(){
-    int idTurno;
-    cout<<"Ingrese el ID del turno que desea cancelar: ";
-    cin>> idTurno;
+    int idTurno, pos;
+    char confirmacion;
 
-    int pos=_archivo.Buscar(idTurno);
-    if(pos==-1){
-        cout<<"No hay un turno con ese ID"<<endl;
-        return;
+    while (true) {
+        rlutil::cls();
+        rlutil::setColor(rlutil::YELLOW);
+        rlutil::locate(35, 3);
+        cout << "CANCELACION DE TURNO";
+        rlutil::setColor(rlutil::WHITE);
+        rlutil::locate(30, 5);
+        cout << "Ingrese el ID del turno que desea cancelar: ";
+        rlutil::locate(75, 5);
+        cin >> idTurno;
+
+        pos = _archivo.Buscar(idTurno);
+        if (pos == -1) {
+            rlutil::locate(30, 7);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "No hay un turno con ese ID. Intente nuevamente.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::cls();
+            continue;
+        }
+
+        Turno turno = _archivo.Leer(pos);
+
+        if (turno.getEstado() != 1 && turno.getEstado() != 3) {
+            rlutil::locate(30, 7);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "El turno ya fue cancelado o no esta activo/reprogramado.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::cls();
+            continue;
+        }
+
+        rlutil::locate(30, 7);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Esta seguro que desea cancelar el turno? (s/n): ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        cin >> confirmacion;
+
+        if (confirmacion == 's' || confirmacion == 'S') {
+            turno.setEstado(2);  // Estado 2 = Cancelado
+
+            if (_archivo.modificar(turno, pos)) {
+                rlutil::locate(30, 9);
+                rlutil::setColor(rlutil::COLOR::GREEN);
+                cout << "El turno fue cancelado correctamente";
+            } else {
+                rlutil::locate(30, 9);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "Error al cancelar el turno.";
+            }
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            break;
+        } else {
+            rlutil::locate(30, 9);
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            cout << "Cancelacion abortada por el usuario.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            break;
+        }
     }
 
-    Turno turno;
-    turno=_archivo.Leer(pos);
-
-    if(turno.getEstado()!=1&&turno.getEstado()!=3){
-        cout<<"Turno ya cancelado"<<endl;
-        system ("pause");
-        system("cls");
-        return;
-    }
-    turno.setEstado(2);
-    if(_archivo.modificar(turno, pos)){
-        cout<<"El turno fue cancelado correctamente"<<endl;
-    } else{
-        cout<<"Error al cancelar el turno"<<endl;
-    }
-    system ("pause");
-    system("cls");
+    rlutil::anykey();
+    rlutil::cls();
 }
 
 void TurnoManager::TurnoNoAsistido(){
     int cantidad = _archivo.getCantidadRegistros();
+    bool algunTurnoProcesado = false;
+
     if (cantidad == 0) {
         cout << "No hay turnos cargados." << endl;
         system("pause");
@@ -458,7 +501,6 @@ void TurnoManager::TurnoNoAsistido(){
 
     Fecha hoy;
     hoy.obtenerFechaActual();
-    bool algunTurnoProcesado = false;
 
     for (int i = 0; i < cantidad; i++) {
         Fecha fechaTurno = lista[i].getFechaTurno();
@@ -810,4 +852,86 @@ void TurnoManager::buscarTurnosPorFecha() {
     }
 
     rlutil::anykey();
+}
+
+void TurnoManager::cantidadTurnosPorMedico() {
+    MedicoArchivo archiM;
+    int cantidadM, cantidadT = 0, fila = 0, idMedicoTurno = 0;
+
+    cantidadM = archiM.getCantidadRegistros();
+    if (cantidadM == 0) {
+        rlutil::cls();
+        rlutil::locate(40, 10);
+        rlutil::setColor(rlutil::COLOR::RED);
+        cout << "No hay medicos cargados.";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::anykey();
+        return;
+    }
+
+    Medico* listaMedicos = new Medico[cantidadM];
+    archiM.leerMuchos(listaMedicos, cantidadM);
+
+    int* contador = new int[cantidadM]();
+    cantidadT = _archivo.getCantidadRegistros();
+    Turno* listaTurnos = new Turno[cantidadT];
+    _archivo.leerMuchos(listaTurnos, cantidadT);
+
+    for (int i = 0; i < cantidadT; i++) {
+        if (listaTurnos[i].getEstado() == 1 || listaTurnos[i].getEstado() == 3) {
+            idMedicoTurno = listaTurnos[i].getIDMedico();
+            for (int j = 0; j < cantidadM; j++) {
+                if (listaMedicos[j].getIDMedico() == idMedicoTurno) {
+                    contador[j]++;
+                    break;
+                }
+            }
+        }
+    }
+
+    rlutil::cls();
+    rlutil::locate(40, 2);
+    rlutil::setColor(rlutil::COLOR::YELLOW);
+    cout << "CANTIDAD DE TURNOS POR MEDICO";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+
+    fila = 4;
+    for (int i = 0; i < cantidadM; i++) {
+        if (listaMedicos[i].getEstado()) {
+            rlutil::locate(30, fila++);
+            cout << "----------------------------------------------";
+            rlutil::locate(32, fila++);
+            cout << "Nombre: " << listaMedicos[i].getNombre() << " " << listaMedicos[i].getApellido();
+            rlutil::locate(32, fila++);
+            cout << "ID Medico: " << listaMedicos[i].getIDMedico();
+            rlutil::locate(32, fila++);
+            cout << "Cantidad de turnos: " << contador[i];
+            fila++;
+
+            if (fila > 22 && i < cantidadM - 1) {
+                rlutil::locate(40, fila);
+                rlutil::setColor(rlutil::COLOR::YELLOW);
+                cout << "Presione una tecla para continuar...";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+                rlutil::cls();
+                rlutil::locate(40, 2);
+                rlutil::setColor(rlutil::COLOR::YELLOW);
+                cout << "CANTIDAD DE TURNOS POR MÉDICO";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                fila = 4;
+            }
+        }
+    }
+
+    delete[] listaMedicos;
+    delete[] listaTurnos;
+    delete[] contador;
+
+    rlutil::locate(40, fila);
+    rlutil::setColor(rlutil::COLOR::YELLOW);
+    cout << "Fin del listado. Presione una tecla para salir.";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::anykey();
+    rlutil::cls();
 }

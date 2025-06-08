@@ -162,7 +162,7 @@ int MenuAdministrador::menuInformesAdministrador(){
             rlutil::cls();
             switch(y){
             case 0:
-                //Miguel
+                _turnoManager.cantidadTurnosPorMedico();
                     break;
             case 1:
                 //Miguel
