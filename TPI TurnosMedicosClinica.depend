@@ -1601,11 +1601,13 @@
 1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medicoarchivo.cpp
 	"MedicoArchivo.h"
 
-1749228665 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medicomanager.cpp
+1749339993 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medicomanager.cpp
 	<iostream>
 	<string>
 	"MedicoManager.h"
 	"rlutil.h"
+	"TurnoArchivo.h"
+	"Turno.h"
 
 1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menumedico.cpp
 	<iostream>
@@ -1693,7 +1695,7 @@
 	<iostream>
 	<cstring>
 
-1749339979 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turnomanager.cpp
+1749354854 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turnomanager.cpp
 	"TurnoManager.h"
 	"PacienteArchivo.h"
 	"MedicoArchivo.h"
