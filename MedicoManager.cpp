@@ -418,3 +418,306 @@ void MedicoManager::verTurnosAsignados(int idMedico) {
 
     rlutil::anykey("Presione una tecla para continuar...");
 }
+
+
+void MedicoManager::DarBajaMedico(){
+
+
+    int id;
+    bool encontrado = false;
+
+    while (!encontrado) {
+        rlutil::cls();
+        rlutil::setColor(rlutil::COLOR::YELLOW);
+        rlutil::locate(40, 3);
+        cout << " DAR DE BAJA MEDICO ";
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 6);
+        cout << "Ingrese el ID del medico a dar de baja: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(75, 6);
+        cin >> id;
+
+        int pos = _archivo.Buscar(id);
+        Medico posMedico;
+
+        if (pos == -1) {
+            rlutil::setColor(rlutil::COLOR::RED);
+            rlutil::locate(30, 8);
+            cout << "Medico no encontrado. Intente nuevamente.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            continue;
+        }
+
+        posMedico = _archivo.Leer(pos);
+        if (!posMedico.getEstado()) {
+            rlutil::setColor(rlutil::COLOR::RED);
+            rlutil::locate(30, 8);
+            cout << "El Medico ya esta dado de baja.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            continue;
+        }
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 9);
+        cout << "Esta seguro que desea dar de baja al medico de ID '" << id << "'? (s/n): ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        char confirmacion;
+        cin >> confirmacion;
+
+        if (confirmacion == 's' || confirmacion == 'S') {
+            posMedico.setEstado(false);
+            if (_archivo.guardar(posMedico, pos)) {
+                rlutil::setColor(rlutil::COLOR::GREEN);
+                rlutil::locate(30, 11);
+                cout << "Medico dado de baja correctamente.";
+            } else {
+                rlutil::setColor(rlutil::COLOR::RED);
+                rlutil::locate(30, 11);
+                cout << "Error al intentar modificar el archivo.";
+            }
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            encontrado = true;
+        } else {
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 11);
+            cout << "Accion cancelada por el usuario.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            encontrado = true;
+        }
+    }
+
+    rlutil::cls();
+}
+
+
+
+void MedicoManager::modificarMedico(){
+    string aux;
+    int dni, matricula, id, idEspecialidad, altura, dia, mes, anio;
+    Fecha fechaNacimiento;
+    Domicilio domicilio;
+    char confirmacion;
+    bool modificado = false;
+
+
+        while (!modificado) {
+        rlutil::cls();
+        rlutil::setColor(rlutil::COLOR::YELLOW);
+        rlutil::locate(40, 3);
+        cout << " MODIFICAR MEDICO ";
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 6);
+        cout << "Ingrese el ID del medico a modificar: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(73, 6);
+        cin >> id;
+
+        int pos = _archivo.Buscar(id);
+        Medico medico;
+
+        if (pos == -1) {
+            rlutil::setColor(rlutil::COLOR::RED);
+            rlutil::locate(30, 8);
+            cout << "Medico no encontrado. Intente nuevamente.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            continue;
+        }
+
+        medico = _archivo.Leer(pos);
+
+        if (!medico.getEstado()) {
+            rlutil::setColor(rlutil::COLOR::RED);
+            rlutil::locate(30, 8);
+            cout << "El medico está dado de baja. No se puede modificar.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            continue;
+        }
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 9);
+        cout << "Esta seguro que desea modificar al medico ID '" << id << "'? (s/n): ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        cin >> confirmacion;
+        cin.ignore();
+
+        if (confirmacion != 's' && confirmacion != 'S') {
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 11);
+            cout << "Modificacion cancelada por el usuario.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            break;
+        }
+
+        rlutil::cls();
+        rlutil::setColor(rlutil::COLOR::YELLOW);
+        rlutil::locate(40, 3);
+        cout << " INGRESO DE NUEVOS DATOS ";
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 6);
+        cout << "Nuevo Apellido: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(55, 6);
+        getline(cin, aux); medico.setApellido(aux);
+
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 7);
+        cout << "Nuevo Nombre: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(55, 7);
+        getline(cin, aux); medico.setNombre(aux);
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 8);
+        cout << "Nuevo DNI: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(55, 8);
+        cin >> dni; cin.ignore(); medico.setDni(dni);
+
+        rlutil::locate(30, 9);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Nueva fecha de nacimiento:";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(30, 10);
+        cout << "Dia: ";
+        rlutil::locate(50, 10);
+        cin >> dia;
+        rlutil::locate(30, 11);
+        cout << "Mes: ";
+        rlutil::locate(50, 11);
+        cin >> mes;
+        rlutil::locate(30, 12);
+        cout << "Anio: ";
+        rlutil::locate(50, 12);
+        cin >> anio;
+        cin.ignore();
+        medico.setFechaNacimiento(Fecha(dia, mes, anio));
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 13);
+        cout << "Nuevo Genero: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(55, 13);
+        getline(cin, aux);
+        medico.setGenero(aux);
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 14);
+        cout << "Nuevo Email: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(55, 14);
+        getline(cin, aux);
+        medico.setEmail(aux);
+
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 15);
+        cout << "Nuevo Telefono: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(55, 15);
+        getline(cin, aux);
+        medico.setTelefono(aux);
+
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 16);
+        cout << "Nuevo Domicilio: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(55, 16);
+
+
+
+        rlutil::locate(30, 17);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Calle: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(50, 17);
+        getline(cin, aux);
+        domicilio.setCalle(aux);
+
+        rlutil::locate(30, 18);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Altura: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(50, 18);
+        cin >> altura;
+        domicilio.setAltura(altura);
+        cin.ignore();
+
+        rlutil::locate(30, 19);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Localidad: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(50, 19);
+        getline(cin, aux);
+        domicilio.setLocalidad(aux);
+
+        rlutil::locate(30, 20);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Provincia: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(50, 20);
+        getline(cin, aux);
+        domicilio.setProvincia(aux);
+
+        rlutil::locate(30, 21);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Codigo Postal: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(50, 21);
+        getline(cin, aux);
+        domicilio.setCodigoPostal(aux);
+
+        medico.setDomicilio(domicilio);
+
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 22);
+        cout << "Nueva Matricula: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(55, 22);
+        cin >> matricula;
+        medico.setMatricula(matricula);
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 23);
+        cout << "Nuevo ID de Especialidad: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(55, 23);
+        cin >> idEspecialidad;
+        medico.setIDEspecialidad(idEspecialidad);
+
+
+        if (_archivo.guardar(medico, pos)) {
+                      system("cls");
+            rlutil::setColor(rlutil::COLOR::GREEN);
+            rlutil::locate(30, 10);
+            cout << "Medico modificado correctamente.";
+        } else {
+                  system("cls");
+            rlutil::setColor(rlutil::COLOR::RED);
+            rlutil::locate(30, 10);
+            cout << "Error al intentar modificar el usuario.";
+        }
+
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::anykey();
+        modificado = true;
+    }
+
+    rlutil::cls();
+}
+
+
+

@@ -8,7 +8,8 @@ public:
     void mostrarMedico();
     void buscarMedicoPorEspecialidad();
     void verTurnosAsignados(int idMedico);
-
+    void DarBajaMedico();
+    void modificarMedico();
 private:
     MedicoArchivo _archivo;
 };

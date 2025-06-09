@@ -92,10 +92,10 @@ int MenuAdministrador::menuAdministrador() {
                     _espManager.mostrarEspecialidad();
                     break;
                 case 9:
-                    //FALTA HACER EL MODIFICAR MEDICO Flor
+                    _medicoManger.modificarMedico();
                     break;
                 case 10:
-                    //FALTA HACER EL ELIMINAR MEDICO (BAJA LOGICA) Flor
+                    _medicoManger.DarBajaMedico();
                     break;
                 case 11:
                     _medicoManger.mostrarMedico();
