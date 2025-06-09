@@ -1457,48 +1457,48 @@
 	<iostream>
 	<cstring>
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\domicilio.cpp
+1749484716 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\domicilio.cpp
 	<iostream>
 	"Domicilio.h"
 	"rlutil.h"
 	<cstring>
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\domicilio.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\domicilio.h
 	<string>
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\especialidad.cpp
+1749484716 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\especialidad.cpp
 	<iostream>
 	"Especialidad.h"
 	<cstring>
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\especialidad.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\especialidad.h
 	<string>
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\especialidadarchivo.cpp
+1749484716 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\especialidadarchivo.cpp
 	"EspecialidadArchivo.h"
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\especialidadarchivo.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\especialidadarchivo.h
 	<string>
 	"Especialidad.h"
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\especialidadmanager.cpp
+1749484716 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\especialidadmanager.cpp
 	"EspecialidadManager.h"
 	"Especialidad.h"
 	"rlutil.h"
 	<iostream>
 	<string>
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\especialidadmanager.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\especialidadmanager.h
 	"EspecialidadArchivo.h"
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\hora.cpp
+1749484716 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\hora.cpp
 	<iostream>
 	"Hora.h"
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\hora.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\hora.h
 	<string>
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\main.cpp
+1749484716 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\main.cpp
 	<iostream>
 	"rlutil.h"
 	"UsuarioManager.h"
@@ -1506,7 +1506,7 @@
 	"MenuRecepcionista.h"
 	"MenuMedico.h"
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\rlutil.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\rlutil.h
 	<iostream>
 	<string>
 	<cstdio>
@@ -1520,89 +1520,89 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuariomanager.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuariomanager.h
 	"UsuarioArchivo.h"
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuarioarchivo.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuarioarchivo.h
 	<string>
 	<cstring>
 	"Usuario.h"
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuario.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuario.h
 	"Rol.h"
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\rol.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\rol.h
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menuadministrador.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menuadministrador.h
 	"Especialidad.h"
 	"EspecialidadManager.h"
 	"MedicoManager.h"
 	"UsuarioManager.h"
 	"TurnoManager.h"
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medicomanager.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medicomanager.h
 	"MedicoArchivo.h"
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medicoarchivo.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medicoarchivo.h
 	<string>
 	"Medico.h"
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medico.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medico.h
 	"Persona.h"
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\persona.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\persona.h
 	<string>
 	"Fecha.h"
 	"Domicilio.h"
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\fecha.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\fecha.h
 	<string>
 	<ctime>
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menurecepcionista.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menurecepcionista.h
 	"Paciente.h"
 	"PacienteManager.h"
 	"MedicoManager.h"
 	"TurnoManager.h"
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\paciente.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\paciente.h
 	"Persona.h"
 	"Domicilio.h"
 	"Fecha.h"
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\pacientemanager.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\pacientemanager.h
 	"PacienteArchivo.h"
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\pacientearchivo.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\pacientearchivo.h
 	<string>
 	"Paciente.h"
 
-1749394687 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turnomanager.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turnomanager.h
 	"TurnoArchivo.h"
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turnoarchivo.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turnoarchivo.h
 	<string>
 	"Turno.h"
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turno.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turno.h
 	"Fecha.h"
 	"Hora.h"
 
-1749339622 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menumedico.h
+1749484716 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menumedico.h
 	"TurnoManager.h"
 	"PacienteManager.h"
 	"UsuarioManager.h"
 	"MedicoManager.h"
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medico.cpp
+1749484716 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medico.cpp
 	<iostream>
 	<string>
 	"Medico.h"
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medicoarchivo.cpp
+1749484716 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medicoarchivo.cpp
 	"MedicoArchivo.h"
 
-1749339993 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medicomanager.cpp
+1749491229 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medicomanager.cpp
 	<iostream>
 	<string>
 	"MedicoManager.h"
@@ -1610,19 +1610,19 @@
 	"TurnoArchivo.h"
 	"Turno.h"
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menumedico.cpp
+1749488574 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menumedico.cpp
 	<iostream>
 	"rlutil.h"
 	"MenuMedico.h"
 
-1749394713 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menusadministrador.cpp
+1749484716 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menusadministrador.cpp
 	<iostream>
 	<cstdlib>
 	"rlutil.h"
 	"MenuAdministrador.h"
 	"UsuarioManager.h"
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menusrecepcionista.cpp
+1749491551 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menusrecepcionista.cpp
 	<iostream>
 	<cstdlib>
 	"rlutil.h"
@@ -1634,59 +1634,60 @@
 	"MedicoManager.h"
 	"Medico.h"
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\paciente.cpp
+1749484716 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\paciente.cpp
 	<iostream>
 	<cstring>
 	"Paciente.h"
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\pacientearchivo.cpp
+1749484716 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\pacientearchivo.cpp
 	"PacienteArchivo.h"
 	"PacienteManager.h"
 	<iostream>
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\pacientemanager.cpp
+1749484716 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\pacientemanager.cpp
 	"PacienteManager.h"
 	"rlutil.h"
 	<iostream>
 	<string>
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\persona.cpp
+1749484716 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\persona.cpp
 	<iostream>
 	<cstring>
 	"Persona.h"
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\rol.cpp
+1749484716 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\rol.cpp
 	"Rol.h"
 	<cstring>
 	<string>
 	<iostream>
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turno.cpp
+1749488401 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turno.cpp
 	<iostream>
 	"Turno.h"
+	"rlutil.h"
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turnoarchivo.cpp
+1749484716 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turnoarchivo.cpp
 	"TurnoArchivo.h"
 	"TurnoManager.h"
 	<iostream>
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuario.cpp
+1749484716 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuario.cpp
 	<iostream>
 	<cstring>
 	"Usuario.h"
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuarioarchivo.cpp
+1749484716 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuarioarchivo.cpp
 	"UsuarioArchivo.h"
 	"UsuarioManager.h"
 	<cstring>
 	<string>
 	<iostream>
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\fecha.cpp
+1749484716 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\fecha.cpp
 	<iostream>
 	"Fecha.h"
 
-1749339622 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuariomanager.cpp
+1749485527 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuariomanager.cpp
 	"UsuarioManager.h"
 	"MenuRecepcionista.h"
 	"MenuAdministrador.h"
@@ -1696,7 +1697,7 @@
 	<iostream>
 	<cstring>
 
-1749394891 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turnomanager.cpp
+1749491596 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turnomanager.cpp
 	"TurnoManager.h"
 	"PacienteArchivo.h"
 	"MedicoArchivo.h"

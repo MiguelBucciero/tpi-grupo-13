@@ -299,7 +299,7 @@ void MedicoManager::buscarMedicoPorEspecialidad() {
     rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Ingrese el ID de especialidad que desea buscar: ";
     rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::locate(75, 4);
+    rlutil::locate(77, 4);
     cin >> idEspecialidad;
 
     int cantidad = _archivo.getCantidadRegistros();
@@ -399,25 +399,77 @@ void MedicoManager::buscarMedicoPorEspecialidad() {
 }
 
 
-/*void MedicoManager::verTurnosAsignados(int idMedico) {
+void MedicoManager::verTurnosAsignados(int idMedico) {
     TurnoArchivo archivo("Turnos.dat");
     int cantidad = archivo.getCantidadRegistros();
     bool hayTurnos = false;
+    int fila = 4;
+
+    rlutil::cls();
+    rlutil::setColor(rlutil::COLOR::YELLOW);
+    rlutil::locate(40, 2);
+    cout << "TURNOS ASIGNADOS AL MEDICO ID: " << idMedico;
+    rlutil::setColor(rlutil::COLOR::WHITE);
 
     for (int i = 0; i < cantidad; i++) {
         Turno t = archivo.Leer(i);
+
         if (t.getIDMedico() == idMedico && t.getEstado() == 1) {
-            t.mostrarTurno();
+            rlutil::locate(30, fila - 1);
+            cout << "------------------------------------------------------------";
+
+            rlutil::locate(32, fila++);
+            cout << "ID Turno: " << t.getIDTurno();
+            rlutil::locate(32, fila++);
+            cout << "ID Paciente: " << t.getIDPaciente();
+            rlutil::locate(32, fila++);
+            cout << "ID Medico: " << t.getIDMedico();
+            rlutil::locate(32, fila++);
+            cout << "Fecha: " << t.getFechaTurno().toString();
+            rlutil::locate(32, fila++);
+            cout << "Hora: " << t.getHoraTurno().toString();
+            rlutil::locate(32, fila++);
+            cout << "ID Especialidad: " << t.getEspecialidad();
+            rlutil::locate(32, fila++);
+            cout << "Estado: Activo";
+
+            rlutil::locate(30, fila++);
+            cout << "------------------------------------------------------------";
+
+            fila++;  // Espacio entre turnos
+
             hayTurnos = true;
+
+            if (fila > 43) {
+                rlutil::locate(40, fila);
+                rlutil::setColor(rlutil::COLOR::YELLOW);
+                cout << "Presione una tecla para continuar...";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+                rlutil::cls();
+                rlutil::locate(40, 2);
+                rlutil::setColor(rlutil::COLOR::YELLOW);
+                cout << "TURNOS ASIGNADOS AL MEDICO ID: " << idMedico;
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                fila = 4;
+            }
         }
     }
 
     if (!hayTurnos) {
-        cout << "No hay turnos asignados para este médico." << endl;
+        rlutil::locate(40, 10);
+        rlutil::setColor(rlutil::COLOR::RED);
+        cout << "No hay turnos activos asignados para este medico.";
+        rlutil::setColor(rlutil::COLOR::WHITE);
     }
 
-    rlutil::anykey("Presione una tecla para continuar...");
-}*/
+    rlutil::locate(40, 15);
+    rlutil::setColor(rlutil::COLOR::GREEN);
+    cout << "Fin de la busqueda. Presione una tecla para continuar...";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::anykey();
+    rlutil::cls();
+}
 
 
 void MedicoManager::DarBajaMedico(){

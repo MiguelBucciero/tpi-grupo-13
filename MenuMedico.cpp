@@ -53,7 +53,7 @@ int MenuMedico::menuMedico(Usuario usuarioLogeado){
         case 1: //ENTER
             rlutil::cls();
             switch (y) {
-                case 0: //_medicoManager.verTurnosAsignados(usuarioLogeado.getIDMedico());///Nahuel
+                case 0: _medicoManager.verTurnosAsignados(usuarioLogeado.getIDMedico());///Nahuel
                     break;
                 case 1:  _turnoManger.buscarTurnosPorFecha(); ///Nahuel
                                                             ///vero: rlutil, en proceso

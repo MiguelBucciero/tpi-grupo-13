@@ -93,7 +93,7 @@ int MenuRecepcionista::menuRecepcionista() {
                 _turnoManager.cancelarTurno();
                     break;
             case 7:
-               // _turnoManager.TurnoNoAsistido();
+               _turnoManager.TurnoNoAsistido();
                     break;
             case 8:
                 salir = menuConsultasRecepcionista();
@@ -134,7 +134,6 @@ int MenuRecepcionista::menuRecepcionista() {
 int MenuRecepcionista::menuConsultasRecepcionista(){
     int y=0;
     int opc=1;
-    bool salir=false;
     do{
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
@@ -171,13 +170,13 @@ int MenuRecepcionista::menuConsultasRecepcionista(){
             rlutil::cls();
             switch(y){
             case 0:
-                //_turnoManager.BuscarTurnoEstado();
+                _turnoManager.BuscarTurnoEstado();
                     break;
             case 1:
                 _medicoManager.buscarMedicoPorEspecialidad();
                     break;
             case 2:
-               // _turnoManager.TurnosDelDia();
+               //_turnoManager.TurnosDelDia();
                     break;
             case 3:
                // _turnoManager.TurnosDeLaSemana();

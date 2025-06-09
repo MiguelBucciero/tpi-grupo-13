@@ -251,7 +251,7 @@ void UsuarioManager::mostrarUsuario(){
         if (contadorPantalla == 2 && i < cantidad - 1) {
             rlutil::locate(40, fila);
             rlutil::setColor(rlutil::YELLOW);
-            cout << "Presione una tecla para ver más usuarios...";
+            cout << "Presione una tecla para ver mas usuarios...";
             rlutil::setColor(rlutil::WHITE);
             rlutil::anykey();
             rlutil::cls();

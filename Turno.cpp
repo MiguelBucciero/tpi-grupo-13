@@ -91,28 +91,4 @@ void Turno::mostrarTurno(int fila){
         case 5: cout << "Asistido"; break;
         default: cout << "Desconocido"; break;
     }
-    /*cout<<"ID Turno: "<<_IDTurno<<endl;
-    cout<<"ID Paciente: "<<_IDPaciente<<endl;
-    cout<<"ID Medico: "<<_IDMedico<<endl;
-    cout<<"Fecha del turno: ";
-    _FechaTurno.mostrarFecha();
-    cout<<"Hora del turno: ";
-    _HoraTurno.mostrarHora();
-    cout<<"ID Especialidad: "<<_IDEspecialidad<<endl;
-    cout<<"Estado del turno: ";
-    switch(_EstadoTurno){
-    case 1: cout<<"Activo"<<endl;
-            break;
-    case 2: cout<<"Cancelado"<<endl;
-            break;
-    case 3: cout<<"Reprogramado"<<endl;
-            break;
-    case 4: cout<<"No asistido"<<endl;
-            break;
-    case 5: cout<<"Asistido"<<endl;
-            break;
-    default: cout<<"Desconocido"<<endl;
-            break;
-    }
-    cout<<endl;*/
 }
