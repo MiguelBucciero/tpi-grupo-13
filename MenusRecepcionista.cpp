@@ -35,15 +35,16 @@ int MenuRecepcionista::menuRecepcionista() {
         cout<<" MENU RECEPCIONISTA ";
         showItem(" 1. REGISTRAR PACIENTE ", 50, 5, y==0);
         showItem(" 2. LISTAR PACIENTES ", 50, 6, y==1);
-        //FALTA EL MODIFICAR/ELIMINAR PACIENTES(BAJA LOGICA) Flor
-        showItem(" 3. ASIGNAR NUEVO TURNO ", 50, 7, y==2);
-        showItem(" 4. REPROGRAMAR TURNO ", 50, 8, y==3);
-        showItem(" 5. CANCELAR TURNO ", 50, 9, y==4);
-        showItem(" 6. TURNO NO ASISTIDO ", 50, 10, y==5);
-        showItem(" 7. CONSULTAS ", 50, 11, y==6);
-        showItem(" 8. INFORMES ", 50, 12, y==7);
-        showItem(" 9. LISTAR TURNOS ", 50, 13, y==8);
-        showItem(" 0. CERRAR SESION ", 50, 14, y==9);
+        showItem(" 3. MODIFICAR PACIENTE ", 50, 7, y==2);
+        showItem(" 4. DAR DE BAJA PACIENTE ", 50, 8, y==3);
+        showItem(" 5. ASIGNAR NUEVO TURNO ", 50, 9, y==4);
+        showItem(" 6. REPROGRAMAR TURNO ", 50, 10, y==5);
+        showItem(" 7. CANCELAR TURNO ", 50, 11, y==6);
+        showItem(" 8. TURNO NO ASISTIDO ", 50, 12, y==7);
+        showItem(" 9. CONSULTAS ", 50, 13, y==8);
+        showItem(" 10. INFORMES ", 50, 14, y==9);
+        showItem(" 11. LISTAR TURNOS ", 50, 15, y==10);
+        showItem(" 0. CERRAR SESION ", 50, 16, y==11);
 
         rlutil::locate(48, 5 + y);
         cout<<(char)175;
@@ -61,9 +62,11 @@ int MenuRecepcionista::menuRecepcionista() {
             rlutil::locate(48, 5 + y);
             cout<<" "<<endl;
             y++;
-            if(y>9){
-                y=9;
+            if(y>11){
+                y=11;
             }
+
+
         break;
         case 1: //ENTER
             rlutil::cls();
@@ -75,33 +78,39 @@ int MenuRecepcionista::menuRecepcionista() {
                 _pacienteManager.mostrarPaciente();
                     break;
             case 2:
-                _turnoManager.cargarTurno();
+///                _pacienteManager.modificarPaciente();
                     break;
             case 3:
-                _turnoManager.reprogramarTurno();
+                _pacienteManager.DarBajaPaciente();
                     break;
             case 4:
-                _turnoManager.cancelarTurno();
+                _turnoManager.cargarTurno();
                     break;
             case 5:
-               // _turnoManager.TurnoNoAsistido();
+                _turnoManager.reprogramarTurno();
                     break;
             case 6:
+                _turnoManager.cancelarTurno();
+                    break;
+            case 7:
+               // _turnoManager.TurnoNoAsistido();
+                    break;
+            case 8:
                 salir = menuConsultasRecepcionista();
                 if(salir != 0){
                     rlutil::anykey();
                 }
                 break;
-            case 7:
+            case 9:
                 salir = menuInformesRecepcionista();
                 if(salir != 0){
                     rlutil::anykey();
                 }
                 break;
-            case 8:
+            case 10:
                 _turnoManager.mostrarTurno();
                     break;
-            case 9:
+            case 11:
                 rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
                 rlutil::setColor(rlutil::COLOR::YELLOW);
                 rlutil::locate(50, 12);

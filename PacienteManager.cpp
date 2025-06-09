@@ -219,6 +219,83 @@ void PacienteManager::mostrarPaciente() {
 }
 
 
+void PacienteManager::DarBajaPaciente(){
 
+
+    int id;
+    bool encontrado = false;
+
+    while (!encontrado) {
+        rlutil::cls();
+        rlutil::setColor(rlutil::COLOR::YELLOW);
+        rlutil::locate(40, 3);
+        cout << " DAR DE BAJA PACIENTE ";
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 6);
+        cout << "Ingrese el ID del paciente a dar de baja: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(75, 6);
+        cin >> id;
+
+        int pos=_archivo.Buscar(id);
+        Paciente posPaciente;
+
+        if (pos == -1) {
+            rlutil::setColor(rlutil::COLOR::RED);
+            rlutil::locate(30, 8);
+            cout << "Paciente no encontrado. Intente nuevamente.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            continue;
+        }
+
+        posPaciente = _archivo.Leer(pos);
+        if (!posPaciente.getEstado()) {
+            rlutil::setColor(rlutil::COLOR::RED);
+            rlutil::locate(30, 8);
+            cout << "El Paciente ya esta dado de baja.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            continue;
+        }
+
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 9);
+        cout << "Esta seguro que desea dar de baja al Paciente de ID '" << id << "'? (s/n): ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        char confirmacion;
+        cin >> confirmacion;
+
+        if (confirmacion == 's' || confirmacion == 'S') {
+            posPaciente.setEstado(false);
+            if (_archivo.guardar(posPaciente, pos)) {
+                rlutil::setColor(rlutil::COLOR::GREEN);
+                rlutil::locate(30, 11);
+                cout << "Paciente dado de baja correctamente.";
+            } else {
+                rlutil::setColor(rlutil::COLOR::RED);
+                rlutil::locate(30, 11);
+                cout << "Error al intentar modificar el archivo.";
+            }
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            encontrado = true;
+        } else {
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 11);
+            cout << "Accion cancelada por el usuario.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            encontrado = true;
+        }
+    }
+
+
+
+    rlutil::cls();
+
+    }
+///   void modificarPaciente(){    }
 
 

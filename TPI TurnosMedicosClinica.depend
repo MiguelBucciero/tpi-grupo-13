@@ -2197,3 +2197,257 @@
 	"TurnoArchivo.h"
 	"Turno.h"
 
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\domicilio.cpp
+	<iostream>
+	"Domicilio.h"
+	"rlutil.h"
+	<cstring>
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\domicilio.h
+	<string>
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\especialidad.cpp
+	<iostream>
+	"Especialidad.h"
+	<cstring>
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\especialidad.h
+	<string>
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\especialidadarchivo.cpp
+	"EspecialidadArchivo.h"
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\especialidadarchivo.h
+	<string>
+	"Especialidad.h"
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\especialidadmanager.cpp
+	"EspecialidadManager.h"
+	"Especialidad.h"
+	"rlutil.h"
+	<iostream>
+	<string>
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\especialidadmanager.h
+	"EspecialidadArchivo.h"
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\fecha.cpp
+	<iostream>
+	"Fecha.h"
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\fecha.h
+	<string>
+	<ctime>
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\hora.cpp
+	<iostream>
+	"Hora.h"
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\hora.h
+	<string>
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\main.cpp
+	<iostream>
+	"rlutil.h"
+	"UsuarioManager.h"
+	"MenuAdministrador.h"
+	"MenuRecepcionista.h"
+	"MenuMedico.h"
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\usuariomanager.h
+	"UsuarioArchivo.h"
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\usuarioarchivo.h
+	<string>
+	<cstring>
+	"Usuario.h"
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\usuario.h
+	"Rol.h"
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\rol.h
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\menuadministrador.h
+	"Especialidad.h"
+	"EspecialidadManager.h"
+	"MedicoManager.h"
+	"UsuarioManager.h"
+	"TurnoManager.h"
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\medicomanager.h
+	"MedicoArchivo.h"
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\medicoarchivo.h
+	<string>
+	"Medico.h"
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\medico.h
+	"Persona.h"
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\persona.h
+	<string>
+	"Fecha.h"
+	"Domicilio.h"
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\turnomanager.h
+	"TurnoArchivo.h"
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\turnoarchivo.h
+	<string>
+	"Turno.h"
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\turno.h
+	"Fecha.h"
+	"Hora.h"
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\menurecepcionista.h
+	"Paciente.h"
+	"PacienteManager.h"
+	"MedicoManager.h"
+	"TurnoManager.h"
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\paciente.h
+	"Persona.h"
+	"Domicilio.h"
+	"Fecha.h"
+
+1749471445 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\pacientemanager.h
+	"PacienteArchivo.h"
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\pacientearchivo.h
+	<string>
+	"Paciente.h"
+
+1749471324 c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\menumedico.h
+	"TurnoManager.h"
+	"PacienteManager.h"
+	"UsuarioManager.h"
+	"MedicoManager.h"
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\medico.cpp
+	<iostream>
+	<string>
+	"Medico.h"
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\medicoarchivo.cpp
+	"MedicoArchivo.h"
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\medicomanager.cpp
+	<iostream>
+	<string>
+	"MedicoManager.h"
+	"rlutil.h"
+	"TurnoArchivo.h"
+	"Turno.h"
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\menumedico.cpp
+	<iostream>
+	"rlutil.h"
+	"MenuMedico.h"
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\menusadministrador.cpp
+	<iostream>
+	<cstdlib>
+	"rlutil.h"
+	"MenuAdministrador.h"
+	"UsuarioManager.h"
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\paciente.cpp
+	<iostream>
+	<cstring>
+	"Paciente.h"
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\pacientearchivo.cpp
+	"PacienteArchivo.h"
+	"PacienteManager.h"
+	<iostream>
+
+1749473415 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\pacientemanager.cpp
+	"PacienteManager.h"
+	"rlutil.h"
+	<iostream>
+	<string>
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\persona.cpp
+	<iostream>
+	<cstring>
+	"Persona.h"
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\rol.cpp
+	"Rol.h"
+	<cstring>
+	<string>
+	<iostream>
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\turno.cpp
+	<iostream>
+	"Turno.h"
+	"rlutil.h"
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\turnoarchivo.cpp
+	"TurnoArchivo.h"
+	"TurnoManager.h"
+	<iostream>
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\turnomanager.cpp
+	"TurnoManager.h"
+	"PacienteArchivo.h"
+	"MedicoArchivo.h"
+	"Medico.h"
+	"TurnoArchivo.h"
+	"EspecialidadArchivo.h"
+	"Fecha.h"
+	<iostream>
+	"Turno.h"
+	"Paciente.h"
+	"Especialidad.h"
+	"rlutil.h"
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\usuario.cpp
+	<iostream>
+	<cstring>
+	"Usuario.h"
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\usuarioarchivo.cpp
+	"UsuarioArchivo.h"
+	"UsuarioManager.h"
+	<cstring>
+	<string>
+	<iostream>
+
+1749471324 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\usuariomanager.cpp
+	"UsuarioManager.h"
+	"MenuRecepcionista.h"
+	"MenuAdministrador.h"
+	"MenuMedico.h"
+	"MedicoManager.h"
+	"rlutil.h"
+	<iostream>
+	<cstring>
+
+1749473262 source:c:\users\flore\desktop\repo trabajo prii\tpi-grupo-13\menusrecepcionista.cpp
+	<iostream>
+	<cstdlib>
+	"rlutil.h"
+	"MenuRecepcionista.h"
+	"PacienteManager.h"
+	"Paciente.h"
+	"TurnoManager.h"
+	"TurnoArchivo.h"
+	"MedicoManager.h"
+	"Medico.h"
+
