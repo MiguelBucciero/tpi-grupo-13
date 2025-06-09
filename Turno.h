@@ -27,7 +27,7 @@ public:
     void setEstado(int valor);
 
     // Métodos
-    void mostrarTurno();
+    void mostrarTurno(int fila);
 
 private:
     int _IDTurno;

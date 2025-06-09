@@ -84,7 +84,7 @@ int MenuRecepcionista::menuRecepcionista() {
                 _turnoManager.cancelarTurno();
                     break;
             case 5:
-                _turnoManager.TurnoNoAsistido();
+               // _turnoManager.TurnoNoAsistido();
                     break;
             case 6:
                 salir = menuConsultasRecepcionista();
@@ -162,16 +162,16 @@ int MenuRecepcionista::menuConsultasRecepcionista(){
             rlutil::cls();
             switch(y){
             case 0:
-                _turnoManager.BuscarTurnoEstado();
+                //_turnoManager.BuscarTurnoEstado();
                     break;
             case 1:
                 _medicoManager.buscarMedicoPorEspecialidad();
                     break;
             case 2:
-                _turnoManager.TurnosDelDia();
+               // _turnoManager.TurnosDelDia();
                     break;
             case 3:
-                _turnoManager.TurnosDeLaSemana();
+               // _turnoManager.TurnosDeLaSemana();
                     break;
             case 4: opc=0;
                     break;
@@ -220,7 +220,7 @@ int MenuRecepcionista::menuInformesRecepcionista(){
         case 1: //ENTER
             rlutil::cls();
             switch(y){
-            case 0: _turnoManager.CantidadTurnosPorEspecialidad();
+            case 0: //_turnoManager.CantidadTurnosPorEspecialidad();
                     break;
             case 1: _turnoManager.CantidadTurnosNoAsistidos();
                     break;

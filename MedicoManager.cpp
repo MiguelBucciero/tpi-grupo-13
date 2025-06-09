@@ -399,7 +399,7 @@ void MedicoManager::buscarMedicoPorEspecialidad() {
 }
 
 
-void MedicoManager::verTurnosAsignados(int idMedico) {
+/*void MedicoManager::verTurnosAsignados(int idMedico) {
     TurnoArchivo archivo("Turnos.dat");
     int cantidad = archivo.getCantidadRegistros();
     bool hayTurnos = false;
@@ -417,7 +417,7 @@ void MedicoManager::verTurnosAsignados(int idMedico) {
     }
 
     rlutil::anykey("Presione una tecla para continuar...");
-}
+}*/
 
 
 void MedicoManager::DarBajaMedico(){
