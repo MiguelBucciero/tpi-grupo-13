@@ -265,7 +265,11 @@ void MedicoManager::mostrarMedico() {
             rlutil::setColor(rlutil::COLOR::CYAN);
             cout << "Estado: ";
             rlutil::setColor(rlutil::COLOR::WHITE);
-            cout << (vecMedico[i].getEstado() ? "Activo" : "Inactivo");
+            if(vecMedico[i].getEstado()){
+                cout<<"Activo"<<endl;
+            } else{
+                cout<<"Inactivo"<<endl;
+            }
 
             rlutil::locate(32, fila + 14);
             rlutil::setColor(rlutil::COLOR::YELLOW);
@@ -473,8 +477,6 @@ void MedicoManager::verTurnosAsignados(int idMedico) {
 
 
 void MedicoManager::DarBajaMedico(){
-
-
     int id;
     bool encontrado = false;
 

@@ -1059,8 +1059,10 @@ void TurnoManager::CantidadTurnosPorEspecialidadAdmin(int anio){ //vero - (admin
                 int idEspTurno=turno.getEspecialidad();
                 for(int j=0; j<cantidadEsp; j++){
                     if(especialidades[j].getIDEspecialidad()==idEspTurno){
-                        cont[j]++;
-                        break;
+                        if(especialidades[j].getEstado()){
+                            cont[j]++;
+                            break;
+                        }
                     }
                 }
             }
@@ -1074,8 +1076,10 @@ void TurnoManager::CantidadTurnosPorEspecialidadAdmin(int anio){ //vero - (admin
 
     int fila=4;
     for(int i=0; i<cantidadEsp; i++){
-        rlutil::locate(35, fila++);
-        cout<<especialidades[i].getNombre()<<": "<<cont[i]<<" turnos"<<endl;
+        if(especialidades[i].getEstado()){
+            rlutil::locate(35, fila++);
+            cout<<especialidades[i].getNombre()<<": "<<cont[i]<<" turnos"<<endl;
+        }
     }
     delete[] especialidades;
     delete[] cont;
@@ -1153,8 +1157,10 @@ void TurnoManager::cantidadTurnosPorMedico() {
             idMedicoTurno = listaTurnos[i].getIDMedico();
             for (int j = 0; j < cantidadM; j++) {
                 if (listaMedicos[j].getIDMedico() == idMedicoTurno) {
-                    contador[j]++;
-                    break;
+                    if(listaMedicos[j].getEstado()){
+                        contador[j]++;
+                        break;
+                    }
                 }
             }
         }
@@ -1188,7 +1194,7 @@ void TurnoManager::cantidadTurnosPorMedico() {
                 rlutil::cls();
                 rlutil::locate(40, 2);
                 rlutil::setColor(rlutil::COLOR::YELLOW);
-                cout << "CANTIDAD DE TURNOS POR MÉDICO";
+                cout << "CANTIDAD DE TURNOS POR MEDICO";
                 rlutil::setColor(rlutil::COLOR::WHITE);
                 fila = 4;
             }
