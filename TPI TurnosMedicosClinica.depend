@@ -177,7 +177,7 @@
 1749439151 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidad.h
 	<string>
 
-1749439151 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadmanager.cpp
+1749580787 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadmanager.cpp
 	"EspecialidadManager.h"
 	"Especialidad.h"
 	"rlutil.h"
@@ -453,7 +453,7 @@
 1749516112 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\turnomanager.h
 	"TurnoArchivo.h"
 
-1749571285 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\turnomanager.cpp
+1749573632 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\turnomanager.cpp
 	"TurnoManager.h"
 	"PacienteArchivo.h"
 	"MedicoArchivo.h"

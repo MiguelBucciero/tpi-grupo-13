@@ -8,7 +8,7 @@ using namespace std;
 
 void EspecialidadManager::cargarEspecialidad() {
     Especialidad registro;
-    int id = _archivo.IDdisponible();
+    int id = _archivo.getNuevoID();
     string nombre;
 
     rlutil::cls();
@@ -32,18 +32,12 @@ void EspecialidadManager::cargarEspecialidad() {
     cin.ignore();
     getline(cin, nombre);
 
-    registro = Especialidad(id, nombre, true);
-
-    int pos = _archivo.Buscar(id);
-    bool verificar;
-    if (pos != -1) {
-        verificar = _archivo.guardar(registro, pos);
-    } else {
-        verificar = _archivo.guardar(registro);
-    }
+    registro.setIDEspecialidad(id);
+    registro.setNombre(nombre);
+    registro.setEstado(true);
 
     rlutil::locate(35, 9);
-    if (verificar) {
+    if (_archivo.guardar(registro)) {
         rlutil::setColor(rlutil::COLOR::GREEN);
         cout << "Especialidad cargada correctamente.";
     } else {
