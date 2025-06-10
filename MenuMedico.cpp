@@ -55,8 +55,9 @@ int MenuMedico::menuMedico(Usuario usuarioLogeado){
             switch (y) {
                 case 0: _medicoManager.verTurnosAsignados(usuarioLogeado.getIDMedico());///Nahuel
                     break;
-                case 1:  {int idMedico=usuarioLogeado.getIDMedico();
-                _turnoManger.buscarTurnosPorFecha(idMedico); ///Nahuel
+                case 1:  {
+                    int idMedico=usuarioLogeado.getIDMedico();
+                    _turnoManger.buscarTurnosPorFecha(idMedico); ///Nahuel
                    }                                         ///vero: rlutil, en proceso
                     break;
                 case 2:{

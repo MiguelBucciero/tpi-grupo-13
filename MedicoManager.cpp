@@ -295,20 +295,20 @@ void MedicoManager::buscarMedicoPorEspecialidad() {
 
     rlutil::cls();
     rlutil::setColor(rlutil::COLOR::YELLOW);
-    rlutil::locate(40, 2);
+    rlutil::locate(50, 2);
     cout << "BUSCAR MEDICOS POR ESPECIALIDAD";
     rlutil::setColor(rlutil::COLOR::WHITE);
 
-    rlutil::locate(30, 4);
+    rlutil::locate(45, 4);
     rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Ingrese el ID de especialidad que desea buscar: ";
     rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::locate(77, 4);
+    rlutil::locate(92, 4);
     cin >> idEspecialidad;
 
     int cantidad = _archivo.getCantidadRegistros();
     if (cantidad == 0) {
-        rlutil::locate(40, 6);
+        rlutil::locate(45, 6);
         rlutil::setColor(rlutil::COLOR::RED);
         cout << "No hay medicos cargados.";
         rlutil::setColor(rlutil::COLOR::WHITE);
@@ -325,42 +325,42 @@ void MedicoManager::buscarMedicoPorEspecialidad() {
 
     rlutil::cls();
     rlutil::setColor(rlutil::COLOR::YELLOW);
-    rlutil::locate(40, 2);
+    rlutil::locate(50, 2);
     cout << " MEDICOS CON ID DE ESPECIALIDAD " << idEspecialidad;
     rlutil::setColor(rlutil::COLOR::WHITE);
 
     for (int i = 0; i < cantidad; i++) {
         if (vecMedico[i].getIDEspecialidad() == idEspecialidad && vecMedico[i].getEstado()) {
-            rlutil::locate(30, fila);
+            rlutil::locate(45, fila);
             cout << "------------------------------------------------------------";
-            rlutil::locate(30, fila + 6);
+            rlutil::locate(45, fila + 6);
             cout << "------------------------------------------------------------";
 
-            rlutil::locate(32, fila + 1);
+            rlutil::locate(45, fila + 1);
             rlutil::setColor(rlutil::COLOR::CYAN);
             cout << "ID Medico: ";
             rlutil::setColor(rlutil::COLOR::WHITE);
             cout << vecMedico[i].getIDMedico();
 
-            rlutil::locate(32, fila + 2);
+            rlutil::locate(45, fila + 2);
             rlutil::setColor(rlutil::COLOR::CYAN);
             cout << "Nombre: ";
             rlutil::setColor(rlutil::COLOR::WHITE);
             cout << vecMedico[i].getNombre() << " " << vecMedico[i].getApellido();
 
-            rlutil::locate(32, fila + 3);
+            rlutil::locate(45, fila + 3);
             rlutil::setColor(rlutil::COLOR::CYAN);
             cout << "DNI: ";
             rlutil::setColor(rlutil::COLOR::WHITE);
             cout << vecMedico[i].getDni();
 
-            rlutil::locate(32, fila + 4);
+            rlutil::locate(45, fila + 4);
             rlutil::setColor(rlutil::COLOR::CYAN);
             cout << "Email: ";
             rlutil::setColor(rlutil::COLOR::WHITE);
             cout << vecMedico[i].getEmail();
 
-            rlutil::locate(32, fila + 5);
+            rlutil::locate(45, fila + 5);
             rlutil::setColor(rlutil::COLOR::CYAN);
             cout << "Telefono: ";
             rlutil::setColor(rlutil::COLOR::WHITE);
@@ -370,13 +370,13 @@ void MedicoManager::buscarMedicoPorEspecialidad() {
 
             // Paginación si se sale de pantalla
             if (fila + 6 > 45) {
-                rlutil::locate(40, fila);
+                rlutil::locate(45, fila);
                 rlutil::setColor(rlutil::COLOR::YELLOW);
                 cout << "Presione una tecla para continuar...";
                 rlutil::setColor(rlutil::COLOR::WHITE);
                 rlutil::anykey();
                 rlutil::cls();
-                rlutil::locate(40, 2);
+                rlutil::locate(50, 2);
                 cout << " MEDICOS CON ID DE ESPECIALIDAD " << idEspecialidad;
                 fila = 6;
             }
@@ -386,7 +386,7 @@ void MedicoManager::buscarMedicoPorEspecialidad() {
     }
 
     if (!encontrados) {
-        rlutil::locate(40, fila);
+        rlutil::locate(45, fila);
         rlutil::setColor(rlutil::COLOR::RED);
         cout << "No se encontraron medicos activos con esa especialidad.";
         rlutil::setColor(rlutil::COLOR::WHITE);
@@ -394,7 +394,7 @@ void MedicoManager::buscarMedicoPorEspecialidad() {
 
     delete[] vecMedico;
 
-    rlutil::locate(40, fila + 2);
+    rlutil::locate(45, fila + 2);
     rlutil::setColor(rlutil::COLOR::YELLOW);
     cout << "Fin de la busqueda. Presione una tecla para continuar...";
     rlutil::setColor(rlutil::COLOR::WHITE);
