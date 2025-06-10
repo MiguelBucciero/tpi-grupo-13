@@ -16,7 +16,7 @@ public:
     void HistorialTurnosAtendidos(int idMedico);
     void CantidadTurnosReprogramadosMes();
     void CantidadTurnosPorEspecialidadAdmin(int anio);
-    void buscarTurnosPorFecha();
+    void buscarTurnosPorFecha(int idMedico);
     void cantidadTurnosPorMedico();
     void cantidadTurnosPorPaciente();
     void cantidadTurnosCanceladosPorMes();

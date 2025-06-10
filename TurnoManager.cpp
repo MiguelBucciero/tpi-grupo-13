@@ -1092,41 +1092,89 @@ void TurnoManager::CantidadTurnosPorEspecialidadAdmin(int anio){ //vero - (admin
     rlutil::cls();
 }
 
-void TurnoManager::buscarTurnosPorFecha() { //vero - en proceso
+void TurnoManager::buscarTurnosPorFecha(int idMedico) { //vero (medico) -
+    int dia, mes, anio;
+
     rlutil::cls();
-    Fecha fechaBuscada;
+    rlutil::setColor(rlutil::YELLOW);
+    rlutil::locate(35, 3);
+    cout << "TURNOS POR FECHA";
+    rlutil::setColor(rlutil::CYAN);
+    rlutil::locate(30, 5);
+    cout << "Ingrese la fecha para buscar turnos:"<<endl;
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::locate(30, 6);
+    cout << "Dia: ";
+    rlutil::locate(35, 6);
+    cin >> dia;
+    rlutil::locate(30, 7);
+    cout << "Mes: ";
+    rlutil::locate(35, 7);
+    cin >> mes;
+    rlutil::locate(30, 8);
+    cout << "Anio: ";
+    rlutil::locate(35, 8);
+    cin >> anio;
 
-    cout << "Ingrese la fecha para buscar turnos:" << endl;
-    fechaBuscada.cargarFecha();
+    Fecha fechaBuscada(dia, mes, anio);
 
-    TurnoArchivo archivo("Turnos.dat");
     PacienteArchivo archivoPacientes("pacientes.dat");
     EspecialidadArchivo archivoEspecialidades("especialidad.dat");
 
-    int cantidad = archivo.getCantidadRegistros();
+    int cantidad = _archivo.getCantidadRegistros();
     bool hayTurnos = false;
+    int fila=11;
 
     for (int i = 0; i < cantidad; i++) {
-        Turno t = archivo.Leer(i);
-        if (t.getFechaTurno().esIgual(fechaBuscada) && t.getEstado() == 1) {
+        Turno t = _archivo.Leer(i);
+        if (t.getIDMedico()==idMedico&&t.getFechaTurno().esIgual(fechaBuscada) &&(t.getEstado() == 1||t.getEstado()==3)) {
             hayTurnos = true;
 
             Paciente p = archivoPacientes.Leer(archivoPacientes.Buscar(t.getIDPaciente()));
             Especialidad e = archivoEspecialidades.Leer(archivoEspecialidades.Buscar(t.getEspecialidad()));
+            rlutil::locate(30, fila++);
+            cout << "------------------------------";
+            rlutil::locate(30, fila++);
+            cout << "ID Turno: " << t.getIDTurno();
+            rlutil::locate(30, fila++);
+            cout << "Hora: " << t.getHoraTurno().toString();
+            rlutil::locate(30, fila++);
+            cout << "Paciente: " << p.getNombre() << " " << p.getApellido();
+            rlutil::locate(30, fila++);
+            cout << "Especialidad: " << e.getNombre();
 
-            cout << "\n----------------------------" << endl;
-            cout << "ID Turno: " << t.getIDTurno() << endl;
-            cout << "Hora: " << t.getHoraTurno().toString() << endl;
-            cout << "Paciente: " << p.getNombre() << " " << p.getApellido() << endl;
-            cout << "Especialidad: " << e.getNombre() << endl;
+            if(fila>=45){
+                rlutil::locate(40, fila);
+                rlutil::setColor(rlutil::YELLOW);
+                cout << "Presione una tecla para continuar...";
+                rlutil::setColor(rlutil::WHITE);
+                rlutil::anykey();
+                rlutil::cls();
+                rlutil::locate(30, 3);
+                rlutil::setColor(rlutil::YELLOW);
+                cout << "TURNOS POR FECHA";
+                rlutil::setColor(rlutil::WHITE);
+                fila = 5;
+            }
         }
     }
 
     if (!hayTurnos) {
-        cout << "\nNo se encontraron turnos activos en esa fecha." << endl;
+        rlutil::locate(35, fila++);
+        rlutil::setColor(rlutil::RED);
+        cout << "No se encontraron turnos en esa fecha.";
+        rlutil::setColor(rlutil::WHITE);
+        rlutil::anykey();
+        rlutil::cls();
+        return;
     }
 
+    rlutil::locate(35, fila + 2);
+    rlutil::setColor(rlutil::COLOR::YELLOW);
+    cout << "Fin de la lista. Presione una tecla para continuar...";
+    rlutil::setColor(rlutil::WHITE);
     rlutil::anykey();
+    rlutil::cls();
 }
 
 void TurnoManager::cantidadTurnosPorMedico() {

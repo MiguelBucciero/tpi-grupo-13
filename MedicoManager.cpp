@@ -418,7 +418,7 @@ void MedicoManager::verTurnosAsignados(int idMedico) {
     for (int i = 0; i < cantidad; i++) {
         Turno t = archivo.Leer(i);
 
-        if (t.getIDMedico() == idMedico && t.getEstado() == 1) {
+        if (t.getIDMedico() == idMedico && (t.getEstado() == 1||t.getEstado()==3)) {
             rlutil::locate(30, fila - 1);
             cout << "------------------------------------------------------------";
 
@@ -435,8 +435,12 @@ void MedicoManager::verTurnosAsignados(int idMedico) {
             rlutil::locate(32, fila++);
             cout << "ID Especialidad: " << t.getEspecialidad();
             rlutil::locate(32, fila++);
-            cout << "Estado: Activo";
-
+            cout << "Estado: ";
+            switch (t.getEstado()) {
+                case 1: cout << "Activo"; break;
+                case 3: cout << "Reprogramado"; break;
+                default: cout << "Desconocido"; break;
+            }
             rlutil::locate(30, fila++);
             cout << "------------------------------------------------------------";
 
@@ -463,11 +467,14 @@ void MedicoManager::verTurnosAsignados(int idMedico) {
     if (!hayTurnos) {
         rlutil::locate(40, 10);
         rlutil::setColor(rlutil::COLOR::RED);
-        cout << "No hay turnos activos asignados para este medico.";
+        cout << "No hay turnos asignados para este medico.";
         rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::anykey();
+        rlutil::cls();
+        return;
     }
 
-    rlutil::locate(40, 15);
+    rlutil::locate(40, fila+1);
     rlutil::setColor(rlutil::COLOR::GREEN);
     cout << "Fin de la busqueda. Presione una tecla para continuar...";
     rlutil::setColor(rlutil::COLOR::WHITE);
