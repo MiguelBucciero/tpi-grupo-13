@@ -501,7 +501,7 @@ void PacienteManager::modificarPaciente(){
                   system("cls");
             rlutil::setColor(rlutil::COLOR::RED);
             rlutil::locate(30, 10);
-            cout << "Error al intentar modificar el usuario.";
+            cout << "Error al intentar modificar el paciente.";
         }
 
         rlutil::setColor(rlutil::COLOR::WHITE);

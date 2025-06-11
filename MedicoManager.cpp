@@ -769,7 +769,7 @@ void MedicoManager::modificarMedico(){
                   system("cls");
             rlutil::setColor(rlutil::COLOR::RED);
             rlutil::locate(30, 10);
-            cout << "Error al intentar modificar el usuario.";
+            cout << "Error al intentar modificar el medico.";
         }
 
         rlutil::setColor(rlutil::COLOR::WHITE);
