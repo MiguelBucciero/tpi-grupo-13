@@ -1,6 +1,4 @@
-#include <iostream>
 #include "Fecha.h"
-using namespace std;
 
 Fecha::Fecha() {
     _dia=1;
@@ -47,36 +45,6 @@ void Fecha::setAnio(int anio) {
 }
 
 // Métodos
-void Fecha::cargarFecha() {
-    int dia, mes, anio;
-
-    cout << "Ingrese dia: ";
-    cin >> dia;
-    setDia(dia);
-
-    cout << "Ingrese mes: ";
-    cin >> mes;
-    setMes(mes);
-
-    cout << "Ingrese anio: ";
-    cin >> anio;
-    cin.ignore();
-    setAnio(anio);
-}
-
-void Fecha::cargarFecha(int dia, int mes, int anio){
-    setDia(dia);
-    setMes(mes);
-    setAnio(anio);
-}
-
-void Fecha::mostrarFecha() {
-    cout<< toString() <<endl;
-}
-string Fecha::toString(){
-    return to_string(_dia) + "/" + to_string(_mes) + "/" + to_string(_anio);
-}
-
 bool Fecha::esIgual(Fecha &otra) {
     return(_dia==otra.getDia()&&_mes==otra.getMes()&&_anio==otra.getAnio());
 }

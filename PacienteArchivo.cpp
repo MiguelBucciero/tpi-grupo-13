@@ -21,6 +21,7 @@ bool PacienteArchivo::guardar(Paciente registro){
 
     return resultado;
 }
+
 bool PacienteArchivo::guardar(Paciente registro, int posicion){
     bool resultado;
     FILE *pArchivo;
@@ -93,17 +94,6 @@ int PacienteArchivo::getCantidadRegistros(){
     fclose(pArchivo);
 
     return cantidadRegistros;
-}
-
-void PacienteArchivo::Leer(int cantidadRegistros, Paciente *vector){
-    FILE *pArchivo=fopen(_nombreArchivo.c_str(), "rb");
-    if(pArchivo==NULL){
-        return;
-    }
-    for(int i = 0; i<cantidadRegistros; i++){
-        fread(&vector[i], sizeof(Paciente), 1, pArchivo);
-    }
-    fclose(pArchivo);
 }
 
 bool PacienteArchivo::leerMuchos(Paciente reg[], int cantidad){

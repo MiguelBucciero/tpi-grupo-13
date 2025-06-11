@@ -68,7 +68,7 @@ void Turno::setEstado(int valor){
     _EstadoTurno=valor;
 }
 
-void Turno::mostrarTurno(int fila){
+/*void Turno::mostrarTurno(int fila){
     rlutil::locate(32, fila++);
     cout<<"ID Turno: "<<getIDTurno();
     rlutil::locate(32, fila++);
@@ -76,7 +76,7 @@ void Turno::mostrarTurno(int fila){
     rlutil::locate(32, fila++);
     cout << "ID Medico: " << getIDMedico();
     rlutil::locate(32, fila++);
-    cout << "Fecha: " << getFechaTurno().toString();
+   // cout << "Fecha: " << getFechaTurno().toString();
     rlutil::locate(32, fila++);
     cout << "Hora: " << getHoraTurno().toString();
     rlutil::locate(32, fila++);
@@ -91,4 +91,4 @@ void Turno::mostrarTurno(int fila){
         case 5: cout << "Asistido"; break;
         default: cout << "Desconocido"; break;
     }
-}
+}*/

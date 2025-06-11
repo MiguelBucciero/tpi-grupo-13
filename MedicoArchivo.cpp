@@ -99,17 +99,6 @@ int MedicoArchivo::getCantidadRegistros(){
     return cantidadRegistros;
 }
 
-void MedicoArchivo::Leer(int cantidadRegistros, Medico *vector){
-    FILE *pArchivo=fopen(_nombreArchivo.c_str(), "rb");
-    if(pArchivo==NULL){
-        return;
-    }
-    for(int i = 0; i<cantidadRegistros; i++){
-        fread(&vector[i], sizeof(Medico), 1, pArchivo);
-    }
-    fclose(pArchivo);
-}
-
 bool MedicoArchivo::leerMuchos(Medico reg[], int cantidad){
     FILE *pArchivo;
     pArchivo=fopen(_nombreArchivo.c_str(), "rb");

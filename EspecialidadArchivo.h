@@ -8,14 +8,12 @@ public:
     EspecialidadArchivo(std::string nombreArchivo="especialidad.dat");
     bool guardar(Especialidad registro);
     bool guardar(Especialidad registro, int posicion);
-    int Buscar(int IDServicio);
+    int Buscar(int IDEspecialidad);
     Especialidad Leer(int posicion);
-    void Leer(int cantidadRegistros, Especialidad *vector);
     int getCantidadRegistros();
     bool leerMuchos(Especialidad reg[], int cantidad);
     int getNuevoID();
     bool esEspecialidadValida(int idEspecialidad);
-    int IDdisponible();
 
 private:
     std::string _nombreArchivo;

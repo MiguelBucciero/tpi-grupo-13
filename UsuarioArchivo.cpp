@@ -83,7 +83,6 @@ Usuario UsuarioArchivo::Leer(int posicion){
     return registro;
 }
 
-
 int UsuarioArchivo::getCantidadRegistros(){
     FILE *pArchivo;
     pArchivo = fopen(_nombreArchivo.c_str(), "rb");
@@ -99,25 +98,6 @@ int UsuarioArchivo::getCantidadRegistros(){
     fclose(pArchivo);
 
     return cantidadRegistros;
-}
-
-void UsuarioArchivo::Leer(int cantidadRegistros, Usuario *vector){
-    FILE *pArchivo=fopen(_nombreArchivo.c_str(), "rb");
-    if(pArchivo==NULL){
-        return;
-    }
-    fread(vector, sizeof(Usuario), cantidadRegistros, pArchivo);
-    fclose(pArchivo);
-}
-
-bool UsuarioArchivo::esUsuarioActivo(const char* nombreUsuario){
-    int pos=Buscar(nombreUsuario);
-    if(pos==-1){
-        return false;
-    }
-    Usuario registro=Leer(pos);
-    //devuelve true=activado, false=no activado
-    return registro.getEstado();
 }
 
 bool UsuarioArchivo::leerMuchos(Usuario reg[], int cantidad){

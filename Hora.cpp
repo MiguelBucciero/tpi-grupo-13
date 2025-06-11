@@ -43,18 +43,6 @@ void Hora::setMinutos(int minutos) {
 }
 
 // Métodos
-void Hora::cargarHora() {
-    int h, m;
-
-    cout << "Ingrese hora (0-23): ";
-    cin >> h;
-    setHora(h);
-
-    cout << "Ingrese minutos (0-59): ";
-    cin >> m;
-    setMinutos(m);
-}
-
 void Hora::mostrarHora() {
     cout << toString() << std::endl;
 }

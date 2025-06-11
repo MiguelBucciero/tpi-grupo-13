@@ -27,7 +27,6 @@ void TurnoManager::cargarTurno(){
     char opcion;
 
 
-
     turno.setIDTurno(archiT.getNuevoID());
     //validacion de paciente
     do {
@@ -208,6 +207,7 @@ void TurnoManager::mostrarTurno(){
         rlutil::setColor(rlutil::WHITE);
         rlutil::anykey();
         delete[] vecTurno;
+        rlutil::cls();
         return;
     }
 
@@ -221,6 +221,9 @@ void TurnoManager::mostrarTurno(){
         int fila = 4;
         rlutil::locate(30, fila++);
         cout << "------------------------------------------------------------";
+        rlutil::locate(30, fila + 7);
+        cout << "------------------------------------------------------------";
+
         rlutil::locate(32, fila++);
         cout << "ID Turno: " << vecTurno[i].getIDTurno();
         rlutil::locate(32, fila++);
@@ -229,7 +232,7 @@ void TurnoManager::mostrarTurno(){
         cout << "ID Medico: " << vecTurno[i].getIDMedico();
 
         rlutil::locate(32, fila++);
-        cout << "Fecha: " << vecTurno[i].getFechaTurno().toString();
+        cout << "Fecha: " << vecTurno[i].getFechaTurno().getDia()<<"/"<<vecTurno[i].getFechaTurno().getMes()<<"/"<<vecTurno[i].getFechaTurno().getAnio();
 
         rlutil::locate(32, fila++);
         cout << "Hora: " << vecTurno[i].getHoraTurno().toString();
@@ -532,7 +535,7 @@ void TurnoManager::TurnoNoAsistido(){//Miguel
             rlutil::locate(30, fila++);
             cout << "ID Medico: " << lista[i].getIDMedico();
             rlutil::locate(30, fila++);
-            cout << "Fecha: " << lista[i].getFechaTurno().toString();
+            cout << "Fecha: " << lista[i].getFechaTurno().getDia()<<"/"<<lista[i].getFechaTurno().getMes()<<"/"<<lista[i].getFechaTurno().getAnio();
             rlutil::locate(30, fila++);
             cout << "Hora: " << lista[i].getHoraTurno().toString();
             rlutil::locate(30, fila++);
@@ -678,7 +681,7 @@ void TurnoManager::BuscarTurnoEstado(){//Miguel
                 rlutil::locate(30, fila++);
                 cout << "ID Medico: " << t.getIDMedico();
                 rlutil::locate(30, fila++);
-                cout << "Fecha: " << t.getFechaTurno().toString();
+                cout << "Fecha: " << t.getFechaTurno().getDia()<<"/"<<t.getFechaTurno().getMes()<<"/"<<t.getFechaTurno().getAnio();
                 rlutil::locate(30, fila++);
                 cout << "Hora: " << t.getHoraTurno().toString();
                 rlutil::locate(30, fila++);
@@ -725,7 +728,7 @@ void TurnoManager::TurnosDelDia(){//Miguel
         rlutil::locate(50, 2);
         cout << " LISTADO DE TURNOS DEL DIA ";
         rlutil::locate(50, 3);
-        cout << "       Fecha: " << hoy.toString() << "        ";
+        cout << "       Fecha: " << hoy.getDia()<<"/"<<hoy.getMes()<<"/"<<hoy.getAnio() << "        ";
         rlutil::setColor(rlutil::WHITE);
 
         mostrados = 0;
@@ -745,7 +748,7 @@ void TurnoManager::TurnosDelDia(){//Miguel
                     rlutil::locate(50, 2);
                     cout << " LISTADO DE TURNOS DEL DIA";
                     rlutil::locate(50, 3);
-                    cout << "       Fecha: " << hoy.toString() << "        ";
+                    cout << "       Fecha: " << hoy.getDia()<<"/"<<hoy.getMes()<<"/"<<hoy.getAnio() << "        ";
                     rlutil::setColor(rlutil::WHITE);
                 }
 
@@ -758,7 +761,7 @@ void TurnoManager::TurnosDelDia(){//Miguel
                 rlutil::locate(45, fila++);
                 cout << "ID Medico: " << lista[i].getIDMedico();
                 rlutil::locate(45, fila++);
-                cout << "Fecha: " << lista[i].getFechaTurno().toString();
+                cout << "Fecha: " << lista[i].getFechaTurno().getDia()<<"/"<<lista[i].getFechaTurno().getMes()<<"/"<<lista[i].getFechaTurno().getAnio();
                 rlutil::locate(45, fila++);
                 cout << "Hora: " << lista[i].getHoraTurno().toString();
                 rlutil::locate(45, fila++);
@@ -836,7 +839,7 @@ void TurnoManager::TurnosDeLaSemana() { //Miguel
     rlutil::locate(50, 2);
     cout << " LISTADO DE TURNOS DE LA SEMANA ";
     rlutil::locate(55, 3);
-    cout << "Semana desde: " << inicioSemana.toString();
+    cout << "Semana desde: " << inicioSemana.getDia()<<"/"<<inicioSemana.getMes()<<"/"<<inicioSemana.getAnio();
     rlutil::setColor(rlutil::WHITE);
 
     mostrados = 0;
@@ -864,7 +867,7 @@ void TurnoManager::TurnosDeLaSemana() { //Miguel
                 rlutil::locate(50, 2);
                 cout << " LISTADO DE TURNOS DE LA SEMANA ";
                 rlutil::locate(55, 3);
-                cout << "Semana desde: " << inicioSemana.toString();
+                cout << "Semana desde: " << inicioSemana.getDia()<<"/"<<inicioSemana.getMes()<<"/"<<inicioSemana.getAnio();
                 rlutil::setColor(rlutil::WHITE);
             }
 
@@ -877,7 +880,7 @@ void TurnoManager::TurnosDeLaSemana() { //Miguel
             rlutil::locate(45, fila++);
             cout << "ID Medico: " << lista[i].getIDMedico();
             rlutil::locate(45, fila++);
-            cout << "Fecha: " << lista[i].getFechaTurno().toString();
+            cout << "Fecha: " << lista[i].getFechaTurno().getDia()<<"/"<<lista[i].getFechaTurno().getMes()<<"/"<<lista[i].getFechaTurno().getAnio();
             rlutil::locate(45, fila++);
             cout << "Hora: " << lista[i].getHoraTurno().toString();
             rlutil::locate(45, fila++);
@@ -1044,7 +1047,7 @@ void TurnoManager::CantidadTurnosNoAsistidos(){ //vero -recep
     rlutil::cls();
 }
 
-void TurnoManager::HistorialTurnosAtendidos(int idMedico) { //vero (medico)
+void TurnoManager::HistorialTurnosAtendidos(int idMedico) { //vero medico
     int cantidad = _archivo.getCantidadRegistros();
     if (cantidad == 0) {
         rlutil::cls();
@@ -1065,20 +1068,36 @@ void TurnoManager::HistorialTurnosAtendidos(int idMedico) { //vero (medico)
     cout << "HISTORIAL DE TURNOS ATENDIDOS";
     rlutil::setColor(rlutil::WHITE);
 
-    int encontrados = 0, fila=4, pantalla=0;
+    int encontrados = 0, fila=4;
     for (int i = 0; i < cantidad; i++) {
         if (turnos[i].getIDMedico() == idMedico && turnos[i].getEstado() == 5) {
             rlutil::locate(30, fila++);
             cout << "--------------------------------------------" << endl;
-            turnos[i].mostrarTurno(fila);
-            fila+=8;
-            pantalla++;
+            rlutil::locate(32, fila++);
+            cout << "ID Turno: " << turnos[i].getIDTurno();
+            rlutil::locate(32, fila++);
+            cout << "ID Paciente: " << turnos[i].getIDPaciente();
+            rlutil::locate(32, fila++);
+            cout << "ID Medico: " << turnos[i].getIDMedico();
+
+            rlutil::locate(32, fila++);
+            cout << "Fecha: " << turnos[i].getFechaTurno().getDia()<<"/"<<turnos[i].getFechaTurno().getMes()<<"/"<<turnos[i].getFechaTurno().getAnio();
+
+            rlutil::locate(32, fila++);
+            cout << "Hora: " << turnos[i].getHoraTurno().toString();
+
+            rlutil::locate(32, fila++);
+            cout << "ID Especialidad: " << turnos[i].getEspecialidad();
+
+            rlutil::locate(32, fila++);
+            cout << "Estado: "<<"Asistido";
+
             encontrados++;
 
-            if (pantalla == 4) {
-                rlutil::locate(30, fila + 1);
+            if(fila>=20){
+                rlutil::locate(40, fila + 2);
                 rlutil::setColor(rlutil::YELLOW);
-                cout << "Presione una tecla para ver más turnos...";
+                cout << "Presione una tecla para continuar...";
                 rlutil::setColor(rlutil::WHITE);
                 rlutil::anykey();
                 rlutil::cls();
@@ -1087,7 +1106,6 @@ void TurnoManager::HistorialTurnosAtendidos(int idMedico) { //vero (medico)
                 cout << "HISTORIAL DE TURNOS ATENDIDOS";
                 rlutil::setColor(rlutil::WHITE);
                 fila = 4;
-                pantalla = 0;
             }
         }
     }

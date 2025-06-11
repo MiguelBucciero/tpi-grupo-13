@@ -10,13 +10,8 @@ public:
     bool guardar(Usuario registro, int posicion);
     int Buscar(const char* nombreUsuario);
     Usuario Leer(int posicion);
-    void Leer(int cantidadRegistros, Usuario *vector);
     int getCantidadRegistros();
-    bool esUsuarioActivo(const char* nombreUsuario);
     bool leerMuchos(Usuario reg[], int cantidad);
-    ///por ahora dejo estos porque creo que no se usan.
-    //void CargarYguardar();
-    //int getNuevoID();
 
 private:
     std::string _nombreArchivo;

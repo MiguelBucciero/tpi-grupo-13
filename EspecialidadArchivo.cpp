@@ -82,17 +82,6 @@ int EspecialidadArchivo::getCantidadRegistros(){
 
     return cantidadRegistros;
 }
-///por ahora no vi que lo usemos
-/*void EspecialidadArchivo::Leer(int cantidadRegistros, Especialidad *vector){
-    FILE *pArchivo = fopen(_nombreArchivo.c_str(), "rb");
-    if(pArchivo == NULL){
-        return;
-    }
-    for(int i = 0; i < cantidadRegistros; i++){
-        fread(&vector[i], sizeof(Especialidad), 1, pArchivo);
-    }
-    fclose(pArchivo);
-}*/
 
 bool EspecialidadArchivo::leerMuchos(Especialidad reg[], int cantidad){
     FILE *pArchivo;
@@ -125,17 +114,4 @@ bool EspecialidadArchivo::esEspecialidadValida(int idEspecialidad){
     Especialidad esp=Leer(pos);
     //devuelve true=activado, false=no activado
     return esp.getEstado();
-}
-
-int EspecialidadArchivo::IDdisponible(){
-    int cantidad=getCantidadRegistros();
-    Especialidad registro;
-
-    for(int i=0; i<cantidad; i++){
-        registro=Leer(i);
-        if(!registro.getEstado()){ //si la especialidad esta inactiva
-            return registro.getIDEspecialidad();
-        }
-    }
-    return getNuevoID();
 }

@@ -90,7 +90,7 @@ int MedicoManager::cargarMedico() {
     rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Domicilio: ";
 
-    rlutil::locate(32, 15);
+    rlutil::locate(30, 15);
     rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Calle: ";
     rlutil::setColor(rlutil::COLOR::WHITE);
@@ -98,7 +98,7 @@ int MedicoManager::cargarMedico() {
     getline(cin, aux);
     domicilio.setCalle(aux);
 
-    rlutil::locate(32, 16);
+    rlutil::locate(30, 16);
     rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Altura: ";
     rlutil::setColor(rlutil::COLOR::WHITE);
@@ -107,7 +107,7 @@ int MedicoManager::cargarMedico() {
     domicilio.setAltura(altura);
     cin.ignore();
 
-    rlutil::locate(32, 17);
+    rlutil::locate(30, 17);
     rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Localidad: ";
     rlutil::setColor(rlutil::COLOR::WHITE);
@@ -115,7 +115,7 @@ int MedicoManager::cargarMedico() {
     getline(cin, aux);
     domicilio.setLocalidad(aux);
 
-    rlutil::locate(32, 18);
+    rlutil::locate(30, 18);
     rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Provincia: ";
     rlutil::setColor(rlutil::COLOR::WHITE);
@@ -123,7 +123,7 @@ int MedicoManager::cargarMedico() {
     getline(cin, aux);
     domicilio.setProvincia(aux);
 
-    rlutil::locate(32, 19);
+    rlutil::locate(30, 19);
     rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Codigo Postal: ";
     rlutil::setColor(rlutil::COLOR::WHITE);
@@ -138,6 +138,7 @@ int MedicoManager::cargarMedico() {
     rlutil::locate(30, 20);
     rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "ID asignado: ";
+    rlutil::locate(45, 20);
     rlutil::setColor(rlutil::COLOR::WHITE);
     cout << id;
 
@@ -186,6 +187,7 @@ void MedicoManager::mostrarMedico() {
         cout << "No hay medicos cargados.";
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::anykey();
+        rlutil::cls();
         return;
     }
 
@@ -204,7 +206,7 @@ void MedicoManager::mostrarMedico() {
 
             rlutil::locate(30, fila);
             cout << "------------------------------------------------------------";
-            rlutil::locate(30, fila + 13);
+            rlutil::locate(30, fila + 18);
             cout << "------------------------------------------------------------";
 
             rlutil::locate(32, fila + 1);
@@ -227,7 +229,7 @@ void MedicoManager::mostrarMedico() {
             rlutil::setColor(rlutil::COLOR::CYAN);
             cout << "Fecha de nacimiento: ";
             rlutil::setColor(rlutil::COLOR::WHITE);
-            cout << vecMedico[i].getFechaNacimiento().toString();
+            cout<<vecMedico[i].getFechaNacimiento().getDia()<<"/"<<vecMedico[i].getFechaNacimiento().getMes()<<"/"<<vecMedico[i].getFechaNacimiento().getAnio();
 
             rlutil::locate(32, fila + 5);
             rlutil::setColor(rlutil::COLOR::CYAN);
@@ -247,21 +249,54 @@ void MedicoManager::mostrarMedico() {
 
             rlutil::locate(32, fila + 8);
             rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Domicilio: ";
+
+            rlutil::locate(32, fila + 9);
+            cout << "Calle: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getDomicilioCompleto().getCalle();
+
+            rlutil::locate(32, fila + 10);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Altura: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getDomicilioCompleto().getAltura();
+
+            rlutil::locate(32, fila + 11);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Localidad: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getDomicilioCompleto().getLocalidad();
+
+            rlutil::locate(32, fila + 12);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Provincia: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getDomicilioCompleto().getProvincia();
+
+            rlutil::locate(32, fila + 13);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Codifgo Postal: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << vecMedico[i].getDomicilioCompleto().getCodigoPostal();
+
+            rlutil::locate(32, fila + 14);
+            rlutil::setColor(rlutil::COLOR::CYAN);
             cout << "Matricula: ";
             rlutil::setColor(rlutil::COLOR::WHITE);
             cout << vecMedico[i].getMatricula();
-            rlutil::locate(32, fila + 9);
+            rlutil::locate(32, fila + 15);
             rlutil::setColor(rlutil::COLOR::CYAN);
             cout << "ID Especialidad: ";
             rlutil::setColor(rlutil::COLOR::WHITE);
             cout << vecMedico[i].getIDEspecialidad();
-            rlutil::locate(32, fila + 10);
+            rlutil::locate(32, fila + 16);
             rlutil::setColor(rlutil::COLOR::CYAN);
             cout << "ID Medico: ";
             rlutil::setColor(rlutil::COLOR::WHITE);
             cout << vecMedico[i].getIDMedico();
 
-            rlutil::locate(32, fila + 11);
+            rlutil::locate(32, fila + 17);
             rlutil::setColor(rlutil::COLOR::CYAN);
             cout << "Estado: ";
             rlutil::setColor(rlutil::COLOR::WHITE);
@@ -271,7 +306,7 @@ void MedicoManager::mostrarMedico() {
                 cout<<"Inactivo"<<endl;
             }
 
-            rlutil::locate(32, fila + 14);
+            rlutil::locate(32, fila + 19);
             rlutil::setColor(rlutil::COLOR::YELLOW);
             cout << "Presione una tecla para ver el siguiente medico...";
             rlutil::setColor(rlutil::COLOR::WHITE);
@@ -429,7 +464,7 @@ void MedicoManager::verTurnosAsignados(int idMedico) {
             rlutil::locate(32, fila++);
             cout << "ID Medico: " << t.getIDMedico();
             rlutil::locate(32, fila++);
-            cout << "Fecha: " << t.getFechaTurno().toString();
+            cout << "Fecha: " << t.getFechaTurno().getDia()<<"/"<<t.getFechaTurno().getMes()<<"/"<<t.getFechaTurno().getAnio();
             rlutil::locate(32, fila++);
             cout << "Hora: " << t.getHoraTurno().toString();
             rlutil::locate(32, fila++);

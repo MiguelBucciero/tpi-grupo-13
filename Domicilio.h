@@ -21,10 +21,6 @@ public:
     void setProvincia(const std::string &provincia);
     void setCodigoPostal(const std::string &cpostal);
 
-    //Metedos
-    void cargarDomicilio();
-    void mostrarDomicilio(int columna, int filaBase);
-
 private:
     char _calle [30];
     int _altura;

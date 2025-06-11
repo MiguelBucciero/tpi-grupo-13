@@ -19,16 +19,11 @@ public:
     void setAnio(int valor);
 
     // Métodos
-    void cargarFecha();
-    void cargarFecha(int dia, int mes, int anio);
-    void mostrarFecha();
     bool esIgual(Fecha &otra);
     void obtenerFechaActual();
     void obtenerInicioDeSemana();
     bool esAnterior(Fecha &otra);
 
-
-    std::string toString();
 private:
     int _dia;
     int _mes;
