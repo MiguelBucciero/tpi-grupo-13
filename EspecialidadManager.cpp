@@ -72,6 +72,8 @@ void EspecialidadManager::mostrarEspecialidad() {
     rlutil::setColor(rlutil::COLOR::WHITE);
 
     int fila = 5;
+    int mostrar=0;
+    //este for recorre todas las especialidades.
     for (int i = 0; i < cantidad; i++) {
         if (vecEspecialidad[i].getEstado()) {
             rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
@@ -93,20 +95,40 @@ void EspecialidadManager::mostrarEspecialidad() {
             cout << vecEspecialidad[i].getNombre();
 
             fila += 5;
-            if (fila > 20) {
+            mostrar++;
+
+            if (fila > 20) { //verificar si hay mas despues de activar las inactivas y mostrar el mensaje si hay mas
+                bool hayMas=false;
+                //este for chequea si hay mas especialidades activas despues de la actual.
+                for (int j=i+1; j<cantidad; j++) { //i+1=despues de la actual posicion (i), si hay otra espe mas
+                    if (vecEspecialidad[j].getEstado()) {
+                        hayMas=true;
+                        break;
+                    }
+                }
+            if(hayMas){
+                rlutil::locate(40, fila);
+                rlutil::setColor(rlutil::YELLOW);
+                cout << "Presione una tecla para ver mas especialidades...";
+                rlutil::setColor(rlutil::WHITE);
                 rlutil::anykey();
                 rlutil::cls();
                 rlutil::setColor(rlutil::COLOR::YELLOW);
                 rlutil::locate(45, 3);
-                cout << " CONTINUACION DE ESPECIALIDADES ";
+                cout << " LISTADO DE ESPECIALIDADES ";
                 rlutil::setColor(rlutil::COLOR::WHITE);
                 fila = 5;
+            }
             }
         }
     }
 
     delete[] vecEspecialidad;
 
+    rlutil::locate(40, fila);
+    rlutil::setColor(rlutil::GREEN);
+    cout << "Fin del listado. Presione una tecla para continuar...";
+    rlutil::setColor(rlutil::WHITE);
     rlutil::anykey();
     rlutil::cls();
 }
@@ -230,6 +252,93 @@ void EspecialidadManager::ModificarEspecialidad(){
         rlutil::setColor(rlutil::COLOR::RED);
         cout << "Error: no se pudo modificar la especialidad.";
     }
+    rlutil::setColor(rlutil::COLOR::WHITE);
+
+    rlutil::anykey();
+    rlutil::cls();
+}
+
+void EspecialidadManager::ReactivarEspecialidadInactiva(){
+    int cantidad=_archivo.getCantidadRegistros();
+    bool NoActivo=false;
+    int fila=4;
+
+    rlutil::cls();
+    rlutil::setColor(rlutil::COLOR::YELLOW);
+    rlutil::locate(40, 2);
+    cout << " ESPECIALIDADES INACTIVAS ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+
+    Especialidad especialidad;
+    for(int i=0; i<cantidad; i++){
+        especialidad=_archivo.Leer(i);
+        if(especialidad.getEstado()==false){
+            rlutil::locate(30, fila++);
+            cout<<"(ID: "<<especialidad.getIDEspecialidad()<<") - Nombre: "<<especialidad.getNombre();
+            NoActivo=true;
+        }
+    }
+
+    if(!NoActivo){
+        rlutil::locate(37, fila + 8);
+        rlutil::setColor(rlutil::COLOR::RED);
+        cout<<"No hay especialidades inactivas";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::anykey();
+        return;
+    }
+
+    rlutil::locate(30, fila + 2);
+    rlutil::setColor(rlutil::COLOR::CYAN);
+    cout<<"Desea activar alguna especialidad? (s/n) ";
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    char confirmacion;
+    cin >> confirmacion;
+
+
+    if (confirmacion == 's' || confirmacion == 'S') {
+        rlutil::locate(30, fila + 4);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout<<"Que especialidad desea activar?";
+        rlutil::locate(31, fila + 5);
+        cout<<"ID: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        int id;
+        cin>>id;
+
+        int pos=_archivo.Buscar(id);
+        if(pos==-1){
+            rlutil::locate(35, fila + 6);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout<<"ID de especialidad no encontrada";
+        }else{
+            especialidad=_archivo.Leer(pos);
+            if(especialidad.getEstado()==true){
+                rlutil::locate(35, fila + 6);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout<<"La especialidad ya esta activada";
+            }else{
+                especialidad.setEstado(true);
+                if(_archivo.guardar(especialidad, pos)){
+                    rlutil::locate(35, fila + 6);
+                    rlutil::setColor(rlutil::COLOR::GREEN);
+                    cout<<"Especialidad activada correctamente";
+                }else{
+                    rlutil::locate(35, fila + 6);
+                    rlutil::setColor(rlutil::COLOR::RED);
+                    cout<<"Error al guardar la especialidad";
+                }
+            }
+        }
+    } else {
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(35, 11);
+            cout << "Accion cancelada.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::cls();
+            return;
+        }
     rlutil::setColor(rlutil::COLOR::WHITE);
 
     rlutil::anykey();

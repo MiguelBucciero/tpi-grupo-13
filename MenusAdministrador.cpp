@@ -38,10 +38,11 @@ int MenuAdministrador::menuAdministrador() {
         showItem(" 7. MODIFICAR ESPECIALIDAD ", 50, 11, y==6);
         showItem(" 8. ELIMINAR ESPECIALIDAD ", 50, 12, y==7);
         showItem(" 9. LISTAR ESPECIALIDAD ", 50, 13, y==8);
-        showItem(" 10. MODIFICAR MEDICO ", 50, 14, y==9);
-        showItem(" 11. ELIMINAR MEDICO ", 50, 15, y==10);
-        showItem(" 12. LISTAR MEDICOS ", 50, 16, y==11);
-        showItem(" 0. CERRAR SESION  ", 50, 17, y==12);
+        showItem(" 10. REACTIVAR ESPECIALIDAD ", 50, 14, y==9);
+        showItem(" 11. MODIFICAR MEDICO ", 50, 15, y==10);
+        showItem(" 12. ELIMINAR MEDICO ", 50, 16, y==11);
+        showItem(" 13. LISTAR MEDICOS ", 50, 17, y==12);
+        showItem(" 0. CERRAR SESION  ", 50, 18, y==13);
         rlutil::locate(48, 5 + y);
         cout<<(char)175;
 
@@ -58,8 +59,8 @@ int MenuAdministrador::menuAdministrador() {
                 rlutil::locate(48, 5 + y);
                 cout<<" "<<endl;
                 y++;
-                if(y>12){
-                    y=12;
+                if(y>13){
+                    y=13;
                 }
             break;
             case 1: //ENTER
@@ -92,18 +93,21 @@ int MenuAdministrador::menuAdministrador() {
                     _espManager.mostrarEspecialidad();
                     break;
                 case 9:
-                    _medicoManger.modificarMedico();
+                    _espManager.ReactivarEspecialidadInactiva();
                     break;
                 case 10:
-                    _medicoManger.DarBajaMedico();
+                    _medicoManger.modificarMedico();
                     break;
                 case 11:
-                    _medicoManger.mostrarMedico();
+                    _medicoManger.DarBajaMedico();
                     break;
                 case 12:
+                    _medicoManger.mostrarMedico();
+                    break;
+                case 13:
                     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
                     rlutil::setColor(rlutil::COLOR::YELLOW);
-                    rlutil::locate(50, 12);
+                    rlutil::locate(50, 13);
                     cout << "Cerrando sesion..." << endl;
                     rlutil::setColor(rlutil::COLOR::WHITE);
                     rlutil::anykey();
