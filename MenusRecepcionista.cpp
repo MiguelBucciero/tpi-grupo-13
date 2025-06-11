@@ -78,7 +78,7 @@ int MenuRecepcionista::menuRecepcionista() {
                 _pacienteManager.mostrarPaciente();
                     break;
             case 2:
-///                _pacienteManager.modificarPaciente();
+               _pacienteManager.modificarPaciente();
                     break;
             case 3:
                 _pacienteManager.DarBajaPaciente();
