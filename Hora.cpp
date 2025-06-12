@@ -43,27 +43,6 @@ void Hora::setMinutos(int minutos) {
 }
 
 // Métodos
-void Hora::mostrarHora() {
-    cout << toString() << std::endl;
-}
-string Hora::toString() {
-    string h, m;
-
-    if (_hora < 10) {
-        h = "0" + to_string(_hora);
-    } else {
-        h = to_string(_hora);
-    }
-
-    if (_minutos < 10) {
-        m = "0" + to_string(_minutos);
-    } else {
-        m = to_string(_minutos);
-    }
-
-    return h + ":" + m + " hs.";
-}
-
 bool Hora::esIgual(Hora &otra){
     return (_hora==otra.getHora()&&_minutos==otra.getMinutos());
 }

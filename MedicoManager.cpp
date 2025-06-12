@@ -443,6 +443,7 @@ void MedicoManager::verTurnosAsignados(int idMedico) {
     int cantidad = archivo.getCantidadRegistros();
     bool hayTurnos = false;
     int fila = 4;
+    string h, m;
 
     rlutil::cls();
     rlutil::setColor(rlutil::COLOR::YELLOW);
@@ -466,7 +467,19 @@ void MedicoManager::verTurnosAsignados(int idMedico) {
             rlutil::locate(32, fila++);
             cout << "Fecha: " << t.getFechaTurno().getDia()<<"/"<<t.getFechaTurno().getMes()<<"/"<<t.getFechaTurno().getAnio();
             rlutil::locate(32, fila++);
-            cout << "Hora: " << t.getHoraTurno().toString();
+            cout << "Hora: ";//t.getHoraTurno().toString();
+            if (t.getHoraTurno().getHora() < 10) {
+                    h = "0" + to_string(t.getHoraTurno().getHora());
+                } else {
+                    h = to_string(t.getHoraTurno().getHora());
+                }
+
+                if (t.getHoraTurno().getMinutos() < 10) {
+                    m = "0" + to_string(t.getHoraTurno().getMinutos());
+                } else {
+                    m = to_string(t.getHoraTurno().getMinutos());
+                }
+            cout<<h + ":" + m + " hs.";
             rlutil::locate(32, fila++);
             cout << "ID Especialidad: " << t.getEspecialidad();
             rlutil::locate(32, fila++);
