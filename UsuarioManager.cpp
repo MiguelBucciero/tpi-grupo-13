@@ -527,3 +527,145 @@ void UsuarioManager::CantidadUsuariosActivos(){
     rlutil::anykey();
     rlutil::cls();
 }
+
+void UsuarioManager::reactivarUsuario(){
+
+    int contador, fila, cantidad, posicion, contadorInactivos;
+    char confirmacion;
+
+    cantidad = _archivo.getCantidadRegistros();
+    if (cantidad == 0) {
+        rlutil::cls();
+        rlutil::locate(40, 10);
+        rlutil::setColor(rlutil::RED);
+        cout << "No hay usuarios cargados." << endl;
+        rlutil::setColor(rlutil::WHITE);
+        rlutil::anykey();
+        rlutil::cls();
+        return;
+    }
+
+    Usuario* vecUsuarios = new Usuario[cantidad];
+    _archivo.leerMuchos(vecUsuarios, cantidad);
+
+    contadorInactivos = 0;
+    for(int x = 0; x < cantidad; x++){
+        if(vecUsuarios[x].getEstado()==false){
+            contadorInactivos++;
+        }
+    }
+
+    if(contadorInactivos==0){
+        delete[] vecUsuarios;
+        rlutil::locate(40, 9);
+        rlutil::setColor(rlutil::COLOR::RED);
+        cout<<"No hay usuarios inactivos...";
+         rlutil::locate(40, 11);
+        rlutil::setColor(rlutil::COLOR::GREEN);
+        cout << "Presione una tecla para continuar...";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::anykey();
+        rlutil::cls();
+        return;
+    }
+
+    contador = 0;
+    fila = 4;
+    for (int i = 0; i < cantidad; i++) {
+
+        if(vecUsuarios[i].getEstado()==false){
+
+            rlutil::cls();
+            rlutil::setColor(rlutil::YELLOW);
+            rlutil::locate(45, 2);
+            cout << " LISTADO DE USUARIOS INACTIVOS ";
+            rlutil::setColor(rlutil::WHITE);
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(50, 3);
+            cout << " USUARIOS " << (contador + 1) << " DE " << contadorInactivos;
+            rlutil::setColor(rlutil::COLOR::WHITE);
+
+            rlutil::setBackgroundColor(rlutil::BLACK);
+            rlutil::locate(30, fila);
+            cout << "------------------------------------------------------------";
+            rlutil::locate(30, fila + 7);
+            cout << "------------------------------------------------------------";
+
+            rlutil::locate(32, fila + 1);
+            rlutil::setColor(rlutil::CYAN);
+            cout << "Usuario: ";
+            rlutil::setColor(rlutil::WHITE);
+            cout << vecUsuarios[i].getNombreUsuario();
+
+            rlutil::locate(32, fila + 2);
+            rlutil::setColor(rlutil::CYAN);
+            cout << "Contrasenia: ";
+            rlutil::setColor(rlutil::WHITE);
+            cout << vecUsuarios[i].getContrasenia();
+
+            rlutil::locate(32, fila + 3);
+            rlutil::setColor(rlutil::CYAN);
+            cout << "Rol: ";
+            rlutil::setColor(rlutil::WHITE);
+
+            if (vecUsuarios[i].getRol().getRol() < 0) {
+                cout << "Administrador";
+            } else if (vecUsuarios[i].getRol().getRol() == 0) {
+                cout << "Recepcionista";
+            } else {
+                cout << "Medico";
+                rlutil::locate(32, fila + 4);
+                rlutil::setColor(rlutil::CYAN);
+                cout << "ID Medico: ";
+                rlutil::setColor(rlutil::WHITE);
+                cout << vecUsuarios[i].getIDMedico();
+            }
+
+            rlutil::locate(32, fila + 5);
+            rlutil::setColor(rlutil::COLOR::GREEN);
+            cout<<"DESEA ACTIVAR EL USUARIO? (s/n): ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            cin >> confirmacion;
+
+            if (confirmacion == 's' || confirmacion == 'S') {
+                vecUsuarios[i].setEstado(true);
+                posicion = _archivo.Buscar(vecUsuarios[i].getNombreUsuario());
+                if(_archivo.guardar(vecUsuarios[i], posicion)){
+                        rlutil::locate(32, fila + 6);
+                        rlutil::setColor(rlutil::COLOR::GREEN);
+                        cout<<"Paciente activado correctamente.";
+                    }else{
+                        rlutil::locate(32, fila + 6);
+                        rlutil::setColor(rlutil::COLOR::RED);
+                        cout<<"Error al guardar el paciente.";
+                    }
+                }else{
+                    rlutil::setColor(rlutil::COLOR::YELLOW);
+                    rlutil::locate(32,fila + 6);
+                    cout << "Accion cancelada.";
+                    rlutil::setColor(rlutil::COLOR::WHITE);
+                }
+
+                if(contador +1 == contadorInactivos){
+                    delete[] vecUsuarios;
+                    rlutil::locate(40, fila+8);
+                    rlutil::setColor(rlutil::YELLOW);
+                    cout << "Fin del listado. Presione una tecla para volver...";
+                    rlutil::setColor(rlutil::WHITE);
+                    rlutil::anykey();
+                    rlutil::cls();
+                }
+                else{
+                    rlutil::locate(40, fila+8);
+                    rlutil::setColor(rlutil::YELLOW);
+                    cout << "Presione una tecla para ver mas usuarios...";
+                    rlutil::setColor(rlutil::WHITE);
+                    rlutil::anykey();
+                    rlutil::cls();
+                }
+
+                contador++;
+        }
+    }
+
+}

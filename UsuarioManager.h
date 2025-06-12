@@ -10,6 +10,7 @@ public:
     void DarBajaUsuario();
     void modificarUsuario();
     void CantidadUsuariosActivos();
+    void reactivarUsuario();
 
 private:
     UsuarioArchivo _archivo;

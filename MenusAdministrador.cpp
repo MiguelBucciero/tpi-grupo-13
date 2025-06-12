@@ -32,17 +32,18 @@ int MenuAdministrador::menuAdministrador() {
         showItem(" 1. CARGAR NUEVO USUARIO ", 50, 5, y==0);
         showItem(" 2. MODIFICAR USUARIO ", 50, 6, y==1) ;
         showItem(" 3. ELIMINAR USUARIO ", 50, 7, y==2);
-        showItem(" 4. LISTAR USUARIOS ", 50, 8, y==3);
-        showItem(" 5. INFORMES ", 50, 9, y==4);
-        showItem(" 6. CARGAR ESPECIALIDAD ", 50, 10, y==5);
-        showItem(" 7. MODIFICAR ESPECIALIDAD ", 50, 11, y==6);
-        showItem(" 8. ELIMINAR ESPECIALIDAD ", 50, 12, y==7);
-        showItem(" 9. LISTAR ESPECIALIDAD ", 50, 13, y==8);
-        showItem(" 10. REACTIVAR ESPECIALIDAD ", 50, 14, y==9);
-        showItem(" 11. MODIFICAR MEDICO ", 50, 15, y==10);
-        showItem(" 12. ELIMINAR MEDICO ", 50, 16, y==11);
-        showItem(" 13. LISTAR MEDICOS ", 50, 17, y==12);
-        showItem(" 0. CERRAR SESION  ", 50, 18, y==13);
+        showItem(" 4. REACTIVAR USUARIO ", 50, 8, y==3);
+        showItem(" 5. LISTAR USUARIOS ", 50, 9, y==4);
+        showItem(" 6. INFORMES ", 50, 10, y==5);
+        showItem(" 7. CARGAR ESPECIALIDAD ", 50, 11, y==6);
+        showItem(" 8. MODIFICAR ESPECIALIDAD ", 50, 12, y==7);
+        showItem(" 9. ELIMINAR ESPECIALIDAD ", 50, 13, y==8);
+        showItem(" 10. LISTAR ESPECIALIDAD ", 50, 14, y==9);
+        showItem(" 11. REACTIVAR ESPECIALIDAD ", 50, 15, y==10);
+        showItem(" 12. MODIFICAR MEDICO ", 50, 16, y==11);
+        showItem(" 13. ELIMINAR MEDICO ", 50, 17, y==12);
+        showItem(" 14. LISTAR MEDICOS ", 50, 18, y==13);
+        showItem(" 0. CERRAR SESION  ", 50, 19, y==14);
         rlutil::locate(48, 5 + y);
         cout<<(char)175;
 
@@ -59,8 +60,8 @@ int MenuAdministrador::menuAdministrador() {
                 rlutil::locate(48, 5 + y);
                 cout<<" "<<endl;
                 y++;
-                if(y>13){
-                    y=13;
+                if(y>14){
+                    y=14;
                 }
             break;
             case 1: //ENTER
@@ -74,37 +75,40 @@ int MenuAdministrador::menuAdministrador() {
                 case 2:
                     _usuarioManager.DarBajaUsuario();
                     break;
-                case 3: _usuarioManager.mostrarUsuario();
+                case 3:
+                    _usuarioManager.reactivarUsuario();
                     break;
-                case 4:
+                case 4: _usuarioManager.mostrarUsuario();
+                    break;
+                case 5:
                     salir = menuInformesAdministrador();
                     if(salir != 0){
                         rlutil::anykey();
                     }
                     break;
-                case 5:
+                case 6:
                    _espManager.cargarEspecialidad();
                     break;
-                case 6: _espManager.ModificarEspecialidad();
+                case 7: _espManager.ModificarEspecialidad();
                     break;
-                case 7: _espManager.DarBajaEspecialidad();
-                    break;
-                case 8:
-                    _espManager.mostrarEspecialidad();
+                case 8: _espManager.DarBajaEspecialidad();
                     break;
                 case 9:
-                    _espManager.ReactivarEspecialidadInactiva();
+                    _espManager.mostrarEspecialidad();
                     break;
                 case 10:
-                    _medicoManger.modificarMedico();
+                    _espManager.ReactivarEspecialidadInactiva();
                     break;
                 case 11:
-                    _medicoManger.DarBajaMedico();
+                    _medicoManger.modificarMedico();
                     break;
                 case 12:
-                    _medicoManger.mostrarMedico();
+                    _medicoManger.DarBajaMedico();
                     break;
                 case 13:
+                    _medicoManger.mostrarMedico();
+                    break;
+                case 14:
                     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
                     rlutil::setColor(rlutil::COLOR::YELLOW);
                     rlutil::locate(50, 13);
