@@ -47,7 +47,6 @@ int Usuario::getIDMedico(){
 }
 
 //Setters
-
 void Usuario::setNombreUsuario (const char* valor){
     //asi que arreglo no se rompe.
     strncpy(_nombreUsuario, valor, 49);

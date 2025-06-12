@@ -101,23 +101,38 @@ void UsuarioManager::cargarUsuario(){
 
     rlutil::locate(35, 5);
     rlutil::setColor(rlutil::CYAN);
-    cout << "Contrasenia: ";
+    cout << "Contrasenia (minimo 6 caracteres): ";
     rlutil::setColor(rlutil::WHITE);
-    rlutil::locate(55, 5);
-    cin.getline(contrasenia, 50);
 
-    rlutil::locate(35, 6);
+    do{
+        rlutil::locate(71, 5);
+        cout<<"                                                    "; //limpia para que vuelva a escribir
+        rlutil::locate(71, 5);
+        cin.getline(contrasenia, 50);
+
+        if(strlen(contrasenia)<6){
+            rlutil::locate(35, 6);
+            rlutil::setColor(rlutil::RED);
+            cout<<"La contrasenia es muy corta. Intente de nuevo.";
+            rlutil::setColor(rlutil::WHITE);
+        }else{
+            rlutil::locate(35, 6);
+            cout<<"                                                    ";//limpia para que se vea los roles.
+        }
+    }while(strlen(contrasenia)<6);
+
+    rlutil::locate(35, 7);
     rlutil::setColor(rlutil::CYAN);
     cout << "Tipo de Rol (-1=Administrador | 0=Recepcionista | 1=Medico): ";
     rlutil::setColor(rlutil::WHITE);
-    rlutil::locate(97, 6);
+    rlutil::locate(97, 7);
     cin >> tipoRol;
     cin.ignore();
 
     // Validación duplicados
     if (VerificarLoginDuplicados(nombre, contrasenia)) {
         rlutil::setColor(rlutil::COLOR::RED);
-        rlutil::locate(35, 8);
+        rlutil::locate(35, 9);
         cout << "Ya existe un usuario con ese nombre y contrasenia.";
         rlutil::setColor(rlutil::WHITE);
         rlutil::anykey();
@@ -171,7 +186,6 @@ void UsuarioManager::cargarUsuario(){
     rlutil::anykey();
     rlutil::cls();
 }
-
 
 void UsuarioManager::mostrarUsuario(){
     int contadorPantalla, fila, cantidad = _archivo.getCantidadRegistros();
@@ -274,7 +288,6 @@ void UsuarioManager::mostrarUsuario(){
     rlutil::cls();
 }
 
-
 void UsuarioManager::DarBajaUsuario(){
     char user[50];
     bool encontrado = false;
@@ -348,7 +361,6 @@ void UsuarioManager::DarBajaUsuario(){
     rlutil::cls();
 }
 
-
 void UsuarioManager::modificarUsuario(){
     char user[50], nuevoNombre[50], nuevaContrasenia[50];;
     char confirmacion;
@@ -421,10 +433,36 @@ void UsuarioManager::modificarUsuario(){
 
         rlutil::setColor(rlutil::COLOR::CYAN);
         rlutil::locate(30, 7);
-        cout << "Nueva contrasenia: ";
+        cout << "Nueva contrasenia (minimo 6 caracteres): ";
         rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::locate(55, 7);
-        cin.getline(nuevaContrasenia, 50);
+
+        do{
+            rlutil::locate(71, 7);
+            cout<<"                                                    "; //limpia para que vuelva a escribir
+            rlutil::locate(71, 7);
+            cin.getline(nuevaContrasenia, 50);
+
+            if(strlen(nuevaContrasenia)<6){
+                rlutil::locate(35, 8);
+                rlutil::setColor(rlutil::RED);
+                cout<<"La contrasenia es muy corta. Intente de nuevo.";
+                rlutil::setColor(rlutil::WHITE);
+            }else{
+                rlutil::locate(35, 8);
+                cout<<"                                                    "; //limpia para que se vea los roles.
+            }
+        }while(strlen(nuevaContrasenia)<6);
+
+        // Validación duplicados
+        if (VerificarLoginDuplicados(nuevoNombre, nuevaContrasenia)) {
+            rlutil::setColor(rlutil::COLOR::RED);
+            rlutil::locate(35, 9);
+            cout << "Ya existe un usuario con ese nombre y contrasenia.";
+            rlutil::setColor(rlutil::WHITE);
+            rlutil::anykey();
+            rlutil::cls();
+            return;
+        }
 
         rlutil::setColor(rlutil::COLOR::CYAN);
         rlutil::locate(30, 8);

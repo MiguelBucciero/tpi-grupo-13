@@ -482,7 +482,7 @@ void TurnoManager::cancelarTurno(){
     rlutil::cls();
 }
 
-void TurnoManager::TurnoNoAsistido(){//Miguel
+void TurnoManager::TurnoNoAsistido(){
     int cantidad = _archivo.getCantidadRegistros();
     bool algunTurnoProcesado = false;
     int fila;
@@ -616,7 +616,7 @@ void TurnoManager::TurnoNoAsistido(){//Miguel
     rlutil::cls();
 }
 
-void TurnoManager::BuscarTurnoEstado(){//Miguel
+void TurnoManager::BuscarTurnoEstado(){
     int estado, cantidad, encontrados, fila, index;
 
     rlutil::cls();
@@ -712,7 +712,7 @@ void TurnoManager::BuscarTurnoEstado(){//Miguel
     rlutil::cls();
 }
 
-void TurnoManager::TurnosDelDia(){//Miguel
+void TurnoManager::TurnosDelDia(){
     int cantidad, mostrados, fila;
     MedicoArchivo medioActivo;
 
@@ -802,7 +802,7 @@ void TurnoManager::TurnosDelDia(){//Miguel
     rlutil::cls();
 }
 
-void TurnoManager::TurnosDeLaSemana() { //Miguel
+void TurnoManager::TurnosDeLaSemana() {
     int cantidad, mostrados, fila;
     MedicoArchivo medioActivo;
 
@@ -909,7 +909,7 @@ void TurnoManager::TurnosDeLaSemana() { //Miguel
     rlutil::cls();
 }
 
-void TurnoManager::CantidadTurnosPorEspecialidad(){ //Miguel
+void TurnoManager::CantidadTurnosPorEspecialidad(){
     EspecialidadArchivo archiEsp;
     int cantidadEsp, cantidadTurno, mostrados, fila;
 
@@ -983,7 +983,7 @@ void TurnoManager::CantidadTurnosPorEspecialidad(){ //Miguel
     rlutil::cls();
 }
 
-void TurnoManager::CantidadTurnosNoAsistidos(){ //vero -recep
+void TurnoManager::CantidadTurnosNoAsistidos(){
     MedicoArchivo archiM;
     int cantidadM=archiM.getCantidadRegistros();
     Medico *medico=new Medico[cantidadM];
@@ -1047,7 +1047,7 @@ void TurnoManager::CantidadTurnosNoAsistidos(){ //vero -recep
     rlutil::cls();
 }
 
-void TurnoManager::HistorialTurnosAtendidos(int idMedico) { //vero medico
+void TurnoManager::HistorialTurnosAtendidos(int idMedico) {
     int cantidad = _archivo.getCantidadRegistros();
     if (cantidad == 0) {
         rlutil::cls();
@@ -1133,7 +1133,7 @@ void TurnoManager::HistorialTurnosAtendidos(int idMedico) { //vero medico
     rlutil::cls();
 }
 
-void TurnoManager::CantidadTurnosReprogramadosMes(){ //vero - (admin)
+void TurnoManager::CantidadTurnosReprogramadosMes(){
     int cantidad=_archivo.getCantidadRegistros();
     int vecMes[12]={}; //numeros meses
     const char* vecMeses[12]={"ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO",
@@ -1170,7 +1170,7 @@ void TurnoManager::CantidadTurnosReprogramadosMes(){ //vero - (admin)
     rlutil::cls();
 }
 
-void TurnoManager::CantidadTurnosPorEspecialidadAdmin(int anio){ //vero - (admin)
+void TurnoManager::CantidadTurnosPorEspecialidadAdmin(int anio){
     EspecialidadArchivo archiEsp;
     int cantidadEsp=archiEsp.getCantidadRegistros();
     Especialidad *especialidades=new Especialidad[cantidadEsp];
@@ -1227,7 +1227,7 @@ void TurnoManager::CantidadTurnosPorEspecialidadAdmin(int anio){ //vero - (admin
     rlutil::cls();
 }
 
-void TurnoManager::buscarTurnosPorFecha(int idMedico) { //vero (medico) -
+void TurnoManager::buscarTurnosPorFecha(int idMedico) {
     int dia, mes, anio;
 
     rlutil::cls();

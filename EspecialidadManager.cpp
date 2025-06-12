@@ -332,7 +332,7 @@ void EspecialidadManager::ReactivarEspecialidadInactiva(){
         }
     } else {
             rlutil::setColor(rlutil::COLOR::YELLOW);
-            rlutil::locate(35, 11);
+            rlutil::locate(35, fila++);
             cout << "Accion cancelada.";
             rlutil::setColor(rlutil::COLOR::WHITE);
             rlutil::anykey();
