@@ -195,7 +195,7 @@ void MedicoManager::mostrarMedico() {
     _archivo.leerMuchos(vecMedico, cantidad);
 
     for (int i = 0; i < cantidad; i++) {
-        if (vecMedico[i].getEstado()) {
+        if (vecMedico[i].getEstado()==true || vecMedico[i].getEstado()==false) {
             rlutil::cls();
             rlutil::setColor(rlutil::COLOR::YELLOW);
             rlutil::locate(45, 2);
@@ -632,7 +632,7 @@ void MedicoManager::modificarMedico(){
         if (!medico.getEstado()) {
             rlutil::setColor(rlutil::COLOR::RED);
             rlutil::locate(30, 8);
-            cout << "El medico está dado de baja. No se puede modificar.";
+            cout << "El medico esta dado de baja. No se puede modificar.";
             rlutil::setColor(rlutil::COLOR::WHITE);
             rlutil::anykey();
             continue;

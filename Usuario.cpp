@@ -45,8 +45,8 @@ return _estado;
 int Usuario::getIDMedico(){
     return _IDMedico;
 }
-//Setters
 
+//Setters
 
 void Usuario::setNombreUsuario (const char* valor){
     //asi que arreglo no se rompe.
@@ -61,11 +61,11 @@ void Usuario::setContrasenia (const char* valor){
 }
 
 void Usuario::setTipoRol (Rol valor){
-_tipoRol=valor;
+    _tipoRol=valor;
 }
 
 void Usuario::setEstado (bool valor){
-_estado=valor;
+    _estado=valor;
 }
 
 void Usuario::setIDMedico(int valor){

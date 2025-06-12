@@ -7,6 +7,7 @@ public:
     void mostrarPaciente();
     void DarBajaPaciente();
     void modificarPaciente();
+    void reactivarPaciente();
 private:
     PacienteArchivo _archivo;
 };
