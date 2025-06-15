@@ -58,7 +58,7 @@ int MenuMedico::menuMedico(Usuario usuarioLogeado){
                 case 1:  {
                     int idMedico=usuarioLogeado.getIDMedico();
                     _turnoManger.buscarTurnosPorFecha(idMedico); ///Nahuel
-                   }                                         ///vero: rlutil, en proceso
+                   }
                     break;
                 case 2:{
                     int idMedico= usuarioLogeado.getIDMedico();
