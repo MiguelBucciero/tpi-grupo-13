@@ -125,7 +125,7 @@ bool TurnoArchivo::existeTurno(int idMedico, Fecha fecha, Hora hora){
 
     Turno turno;
     while(fread(&turno, sizeof(Turno), 1, pArchivo)){
-        if(turno.getIDMedico()==idMedico&&turno.getFechaTurno().esIgual(fecha)&&turno.getHoraTurno().esIgual(hora)&&turno.getEstado()==1){
+        if(turno.getIDMedico()==idMedico&&turno.getFechaTurno().esIgual(fecha)&&turno.getHoraTurno().esIgual(hora)&&(turno.getEstado()==1 || turno.getEstado()==3)){
             fclose(pArchivo);
             return true; //existe un turno para medico, con la misma fecha y hora.
         }

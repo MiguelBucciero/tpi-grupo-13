@@ -27,7 +27,10 @@ void TurnoManager::cargarTurno(){
     Hora hora;
     char opcion;
 
+
+        opcion='s';
     turno.setIDTurno(_archivo.getNuevoID());
+    while(opcion=='S' || opcion=='s'){
     //validacion de paciente
     do {
         rlutil::cls();
@@ -57,6 +60,8 @@ void TurnoManager::cargarTurno(){
     turno.setIDPaciente(idPaciente);
 
     //validacion de la fecha
+
+
     do {
         rlutil::locate(30, fila+3);
         cout << "Fecha del turno - Dia: ";
@@ -151,6 +156,7 @@ void TurnoManager::cargarTurno(){
                     cout<<"Medico disponible: "<<medico.getApellido()<<", "<<medico.getNombre()<<" (ID: "<<medico.getIDMedico()<<") "<<endl;
                     fila++;
                     hayMedico=true;
+                    opcion = 'n';
                 }
             }
         }
@@ -166,11 +172,12 @@ void TurnoManager::cargarTurno(){
                 rlutil::locate(30, fila+13);
                 cout << "Cancelando carga de turno.";
                 rlutil::anykey();
-                //break;//return;
-            }
-            rlutil::cls();
+                            rlutil::cls();
             return; //salir de la funcion si no hay medicos disponibles
+            }
+
         }
+    };
 
     //seleccion de medico
     bool idValido=false;
