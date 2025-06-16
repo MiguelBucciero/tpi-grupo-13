@@ -29,10 +29,6 @@ public:
     void setTelefono(const std::string &telefono);
     void setDomicilio(const Domicilio &domicilio);
 
-    // Métodos
-    void cargarDatos();
-    void mostrarDatos();
-
 private:
     char _apellido[50];
     char _nombre[50];

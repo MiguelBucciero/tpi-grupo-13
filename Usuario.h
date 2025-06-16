@@ -8,18 +8,14 @@ public:
     Usuario(std::string nombre, std::string contrasenia, Rol tipoRol, bool estado, int IDMedico);
 
     // Getters
-    //const char* getNombreUsuario();
     const std::string getNombreUsuario() const;
-    //const char* getContrasenia();
     const std::string getContrasenia() const;
     Rol getRol();
     bool getEstado();
     int getIDMedico();
 
     // Setters
-    //void setNombreUsuario(const char* valor);
     void setNombreUsuario(const std::string &nombre);
-    //void setContrasenia(const char* valor);
     void setContrasenia(const std::string &constrasenia);
     void setTipoRol(Rol valor);
     void setEstado(bool valor);

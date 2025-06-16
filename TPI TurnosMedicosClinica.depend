@@ -257,7 +257,7 @@
 	<cstring>
 	"Persona.h"
 
-1750107856 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\persona.h
+1750112957 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\persona.h
 	<string>
 	"Fecha.h"
 	"Domicilio.h"
@@ -948,12 +948,12 @@
 	<cstring>
 	"Usuario.h"
 
-1750107856 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuario.h
+1750112935 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuario.h
 	"Rol.h"
 
 1750106205 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\rol.h
 
-1750108174 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuarioarchivo.cpp
+1750112935 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuarioarchivo.cpp
 	"UsuarioArchivo.h"
 	"UsuarioManager.h"
 	<cstring>

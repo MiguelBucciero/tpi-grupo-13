@@ -3,13 +3,11 @@
 #include <cstring>
 #include <string>
 #include <iostream>
-using namespace std;
 
 UsuarioArchivo::UsuarioArchivo(std::string nombreArchivo){
     _nombreArchivo=nombreArchivo;
 }
 
-//guardar al final del archivo
 bool UsuarioArchivo::guardar(Usuario registro){
    bool resultado;
     FILE *pFile;
