@@ -9,8 +9,7 @@ public:
 
     //Getters
     int getIDEspecialidad() const;
-    //const std::string getNombre() const;
-    const char* getNombre() const;
+    const std::string getNombre() const;
     bool getEstado() const;
 
     //Setters

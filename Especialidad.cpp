@@ -21,10 +21,7 @@ int Especialidad::getIDEspecialidad() const {
     return _IDEspecialidad;
 }
 
-/*const string Especialidad::getNombre() const {
-    return _nombre;
-}*/
-const char* Especialidad::getNombre() const {
+const string Especialidad::getNombre() const {
     return _nombre;
 }
 
