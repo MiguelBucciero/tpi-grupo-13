@@ -6,6 +6,7 @@
 #include "rlutil.h"
 #include <iostream>
 #include <cstring>
+#include <string>
 
 using namespace std;
 
@@ -16,7 +17,7 @@ void UsuarioManager::login(){
     MenuMedico menuM;
 
     bool encontrado = false;
-    char nombre[50] = {}, contrasenia[50] = {};
+    string nombre, contrasenia;
 
     while (!encontrado) {
         rlutil::cls();
@@ -25,17 +26,17 @@ void UsuarioManager::login(){
         rlutil::setColor(rlutil::WHITE);
 
         rlutil::locate(35, 8); cout << "Usuario: ";
-        rlutil::locate(45, 8); cin.getline(nombre, 50);
+        rlutil::locate(45, 8); getline(cin, nombre);
         rlutil::locate(35, 9); cout << "Contrasenia: ";
-        rlutil::locate(48, 9); cin.getline(contrasenia, 50);
+        rlutil::locate(48, 9); getline(cin, contrasenia);
 
         int cantidad = archiU.getCantidadRegistros();
 
         for (int i = 0; i < cantidad; i++) {
             Usuario usuario = archiU.Leer(i);
 
-            if (strcmp(usuario.getNombreUsuario(), nombre) == 0 &&
-                strcmp(usuario.getContrasenia(), contrasenia) == 0 &&
+            if (usuario.getNombreUsuario()==nombre &&
+                usuario.getContrasenia()==contrasenia&&
                 usuario.getEstado() == true) {
 
                 rlutil::cls();
@@ -70,12 +71,11 @@ void UsuarioManager::login(){
     rlutil::cls();
 }
 
-bool UsuarioManager::VerificarLoginDuplicados(const char *nombre, const char *contrasenia){
+bool UsuarioManager::VerificarLoginDuplicados(const string &nombre, const string &contrasenia){
     int cantidad=_archivo.getCantidadRegistros();
     for(int i=0; i<cantidad; i++){
         Usuario usuario=_archivo.Leer(i);
-        if(strcmp(usuario.getNombreUsuario(), nombre)==0&&
-           strcmp(usuario.getContrasenia(), contrasenia)==0){
+        if(usuario.getNombreUsuario()==nombre&&usuario.getContrasenia()==contrasenia){
             return true;
         }
     }
@@ -83,7 +83,7 @@ bool UsuarioManager::VerificarLoginDuplicados(const char *nombre, const char *co
 }
 
 void UsuarioManager::cargarUsuario(){
-    char nombre[50] = {}, contrasenia[50] = {};
+    string nombre, contrasenia;
     int tipoRol;
 
     rlutil::cls();
@@ -97,7 +97,7 @@ void UsuarioManager::cargarUsuario(){
     cout << "Nombre de usuario: ";
     rlutil::setColor(rlutil::WHITE);
     rlutil::locate(55, 4);
-    cin.getline(nombre, 50);
+    getline(cin, nombre);
 
     rlutil::locate(35, 5);
     rlutil::setColor(rlutil::CYAN);
@@ -108,9 +108,9 @@ void UsuarioManager::cargarUsuario(){
         rlutil::locate(71, 5);
         cout<<"                                                    "; //limpia para que vuelva a escribir
         rlutil::locate(71, 5);
-        cin.getline(contrasenia, 50);
+        getline(cin, contrasenia);
 
-        if(strlen(contrasenia)<6){
+        if(contrasenia.length()<6){
             rlutil::locate(35, 6);
             rlutil::setColor(rlutil::RED);
             cout<<"La contrasenia es muy corta. Intente de nuevo.";
@@ -119,7 +119,7 @@ void UsuarioManager::cargarUsuario(){
             rlutil::locate(35, 6);
             cout<<"                                                    ";//limpia para que se vea los roles.
         }
-    }while(strlen(contrasenia)<6);
+    }while(contrasenia.length()<6);
 
     rlutil::locate(35, 7);
     rlutil::setColor(rlutil::CYAN);
@@ -362,7 +362,7 @@ void UsuarioManager::DarBajaUsuario(){
 }
 
 void UsuarioManager::modificarUsuario(){
-    char user[50], nuevoNombre[50], nuevaContrasenia[50];;
+    string user, nuevoNombre, nuevaContrasenia;
     char confirmacion;
     int nuevoRol;
     bool modificado = false;
@@ -429,7 +429,7 @@ void UsuarioManager::modificarUsuario(){
         cout << "Nuevo nombre de usuario: ";
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(55, 6);
-        cin.getline(nuevoNombre, 50);
+        getline(cin, nuevoNombre);
 
         rlutil::setColor(rlutil::COLOR::CYAN);
         rlutil::locate(30, 7);
@@ -440,9 +440,9 @@ void UsuarioManager::modificarUsuario(){
             rlutil::locate(71, 7);
             cout<<"                                                    "; //limpia para que vuelva a escribir
             rlutil::locate(71, 7);
-            cin.getline(nuevaContrasenia, 50);
+            getline(cin, nuevaContrasenia);
 
-            if(strlen(nuevaContrasenia)<6){
+            if(nuevaContrasenia.length()<6){
                 rlutil::locate(35, 8);
                 rlutil::setColor(rlutil::RED);
                 cout<<"La contrasenia es muy corta. Intente de nuevo.";
@@ -451,7 +451,7 @@ void UsuarioManager::modificarUsuario(){
                 rlutil::locate(35, 8);
                 cout<<"                                                    "; //limpia para que se vea los roles.
             }
-        }while(strlen(nuevaContrasenia)<6);
+        }while(nuevaContrasenia.length()<6);
 
         // Validación duplicados
         if (VerificarLoginDuplicados(nuevoNombre, nuevaContrasenia)) {

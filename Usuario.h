@@ -5,25 +5,25 @@ class Usuario {
 public:
 
     Usuario();
-    Usuario(const char* nombre, const char* contrasenia, Rol tipoRol, bool estado, int IDMedico);
+    Usuario(std::string nombre, std::string contrasenia, Rol tipoRol, bool estado, int IDMedico);
 
     // Getters
-    const char* getNombreUsuario();
-    const char* getContrasenia();
+    //const char* getNombreUsuario();
+    const std::string getNombreUsuario() const;
+    //const char* getContrasenia();
+    const std::string getContrasenia() const;
     Rol getRol();
     bool getEstado();
     int getIDMedico();
 
     // Setters
-    void setNombreUsuario(const char* valor);
-    void setContrasenia(const char* valor);
+    //void setNombreUsuario(const char* valor);
+    void setNombreUsuario(const std::string &nombre);
+    //void setContrasenia(const char* valor);
+    void setContrasenia(const std::string &constrasenia);
     void setTipoRol(Rol valor);
     void setEstado(bool valor);
     void setIDMedico(int valor);
-
-    // Metodos
-    void validarUsuario();
-    void cargarUsuario();
 
 private:
     //Aca quitamos el IDUsuario porque basicamente cumplia la misma funcion que Rol.

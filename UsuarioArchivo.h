@@ -8,7 +8,7 @@ public:
     UsuarioArchivo(std::string nombreArchivo="Usuarios.dat");
     bool guardar(Usuario registro);
     bool guardar(Usuario registro, int posicion);
-    int Buscar(const char* nombreUsuario);
+    int Buscar(const std::string &nombreUsuario);
     Usuario Leer(int posicion);
     int getCantidadRegistros();
     bool leerMuchos(Usuario reg[], int cantidad);

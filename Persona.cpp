@@ -29,11 +29,11 @@ Persona::Persona(string apellido, string nombre, int dni, Fecha fechaNacimiento,
 }
 
 // Getters
-const string Persona::getApellido() {
+const string Persona::getApellido() const{
     return _apellido;
 }
 
-const string Persona::getNombre() {
+const string Persona::getNombre() const{
     return _nombre;
 }
 
@@ -41,23 +41,23 @@ int Persona::getDni() {
     return _dni;
 }
 
-Fecha Persona::getFechaNacimiento() {
+Fecha Persona::getFechaNacimiento() const{
     return _fechaNacimiento;
 }
 
-const string Persona::getGenero() {
+const string Persona::getGenero() const{
     return _genero;
 }
 
-const string Persona::getEmail() {
+const string Persona::getEmail() const{
     return _email;
 }
 
-const string Persona::getTelefono() {
+const string Persona::getTelefono() const{
     return _telefono;
 }
 
-Domicilio Persona::getDomicilioCompleto() {
+Domicilio Persona::getDomicilioCompleto() const{
     return _domicilio;
 }
 

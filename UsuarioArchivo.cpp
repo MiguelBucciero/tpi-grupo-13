@@ -43,7 +43,7 @@ bool UsuarioArchivo::guardar(Usuario registro, int posicion){
     return resultado;
 }
 
-int UsuarioArchivo::Buscar(const char* nombreUsuario){
+int UsuarioArchivo::Buscar(const std::string &nombreUsuario){
     FILE *pArchivo;
     pArchivo = fopen(_nombreArchivo.c_str(), "rb");
 
@@ -54,7 +54,7 @@ int UsuarioArchivo::Buscar(const char* nombreUsuario){
     Usuario registro;
     int i = 0;
     while(fread(&registro, sizeof(Usuario), 1, pArchivo)){
-        if(strcmp(registro.getNombreUsuario(), nombreUsuario)==0){
+        if(registro.getNombreUsuario()==nombreUsuario){
             fclose(pArchivo);
             return i;
         }

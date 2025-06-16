@@ -10,14 +10,14 @@ public:
             std::string email, std::string telefono, Domicilio domicilio);
 
     // Getters
-    const std::string getApellido();
-    const std::string getNombre();
+    const std::string getApellido() const;
+    const std::string getNombre() const;
     int getDni();
-    Fecha getFechaNacimiento();
-    const std::string getGenero();
-    const std::string getEmail();
-    const std::string getTelefono();
-    Domicilio getDomicilioCompleto();
+    Fecha getFechaNacimiento() const;
+    const std::string getGenero() const;
+    const std::string getEmail() const;
+    const std::string getTelefono() const;
+    Domicilio getDomicilioCompleto() const;
 
     // Setters
     void setApellido(const std::string &apellido);

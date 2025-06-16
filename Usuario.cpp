@@ -15,7 +15,7 @@ Usuario::Usuario(){
     _IDMedico=0;
 }
 
-Usuario::Usuario(const char* nombre, const char* contrasenia, Rol tipoRol, bool estado, int IDMedico=-1)
+Usuario::Usuario(string nombre, string contrasenia, Rol tipoRol, bool estado, int IDMedico=-1)
 {
     setNombreUsuario(nombre);
     setContrasenia(contrasenia);
@@ -26,20 +26,20 @@ Usuario::Usuario(const char* nombre, const char* contrasenia, Rol tipoRol, bool 
 
 //Getters
 
-const char* Usuario::getNombreUsuario(){
-return _nombreUsuario;
+const string Usuario::getNombreUsuario() const {
+    return _nombreUsuario;
 }
 
-const char* Usuario::getContrasenia(){
-return _contrasenia;
+const string Usuario::getContrasenia() const {
+    return _contrasenia;
 }
 
 Rol Usuario::getRol(){
-return _tipoRol;
+    return _tipoRol;
 }
 
 bool Usuario::getEstado(){
-return _estado;
+    return _estado;
 }
 
 int Usuario::getIDMedico(){
@@ -47,15 +47,15 @@ int Usuario::getIDMedico(){
 }
 
 //Setters
-void Usuario::setNombreUsuario (const char* valor){
+void Usuario::setNombreUsuario (const string &nombre){
     //asi que arreglo no se rompe.
-    strncpy(_nombreUsuario, valor, 49);
+    strncpy(_nombreUsuario, nombre.c_str(), 49);
     _nombreUsuario[49]='\0';
 }
 
-void Usuario::setContrasenia (const char* valor){
+void Usuario::setContrasenia (const string &contrasenia){
      //asi que arreglo no se rompe
-    strncpy(_contrasenia, valor, 49);
+    strncpy(_contrasenia, contrasenia.c_str(), 49);
     _contrasenia[49]='\0';
 }
 

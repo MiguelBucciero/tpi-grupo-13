@@ -4,7 +4,7 @@
 class UsuarioManager{
 public:
     void login();
-    bool VerificarLoginDuplicados(const char *nombre, const char *contrasenia);
+    bool VerificarLoginDuplicados(const std::string &nombre, const std::string &contrasenia);
     void cargarUsuario();
     void mostrarUsuario();
     void DarBajaUsuario();
