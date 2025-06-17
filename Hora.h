@@ -16,11 +16,7 @@ public:
     void setMinutos(int minutos);
 
     // Métodos
-    void cargarHora();
-    void mostrarHora();
     bool esIgual(Hora &otra);
-
-    std::string toString();
 
 private:
     int _hora;

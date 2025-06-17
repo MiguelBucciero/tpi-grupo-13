@@ -45,6 +45,7 @@ void Fecha::setAnio(int anio) {
 }
 
 // Métodos
+
 bool Fecha::esIgual(Fecha &otra) {
     return(_dia==otra.getDia()&&_mes==otra.getMes()&&_anio==otra.getAnio());
 }

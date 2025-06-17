@@ -20,10 +20,6 @@ public:
     void setCarnet(int car);
     void setEstado(bool est);
 
-    // Métodos
-    void cargarPaciente();
-    void mostrarPaciente();
-
 private:
     int _IDPaciente;
     int _carnet;

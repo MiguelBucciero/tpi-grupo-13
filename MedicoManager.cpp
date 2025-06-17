@@ -437,7 +437,6 @@ void MedicoManager::buscarMedicoPorEspecialidad() {
     rlutil::cls();
 }
 
-
 void MedicoManager::verTurnosAsignados(int idMedico) {
     TurnoArchivo archivo("Turnos.dat");
     int cantidad = archivo.getCantidadRegistros();
@@ -530,7 +529,6 @@ void MedicoManager::verTurnosAsignados(int idMedico) {
     rlutil::cls();
 }
 
-
 void MedicoManager::DarBajaMedico(){
     int id;
     bool encontrado = false;
@@ -603,8 +601,6 @@ void MedicoManager::DarBajaMedico(){
 
     rlutil::cls();
 }
-
-
 
 void MedicoManager::modificarMedico(){
     string aux;

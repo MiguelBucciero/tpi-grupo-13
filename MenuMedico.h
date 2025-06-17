@@ -11,6 +11,5 @@ public:
 private:
     TurnoManager _turnoManger;
     PacienteManager _pacienteManager;
-
     MedicoManager _medicoManager;
 };

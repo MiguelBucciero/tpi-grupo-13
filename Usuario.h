@@ -22,7 +22,6 @@ public:
     void setIDMedico(int valor);
 
 private:
-    //Aca quitamos el IDUsuario porque basicamente cumplia la misma funcion que Rol.
     char _nombreUsuario[50];
     char _contrasenia[50];
     Rol _tipoRol;
