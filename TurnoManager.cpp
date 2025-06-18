@@ -24,11 +24,13 @@ void TurnoManager::cargarTurno(){
     int idPaciente, idMedico, idEspecialidad, dia, mes, anio, horas, minutos;
     int fila=2;
     Fecha fecha;
+    Fecha fechaActual;
+    bool fechaValida = false;
     Hora hora;
     char opcion;
 
 
-        opcion='s';
+    opcion='s';
     turno.setIDTurno(_archivo.getNuevoID());
     while(opcion=='S' || opcion=='s'){
     //validacion de paciente
@@ -42,7 +44,7 @@ void TurnoManager::cargarTurno(){
         cout << "ID Paciente: ";
         rlutil::locate(45, fila+2);
         cout<<"                                                                                      "; //limpia para que vuelva a escribir
-        rlutil::locate(45, fila+2);
+        rlutil::locate(55, fila+2);
         cin >> idPaciente;
         if (!archiP.esPacienteActivo(idPaciente)) {
             rlutil::locate(30, fila+3);
@@ -82,6 +84,7 @@ void TurnoManager::cargarTurno(){
         rlutil::locate(55, fila+5);
         cin >> anio;
 
+        fechaActual.obtenerFechaActual();
         if (dia < 1 || dia > 31 || mes < 1 || mes > 12 || anio < 1900 || anio > 2100) {
             rlutil::locate(30, fila+6);
             rlutil::setColor(rlutil::COLOR::RED);
@@ -91,7 +94,20 @@ void TurnoManager::cargarTurno(){
             rlutil::locate(30, fila+6);
             cout<<"                                                                                      "; //limpia para que vuelva a escribir
         }
-    } while (dia < 1 || dia > 31 || mes < 1 || mes > 12 || anio < 1900 || anio > 2100);
+        else if (anio < fechaActual.getAnio() || (anio == fechaActual.getAnio() && mes < fechaActual.getMes()) ||
+            (anio == fechaActual.getAnio() && mes == fechaActual.getMes() && dia < fechaActual.getDia())) {
+            rlutil::locate(30, fila+6);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "La fecha ingresada ya paso. Solo se permiten fechas desde hoy en adelante.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(30, fila+6);
+            cout<<"                                                                                      "; //limpia para que vuelva a escribir
+        }
+        else{
+           fechaValida = true;
+        }
+    } while (!fechaValida);
 
         fecha.setDia(dia);
         fecha.setMes(mes);
@@ -150,7 +166,7 @@ void TurnoManager::cargarTurno(){
     int cantidad=archiM.getCantidadRegistros();
         for(int i=0; i<cantidad; i++){
             medico=archiM.Leer(i);
-            if(medico.getIDEspecialidad()==idEspecialidad&&medico.getEstado()==true){
+            if(medico.getIDEspecialidad() == idEspecialidad && medico.getEstado() == true){
                 if(!_archivo.existeTurno(medico.getIDMedico(), fecha, hora)){
                     rlutil::locate(30, fila+10);
                     cout<<"Medico disponible: "<<medico.getApellido()<<", "<<medico.getNombre()<<" (ID: "<<medico.getIDMedico()<<") "<<endl;
@@ -172,7 +188,7 @@ void TurnoManager::cargarTurno(){
                 rlutil::locate(30, fila+13);
                 cout << "Cancelando carga de turno.";
                 rlutil::anykey();
-                            rlutil::cls();
+                rlutil::cls();
             return; //salir de la funcion si no hay medicos disponibles
             }
 
@@ -690,7 +706,7 @@ void TurnoManager::TurnoNoAsistido(){
 
     delete[] lista;
 
-    rlutil::locate(30, 45);
+    rlutil::locate(30, 12);
     rlutil::setColor(rlutil::GREEN);
     cout << "Presione una tecla para finalizar...";
     rlutil::setColor(rlutil::WHITE);

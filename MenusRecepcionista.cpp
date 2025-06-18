@@ -11,17 +11,6 @@
 
 using namespace std;
 
-static void showItem(const char* text, int posx, int posy, bool selected){
-    if(selected){
-        rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
-    } else{
-        rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
-    }
-    rlutil::locate(posx, posy);
-    cout<<text<<endl;
-    rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
-}
-
 int MenuRecepcionista::menuRecepcionista() {
     int y=0;
     int opc=1;
@@ -32,23 +21,130 @@ int MenuRecepcionista::menuRecepcionista() {
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::hidecursor();
         rlutil::locate(50, 3);
-        cout<<" MENU RECEPCIONISTA ";
-        showItem(" 1. REGISTRAR PACIENTE ", 50, 5, y==0);
-        showItem(" 2. LISTAR PACIENTES ", 50, 6, y==1);
-        showItem(" 3. MODIFICAR PACIENTE ", 50, 7, y==2);
-        showItem(" 4. DAR DE BAJA PACIENTE ", 50, 8, y==3);
-        showItem(" 5. REACTIVAR PACIENTE ", 50, 9, y==4);
-        showItem(" 5. ASIGNAR NUEVO TURNO ", 50, 10, y==5);
-        showItem(" 6. REPROGRAMAR TURNO ", 50, 11, y==6);
-        showItem(" 7. CANCELAR TURNO ", 50, 12, y==7);
-        showItem(" 8. TURNO NO ASISTIDO ", 50, 13, y==8);
-        showItem(" 9. CONSULTAS ", 50, 14, y==9);
-        showItem(" 10. INFORMES ", 50, 15, y==10);
-        showItem(" 11. LISTAR TURNOS ", 50, 16, y==11);
-        showItem(" 0. CERRAR SESION ", 50, 17, y==12);
+        cout << " MENU RECEPCIONISTA ";
 
+        // Opciones
+        if (y == 0){
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else{
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 5);
+        cout << " 1. REGISTRAR PACIENTE ";
+
+        if (y == 1){
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 6);
+        cout << " 2. LISTAR PACIENTES ";
+
+        if (y == 2) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 7);
+        cout << " 3. MODIFICAR PACIENTE ";
+
+        if (y == 3){
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else{
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 8);
+        cout << " 4. DAR DE BAJA PACIENTE ";
+
+        if (y == 4){
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else{
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 9);
+        cout << " 5. REACTIVAR PACIENTE ";
+
+        if (y == 5){
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else{
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 10);
+        cout << " 6. ASIGNAR NUEVO TURNO ";
+
+        if (y == 6){
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else{
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 11);
+        cout << " 7. REPROGRAMAR TURNO ";
+
+        if (y == 7){
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else{
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 12);
+        cout << " 8. CANCELAR TURNO ";
+
+        if (y == 8){
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else{
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 13);
+        cout << " 9. TURNO NO ASISTIDO ";
+
+        if (y == 9){
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else{
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 14);
+        cout << "10. CONSULTAS ";
+
+        if (y == 10){
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else{
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 15);
+        cout << "11. INFORMES ";
+
+        if (y == 11){
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else{
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 16);
+        cout << "12. LISTAR TURNOS ";
+
+        if (y == 12){
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else{
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 17);
+        cout << " 0. CERRAR SESION ";
+
+        // Flecha
+        rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::locate(48, 5 + y);
-        cout<<(char)175;
+        cout << (char)175;
 
         switch(rlutil::getkey()){
         case 14: //UP
@@ -74,31 +170,31 @@ int MenuRecepcionista::menuRecepcionista() {
             switch(y){
             case 0:
                 _pacienteManager.cargarPaciente();
-                    break;
+                break;
             case 1:
                 _pacienteManager.mostrarPaciente();
-                    break;
+                break;
             case 2:
                _pacienteManager.modificarPaciente();
-                    break;
+                break;
             case 3:
                 _pacienteManager.DarBajaPaciente();
-                    break;
+                break;
             case 4:
                 _pacienteManager.reactivarPaciente();
                 break;
             case 5:
                 _turnoManager.cargarTurno();
-                    break;
+                break;
             case 6:
                 _turnoManager.reprogramarTurno();
-                    break;
+                break;
             case 7:
                 _turnoManager.cancelarTurno();
-                    break;
+                break;
             case 8:
                _turnoManager.TurnoNoAsistido();
-                    break;
+                break;
             case 9:
                 salir = menuConsultasRecepcionista();
                 if(salir != 0){
@@ -113,7 +209,7 @@ int MenuRecepcionista::menuRecepcionista() {
                 break;
             case 11:
                 _turnoManager.mostrarTurno();
-                    break;
+                break;
             case 12:
                 rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
                 rlutil::setColor(rlutil::COLOR::YELLOW);
@@ -124,7 +220,7 @@ int MenuRecepcionista::menuRecepcionista() {
                 opc = 0;
                 break;
             default:
-                    break;
+                break;
             }
             break;
         default:
@@ -142,16 +238,59 @@ int MenuRecepcionista::menuConsultasRecepcionista(){
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::hidecursor();
-        rlutil::locate(50, 3);
-        cout<<" - CONSULTAS RECEPCIONISTA - ";
-        showItem(" 1. BUSCAR TURNO POR ESTADO (ACTIVO, CANCELADO, REPROGRAMADO, NO ASISTIDO, ASISTIDO) ", 30, 5, y==0);
-        showItem(" 2. BUSCAR MEDICOS POR ESPECIALIDAD ", 30, 6, y==1);
-        showItem(" 3. VER TURNOS DEL DIA ", 30, 7, y==2);
-        showItem(" 4. VER TURNOS DE LA SEMANA ", 30, 8, y==3);
-        showItem(" 0. VOLVER AL MENU ANTERIOR ", 30, 9, y==4);
+        rlutil::locate(55, 3);
+        cout << " CONSULTAS RECEPCIONISTA ";
 
+        // Opciones
+        if (y == 0) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 5);
+        cout << " 1. BUSCAR TURNO POR ESTADO ";
+
+        if (y == 1) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 6);
+        cout << " 2. BUSCAR MEDICOS POR ESPECIALIDAD ";
+
+        if (y == 2) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 7);
+        cout << " 3. VER TURNOS DEL DIA ";
+
+        if (y == 3) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 8);
+        cout << " 4. VER TURNOS DE LA SEMANA ";
+
+        if (y == 4) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 9);
+        cout << " 0. VOLVER AL MENU ANTERIOR ";
+
+        // Flecha
+        rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::locate(28, 5 + y);
-        cout<<(char)175;
+        cout << (char)175;
 
         switch(rlutil::getkey()){
         case 14: //UP
@@ -175,20 +314,20 @@ int MenuRecepcionista::menuConsultasRecepcionista(){
             switch(y){
             case 0:
                 _turnoManager.BuscarTurnoEstado();
-                    break;
+                break;
             case 1:
                 _medicoManager.buscarMedicoPorEspecialidad();
-                    break;
+                break;
             case 2:
                _turnoManager.TurnosDelDia();
-                    break;
+                break;
             case 3:
                _turnoManager.TurnosDeLaSemana();
-                    break;
+                break;
             case 4: opc=0;
-                    break;
+                break;
             default:
-                    break;
+                break;
             }
             break;
         }
@@ -204,13 +343,40 @@ int MenuRecepcionista::menuInformesRecepcionista(){
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::hidecursor();
         rlutil::locate(55, 3);
-        cout<<" - INFORMES RECEPCIONISTA - ";
-        showItem(" 1. CANTIDAD TURNOS POR ESPECIALIDAD ", 50, 5, y==0);
-        showItem(" 2. CANTIDAD DE TURNOS NO ASISTIDOS POR MEDICO ", 50, 6, y==1);
-        showItem(" 0. VOLVER AL MENU PRINICPAL ", 50, 7, y==2);
+        cout << " INFORMES RECEPCIONISTA ";
 
+        // Opciones
+        if (y == 0) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 5);
+        cout << " 1. CANTIDAD TURNOS POR ESPECIALIDAD ";
+
+        if (y == 1) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 6);
+        cout << " 2. CANTIDAD DE TURNOS NO ASISTIDOS POR MEDICO ";
+
+        if (y == 2) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 7);
+        cout << " 0. VOLVER AL MENU PRINCIPAL ";
+
+        // Flecha
+        rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::locate(48, 5 + y);
-        cout<<(char)175;
+        cout << (char)175;
 
         switch(rlutil::getkey()){
         case 14: //UP

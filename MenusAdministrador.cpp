@@ -7,45 +7,157 @@
 
 using namespace std;
 
-static void showItem(const char* text, int posx, int posy, bool selected){
-    if(selected){
-        rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
-    } else{
-        rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
-    }
-    rlutil::locate(posx, posy);
-    cout<<text<<endl;
-    rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
-}
-
 int MenuAdministrador::menuAdministrador() {
     int opc=1;
     int y=0;
     int salir;
     do{
-        system("cls");
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::hidecursor();
         rlutil::locate(50, 3);
-        cout<<" MENU ADMINISTRADOR ";
-        showItem(" 1. CARGAR NUEVO USUARIO ", 50, 5, y==0);
-        showItem(" 2. MODIFICAR USUARIO ", 50, 6, y==1) ;
-        showItem(" 3. ELIMINAR USUARIO ", 50, 7, y==2);
-        showItem(" 4. REACTIVAR USUARIO ", 50, 8, y==3);
-        showItem(" 5. LISTAR USUARIOS ", 50, 9, y==4);
-        showItem(" 6. INFORMES ", 50, 10, y==5);
-        showItem(" 7. CARGAR ESPECIALIDAD ", 50, 11, y==6);
-        showItem(" 8. MODIFICAR ESPECIALIDAD ", 50, 12, y==7);
-        showItem(" 9. ELIMINAR ESPECIALIDAD ", 50, 13, y==8);
-        showItem(" 10. LISTAR ESPECIALIDAD ", 50, 14, y==9);
-        showItem(" 11. REACTIVAR ESPECIALIDAD ", 50, 15, y==10);
-        showItem(" 12. MODIFICAR MEDICO ", 50, 16, y==11);
-        showItem(" 13. ELIMINAR MEDICO ", 50, 17, y==12);
-        showItem(" 14. LISTAR MEDICOS ", 50, 18, y==13);
-        showItem(" 0. CERRAR SESION  ", 50, 19, y==14);
+        cout << " MENU ADMINISTRADOR ";
+
+        //Opciones
+        if (y == 0) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 5);
+        cout << " 1. CARGAR NUEVO USUARIO ";
+
+        if (y == 1) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 6);
+        cout << " 2. MODIFICAR USUARIO ";
+
+        if (y == 2) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 7);
+        cout << " 3. ELIMINAR USUARIO ";
+
+        if (y == 3) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 8);
+        cout << " 4. REACTIVAR USUARIO ";
+
+        if (y == 4) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 9);
+        cout << " 5. LISTAR USUARIOS ";
+
+        if (y == 5) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 10);
+        cout << " 6. INFORMES ";
+
+        if (y == 6) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 11);
+        cout << " 7. CARGAR ESPECIALIDAD ";
+
+        if (y == 7) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 12);
+        cout << " 8. MODIFICAR ESPECIALIDAD ";
+
+        if (y == 8) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 13);
+        cout << " 9. ELIMINAR ESPECIALIDAD ";
+
+        if (y == 9) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 14);
+        cout << "10. LISTAR ESPECIALIDAD ";
+
+        if (y == 10) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 15);
+        cout << "11. REACTIVAR ESPECIALIDAD ";
+
+        if (y == 11) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 16);
+        cout << "12. MODIFICAR MEDICO ";
+
+        if (y == 12) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 17);
+        cout << "13. ELIMINAR MEDICO ";
+
+        if (y == 13) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 18);
+        cout << "14. LISTAR MEDICOS ";
+
+        if (y == 14) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 19);
+        cout << " 0. CERRAR SESION ";
+
+        //Flecha
+        rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::locate(48, 5 + y);
-        cout<<(char)175;
+        cout << (char)175;
 
         switch(rlutil::getkey()){
             case 14: //UP
@@ -132,22 +244,80 @@ int MenuAdministrador::menuInformesAdministrador(){
     int y=0;
     int opc=1;
     do{
-        rlutil::cls();
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::hidecursor();
         rlutil::locate(55, 3);
-        cout<<" - INFORMES ADMINISTRADOR - ";
-        showItem(" 1. CANTIDAD DE TURNOS POR MEDICO ", 50, 5, y==0);
-        showItem(" 2. CANTIDAD DE TURNOS POR PACIENTE ", 50, 6, y==1);
-        showItem(" 3. CANTIDAD DE TURNOS CANCELADOS POR MES ", 50, 7, y==2);
-        showItem(" 4. CANTIDAD DE TURNOS REPROGRAMADOS POR MES ", 50, 8, y==3);
-        showItem(" 5. CANTIDAD DE TURNOS POR ESPECIALIDAD EN EL ANIO ", 50, 9, y==4);//lo cambie un poco porque era igual que el de menu recepcionista
-        showItem(" 6. CANTIDAD DE USURIOS ACTIVOS ", 50, 10, y==5);
-        showItem(" 0. VOLVER AL MENU ANTERIOR ", 50, 11, y==6);
+        cout << " INFORMES ADMINISTRADOR ";
 
+        //Opciones
+        if (y == 0) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 5);
+        cout << " 1. CANTIDAD DE TURNOS POR MEDICO ";
+
+        if (y == 1) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 6);
+        cout << " 2. CANTIDAD DE TURNOS POR PACIENTE ";
+
+        if (y == 2) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 7);
+        cout << " 3. CANTIDAD DE TURNOS CANCELADOS POR MES ";
+
+        if (y == 3) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 8);
+        cout << " 4. CANTIDAD DE TURNOS REPROGRAMADOS POR MES ";
+
+        if (y == 4) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 9);
+        cout << " 5. CANTIDAD DE TURNOS POR ESPECIALIDAD EN EL ANIO ";
+
+        if (y == 5) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 10);
+        cout << " 6. CANTIDAD DE USUARIOS ACTIVOS ";
+
+        if (y == 6) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 11);
+        cout << " 0. VOLVER AL MENU ANTERIOR ";
+
+        //Flecha
+        rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::locate(48, 5 + y);
-        cout<<(char)175;
+        cout << (char)175;
 
         switch(rlutil::getkey()){
         case 14: //UP
