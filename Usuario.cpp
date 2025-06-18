@@ -32,15 +32,15 @@ const string Usuario::getContrasenia() const {
     return _contrasenia;
 }
 
-Rol Usuario::getRol(){
+Rol Usuario::getRol() const{
     return _tipoRol;
 }
 
-bool Usuario::getEstado(){
+bool Usuario::getEstado() const{
     return _estado;
 }
 
-int Usuario::getIDMedico(){
+int Usuario::getIDMedico() const{
     return _IDMedico;
 }
 
@@ -63,7 +63,7 @@ void Usuario::setContrasenia (const string &contrasenia){
     }
 }
 
-void Usuario::setTipoRol (Rol valor){
+void Usuario::setTipoRol (const Rol &valor){
     _tipoRol=valor;
 }
 

@@ -7,8 +7,8 @@ public:
     Rol(int tipo, const char* nombre);
 
     // Getters
-    int getRol();
-    char* getNombre();
+    int getRol() const;
+    const char* getNombre() const;
 
     // Setters
     void setTipoRol(int valor);

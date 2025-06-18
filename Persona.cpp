@@ -37,7 +37,7 @@ const string Persona::getNombre() const{
     return _nombre;
 }
 
-int Persona::getDni() {
+int Persona::getDni() const{
     return _dni;
 }
 

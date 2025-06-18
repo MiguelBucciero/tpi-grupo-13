@@ -15,11 +15,11 @@ Hora::Hora(int hora, int minutos) {
 }
 
 // Getters
-int Hora::getHora() {
+int Hora::getHora() const{
     return _hora;
 }
 
-int Hora::getMinutos() {
+int Hora::getMinutos() const{
     return _minutos;
 }
 

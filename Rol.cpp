@@ -13,13 +13,15 @@ Rol::Rol(int tipo, const char* nombre){
     setTipoRol(tipo);
     setNombreRol(nombre);
 }
+//Getters
 
-int Rol::getRol(){
+int Rol::getRol() const{
     return _tipoRol;
 }
-char* Rol::getNombre(){
+const char* Rol::getNombre() const{
     return _nombreRol;
 }
+//Setters
 
 void Rol::setTipoRol(int valor){
     _tipoRol=valor;

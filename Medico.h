@@ -8,12 +8,11 @@ public:
     Medico(std::string apellido,std::string nombre, int dni, Fecha fechaNacimiento,std::string genero,std::string email,
            std::string telefono, Domicilio domicilio, int idMedico, int matricula, int idEspecialidad, bool estado);
 
-
     // Getters
-    int getIDMedico();
-    int getMatricula();
-    int getIDEspecialidad();
-    bool getEstado();
+    int getIDMedico() const;
+    int getMatricula() const;
+    int getIDEspecialidad() const;
+    bool getEstado() const;
 
     // Setters
     void setIDMedico(int valor);

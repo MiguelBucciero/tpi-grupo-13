@@ -10,14 +10,14 @@ public:
     // Getters
     const std::string getNombreUsuario() const;
     const std::string getContrasenia() const;
-    Rol getRol();
-    bool getEstado();
-    int getIDMedico();
+    Rol getRol() const;
+    bool getEstado() const;
+    int getIDMedico() const;
 
     // Setters
     void setNombreUsuario(const std::string &nombre);
     void setContrasenia(const std::string &constrasenia);
-    void setTipoRol(Rol valor);
+    void setTipoRol(const Rol &valor);
     void setEstado(bool valor);
     void setIDMedico(int valor);
 

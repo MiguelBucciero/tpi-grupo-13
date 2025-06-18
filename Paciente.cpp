@@ -18,18 +18,21 @@ Paciente::Paciente(string apellido, string nombre, int dni, Fecha fechaNacimient
     setEstado(estado);
                  }
 
+//Getters
 
-int Paciente::getIDPaciente(){
+int Paciente::getIDPaciente() const{
     return _IDPaciente;
 }
 
-int Paciente::getCarnet(){
+int Paciente::getCarnet() const{
     return _carnet;
 }
 
-bool Paciente::getEstado(){
+bool Paciente::getEstado() const{
    return _estado;
 }
+
+//Setters
 
 void Paciente::setIDPaciente(int id){
     if(id>0){

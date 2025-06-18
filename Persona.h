@@ -12,7 +12,7 @@ public:
     // Getters
     const std::string getApellido() const;
     const std::string getNombre() const;
-    int getDni();
+    int getDni() const;
     Fecha getFechaNacimiento() const;
     const std::string getGenero() const;
     const std::string getEmail() const;

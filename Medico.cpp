@@ -23,19 +23,19 @@ Medico::Medico(string apellido, string nombre, int dni, Fecha fechaNacimiento, s
 
 // Getters
 
-int Medico::getIDMedico(){
+int Medico::getIDMedico() const{
     return _IDMedico;
 }
 
-int Medico::getMatricula(){
+int Medico::getMatricula() const{
     return _matricula;
 }
 
-int Medico::getIDEspecialidad(){
+int Medico::getIDEspecialidad() const{
     return _IDEspecialidad;
 }
 
-bool Medico::getEstado(){
+bool Medico::getEstado() const{
     return _estado;
 }
 

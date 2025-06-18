@@ -9,9 +9,9 @@ public:
     Fecha(int dia, int mes, int anio);
 
     // Getters
-    int getDia();
-    int getMes();
-    int getAnio();
+    int getDia() const;
+    int getMes() const;
+    int getAnio() const;
 
     // Setters
     void setDia(int valor);

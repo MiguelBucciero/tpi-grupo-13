@@ -13,15 +13,15 @@ Fecha::Fecha(int dia, int mes, int anio) {
 }
 
 // Getters
-int Fecha::getDia() {
+int Fecha::getDia() const{
     return _dia;
 }
 
-int Fecha::getMes() {
+int Fecha::getMes() const{
     return _mes;
 }
 
-int Fecha::getAnio() {
+int Fecha::getAnio() const{
     return _anio;
 }
 

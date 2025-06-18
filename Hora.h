@@ -8,8 +8,8 @@ public:
     Hora(int hora, int minutos);
 
     // Getters
-    int getHora();
-    int getMinutos();
+    int getHora() const;
+    int getMinutos() const;
 
     // Setters
     void setHora(int hora);

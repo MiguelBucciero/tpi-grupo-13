@@ -11,9 +11,9 @@ public:
                  std::string email, std::string telefono, Domicilio domicilio, int id, int carnet, bool estado);
 
     // Getters
-    int getIDPaciente();
-    int getCarnet();
-    bool getEstado();
+    int getIDPaciente() const;
+    int getCarnet() const;
+    bool getEstado() const;
 
     // Setters
     void setIDPaciente(int id);

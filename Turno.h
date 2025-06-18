@@ -9,25 +9,22 @@ public:
     Turno(int idTurno, int idPaciente, int idMedico, Fecha fecha, Hora hora, int idEspecialidad, int estado);
 
     // Getters
-    int getIDTurno();
-    int getIDPaciente();
-    int getIDMedico();
-    Fecha getFechaTurno();
-    Hora getHoraTurno();
-    int getEspecialidad();
-    int getEstado();
+    int getIDTurno() const;
+    int getIDPaciente() const;
+    int getIDMedico() const;
+    Fecha getFechaTurno() const;
+    Hora getHoraTurno() const;
+    int getEspecialidad() const;
+    int getEstado() const;
 
     // Setters
     void setIDTurno(int valor);
     void setIDPaciente(int valor);
     void setIDMedico(int valor);
-    void setFechaTurno(Fecha valor);
-    void setHoraTurno(Hora valor);
+    void setFechaTurno(const Fecha &valor);
+    void setHoraTurno(const Hora &valor);
     void setEspecialidad(int valor);
     void setEstado(int valor);
-
-    // Métodos
-    void mostrarTurno(int fila);
 
 private:
     int _IDTurno;

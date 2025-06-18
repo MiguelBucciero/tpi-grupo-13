@@ -24,27 +24,31 @@ Turno::Turno(int idTurno, int idPaciente, int idMedico, Fecha fecha, Hora hora, 
     setEstado(estado);
 }
 
-int Turno::getIDTurno(){
+//Getters
+
+int Turno::getIDTurno() const{
     return _IDTurno;
 }
-int Turno::getIDPaciente(){
+int Turno::getIDPaciente() const{
     return _IDPaciente;
 }
-int Turno::getIDMedico(){
+int Turno::getIDMedico() const{
     return _IDMedico;
 }
-Fecha Turno::getFechaTurno(){
+Fecha Turno::getFechaTurno() const{
     return _FechaTurno;
 }
-Hora Turno::getHoraTurno(){
+Hora Turno::getHoraTurno() const{
     return _HoraTurno;
 }
-int Turno::getEspecialidad(){
+int Turno::getEspecialidad() const{
     return _IDEspecialidad;
 }
-int Turno::getEstado(){
+int Turno::getEstado() const{
     return _EstadoTurno;
 }
+
+//Setters
 
 void Turno::setIDTurno(int valor){
     _IDTurno=valor;
@@ -55,10 +59,10 @@ void Turno::setIDPaciente(int valor){
 void Turno::setIDMedico(int valor){
     _IDMedico=valor;
 }
-void Turno::setFechaTurno(Fecha valor){
+void Turno::setFechaTurno(const Fecha &valor){
     _FechaTurno=valor;
 }
-void Turno::setHoraTurno(Hora valor){
+void Turno::setHoraTurno(const Hora &valor){
     _HoraTurno=valor;
 }
 void Turno::setEspecialidad(int valor){
