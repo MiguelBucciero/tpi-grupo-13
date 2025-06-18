@@ -86,20 +86,29 @@ void Persona::setFechaNacimiento(const Fecha &fecha) {
 }
 
 void Persona::setGenero(const string &genero) {
-    if (genero.length() < sizeof(_genero)) {
+    if(genero.size()<sizeof(_genero)){
         strcpy(_genero, genero.c_str());
+    }else{
+        strncpy(_genero, genero.c_str(), sizeof(_genero)-1);
+        _genero[sizeof(_genero)-1]='\0';
     }
 }
 
 void Persona::setEmail(const string &email) {
-    if (email.length() < sizeof(_email)) {
+    if(email.size()<sizeof(_email)){
         strcpy(_email, email.c_str());
+    }else{
+        strncpy(_email, email.c_str(), sizeof(_email)-1);
+        _email[sizeof(_email)-1]='\0';
     }
 }
 
 void Persona::setTelefono(const string &telefono) {
-    if (telefono.length() < sizeof(_telefono)) {
+    if(telefono.size()<sizeof(_telefono)){
         strcpy(_telefono, telefono.c_str());
+    }else{
+        strncpy(_telefono, telefono.c_str(), sizeof(_telefono)-1);
+        _telefono[sizeof(_telefono)-1]='\0';
     }
 }
 

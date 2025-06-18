@@ -35,7 +35,7 @@ void Especialidad::setIDEspecialidad(int id) {
 }
 
 void Especialidad::setNombre(const string &nombre) {
-    if(nombre.size()<sizeof(_nombre)){ //si el nombre el menor al tam, se copia.
+    if(nombre.size()<sizeof(_nombre)){ //si el nombre es menor al tam, se copia.
         strcpy(_nombre, nombre.c_str());
     }else{
         strncpy(_nombre, nombre.c_str(), sizeof(_nombre)-1); //asegura que no copie de mas.

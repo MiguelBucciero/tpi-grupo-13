@@ -6,7 +6,6 @@
 using namespace std;
 
 //Constructores
-
 Usuario::Usuario(){
     strcpy(_nombreUsuario, "");
     strcpy(_contrasenia, "");
@@ -25,7 +24,6 @@ Usuario::Usuario(string nombre, string contrasenia, Rol tipoRol, bool estado, in
 }
 
 //Getters
-
 const string Usuario::getNombreUsuario() const {
     return _nombreUsuario;
 }
@@ -48,15 +46,21 @@ int Usuario::getIDMedico(){
 
 //Setters
 void Usuario::setNombreUsuario (const string &nombre){
-    //asi que arreglo no se rompe.
-    strncpy(_nombreUsuario, nombre.c_str(), 49);
-    _nombreUsuario[49]='\0';
+    if(nombre.size()<sizeof(_nombreUsuario)){
+        strcpy(_nombreUsuario, nombre.c_str());
+    }else{
+        strncpy(_nombreUsuario, nombre.c_str(), sizeof(_nombreUsuario)-1);
+        _nombreUsuario[sizeof(_nombreUsuario)-1]='\0';
+    }
 }
 
 void Usuario::setContrasenia (const string &contrasenia){
-     //asi que arreglo no se rompe
-    strncpy(_contrasenia, contrasenia.c_str(), 49);
-    _contrasenia[49]='\0';
+    if(contrasenia.size()<sizeof(_contrasenia)){
+        strcpy(_contrasenia, contrasenia.c_str());
+    }else{
+        strncpy(_contrasenia, contrasenia.c_str(), sizeof(_contrasenia)-1);
+        _contrasenia[sizeof(_contrasenia)-1]='\0';
+    }
 }
 
 void Usuario::setTipoRol (Rol valor){

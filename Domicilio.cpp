@@ -44,10 +44,12 @@ const string Domicilio::getCodigoPostal() const {
 
 
 // Setters
-
-void Domicilio::setCalle(const std::string &calle) {
-    if(calle.size() < 30){
+void Domicilio::setCalle(const string &calle) {
+    if(calle.size()<sizeof(_calle)){
         strcpy(_calle, calle.c_str());
+    }else{
+        strncpy(_calle, calle.c_str(), sizeof(_calle)-1);
+        _calle[sizeof(_calle)-1]='\0';
     }
 }
 
@@ -56,19 +58,28 @@ void Domicilio::setAltura(int altura) {
 }
 
 void Domicilio::setLocalidad(const string &localidad) {
-    if(localidad.size() < 30){
+    if(localidad.size()<sizeof(_localidad)){
         strcpy(_localidad, localidad.c_str());
+    }else{
+        strncpy(_localidad, localidad.c_str(), sizeof(_localidad)-1);
+        _localidad[sizeof(_localidad)-1]='\0';
     }
 }
 
 void Domicilio::setProvincia(const string &provincia) {
-    if(provincia.size() < 30){
+    if(provincia.size()<sizeof(_provincia)){
         strcpy(_provincia, provincia.c_str());
+    }else{
+        strncpy(_provincia, provincia.c_str(), sizeof(_provincia)-1);
+        _provincia[sizeof(_provincia)-1]='\0';
     }
 }
 
 void Domicilio::setCodigoPostal(const string &cpostal) {
-    if(cpostal.size() < 6){
+    if(cpostal.size()<sizeof(_codigoPostal)){
         strcpy(_codigoPostal, cpostal.c_str());
+    }else{
+        strncpy(_codigoPostal, cpostal.c_str(), sizeof(_codigoPostal)-1);
+        _codigoPostal[sizeof(_codigoPostal)-1]='\0';
     }
 }

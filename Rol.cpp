@@ -28,8 +28,3 @@ void Rol::setNombreRol(const char* valor){
     strcpy(_nombreRol, valor);
 }
 
-void Rol::validarRol(){
-    if(_tipoRol>999||_tipoRol<-999){
-        cout<<"Tipo de rol fuera de rango"<<endl;
-    }
-}

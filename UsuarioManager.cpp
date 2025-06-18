@@ -147,7 +147,7 @@ void UsuarioManager::cargarUsuario(){
         nombreRol = "Administrador";
     } else if (tipoRol == 0) {
         nombreRol = "Recepcionista";
-    } else {
+    } else if (tipoRol == 1){
         nombreRol = "Medico";
         rlutil::cls();
         rlutil::locate(40, 3);
@@ -164,6 +164,14 @@ void UsuarioManager::cargarUsuario(){
             return;
         }
         usuario.setIDMedico(idMedico);
+    } else{
+        rlutil::locate(35, 9);
+        rlutil::setColor(rlutil::RED);
+        cout<<"No existe ese tipo de rol.";
+        rlutil::setColor(rlutil::WHITE);
+        rlutil::anykey();
+        rlutil::cls();
+        return;
     }
 
     Rol rol(tipoRol, nombreRol);
