@@ -209,7 +209,7 @@ int MenuAdministrador::menuAdministrador() {
                     _espManager.mostrarEspecialidad();
                     break;
                 case 10:
-                    _espManager.ReactivarEspecialidadInactiva();
+                    _espManager.ReactivarEspecialidad();
                     break;
                 case 11:
                     _medicoManger.modificarMedico();

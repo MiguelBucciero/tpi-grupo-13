@@ -1,6 +1,6 @@
-#include <iostream>
 #include "Domicilio.h"
 #include "rlutil.h"
+#include <string>
 #include <cstring>
 
 using namespace std;

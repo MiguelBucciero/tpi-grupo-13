@@ -1,8 +1,4 @@
-#include <iostream>
 #include "Hora.h"
-
-using namespace std;
-
 
 Hora::Hora(){
     _hora=0;

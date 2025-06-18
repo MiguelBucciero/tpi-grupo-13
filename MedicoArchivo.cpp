@@ -3,7 +3,7 @@
 using namespace std;
 
 
-MedicoArchivo::MedicoArchivo(std::string nombreArchivo){
+MedicoArchivo::MedicoArchivo(string nombreArchivo){
     _nombreArchivo=nombreArchivo;
 }
 
@@ -114,17 +114,8 @@ bool MedicoArchivo::leerMuchos(Medico reg[], int cantidad){
     return true;
 }
 
-int MedicoArchivo::getNuevoID(){ //id activo
-    int cantidad=getCantidadRegistros();
-    int maxID=0;
-    Medico medico;
-    for(int i=0; i<cantidad; i++){
-        medico=Leer(i);
-        if(medico.getIDMedico()>maxID){
-            maxID=medico.getIDMedico();
-        }
-    }
-    return maxID+1;
+int MedicoArchivo::getNuevoID(){
+    return getCantidadRegistros()+1;
 }
 
 bool MedicoArchivo::esMedicoActivo(int IDMedico){

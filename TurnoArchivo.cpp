@@ -1,10 +1,9 @@
 #include "TurnoArchivo.h"
 #include "TurnoManager.h"
-#include <iostream>
 
 using namespace std;
 
-TurnoArchivo::TurnoArchivo(std::string nombreArchivo){
+TurnoArchivo::TurnoArchivo(string nombreArchivo){
     _nombreArchivo=nombreArchivo;
 }
 bool TurnoArchivo::guardar(Turno registro){

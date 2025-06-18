@@ -1,9 +1,9 @@
 #include "PacienteArchivo.h"
 #include "PacienteManager.h"
-#include <iostream>
+
 using namespace std;
 
-PacienteArchivo::PacienteArchivo(std::string nombreArchivo){
+PacienteArchivo::PacienteArchivo(string nombreArchivo){
     _nombreArchivo=nombreArchivo;
 }
 bool PacienteArchivo::guardar(Paciente registro){

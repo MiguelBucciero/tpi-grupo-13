@@ -1,4 +1,3 @@
-#include<iostream>
 #include "Turno.h"
 #include "rlutil.h"
 

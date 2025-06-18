@@ -1,5 +1,5 @@
-#include <iostream>
 #include "Especialidad.h"
+#include <string>
 #include <cstring>
 
 using namespace std;

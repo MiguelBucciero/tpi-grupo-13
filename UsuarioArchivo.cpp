@@ -2,9 +2,9 @@
 #include "UsuarioManager.h"
 #include <cstring>
 #include <string>
-#include <iostream>
+using namespace std;
 
-UsuarioArchivo::UsuarioArchivo(std::string nombreArchivo){
+UsuarioArchivo::UsuarioArchivo(string nombreArchivo){
     _nombreArchivo=nombreArchivo;
 }
 
@@ -41,7 +41,7 @@ bool UsuarioArchivo::guardar(Usuario registro, int posicion){
     return resultado;
 }
 
-int UsuarioArchivo::Buscar(const std::string &nombreUsuario){
+int UsuarioArchivo::Buscar(const string &nombreUsuario){
     FILE *pArchivo;
     pArchivo = fopen(_nombreArchivo.c_str(), "rb");
 

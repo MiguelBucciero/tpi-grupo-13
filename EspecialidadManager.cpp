@@ -242,10 +242,10 @@ void EspecialidadManager::ModificarEspecialidad(){
     getline(cin, nombreNuevo);
 
     esp.setNombre(nombreNuevo);
-    bool ok = _archivo.guardar(esp, pos);
+    bool modificado = _archivo.guardar(esp, pos);
 
     rlutil::locate(35, 11);
-    if (ok) {
+    if (modificado) {
         rlutil::setColor(rlutil::COLOR::GREEN);
         cout << "Especialidad modificada correctamente.";
     } else {
@@ -258,9 +258,9 @@ void EspecialidadManager::ModificarEspecialidad(){
     rlutil::cls();
 }
 
-void EspecialidadManager::ReactivarEspecialidadInactiva(){
+void EspecialidadManager::ReactivarEspecialidad(){
     int cantidad=_archivo.getCantidadRegistros();
-    bool NoActivo=false;
+    bool noActivo=false;
     int fila=4;
 
     rlutil::cls();
@@ -275,11 +275,11 @@ void EspecialidadManager::ReactivarEspecialidadInactiva(){
         if(especialidad.getEstado()==false){
             rlutil::locate(30, fila++);
             cout<<"(ID: "<<especialidad.getIDEspecialidad()<<") - Nombre: "<<especialidad.getNombre();
-            NoActivo=true;
+            noActivo=true;
         }
     }
 
-    if(!NoActivo){
+    if(!noActivo){
         rlutil::locate(37, fila + 8);
         rlutil::setColor(rlutil::COLOR::RED);
         cout<<"No hay especialidades inactivas";
@@ -334,10 +334,6 @@ void EspecialidadManager::ReactivarEspecialidadInactiva(){
             rlutil::setColor(rlutil::COLOR::YELLOW);
             rlutil::locate(35, fila++);
             cout << "Accion cancelada.";
-            rlutil::setColor(rlutil::COLOR::WHITE);
-            rlutil::anykey();
-            rlutil::cls();
-            return;
         }
     rlutil::setColor(rlutil::COLOR::WHITE);
 

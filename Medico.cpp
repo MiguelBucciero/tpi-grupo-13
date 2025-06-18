@@ -1,5 +1,5 @@
-#include <iostream>
 #include <string>
+#include <cstring>
 #include "Medico.h"
 
 using namespace std;

@@ -1,7 +1,6 @@
 #include "TurnoManager.h"
 #include "PacienteArchivo.h"
 #include "MedicoArchivo.h"
-#include "Medico.h"
 #include "TurnoArchivo.h"
 #include "EspecialidadArchivo.h"
 #include "Fecha.h"
@@ -9,6 +8,7 @@
 
 #include "Turno.h"
 #include "Paciente.h"
+#include "Medico.h"
 #include "Especialidad.h"
 #include "rlutil.h"
 
@@ -54,7 +54,6 @@ void TurnoManager::cargarTurno(){
             rlutil::anykey();
             rlutil::locate(30, fila+3);
             rlutil::cls();
-            //cout << string(50, ' ');
             rlutil::locate(30, fila+3);
             cout<<"                                                                                      "; //limpia para que vuelva a escribir
         }

@@ -7,7 +7,7 @@ public:
     void mostrarEspecialidad();
     void DarBajaEspecialidad();
     void ModificarEspecialidad();
-    void ReactivarEspecialidadInactiva();
+    void ReactivarEspecialidad();
 
 private:
     EspecialidadArchivo _archivo;
