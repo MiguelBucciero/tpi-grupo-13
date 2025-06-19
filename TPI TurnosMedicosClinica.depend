@@ -177,7 +177,7 @@
 1750277162 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidad.h
 	<string>
 
-1750278356 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadmanager.cpp
+1750291662 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadmanager.cpp
 	"EspecialidadManager.h"
 	"Especialidad.h"
 	"rlutil.h"
@@ -653,7 +653,7 @@
 1750278356 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medicoarchivo.cpp
 	"MedicoArchivo.h"
 
-1750277162 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medicomanager.cpp
+1750291619 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medicomanager.cpp
 	<iostream>
 	<string>
 	"MedicoManager.h"
@@ -955,7 +955,7 @@
 	<cstring>
 	<string>
 
-1750277642 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuariomanager.cpp
+1750291619 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuariomanager.cpp
 	"UsuarioManager.h"
 	"MenuRecepcionista.h"
 	"MenuAdministrador.h"

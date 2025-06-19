@@ -327,16 +327,14 @@ void UsuarioManager::DarBajaUsuario(){
         if (pos == -1) {
             rlutil::setColor(rlutil::COLOR::RED);
             rlutil::locate(30, 8);
-            cout << "Usuario no encontrado. Intente nuevamente.";
-            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << "Usuario no encontrado. Presione enter e intente nuevamente.";
             rlutil::anykey();
         }else{
              posUsuario = _archivo.Leer(pos);
              if (!posUsuario.getEstado()) {
                 rlutil::setColor(rlutil::COLOR::RED);
                 rlutil::locate(30, 8);
-                cout << "El usuario ya esta dado de baja.";
-                rlutil::setColor(rlutil::COLOR::WHITE);
+                cout << "El usuario ya esta dado de baja. Presione enter e intente nuevamente.";
                 rlutil::anykey();
             }else{
                 rlutil::setColor(rlutil::COLOR::CYAN);
@@ -366,9 +364,9 @@ void UsuarioManager::DarBajaUsuario(){
             rlutil::setColor(rlutil::COLOR::WHITE);
             rlutil::anykey();
             encontrado = true;
-
             }
         }
+        rlutil::setColor(rlutil::COLOR::WHITE);
     }
 
     rlutil::cls();

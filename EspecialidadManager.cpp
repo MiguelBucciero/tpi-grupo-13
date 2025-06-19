@@ -135,126 +135,151 @@ void EspecialidadManager::mostrarEspecialidad() {
 
 void EspecialidadManager::DarBajaEspecialidad(){
     int id;
+    bool encontrado=false;
 
-    rlutil::cls();
-    rlutil::setColor(rlutil::COLOR::YELLOW);
-    rlutil::locate(35, 3);
-    cout << " DAR BAJA ESPECIALIDAD ";
-    rlutil::setColor(rlutil::COLOR::WHITE);
-
-    rlutil::locate(35, 5);
-    rlutil::setColor(rlutil::COLOR::CYAN);
-    cout << "Ingrese el ID de la especialidad a dar de baja: ";
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::locate(35, 6);
-    cin >> id;
-
-    int pos = _archivo.Buscar(id);
-    if (pos == -1) {
-        rlutil::locate(35, 7);
-        rlutil::setColor(rlutil::COLOR::RED);
-        cout << "Especialidad no encontrada.";
-        rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::anykey();
+    while(!encontrado){
         rlutil::cls();
-        return;
-    }
-
-    Especialidad esp = _archivo.Leer(pos);
-    if (!esp.getEstado()) {
-        rlutil::locate(35, 7);
-        rlutil::setColor(rlutil::COLOR::RED);
-        cout << "Especialidad ya dada de baja.";
+        rlutil::setColor(rlutil::COLOR::YELLOW);
+        rlutil::locate(35, 3);
+        cout << " DAR BAJA ESPECIALIDAD ";
         rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::anykey();
-        rlutil::cls();
-        return;
+
+        rlutil::locate(35, 5);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Ingrese el ID de la especialidad a dar de baja: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(35, 6);
+        cin >> id;
+
+        int pos = _archivo.Buscar(id);
+        Especialidad esp;
+        if (pos == -1) {
+            rlutil::locate(35, 7);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Especialidad no encontrada. Presione enter e intente nuevamente.";
+            rlutil::anykey();
+        }else{
+            Especialidad esp = _archivo.Leer(pos);
+            if (!esp.getEstado()) {
+                rlutil::locate(35, 7);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "Especialidad ya dada de baja. Presione enter e intente nuevamente.";
+                rlutil::anykey();
+            }else{
+                rlutil::setColor(rlutil::COLOR::CYAN);
+                rlutil::locate(35, 9);
+                cout << "Esta seguro que desea dar de baja a '" << id << "'? (s/n): ";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                char confirmacion;
+                cin >> confirmacion;
+
+                if (confirmacion == 's' || confirmacion == 'S') {
+                    esp.setEstado(false);
+                    if (_archivo.guardar(esp, pos)) {
+                        rlutil::setColor(rlutil::COLOR::GREEN);
+                        rlutil::locate(35, 11);
+                        cout << "Especialidad dado de baja correctamente.";
+                    } else {
+                        rlutil::setColor(rlutil::COLOR::RED);
+                        rlutil::locate(35, 11);
+                        cout << "Error al intentar modificar el archivo.";
+                    }
+                }else{
+                    rlutil::setColor(rlutil::COLOR::YELLOW);
+                    rlutil::locate(35, 11);
+                    cout << "Accion cancelada por el usuario.";
+                }
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+                encontrado = true;
+            }
+        }
+        rlutil::setColor(rlutil::COLOR::WHITE);
     }
-
-    esp.setEstado(false);
-    bool ok = _archivo.guardar(esp, pos);
-
-    rlutil::locate(35, 7);
-    if (ok) {
-        rlutil::setColor(rlutil::COLOR::GREEN);
-        cout << "Especialidad dada de baja correctamente.";
-    } else {
-        rlutil::setColor(rlutil::COLOR::RED);
-        cout << "Error: no se pudo dar de baja la especialidad.";
-    }
-    rlutil::setColor(rlutil::COLOR::WHITE);
-
-    rlutil::anykey();
     rlutil::cls();
 }
 
 void EspecialidadManager::ModificarEspecialidad(){
     int id;
     string nombreNuevo;
+    char confirmacion;
+    bool modificado=false;
 
-    rlutil::cls();
-    rlutil::setColor(rlutil::COLOR::YELLOW);
-    rlutil::locate(35, 3);
-    cout << " MODIFICAR ESPECIALIDAD ";
-    rlutil::setColor(rlutil::COLOR::WHITE);
+    while(!modificado){
+        rlutil::cls();
+        rlutil::setColor(rlutil::COLOR::YELLOW);
+        rlutil::locate(35, 3);
+        cout << " MODIFICAR ESPECIALIDAD ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
 
-    rlutil::locate(35, 5);
-    rlutil::setColor(rlutil::COLOR::CYAN);
-    cout << "Ingrese el ID de la especialidad a modificar: ";
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::locate(35, 6);
-    cin >> id;
+        rlutil::locate(35, 5);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Ingrese el ID de la especialidad a modificar: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(35, 6);
+        cin >> id;
 
-    int pos = _archivo.Buscar(id);
-    if (pos == -1) {
-        rlutil::locate(35, 7);
-        rlutil::setColor(rlutil::COLOR::RED);
-        cout << "Especialidad no encontrada.";
+        int pos = _archivo.Buscar(id);
+        if (pos == -1) {
+            rlutil::locate(35, 7);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Especialidad no encontrada.";
+        }else{
+            Especialidad esp = _archivo.Leer(pos);
+            if (!esp.getEstado()) {
+                rlutil::locate(35, 7);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "Especialidad dada de baja, no se puede modificar.";
+            }else{
+                rlutil::setColor(rlutil::COLOR::CYAN);
+                rlutil::locate(35, 7);
+                cout << "Esta seguro que desea modificar al usuario '" << id << "'? (s/n): ";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                cin >> confirmacion;
+
+                if (confirmacion == 's' || confirmacion == 'S') {
+                    rlutil::cls();
+                    rlutil::setColor(rlutil::COLOR::YELLOW);
+                    rlutil::locate(40, 3);
+                    cout << " INGRESO DE NUEVOS DATOS ";
+
+                    rlutil::locate(35, 8);
+                    rlutil::setColor(rlutil::COLOR::CYAN);
+                    cout << "Nombre actual: ";
+                    rlutil::setColor(rlutil::COLOR::WHITE);
+                    cout << esp.getNombre();
+
+                    rlutil::locate(35, 9);
+                    rlutil::setColor(rlutil::COLOR::CYAN);
+                    cout << "Ingrese el nuevo nombre de la especialidad: ";
+                    rlutil::setColor(rlutil::COLOR::WHITE);
+                    rlutil::locate(35, 10);
+                    cin.ignore();
+                    getline(cin, nombreNuevo);
+
+                    esp.setNombre(nombreNuevo);
+
+                    if (_archivo.guardar(esp, pos)) {
+                        rlutil::setColor(rlutil::COLOR::GREEN);
+                        rlutil::locate(35, 12);
+                        cout << "Especialidad modificada correctamente.";
+                    } else {
+                        rlutil::setColor(rlutil::COLOR::RED);
+                        rlutil::locate(35, 12);
+                        cout << "Error: no se pudo modificar la especialidad.";
+                    }
+                    modificado=true;
+                }else{
+                rlutil::setColor(rlutil::COLOR::YELLOW);
+                rlutil::locate(35, 10);
+                cout<<"Modificacion cancelada por el usuario.";
+                modificado=true;
+                }
+            }
+        }
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::anykey();
-        rlutil::cls();
-        return;
     }
-
-    Especialidad esp = _archivo.Leer(pos);
-    if (!esp.getEstado()) {
-        rlutil::locate(35, 7);
-        rlutil::setColor(rlutil::COLOR::RED);
-        cout << "Especialidad dada de baja, no se puede modificar.";
-        rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::anykey();
-        rlutil::cls();
-        return;
-    }
-
-    rlutil::locate(35, 7);
-    rlutil::setColor(rlutil::COLOR::CYAN);
-    cout << "Nombre actual: ";
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    cout << esp.getNombre();
-
-    rlutil::locate(35, 9);
-    rlutil::setColor(rlutil::COLOR::CYAN);
-    cout << "Ingrese el nuevo nombre de la especialidad: ";
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::locate(35, 10);
-    cin.ignore();
-    getline(cin, nombreNuevo);
-
-    esp.setNombre(nombreNuevo);
-    bool modificado = _archivo.guardar(esp, pos);
-
-    rlutil::locate(35, 11);
-    if (modificado) {
-        rlutil::setColor(rlutil::COLOR::GREEN);
-        cout << "Especialidad modificada correctamente.";
-    } else {
-        rlutil::setColor(rlutil::COLOR::RED);
-        cout << "Error: no se pudo modificar la especialidad.";
-    }
-    rlutil::setColor(rlutil::COLOR::WHITE);
-
-    rlutil::anykey();
     rlutil::cls();
 }
 
