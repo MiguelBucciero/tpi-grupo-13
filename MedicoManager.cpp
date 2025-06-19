@@ -9,6 +9,8 @@
 #include "PacienteArchivo.h"
 #include "Paciente.h"
 
+#include "MedicoArchivo.h"
+#include "Medico.h"
 
 using namespace std;
 
@@ -834,4 +836,46 @@ void MedicoManager::buscarPacientePorDNI(){
     Fecha f = paciente.getFechaNacimiento();
     cout << "Fecha de nacimiento: " << f.getDia() << "/" << f.getMes() << "/" << f.getAnio() << endl;
     cout << "Estado: " << (paciente.getEstado() ? "Activo" : "Inactivo") << endl;
+}
+
+void MedicoManager::reactivarMedico(){
+    MedicoArchivo archivo("Medicos.dat");
+    int cantidad = archivo.getCantidadRegistros();
+
+    bool hayInactivos = false;
+
+    cout << "=== Médicos inactivos ===" << endl;
+
+    for(int i = 0; i < cantidad; i++){
+        Medico m = archivo.Leer(i);
+        if(m.getEstado() == false){
+            hayInactivos = true;
+            cout << "ID: " << m.getIDMedico() << endl;
+            cout << "Nombre: " << m.getNombre() << " " << m.getApellido() << endl;
+            cout << "DNI: " << m.getDni() << endl;
+            cout << "-------------------------" << endl;
+        }
+    }
+
+    if(!hayInactivos){
+        cout << "No hay médicos inactivos." << endl;
+        return;
+    }
+
+    int id;
+    cout << "Ingrese el ID del médico que desea reactivar: ";
+    cin >> id;
+
+    // Buscar el médico por ID
+    for(int i = 0; i < cantidad; i++){
+        Medico m = archivo.Leer(i);
+        if(m.getIDMedico() == id && m.getEstado() == false){
+            m.setEstado(true);  // Reactivar
+            archivo.guardar(m, i);
+            cout << "Médico reactivado correctamente." << endl;
+            return;
+        }
+    }
+
+    cout << "No se encontró un médico inactivo con ese ID." << endl;
 }

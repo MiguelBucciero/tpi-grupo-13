@@ -11,6 +11,7 @@ public:
     void DarBajaMedico();
     void modificarMedico();
     void buscarPacientePorDNI();
+    void reactivarMedico();
 private:
     MedicoArchivo _archivo;
 };

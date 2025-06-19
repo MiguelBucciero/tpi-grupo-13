@@ -1794,7 +1794,7 @@
 	"UsuarioManager.h"
 	"TurnoManager.h"
 
-1750298273 c:\users\nahuel\desktop\tecnicatura universitaria en programación\2025\progra 2\proyecto grupal\tpi-grupo-13\medicomanager.h
+1750305355 c:\users\nahuel\desktop\tecnicatura universitaria en programación\2025\progra 2\proyecto grupal\tpi-grupo-13\medicomanager.h
 	"MedicoArchivo.h"
 
 1750298158 c:\users\nahuel\desktop\tecnicatura universitaria en programación\2025\progra 2\proyecto grupal\tpi-grupo-13\medicoarchivo.h
@@ -1852,7 +1852,7 @@
 1750298158 source:c:\users\nahuel\desktop\tecnicatura universitaria en programación\2025\progra 2\proyecto grupal\tpi-grupo-13\medicoarchivo.cpp
 	"MedicoArchivo.h"
 
-1750298443 source:c:\users\nahuel\desktop\tecnicatura universitaria en programación\2025\progra 2\proyecto grupal\tpi-grupo-13\medicomanager.cpp
+1750305664 source:c:\users\nahuel\desktop\tecnicatura universitaria en programación\2025\progra 2\proyecto grupal\tpi-grupo-13\medicomanager.cpp
 	<iostream>
 	<string>
 	"MedicoManager.h"
@@ -1861,6 +1861,8 @@
 	"Turno.h"
 	"PacienteArchivo.h"
 	"Paciente.h"
+	"MedicoArchivo.h"
+	"Medico.h"
 
 1750298158 source:c:\users\nahuel\desktop\tecnicatura universitaria en programación\2025\progra 2\proyecto grupal\tpi-grupo-13\menusadministrador.cpp
 	<iostream>
