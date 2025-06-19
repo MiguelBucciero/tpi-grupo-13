@@ -812,30 +812,60 @@ void MedicoManager::modificarMedico(){
 }
 
 void MedicoManager::buscarPacientePorDNI(){
-    int dni;
-    cout << "Ingrese el DNI del paciente: ";
-    cin >> dni;
+    int dni, pos;
+
+    rlutil::cls();
+    rlutil::setColor(rlutil::YELLOW);
+    rlutil::locate(40, 2);
+    std::cout << "BUSCAR PACIENTE POR DNI";
+    rlutil::setColor(rlutil::WHITE);
+
+    rlutil::locate(30, 4);
+    std::cout << "Ingrese el DNI del paciente: ";
+    rlutil::locate(60, 4);
+    std::cin >> dni;
 
     PacienteArchivo archivo("pacientes.dat");
-    int pos = archivo.Buscar(dni);
+    pos = archivo.Buscar(dni);
 
     if(pos == -1){
-        cout << "Paciente no encontrado." << endl;
+        rlutil::locate(30, 6);
+        rlutil::setColor(rlutil::RED);
+        std::cout << "Paciente no encontrado.";
+        rlutil::setColor(rlutil::WHITE);
+        rlutil::anykey();
         return;
     }
 
     Paciente paciente = archivo.Leer(pos);
-    cout << "Paciente encontrado:" << endl;
 
-    cout << "ID: " << paciente.getIDPaciente() << endl;
-    cout << "DNI: " << paciente.getDni() << endl;
-    cout << "Nombre: " << paciente.getNombre() << endl;
-    cout << "Apellido: " << paciente.getApellido() << endl;
-    cout << "Email: " << paciente.getEmail() << endl;
-    cout << "Fecha de nacimiento: ";
+    rlutil::locate(30, 6);
+    std::cout << "Paciente encontrado:";
+
+    rlutil::locate(30, 7);
+    std::cout << "ID: " << paciente.getIDPaciente();
+
+    rlutil::locate(30, 8);
+    std::cout << "DNI: " << paciente.getDni();
+
+    rlutil::locate(30, 9);
+    std::cout << "Nombre: " << paciente.getNombre();
+
+    rlutil::locate(30, 10);
+    std::cout << "Apellido: " << paciente.getApellido();
+
+    rlutil::locate(30, 11);
+    std::cout << "Email: " << paciente.getEmail();
+
     Fecha f = paciente.getFechaNacimiento();
-    cout << "Fecha de nacimiento: " << f.getDia() << "/" << f.getMes() << "/" << f.getAnio() << endl;
-    cout << "Estado: " << (paciente.getEstado() ? "Activo" : "Inactivo") << endl;
+    rlutil::locate(30, 12);
+    std::cout << "Fecha de nacimiento: " << f.getDia() << "/" << f.getMes() << "/" << f.getAnio();
+
+    rlutil::locate(30, 13);
+    std::cout << "Estado: " << (paciente.getEstado() ? "Activo" : "Inactivo");
+
+    rlutil::setColor(rlutil::WHITE);
+    rlutil::anykey();
 }
 
 void MedicoManager::reactivarMedico(){

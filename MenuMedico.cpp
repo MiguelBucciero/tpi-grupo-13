@@ -40,12 +40,8 @@ int MenuMedico::menuMedico(Usuario usuarioLogeado){
         if (y == 4) rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
         else rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::locate(50, 9);
-        cout << " 5. REACTIVAR MEDICO ";
-
-        if (y == 5) rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
-        else rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
-        rlutil::locate(50, 10);
         cout << " 0. CERRAR SESION ";
+
 
         // FLECHA DE SELECCIÓN
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
@@ -61,7 +57,9 @@ int MenuMedico::menuMedico(Usuario usuarioLogeado){
         case 15: // DOWN
             rlutil::locate(48, 5 + y); cout << " ";
             y++;
-            if (y > 5) y = 5;
+            if (y > 5) {
+                    y = 5;
+            }
             break;
         case 1: // ENTER
             rlutil::cls();
@@ -83,9 +81,6 @@ int MenuMedico::menuMedico(Usuario usuarioLogeado){
                     _medicoManager.buscarPacientePorDNI();
                     break;
                 case 4:
-                    _medicoManager.reactivarMedico();
-                    break;
-                case 5:
                     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
                     rlutil::setColor(rlutil::COLOR::YELLOW);
                     rlutil::locate(50, 12);
