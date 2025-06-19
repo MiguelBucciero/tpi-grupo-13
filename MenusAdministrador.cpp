@@ -10,7 +10,7 @@ using namespace std;
 int MenuAdministrador::menuAdministrador() {
     int opc=1;
     int y=0;
-    int salir;
+
     do{
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
@@ -136,14 +136,15 @@ int MenuAdministrador::menuAdministrador() {
         rlutil::locate(50, 17);
         cout << "13. ELIMINAR MEDICO ";
 
-        if (y == 13) {
+         if (y == 13) {
             rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
         }
         else {
             rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         }
         rlutil::locate(50, 18);
-        cout << "14. LISTAR MEDICOS ";
+        cout << "14. REACTIVAR MEDICO ";
+
 
         if (y == 14) {
             rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
@@ -152,6 +153,15 @@ int MenuAdministrador::menuAdministrador() {
             rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         }
         rlutil::locate(50, 19);
+        cout << "15. LISTAR MEDICOS ";
+
+        if (y == 15) {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        }
+        else {
+            rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        }
+        rlutil::locate(50, 20);
         cout << " 0. CERRAR SESION ";
 
         //Flecha
@@ -172,17 +182,18 @@ int MenuAdministrador::menuAdministrador() {
                 rlutil::locate(48, 5 + y);
                 cout<<" "<<endl;
                 y++;
-                if(y>14){
-                    y=14;
+                if(y>15){
+                    y=15;
                 }
             break;
             case 1: //ENTER
                 rlutil::cls();
                 switch(y){
-                case 0: _usuarioManager.cargarUsuario();
+                case 0:
+                    _usuarioManager.cargarUsuario();
                     break;
                 case 1:
-                     _usuarioManager.modificarUsuario();
+                    _usuarioManager.modificarUsuario();
                     break;
                 case 2:
                     _usuarioManager.DarBajaUsuario();
@@ -190,20 +201,20 @@ int MenuAdministrador::menuAdministrador() {
                 case 3:
                     _usuarioManager.reactivarUsuario();
                     break;
-                case 4: _usuarioManager.mostrarUsuario();
+                case 4:
+                    _usuarioManager.mostrarUsuario();
                     break;
                 case 5:
-                    salir = menuInformesAdministrador();
-                    if(salir != 0){
-                        rlutil::anykey();
-                    }
+                    menuInformesAdministrador();
                     break;
                 case 6:
                    _espManager.cargarEspecialidad();
                     break;
-                case 7: _espManager.ModificarEspecialidad();
+                case 7:
+                    _espManager.ModificarEspecialidad();
                     break;
-                case 8: _espManager.DarBajaEspecialidad();
+                case 8:
+                    _espManager.DarBajaEspecialidad();
                     break;
                 case 9:
                     _espManager.mostrarEspecialidad();
@@ -218,9 +229,12 @@ int MenuAdministrador::menuAdministrador() {
                     _medicoManger.DarBajaMedico();
                     break;
                 case 13:
-                    _medicoManger.mostrarMedico();
+                    _medicoManger.reactivarMedico();
                     break;
                 case 14:
+                    _medicoManger.mostrarMedico();
+                    break;
+                case 15:
                     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
                     rlutil::setColor(rlutil::COLOR::YELLOW);
                     rlutil::locate(50, 13);
@@ -321,7 +335,7 @@ int MenuAdministrador::menuInformesAdministrador(){
 
         switch(rlutil::getkey()){
         case 14: //UP
-            rlutil::locate(53, 5 + y);
+            rlutil::locate(48, 5 + y);
             cout<<" "<<endl;
             y--;
             if(y<0){
@@ -329,7 +343,7 @@ int MenuAdministrador::menuInformesAdministrador(){
             }
         break;
         case 15: //DOWN
-            rlutil::locate(53, 5 + y);
+            rlutil::locate(48, 5 + y);
             cout<<" "<<endl;
             y++;
             if(y>6){

@@ -50,7 +50,7 @@ void Medico::setIDMedico(int IDMedico) {
 }
 
 void Medico::setMatricula(int matricula) {
-    if (matricula >= 1 && matricula <= 999999) {
+    if (matricula >= 1 && matricula <= 99999999) {
         _matricula = matricula;
     } else {
         _matricula = 0;

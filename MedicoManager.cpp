@@ -655,7 +655,7 @@ void MedicoManager::modificarMedico(){
                     rlutil::locate(30, 6);
                     cout << "Nuevo Apellido: ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(55, 6);
+                    rlutil::locate(60, 6);
                     getline(cin, aux);
                     medico.setApellido(aux);
 
@@ -664,14 +664,14 @@ void MedicoManager::modificarMedico(){
                     rlutil::locate(30, 7);
                     cout << "Nuevo Nombre: ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(55, 7);
+                    rlutil::locate(60, 7);
                     getline(cin, aux); medico.setNombre(aux);
 
                     rlutil::setColor(rlutil::COLOR::CYAN);
                     rlutil::locate(30, 8);
                     cout << "Nuevo DNI: ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(55, 8);
+                    rlutil::locate(60, 8);
                     cin >> dni;
                     cin.ignore();
                     medico.setDni(dni);
@@ -682,15 +682,15 @@ void MedicoManager::modificarMedico(){
                     rlutil::setColor(rlutil::COLOR::WHITE);
                     rlutil::locate(30, 10);
                     cout << "Dia: ";
-                    rlutil::locate(50, 10);
+                    rlutil::locate(60, 10);
                     cin >> dia;
                     rlutil::locate(30, 11);
                     cout << "Mes: ";
-                    rlutil::locate(50, 11);
+                    rlutil::locate(60, 11);
                     cin >> mes;
                     rlutil::locate(30, 12);
                     cout << "Anio: ";
-                    rlutil::locate(50, 12);
+                    rlutil::locate(60, 12);
                     cin >> anio;
                     cin.ignore();
                     medico.setFechaNacimiento(Fecha(dia, mes, anio));
@@ -699,7 +699,7 @@ void MedicoManager::modificarMedico(){
                     rlutil::locate(30, 13);
                     cout << "Nuevo Genero: ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(55, 13);
+                    rlutil::locate(60, 13);
                     getline(cin, aux);
                     medico.setGenero(aux);
 
@@ -707,7 +707,7 @@ void MedicoManager::modificarMedico(){
                     rlutil::locate(30, 14);
                     cout << "Nuevo Email: ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(55, 14);
+                    rlutil::locate(60, 14);
                     getline(cin, aux);
                     medico.setEmail(aux);
 
@@ -715,7 +715,7 @@ void MedicoManager::modificarMedico(){
                     rlutil::locate(30, 15);
                     cout << "Nuevo Telefono: ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(55, 15);
+                    rlutil::locate(60, 15);
                     getline(cin, aux);
                     medico.setTelefono(aux);
 
@@ -723,13 +723,13 @@ void MedicoManager::modificarMedico(){
                     rlutil::locate(30, 16);
                     cout << "Nuevo Domicilio: ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(55, 16);
+                    rlutil::locate(60, 16);
 
                     rlutil::locate(30, 17);
                     rlutil::setColor(rlutil::COLOR::CYAN);
                     cout << "Calle: ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(50, 17);
+                    rlutil::locate(60, 17);
                     getline(cin, aux);
                     domicilio.setCalle(aux);
 
@@ -737,7 +737,7 @@ void MedicoManager::modificarMedico(){
                     rlutil::setColor(rlutil::COLOR::CYAN);
                     cout << "Altura: ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(50, 18);
+                    rlutil::locate(60, 18);
                     cin >> altura;
                     domicilio.setAltura(altura);
                     cin.ignore();
@@ -746,7 +746,7 @@ void MedicoManager::modificarMedico(){
                     rlutil::setColor(rlutil::COLOR::CYAN);
                     cout << "Localidad: ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(50, 19);
+                    rlutil::locate(60, 19);
                     getline(cin, aux);
                     domicilio.setLocalidad(aux);
 
@@ -754,7 +754,7 @@ void MedicoManager::modificarMedico(){
                     rlutil::setColor(rlutil::COLOR::CYAN);
                     cout << "Provincia: ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(50, 20);
+                    rlutil::locate(60, 20);
                     getline(cin, aux);
                     domicilio.setProvincia(aux);
 
@@ -762,7 +762,7 @@ void MedicoManager::modificarMedico(){
                     rlutil::setColor(rlutil::COLOR::CYAN);
                     cout << "Codigo Postal: ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(50, 21);
+                    rlutil::locate(60, 21);
                     getline(cin, aux);
                     domicilio.setCodigoPostal(aux);
 
@@ -772,7 +772,7 @@ void MedicoManager::modificarMedico(){
                     rlutil::locate(30, 22);
                     cout << "Nueva Matricula: ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(55, 22);
+                    rlutil::locate(60, 22);
                     cin >> matricula;
                     cin.ignore();
                     medico.setMatricula(matricula);
@@ -781,7 +781,7 @@ void MedicoManager::modificarMedico(){
                     rlutil::locate(30, 23);
                     cout << "Nuevo ID de Especialidad: ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(55, 23);
+                    rlutil::locate(60, 23);
                     cin >> idEspecialidad;
                     cin.ignore();
                     medico.setIDEspecialidad(idEspecialidad);
@@ -840,31 +840,48 @@ void MedicoManager::buscarPacientePorDNI(){
 
 void MedicoManager::reactivarMedico(){
     MedicoArchivo archivo("Medicos.dat");
-    int cantidad = archivo.getCantidadRegistros();
+    int cantidad, fila, id;
 
+    cantidad = archivo.getCantidadRegistros();
     bool hayInactivos = false;
 
-    cout << "=== Médicos inactivos ===" << endl;
+    rlutil::cls();
+    rlutil::setColor(rlutil::YELLOW);
+    rlutil::locate(40, 2);
+    std::cout << "=== MEDICOS INACTIVOS ===";
+    rlutil::setColor(rlutil::WHITE);
+
+    fila = 4;
 
     for(int i = 0; i < cantidad; i++){
         Medico m = archivo.Leer(i);
         if(m.getEstado() == false){
             hayInactivos = true;
-            cout << "ID: " << m.getIDMedico() << endl;
-            cout << "Nombre: " << m.getNombre() << " " << m.getApellido() << endl;
-            cout << "DNI: " << m.getDni() << endl;
-            cout << "-------------------------" << endl;
+            rlutil::locate(30, fila++);
+            std::cout << "ID: " << m.getIDMedico();
+            rlutil::locate(30, fila++);
+            std::cout << "Nombre: " << m.getNombre() << " " << m.getApellido();
+            rlutil::locate(30, fila++);
+            std::cout << "DNI: " << m.getDni();
+            rlutil::locate(30, fila++);
+            std::cout << "------------------------------";
+            fila++;
         }
     }
 
     if(!hayInactivos){
-        cout << "No hay médicos inactivos." << endl;
+        rlutil::locate(30, fila);
+        rlutil::setColor(rlutil::RED);
+        std::cout << "No hay medicos inactivos.";
+        rlutil::setColor(rlutil::WHITE);
+        rlutil::anykey();
+        rlutil::cls();
         return;
     }
 
-    int id;
-    cout << "Ingrese el ID del médico que desea reactivar: ";
-    cin >> id;
+    rlutil::locate(30, fila);
+    std::cout << "Ingrese el ID del medico que desea reactivar: ";
+    std::cin >> id;
 
     // Buscar el médico por ID
     for(int i = 0; i < cantidad; i++){
@@ -872,10 +889,22 @@ void MedicoManager::reactivarMedico(){
         if(m.getIDMedico() == id && m.getEstado() == false){
             m.setEstado(true);  // Reactivar
             archivo.guardar(m, i);
-            cout << "Médico reactivado correctamente." << endl;
+
+            rlutil::locate(30, fila + 2);
+            rlutil::setColor(rlutil::GREEN);
+            std::cout << "Medico reactivado correctamente.";
+            rlutil::setColor(rlutil::WHITE);
+            rlutil::anykey();
+            rlutil::cls();
             return;
         }
     }
 
-    cout << "No se encontró un médico inactivo con ese ID." << endl;
+    rlutil::locate(30, fila + 2);
+    rlutil::setColor(rlutil::RED);
+    std::cout << "No se encontro un medico inactivo con ese ID.";
+    rlutil::setColor(rlutil::WHITE);
+    rlutil::anykey();
+    rlutil::cls();
+
 }
