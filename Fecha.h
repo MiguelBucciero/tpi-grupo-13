@@ -24,6 +24,7 @@ public:
     void obtenerInicioDeSemana();
     bool esAnterior(Fecha &otra);
 
+
 private:
     int _dia;
     int _mes;

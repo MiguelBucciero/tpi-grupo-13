@@ -6,6 +6,9 @@
 #include "TurnoArchivo.h"
 #include "Turno.h"
 
+#include "PacienteArchivo.h"
+#include "Paciente.h"
+
 
 using namespace std;
 
@@ -806,4 +809,29 @@ void MedicoManager::modificarMedico(){
     rlutil::cls();
 }
 
+void MedicoManager::buscarPacientePorDNI(){
+    int dni;
+    cout << "Ingrese el DNI del paciente: ";
+    cin >> dni;
 
+    PacienteArchivo archivo("pacientes.dat");
+    int pos = archivo.Buscar(dni);
+
+    if(pos == -1){
+        cout << "Paciente no encontrado." << endl;
+        return;
+    }
+
+    Paciente paciente = archivo.Leer(pos);
+    cout << "Paciente encontrado:" << endl;
+
+    cout << "ID: " << paciente.getIDPaciente() << endl;
+    cout << "DNI: " << paciente.getDni() << endl;
+    cout << "Nombre: " << paciente.getNombre() << endl;
+    cout << "Apellido: " << paciente.getApellido() << endl;
+    cout << "Email: " << paciente.getEmail() << endl;
+    cout << "Fecha de nacimiento: ";
+    Fecha f = paciente.getFechaNacimiento();
+    cout << "Fecha de nacimiento: " << f.getDia() << "/" << f.getMes() << "/" << f.getAnio() << endl;
+    cout << "Estado: " << (paciente.getEstado() ? "Activo" : "Inactivo") << endl;
+}

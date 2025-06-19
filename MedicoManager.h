@@ -10,6 +10,7 @@ public:
     void verTurnosAsignados(int idMedico);
     void DarBajaMedico();
     void modificarMedico();
+    void buscarPacientePorDNI();
 private:
     MedicoArchivo _archivo;
 };

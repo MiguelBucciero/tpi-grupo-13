@@ -1,4 +1,6 @@
 #include "Fecha.h"
+#include <iostream>
+using namespace std;
 
 Fecha::Fecha() {
     _dia=1;
@@ -89,3 +91,5 @@ bool Fecha::esAnterior(Fecha &otra) {
     }
     return false;
 }
+
+
