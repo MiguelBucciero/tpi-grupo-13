@@ -1,5 +1,6 @@
 #include "EspecialidadManager.h"
 #include "Especialidad.h"
+#include "Validador.h"
 #include "rlutil.h"
 #include <iostream>
 #include <string>
@@ -10,6 +11,7 @@ void EspecialidadManager::cargarEspecialidad() {
     Especialidad registro;
     int id = _archivo.getNuevoID();
     string nombre;
+    Validador val;
 
     rlutil::cls();
     rlutil::setColor(rlutil::COLOR::YELLOW);
@@ -23,14 +25,29 @@ void EspecialidadManager::cargarEspecialidad() {
     rlutil::setColor(rlutil::COLOR::WHITE);
     cout << id;
 
+    cin.ignore();
+
+    do{
     rlutil::locate(35, 7);
     rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Nombre de la especialidad: ";
     rlutil::setColor(rlutil::COLOR::WHITE);
 
     rlutil::locate(35, 8);
-    cin.ignore();
+    cout<<"                                                   ";
+    rlutil::locate(35, 8);
     getline(cin, nombre);
+
+        if(!val.esTextoValido(nombre)){
+            rlutil::locate(35, 9);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Nombre invalido. Letras y espacios. Presione enter e intente nuevamente.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(35, 9);
+            cout<<"                                                                           ";
+        }
+    }while(!val.esTextoValido(nombre));
 
     registro.setIDEspecialidad(id);
     registro.setNombre(nombre);
@@ -136,6 +153,7 @@ void EspecialidadManager::mostrarEspecialidad() {
 void EspecialidadManager::DarBajaEspecialidad(){
     int id;
     bool encontrado=false;
+    Validador val;
 
     while(!encontrado){
         rlutil::cls();
@@ -143,13 +161,32 @@ void EspecialidadManager::DarBajaEspecialidad(){
         rlutil::locate(35, 3);
         cout << " DAR BAJA ESPECIALIDAD ";
         rlutil::setColor(rlutil::COLOR::WHITE);
-
+        do{
         rlutil::locate(35, 5);
         rlutil::setColor(rlutil::COLOR::CYAN);
         cout << "Ingrese el ID de la especialidad a dar de baja: ";
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(35, 6);
-        cin >> id;
+        cin>>id;
+
+        if(cin.fail()||!val.esEnteroPositivo(id)){
+            cin.clear();
+            cin.ignore(1000, '\n');
+
+            rlutil::locate(35, 8);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "ID invalido. solo numeros positivos. Presione enter e intente nuevamente.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+
+            rlutil::anykey();
+
+            rlutil::locate(35, 6);
+            cout<<"                                                                           ";
+            rlutil::locate(35, 8);
+            cout<<"                                                                           ";
+        }
+        }while(cin.fail()||!val.esEnteroPositivo(id));
+        cin.ignore(1000, '\n');
 
         int pos = _archivo.Buscar(id);
         Especialidad esp;
@@ -159,7 +196,7 @@ void EspecialidadManager::DarBajaEspecialidad(){
             cout << "Especialidad no encontrada. Presione enter e intente nuevamente.";
             rlutil::anykey();
         }else{
-            Especialidad esp = _archivo.Leer(pos);
+            esp = _archivo.Leer(pos);
             if (!esp.getEstado()) {
                 rlutil::locate(35, 7);
                 rlutil::setColor(rlutil::COLOR::RED);
@@ -204,6 +241,7 @@ void EspecialidadManager::ModificarEspecialidad(){
     string nombreNuevo;
     char confirmacion;
     bool modificado=false;
+    Validador val;
 
     while(!modificado){
         rlutil::cls();
@@ -211,13 +249,31 @@ void EspecialidadManager::ModificarEspecialidad(){
         rlutil::locate(35, 3);
         cout << " MODIFICAR ESPECIALIDAD ";
         rlutil::setColor(rlutil::COLOR::WHITE);
-
+        do{
         rlutil::locate(35, 5);
         rlutil::setColor(rlutil::COLOR::CYAN);
         cout << "Ingrese el ID de la especialidad a modificar: ";
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(35, 6);
         cin >> id;
+        if(cin.fail()||!val.esEnteroPositivo(id)){
+            cin.clear();
+            cin.ignore(1000, '\n');
+
+            rlutil::locate(35, 7);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "ID invalido. solo numeros positivos. Presione enter e intente nuevamente.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+
+            rlutil::anykey();
+
+            rlutil::locate(35, 6);
+            cout<<"                                                                           ";
+            rlutil::locate(35, 7);
+            cout<<"                                                                           ";
+        }
+        }while(cin.fail()||!val.esEnteroPositivo(id));
+        cin.ignore(1000, '\n');
 
         int pos = _archivo.Buscar(id);
         if (pos == -1) {
@@ -248,15 +304,26 @@ void EspecialidadManager::ModificarEspecialidad(){
                     cout << "Nombre actual: ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
                     cout << esp.getNombre();
-
                     rlutil::locate(35, 9);
                     rlutil::setColor(rlutil::COLOR::CYAN);
                     cout << "Ingrese el nuevo nombre de la especialidad: ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(35, 10);
                     cin.ignore();
+                    do{
+                    rlutil::locate(35, 10);
+                    cout<<"                                              ";
+                    rlutil::locate(35, 10);
                     getline(cin, nombreNuevo);
-
+                    if(!val.esTextoValido(nombreNuevo)){
+                        rlutil::locate(35, 11);
+                        rlutil::setColor(rlutil::COLOR::RED);
+                        cout << "Nombre invalido. Letras y espacios. Presione enter e intente nuevamente.";
+                        rlutil::setColor(rlutil::COLOR::WHITE);
+                        rlutil::anykey();
+                        rlutil::locate(35, 11);
+                        cout<<"                                                                           ";
+                    }
+                    }while(!val.esTextoValido(nombreNuevo));
                     esp.setNombre(nombreNuevo);
 
                     if (_archivo.guardar(esp, pos)) {
@@ -287,6 +354,7 @@ void EspecialidadManager::ReactivarEspecialidad(){
     int cantidad=_archivo.getCantidadRegistros();
     bool noActivo=false;
     int fila=4;
+    Validador val;
 
     rlutil::cls();
     rlutil::setColor(rlutil::COLOR::YELLOW);
@@ -322,14 +390,33 @@ void EspecialidadManager::ReactivarEspecialidad(){
 
 
     if (confirmacion == 's' || confirmacion == 'S') {
+        int id;
+        do{
         rlutil::locate(30, fila + 4);
         rlutil::setColor(rlutil::COLOR::CYAN);
         cout<<"Que especialidad desea activar?";
         rlutil::locate(31, fila + 5);
         cout<<"ID: ";
         rlutil::setColor(rlutil::COLOR::WHITE);
-        int id;
         cin>>id;
+        if(cin.fail()||!val.esEnteroPositivo(id)){
+            cin.clear();
+            cin.ignore(1000, '\n');
+
+            rlutil::locate(35, fila + 6);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "ID invalido. solo numeros positivos. Presione enter e intente nuevamente.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+
+            rlutil::anykey();
+
+            rlutil::locate(31, fila + 5);
+            cout<<"                                                                           ";
+            rlutil::locate(35, fila + 6);
+            cout<<"                                                                           ";
+        }
+        }while(cin.fail()||!val.esEnteroPositivo(id));
+        cin.ignore(1000, '\n');
 
         int pos=_archivo.Buscar(id);
         if(pos==-1){

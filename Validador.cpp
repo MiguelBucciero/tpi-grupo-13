@@ -1,4 +1,5 @@
 #include "Validador.h"
+#include "rlutil.h"
 
 Validador::Validador() {
 }
@@ -27,7 +28,6 @@ bool Validador::esTextoValido(const std::string &texto) {
     }
     return false;
 }
-
 
 bool Validador::esNumeroValido(const std::string &texto) {
     int cantidadDigitos = 0;
@@ -65,3 +65,5 @@ bool Validador::esFechaValida(int dia, int mes, int anio) {
     if (anio < 1900 || anio > 2100) return false;
     return true;
 }
+
+

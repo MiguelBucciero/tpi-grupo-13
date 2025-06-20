@@ -546,7 +546,7 @@ void MedicoManager::DarBajaMedico(){
         cout << "Ingrese el ID del medico a dar de baja: ";
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(75, 6);
-        cin >> id;
+        cin>>id;
 
         int pos = _archivo.Buscar(id);
         Medico posMedico;
