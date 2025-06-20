@@ -104,6 +104,8 @@
 		</Unit>
 		<Unit filename="UsuarioManager.cpp" />
 		<Unit filename="UsuarioManager.h" />
+		<Unit filename="Validador.cpp" />
+		<Unit filename="Validador.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="rlutil.h" />
 		<Extensions>

@@ -72,5 +72,11 @@ void Usuario::setEstado (bool valor){
 }
 
 void Usuario::setIDMedico(int valor){
-    _IDMedico=valor;
+    if(valor > 0){
+        _IDMedico = valor;
+    }
+    else{
+        _IDMedico = 0;
+    }
+
 }

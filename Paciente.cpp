@@ -36,13 +36,19 @@ bool Paciente::getEstado() const{
 
 void Paciente::setIDPaciente(int id){
     if(id>0){
-        _IDPaciente=id;
+        _IDPaciente = id;
+    }
+    else{
+        _IDPaciente = 0;
     }
 }
 
 void Paciente::setCarnet(int car){
     if(car>0){
-        _carnet=car;
+        _carnet = car;
+    }
+    else{
+        _carnet = 0;
     }
 }
 void Paciente::setEstado(bool est){

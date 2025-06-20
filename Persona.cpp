@@ -66,11 +66,19 @@ void Persona::setApellido(const string &apellido) {
     if (apellido.length() < sizeof(_apellido)) {
         strcpy(_apellido, apellido.c_str());
     }
+    else{
+        strncpy(_apellido, apellido.c_str(), sizeof(_apellido)-1);
+        _apellido[sizeof(_apellido)-1]='\0';
+    }
 }
 
 void Persona::setNombre(const string &nombre) {
     if (nombre.length() < sizeof(_nombre)) {
         strcpy(_nombre, nombre.c_str());
+    }
+    else{
+        strncpy(_nombre, nombre.c_str(), sizeof(_nombre)-1);
+        _nombre[sizeof(_nombre)-1]='\0';
     }
 }
 
@@ -78,6 +86,9 @@ void Persona::setNombre(const string &nombre) {
 void Persona::setDni(int dni) {
     if (dni > 1000000 && dni < 99999999) {
         _dni = dni;
+    }
+    else{
+        _dni = 0;
     }
 }
 

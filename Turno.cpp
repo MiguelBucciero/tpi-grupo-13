@@ -50,7 +50,7 @@ int Turno::getEstado() const{
 //Setters
 
 void Turno::setIDTurno(int valor){
-    _IDTurno=valor;
+    _IDTurno = valor;
 }
 void Turno::setIDPaciente(int valor){
     _IDPaciente=valor;

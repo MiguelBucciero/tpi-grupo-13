@@ -2,13 +2,10 @@
 #include <string>
 #include "MedicoManager.h"
 #include "rlutil.h"
-
 #include "TurnoArchivo.h"
 #include "Turno.h"
-
 #include "PacienteArchivo.h"
 #include "Paciente.h"
-
 #include "MedicoArchivo.h"
 #include "Medico.h"
 

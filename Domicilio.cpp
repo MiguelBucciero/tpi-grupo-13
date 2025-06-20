@@ -54,7 +54,13 @@ void Domicilio::setCalle(const string &calle) {
 }
 
 void Domicilio::setAltura(int altura) {
-    _altura = altura;
+    if(altura > 0){
+        _altura = altura;
+    }
+    else{
+        _altura = 0;
+    }
+
 }
 
 void Domicilio::setLocalidad(const string &localidad) {

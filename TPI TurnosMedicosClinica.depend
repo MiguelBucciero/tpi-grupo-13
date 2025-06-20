@@ -1450,7 +1450,7 @@
 	<iostream>
 	<cstring>
 
-1750346005 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\domicilio.cpp
+1750434026 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\domicilio.cpp
 	"Domicilio.h"
 	"rlutil.h"
 	<string>
@@ -1594,7 +1594,7 @@
 1750346005 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medicoarchivo.cpp
 	"MedicoArchivo.h"
 
-1750352312 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medicomanager.cpp
+1750393222 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\medicomanager.cpp
 	<iostream>
 	<string>
 	"MedicoManager.h"
@@ -1606,7 +1606,7 @@
 	"MedicoArchivo.h"
 	"Medico.h"
 
-1750346005 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menumedico.cpp
+1750352490 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\menumedico.cpp
 	<iostream>
 	"rlutil.h"
 	"MenuMedico.h"
@@ -1630,7 +1630,7 @@
 	"MedicoManager.h"
 	"Medico.h"
 
-1750346005 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\paciente.cpp
+1750435112 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\paciente.cpp
 	<string>
 	<cstring>
 	"Paciente.h"
@@ -1645,7 +1645,7 @@
 	<iostream>
 	<string>
 
-1750346005 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\persona.cpp
+1750435039 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\persona.cpp
 	<string>
 	<cstring>
 	"Persona.h"
@@ -1663,7 +1663,7 @@
 	"TurnoArchivo.h"
 	"TurnoManager.h"
 
-1750346005 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuario.cpp
+1750435189 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuario.cpp
 	<string>
 	<cstring>
 	"Usuario.h"
@@ -1678,7 +1678,7 @@
 	"Fecha.h"
 	<iostream>
 
-1750346005 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuariomanager.cpp
+1750353205 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\usuariomanager.cpp
 	"UsuarioManager.h"
 	"MenuRecepcionista.h"
 	"MenuAdministrador.h"
@@ -2459,4 +2459,10 @@
 	"Medico.h"
 	"Especialidad.h"
 	"rlutil.h"
+
+1750434314 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\validador.cpp
+	"Validador.h"
+
+1750434194 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\validador.h
+	<string>
 
