@@ -6,9 +6,10 @@ public:
     // Constructor
     Validador();
 
-    // Métodos
+    // Metodos
     bool esTextoValido(const std::string &texto);
     bool esNumeroValido(const std::string &texto);
     bool esEnteroPositivo(int numero);
     bool esFechaValida(int dia, int mes, int anio);
+    bool esConfirmacionSN(char c);
 };

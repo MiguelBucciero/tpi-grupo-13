@@ -11,7 +11,7 @@ bool Validador::esTextoValido(const std::string &texto) {
     for (int i = 0; texto[i] != '\0'; i++) {
         caracter = texto[i];
 
-        // Si no es letra ni espacio, inválido
+        // Si no es letra ni espacio, invÃ¡lido
         if (!((caracter >= 'A' && caracter <= 'Z') || (caracter >= 'a' && caracter <= 'z') || caracter == ' ')) {
             return false;
         }
@@ -36,7 +36,7 @@ bool Validador::esNumeroValido(const std::string &texto) {
     for (int i = 0; texto[i] != '\0'; i++) {
         caracter = texto[i];
 
-        // Si no está entre '0' y '9', no es un número
+        // Si no estÃ¡ entre '0' y '9', no es un nÃºmero
         if (caracter < '0' || caracter > '9') {
             return false;
         }
@@ -44,7 +44,7 @@ bool Validador::esNumeroValido(const std::string &texto) {
         cantidadDigitos++;
     }
 
-    // Debe tener al menos un dígito
+    // Debe tener al menos un dÃ­gito
     if (cantidadDigitos > 0) {
         return true;
     }
@@ -60,10 +60,24 @@ bool Validador::esEnteroPositivo(int numero) {
 }
 
 bool Validador::esFechaValida(int dia, int mes, int anio) {
-    if (dia < 1 || dia > 31) return false;
-    if (mes < 1 || mes > 12) return false;
-    if (anio < 1900 || anio > 2100) return false;
+    if (dia < 1 || dia > 31){
+        return false;
+    }
+    if (mes < 1 || mes > 12){
+        return false;
+    }
+    if (anio < 1900 || anio > 2100){
+        return false;
+    }
     return true;
+}
+
+bool Validador::esConfirmacionSN(char c) {
+    // Verifica si es letra y si es 's' o 'n' (en mayï¿½scula o minï¿½scula)
+    if(c == 's' || c == 'S' || c == 'n' || c == 'N'){
+        return true;
+    }
+    return false;
 }
 
 
