@@ -8,6 +8,7 @@
 #include "Paciente.h"
 #include "MedicoArchivo.h"
 #include "Medico.h"
+#include "Validador.h"
 
 using namespace std;
 
@@ -809,7 +810,7 @@ void MedicoManager::DarBajaMedico(){
         rlutil::setColor(rlutil::COLOR::YELLOW);
         rlutil::locate(40, 3);
         cout << " DAR DE BAJA MEDICO ";
-
+        do{
         rlutil::setColor(rlutil::COLOR::CYAN);
         rlutil::locate(30, 6);
         cout << "Ingrese el ID del medico a dar de baja: ";
@@ -828,12 +829,14 @@ void MedicoManager::DarBajaMedico(){
             cout << "Presione una tecla para continuar...";
             rlutil::setColor(rlutil::COLOR::WHITE);
             rlutil::anykey();
+            rlutil::locate(75, 6);
+            cout << "                                                       ";
             rlutil::locate(30, 8);
             cout << "                                                       ";
             rlutil::locate(30, 9);
             cout << "                                                       ";
-            continue;
         }
+        }while(cin.fail() || !val.esEnteroPositivo(id));
         cin.ignore();
 
         int pos = _archivo.Buscar(id);
@@ -922,7 +925,7 @@ void MedicoManager::modificarMedico(){
         rlutil::setColor(rlutil::COLOR::YELLOW);
         rlutil::locate(40, 3);
         cout << " MODIFICAR MEDICO ";
-
+        do{
         rlutil::setColor(rlutil::COLOR::CYAN);
         rlutil::locate(30, 6);
         cout << "Ingrese el ID del medico a modificar: ";
@@ -938,8 +941,12 @@ void MedicoManager::modificarMedico(){
             cout << "ID invalido. Presione enter e intente nuevamente.";
             rlutil::setColor(rlutil::COLOR::WHITE);
             rlutil::anykey();
-            continue;
+            rlutil::locate(73, 6);
+            cout<<"                                                                           ";
+            rlutil::locate(30, 8);
+            cout<<"                                                                           ";
         }
+        }while(cin.fail() || !val.esEnteroPositivo(id));
         cin.ignore();
 
         int pos = _archivo.Buscar(id);
@@ -1310,9 +1317,11 @@ void MedicoManager::modificarMedico(){
     rlutil::cls();
 }
 
-void MedicoManager::buscarPacientePorDNI(){
+void MedicoManager::buscarPacientePorDNI(int IDMedico){
     Validador val;
-    int dni, pos;
+    int dni, idPaciente;
+    bool hayPaciente=false;
+    string h, m;
 
     // Validacion de ingreso de DNI
     do {
@@ -1324,6 +1333,8 @@ void MedicoManager::buscarPacientePorDNI(){
 
         rlutil::locate(30, 4);
         cout << "Ingrese el DNI del paciente: ";
+        rlutil::locate(60, 4);
+        cout << "               ";
         rlutil::locate(60, 4);
         cin >> dni;
 
@@ -1338,8 +1349,6 @@ void MedicoManager::buscarPacientePorDNI(){
             cout << "Presione una tecla para continuar...";
             rlutil::setColor(rlutil::WHITE);
             rlutil::anykey();
-            rlutil::locate(60, 4);
-            cout << "               ";
             rlutil::locate(30, 6);
             cout << "                                                    ";
             rlutil::locate(30, 7);
@@ -1348,47 +1357,66 @@ void MedicoManager::buscarPacientePorDNI(){
     } while (cin.fail() || !val.esEnteroPositivo(dni));
     cin.ignore();
 
-    PacienteArchivo archivo("pacientes.dat");
-    pos = archivo.Buscar(dni);
+    PacienteArchivo archip("Pacientes.dat");
+    int cantidadP=archip.getCantidadRegistros();
 
-    if(pos == -1){
+    for(int i=0; i<cantidadP; i++){
+        Paciente paciente=archip.Leer(i);
+        if(paciente.getDni()==dni&&paciente.getEstado()){
+            idPaciente=paciente.getIDPaciente();
+            hayPaciente=true;
+            rlutil::locate(30, 6);
+            cout << "Paciente encontrado: "<<paciente.getApellido()<<", "<<paciente.getNombre()<<" (ID: "<<paciente.getIDPaciente()<<")";
+            break;
+        }
+    }
+    if(!hayPaciente){
         rlutil::locate(30, 6);
         rlutil::setColor(rlutil::RED);
-        cout << "Paciente no encontrado.";
+        cout<<"Paciente no encontrado o no activo";
         rlutil::setColor(rlutil::WHITE);
         rlutil::anykey();
+        rlutil::cls();
         return;
     }
 
-    Paciente paciente = archivo.Leer(pos);
+    TurnoArchivo archiTurno("Turnos.dat");
+    bool hayTurnos=false;
+    int fila=8;
+    int cantidadT=archiTurno.getCantidadRegistros();
 
-    rlutil::locate(30, 6);
-    cout << "Paciente encontrado:";
+    for(int i=0; i<cantidadT; i++){
+        Turno turno=archiTurno.Leer(i);
+        if(turno.getIDPaciente()==idPaciente&&turno.getIDMedico()==IDMedico){
+            rlutil::locate(30, fila++);
+            cout<<"Turno "<< turno.getIDTurno();
+            rlutil::locate(30, fila++);
+            cout<<"Fecha: "<<turno.getFechaTurno().getDia()<<"/"<<turno.getFechaTurno().getMes()<<"/"<<turno.getFechaTurno().getAnio();
+            rlutil::locate(30, fila++);
+            cout<<"Hora: ";
+            if (turno.getHoraTurno().getHora() < 10) {
+            h = "0" + to_string(turno.getHoraTurno().getHora());
+            } else {
+            h = to_string(turno.getHoraTurno().getHora());
+            }
 
-    rlutil::locate(30, 7);
-    cout << "ID: " << paciente.getIDPaciente();
-
-    rlutil::locate(30, 8);
-    cout << "DNI: " << paciente.getDni();
-
-    rlutil::locate(30, 9);
-    cout << "Nombre: " << paciente.getNombre();
-
-    rlutil::locate(30, 10);
-    cout << "Apellido: " << paciente.getApellido();
-
-    rlutil::locate(30, 11);
-    cout << "Email: " << paciente.getEmail();
-
-    Fecha f = paciente.getFechaNacimiento();
-    rlutil::locate(30, 12);
-    cout << "Fecha de nacimiento: " << f.getDia() << "/" << f.getMes() << "/" << f.getAnio();
-
-    rlutil::locate(30, 13);
-    cout << "Estado: " << (paciente.getEstado() ? "Activo" : "Inactivo");
-
+            if (turno.getHoraTurno().getMinutos() < 10) {
+            m = "0" + to_string(turno.getHoraTurno().getMinutos());
+            } else {
+            m = to_string(turno.getHoraTurno().getMinutos());
+            }
+            cout<<h + ":" + m + " hs.";
+            hayTurnos=true;
+            }
+    }
+    if(!hayTurnos){
+        rlutil::locate(30, fila++);
+        rlutil::setColor(rlutil::RED);
+        cout<<"No tiene turnos programados con usted.";
+    }
     rlutil::setColor(rlutil::WHITE);
     rlutil::anykey();
+    rlutil::cls();
 }
 
 void MedicoManager::reactivarMedico(){
@@ -1436,8 +1464,8 @@ void MedicoManager::reactivarMedico(){
     // Solicitar ID con validacion
     do {
         rlutil::locate(30, fila);
-        std::cout << "Ingrese el ID del medico que desea reactivar: ";
-        std::cin >> id;
+        cout << "Ingrese el ID del medico que desea reactivar: ";
+        cin >> id;
 
         if (cin.fail() || !val.esEnteroPositivo(id)) {
             cin.clear();
@@ -1457,7 +1485,7 @@ void MedicoManager::reactivarMedico(){
             rlutil::locate(75, fila);
             cout << "                                                                  ";
         }
-    } while (std::cin.fail() || !val.esEnteroPositivo(id));
+    } while (cin.fail() || !val.esEnteroPositivo(id));
     cin.ignore();
 
     // Buscar el medico por ID

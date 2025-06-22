@@ -77,9 +77,11 @@ int MenuMedico::menuMedico(Usuario usuarioLogeado){
                     _turnoManger.HistorialTurnosAtendidos(idMedico);
                     break;
                 }
-                case 3:
-                    _medicoManager.buscarPacientePorDNI();
+                case 3:{
+                    int idMedico= usuarioLogeado.getIDMedico();
+                    _medicoManager.buscarPacientePorDNI(idMedico);
                     break;
+                }
                 case 4:
                     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
                     rlutil::setColor(rlutil::COLOR::YELLOW);

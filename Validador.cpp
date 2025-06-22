@@ -73,7 +73,7 @@ bool Validador::esFechaValida(int dia, int mes, int anio) {
 }
 
 bool Validador::esConfirmacionSN(char c) {
-    // Verifica si es letra y si es 's' o 'n' (en may�scula o min�scula)
+    // Verifica si es letra y si es 's' o 'n' (en mayuscula o minuscula)
     if(c == 's' || c == 'S' || c == 'n' || c == 'N'){
         return true;
     }
