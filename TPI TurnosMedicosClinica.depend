@@ -655,7 +655,7 @@
 1750544066 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medicoarchivo.cpp
 	"MedicoArchivo.h"
 
-1750619023 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medicomanager.cpp
+1750626766 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medicomanager.cpp
 	<iostream>
 	<string>
 	"MedicoManager.h"
@@ -962,7 +962,7 @@
 	<cstring>
 	<string>
 
-1750619297 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuariomanager.cpp
+1750627563 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuariomanager.cpp
 	"UsuarioManager.h"
 	"MenuRecepcionista.h"
 	"MenuAdministrador.h"

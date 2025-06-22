@@ -105,14 +105,12 @@ void UsuarioManager::cargarUsuario(){
     do {
         rlutil::locate(35, 4);
         rlutil::setColor(rlutil::CYAN);
-        cout << "Nombre de usuario (solo letras): ";
+        cout << "Nombre de usuario (solo letras - sin espacios): ";
         rlutil::setColor(rlutil::WHITE);
-        rlutil::locate(69, 4);
+        rlutil::locate(88, 4);
         cout << "                                                                   ";
-        rlutil::locate(69, 4);
-        cin.clear();
-        cin.ignore(1000, '\n');
-        getline(cin, nombre);
+        rlutil::locate(88, 4);
+        cin>>nombre;
 
         if (!val.esTextoSinEspacios(nombre)) {
             rlutil::locate(35, 8);
@@ -441,7 +439,7 @@ void UsuarioManager::DarBajaUsuario(){
                 rlutil::setColor(rlutil::COLOR::WHITE);
                 rlutil::anykey();
             }else{
-                while(!confirmacionValida){
+                do{
                     rlutil::setColor(rlutil::COLOR::CYAN);
                     rlutil::locate(30, 9);
                     cout << "Esta seguro que desea dar de baja a '" << user << "'? (s/n): ";
@@ -466,11 +464,11 @@ void UsuarioManager::DarBajaUsuario(){
                         cout << "                                                     ";
                         rlutil::locate(85, 9);
                         cout << "                                                     ";
-                    } else{
-                        confirmacionValida = true;
+                    }else{
+                        confirmacionValida=true;
                         cin.ignore(1000, '\n');
                     }
-                }
+                }while(!val.esConfirmacionSN(confirmacion));
 
 
                 if (confirmacion == 's' || confirmacion == 'S') {
@@ -505,7 +503,7 @@ void UsuarioManager::modificarUsuario() {
     string user, nuevoNombre, nuevaContrasenia;
     char confirmacion;
     int nuevoRol, pos;
-    bool  confirmacionValida = false, nombreValido=false, modificado = false, nuevoNombreValido = false, contraseniaValida = false, rolValido = false;
+    bool  confirmacionValida=false, nombreValido=false, modificado = false, nuevoNombreValido = false, contraseniaValida = false, rolValido = false;
     Usuario usuario;
     Validador validador;
 
@@ -582,7 +580,9 @@ void UsuarioManager::modificarUsuario() {
                 nombreValido = false;
 
             } else {
-                while (!confirmacionValida) {
+                //confirmacionValida=false;
+                //cin.ignore();
+                while(!confirmacionValida){
                     rlutil::setColor(rlutil::COLOR::CYAN);
                     rlutil::locate(30, 9);
                     cout << "Esta seguro que desea modificar al usuario '" << user << "'? (s/n): ";

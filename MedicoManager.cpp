@@ -917,13 +917,14 @@ void MedicoManager::DarBajaMedico(){
                 cout << "El Medico ya esta dado de baja. Presione enter e intente nuevamente.";
                 rlutil::anykey();
             }else{
-                while(!confirmarValidacion){
+                do{
                     rlutil::setColor(rlutil::COLOR::CYAN);
                     rlutil::locate(30, 9);
                     cout << "Esta seguro que desea dar de baja al medico de ID '" << id << "'? (s/n): ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
                     rlutil::locate(92, 9);
                     cin >> confirmacion;
+                    cin.ignore();
                     if (!val.esConfirmacionSN(confirmacion)) {
                         cin.clear();
                         cin.ignore(1000, '\n');
@@ -941,11 +942,8 @@ void MedicoManager::DarBajaMedico(){
                         cout << "                                                       ";
                         rlutil::locate(30, 14);
                         cout << "                                                       ";
-                    }else{
-                     confirmarValidacion=true;
-                     cin.ignore(1000, '\n');
                     }
-                }
+                }while(!val.esConfirmacionSN(confirmacion));
 
                 if (confirmacion == 's' || confirmacion == 'S') {
                     posMedico.setEstado(false);
