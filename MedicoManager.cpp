@@ -861,7 +861,7 @@ void MedicoManager::DarBajaMedico(){
     Validador val;
     int id;
     char confirmacion;
-    bool encontrado = false, idValido=false;
+    bool encontrado = false, idValido=false, confirmarValidacion=false;
 
     while (!encontrado) {
         rlutil::cls();
@@ -917,15 +917,13 @@ void MedicoManager::DarBajaMedico(){
                 cout << "El Medico ya esta dado de baja. Presione enter e intente nuevamente.";
                 rlutil::anykey();
             }else{
-                do {
+                while(!confirmarValidacion){
                     rlutil::setColor(rlutil::COLOR::CYAN);
                     rlutil::locate(30, 9);
                     cout << "Esta seguro que desea dar de baja al medico de ID '" << id << "'? (s/n): ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
                     rlutil::locate(92, 9);
                     cin >> confirmacion;
-                    cin.ignore();
-
                     if (!val.esConfirmacionSN(confirmacion)) {
                         cin.clear();
                         cin.ignore(1000, '\n');
@@ -943,9 +941,11 @@ void MedicoManager::DarBajaMedico(){
                         cout << "                                                       ";
                         rlutil::locate(30, 14);
                         cout << "                                                       ";
+                    }else{
+                     confirmarValidacion=true;
+                     cin.ignore(1000, '\n');
                     }
-                } while (!val.esConfirmacionSN(confirmacion));
-
+                }
 
                 if (confirmacion == 's' || confirmacion == 'S') {
                     posMedico.setEstado(false);
@@ -981,7 +981,7 @@ void MedicoManager::modificarMedico(){
     Fecha fechaNacimiento;
     Domicilio domicilio;
     char confirmacion;
-    bool modificado = false;
+    bool modificado = false, confirmacionValida=false;
 
     while (!modificado) {
         rlutil::cls();
@@ -1026,12 +1026,30 @@ void MedicoManager::modificarMedico(){
                 rlutil::locate(30, 8);
                 cout << "El medico esta dado de baja, no se puede modificar. Presione enter e intente nuevamente.";
             } else {
-                rlutil::setColor(rlutil::COLOR::CYAN);
-                rlutil::locate(30, 9);
-                cout << "Esta seguro que desea modificar al medico ID '" << id << "'? (s/n): ";
-                rlutil::setColor(rlutil::COLOR::WHITE);
-                cin >> confirmacion;
-                cin.ignore();
+                while(!confirmacionValida){
+                    rlutil::setColor(rlutil::COLOR::CYAN);
+                    rlutil::locate(30, 9);
+                    cout << "Esta seguro que desea modificar al medico ID '" << id << "'? (s/n): ";
+                    rlutil::setColor(rlutil::COLOR::WHITE);
+                    rlutil::locate(93, 9);
+                    cout << "                                                             ";
+                    rlutil::locate(93, 9);
+                    cin >> confirmacion;
+                    if (cin.fail() || !val.esConfirmacionSN(confirmacion)) {
+                        cin.clear();
+                        cin.ignore(1000, '\n');
+                        rlutil::locate(30, 9);
+                        rlutil::setColor(rlutil::COLOR::RED);
+                        cout << "Ingrese solo 's' o 'n'. Presione una tecla para continuar";
+                        rlutil::setColor(rlutil::COLOR::WHITE);
+                        rlutil::anykey();
+                        rlutil::locate(30, 9);
+                        cout << "                                                         ";
+                    }else{
+                        confirmacionValida=true;
+                        cin.ignore(1000, '\n');
+                    }
+                }
 
                 if (confirmacion == 's' || confirmacion == 'S') {
                     rlutil::cls();

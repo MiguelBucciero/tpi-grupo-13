@@ -386,7 +386,7 @@ void UsuarioManager::mostrarUsuario(){
 void UsuarioManager::DarBajaUsuario(){
     string user;
     char confirmacion;
-    bool confirmacionValida, encontrado;
+    bool confirmacionValida=false, encontrado;
     Validador val;
 
     encontrado=false;
@@ -395,7 +395,7 @@ void UsuarioManager::DarBajaUsuario(){
         rlutil::setColor(rlutil::COLOR::YELLOW);
         rlutil::locate(40, 3);
         cout << " DAR DE BAJA USUARIO ";
-
+        do{
         rlutil::setColor(rlutil::COLOR::CYAN);
         rlutil::locate(30, 6);
         cout << "Ingrese el nombre del usuario a dar de baja: ";
@@ -413,9 +413,14 @@ void UsuarioManager::DarBajaUsuario(){
             cout << "Presione una tecla para continuar...";
             rlutil::setColor(rlutil::COLOR::WHITE);
             rlutil::anykey();
-            continue;
+            rlutil::locate(75, 6);
+            cout<<"                                                                ";
+            rlutil::locate(30, 8);
+            cout<<"                                                             ";
+            rlutil::locate(30, 9);
+            cout << "                                     ";
         }
-
+        }while(!val.esTextoSinEspacios(user));
         int pos = _archivo.Buscar(user);
         Usuario posUsuario;
 
@@ -436,9 +441,7 @@ void UsuarioManager::DarBajaUsuario(){
                 rlutil::setColor(rlutil::COLOR::WHITE);
                 rlutil::anykey();
             }else{
-                confirmacionValida = false;
-                cin.ignore();
-                do {
+                while(!confirmacionValida){
                     rlutil::setColor(rlutil::COLOR::CYAN);
                     rlutil::locate(30, 9);
                     cout << "Esta seguro que desea dar de baja a '" << user << "'? (s/n): ";
@@ -446,7 +449,7 @@ void UsuarioManager::DarBajaUsuario(){
                     rlutil::locate(85, 9);
                     cin >> confirmacion;
 
-                    if (cin.fail()) {
+                    if (cin.fail() || !val.esConfirmacionSN(confirmacion)) {
                         cin.clear();
                         cin.ignore(1000, '\n');
                         rlutil::setColor(rlutil::COLOR::RED);
@@ -463,30 +466,12 @@ void UsuarioManager::DarBajaUsuario(){
                         cout << "                                                     ";
                         rlutil::locate(85, 9);
                         cout << "                                                     ";
-                    }
-                    else if(!val.esConfirmacionSN(confirmacion)){
-                        cin.clear();
-                        cin.ignore(1000, '\n');
-                        rlutil::setColor(rlutil::COLOR::RED);
-                        rlutil::locate(30, 11);
-                        cout << "Opcion invalida. Ingrese 's' o 'n'.";
-                        rlutil::setColor(rlutil::COLOR::YELLOW);
-                        rlutil::locate(30, 12);
-                        cout << "Presione una tecla para continuar...";
-                        rlutil::setColor(rlutil::COLOR::WHITE);
-                        rlutil::anykey();
-                        rlutil::locate(30, 11);
-                        cout << "                                                     ";
-                        rlutil::locate(30, 12);
-                        cout << "                                                     ";
-                        rlutil::locate(85, 9);
-                        cout << "                                                     ";
-                    }
-                    else{
+                    } else{
                         confirmacionValida = true;
+                        cin.ignore(1000, '\n');
                     }
+                }
 
-                } while (!confirmacionValida);
 
                 if (confirmacion == 's' || confirmacion == 'S') {
                     posUsuario.setEstado(false);
@@ -624,6 +609,7 @@ void UsuarioManager::modificarUsuario() {
                         cout << "                                                                        ";
                     } else {
                         confirmacionValida = true;
+                        cin.ignore(1000, '\n');
                     }
                 }
 
@@ -941,6 +927,7 @@ void UsuarioManager::reactivarUsuario(){
                             cout << "                                                                        ";
                         } else {
                             confirmacionValida = true;
+                            cin.ignore(1000, '\n');
                         }
             }
 

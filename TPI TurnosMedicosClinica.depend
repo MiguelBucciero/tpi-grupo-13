@@ -177,7 +177,7 @@
 1750544066 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidad.h
 	<string>
 
-1750549324 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadmanager.cpp
+1750618393 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\especialidadmanager.cpp
 	"EspecialidadManager.h"
 	"Especialidad.h"
 	"Validador.h"
@@ -217,7 +217,7 @@
 	"UsuarioManager.h"
 	"TurnoManager.h"
 
-1750551824 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menumedico.cpp
+1750615650 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menumedico.cpp
 	<iostream>
 	"rlutil.h"
 	"MenuMedico.h"
@@ -228,14 +228,14 @@
 	"UsuarioManager.h"
 	"MedicoManager.h"
 
-1750544066 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menusadministrador.cpp
+1750615650 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menusadministrador.cpp
 	<iostream>
 	<cstdlib>
 	"rlutil.h"
 	"MenuAdministrador.h"
 	"UsuarioManager.h"
 
-1750544066 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menusrecepcionista.cpp
+1750615650 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\menusrecepcionista.cpp
 	<iostream>
 	<cstdlib>
 	"rlutil.h"
@@ -655,7 +655,7 @@
 1750544066 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medicoarchivo.cpp
 	"MedicoArchivo.h"
 
-1750552676 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medicomanager.cpp
+1750619023 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\medicomanager.cpp
 	<iostream>
 	<string>
 	"MedicoManager.h"
@@ -962,12 +962,13 @@
 	<cstring>
 	<string>
 
-1750544066 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuariomanager.cpp
+1750619297 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\usuariomanager.cpp
 	"UsuarioManager.h"
 	"MenuRecepcionista.h"
 	"MenuAdministrador.h"
 	"MenuMedico.h"
 	"MedicoManager.h"
+	"Validador.h"
 	"rlutil.h"
 	<iostream>
 	<string>
@@ -2477,10 +2478,10 @@
 1750564308 c:\users\slkf_\desktop\repoooo\tpi-grupo-13\validador.h
 	<string>
 
-1750544066 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\validador.h
+1750615650 c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\validador.h
 	<string>
 
-1750546487 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\validador.cpp
+1750615650 source:c:\users\verol\onedrive\escritorio\repogithub\tpi-grupo-13\validador.cpp
 	"Validador.h"
 	"rlutil.h"
 
