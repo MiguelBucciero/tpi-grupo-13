@@ -12,4 +12,6 @@ public:
     bool esEnteroPositivo(int numero);
     bool esFechaValida(int dia, int mes, int anio);
     bool esConfirmacionSN(char c);
+    bool esTextoSinEspacios(const std::string &texto);
+    bool esEmailValido(const std::string &email);
 };

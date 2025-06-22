@@ -3,9 +3,11 @@
 #include "MenuAdministrador.h"
 #include "MenuMedico.h"
 #include "MedicoManager.h"
+#include "Validador.h"
 #include "rlutil.h"
 #include <iostream>
 #include <string>
+
 
 using namespace std;
 
@@ -44,7 +46,8 @@ void UsuarioManager::login(){
 
                 rlutil::cls();
                 rlutil::setColor(rlutil::GREEN);
-                rlutil::locate(50, 12); cout << "ACCESO CONCEDIDO!";
+                rlutil::locate(50, 12);
+                cout << "ACCESO CONCEDIDO!";
                 rlutil::setColor(rlutil::WHITE);
                 rlutil::anykey();
                 rlutil::cls();
@@ -87,8 +90,10 @@ bool UsuarioManager::VerificarLoginDuplicados(const string &nombre, const string
 }
 
 void UsuarioManager::cargarUsuario(){
-    string nombre, contrasenia;
+    string nombre, contrasenia, nombreRol;
     int tipoRol;
+    Validador val;
+    bool rolValido = false;
 
     rlutil::cls();
     rlutil::setColor(rlutil::YELLOW);
@@ -96,29 +101,61 @@ void UsuarioManager::cargarUsuario(){
     cout << "CARGA DE NUEVO USUARIO";
     rlutil::setColor(rlutil::WHITE);
 
-    rlutil::locate(35, 4);
-    rlutil::setColor(rlutil::CYAN);
-    cout << "Nombre de usuario (sin espacios): ";
-    rlutil::setColor(rlutil::WHITE);
-    rlutil::locate(69, 4);
-    cin>>nombre;
+    // Validacion de nombre de usuario
+    do {
+        rlutil::locate(35, 4);
+        rlutil::setColor(rlutil::CYAN);
+        cout << "Nombre de usuario (solo letras): ";
+        rlutil::setColor(rlutil::WHITE);
+        rlutil::locate(69, 4);
+        cout << "                                                                   ";
+        rlutil::locate(69, 4);
+        cin.clear();
+        cin.ignore(1000, '\n');
+        getline(cin, nombre);
 
-    rlutil::locate(35, 5);
-    rlutil::setColor(rlutil::CYAN);
-    cout << "Contrasenia (minimo 6 caracteres): ";
-    rlutil::setColor(rlutil::WHITE);
+        if (!val.esTextoSinEspacios(nombre)) {
+            rlutil::locate(35, 8);
+            rlutil::setColor(rlutil::RED);
+            cout << "Nombre invalido. Use solo letras sin numeros ni simbolos.";
+            rlutil::setColor(rlutil::YELLOW);
+            rlutil::locate(35, 9);
+            cout << "Presione un tecla para continuar...";
+            rlutil::setColor(rlutil::WHITE);
+            rlutil::anykey();
+            rlutil::locate(35, 8);
+            cout << "                                                                ";
+            rlutil::locate(35, 9);
+            cout << "                                                                ";
+        }
+    } while (!val.esTextoSinEspacios(nombre));
+
+
 
     do{
+        rlutil::locate(35, 5);
+        rlutil::setColor(rlutil::CYAN);
+        cout << "Contrasenia (minimo 6 caracteres): ";
+        rlutil::setColor(rlutil::WHITE);
         rlutil::locate(71, 5);
         cout<<"                                                    ";
         rlutil::locate(71, 5);
         cin>>contrasenia;
 
         if(contrasenia.length()<6){
-            rlutil::locate(35, 6);
+            rlutil::locate(35, 8);
             rlutil::setColor(rlutil::RED);
             cout<<"La contrasenia es muy corta. Intente de nuevo.";
+            rlutil::setColor(rlutil::YELLOW);
+            rlutil::locate(35, 9);
+            cout << "Presione un tecla para continuar...";
             rlutil::setColor(rlutil::WHITE);
+            rlutil::anykey();
+            rlutil::locate(35, 8);
+            cout<<"                                                 ";
+            rlutil::locate(35, 9);
+            cout<<"                                                 ";
+
         }else{
             rlutil::locate(35, 6);
             cout<<"                                                    ";
@@ -126,7 +163,7 @@ void UsuarioManager::cargarUsuario(){
     }while(contrasenia.length()<6);
 
 
-    // Validación duplicados
+    // Validacion duplicados
     if (VerificarLoginDuplicados(nombre, contrasenia)) {
         rlutil::setColor(rlutil::COLOR::RED);
         rlutil::locate(35, 9);
@@ -138,7 +175,7 @@ void UsuarioManager::cargarUsuario(){
     }
 
     Usuario usuario;
-    const char* nombreRol;
+    nombreRol = "Desconocido";
     do{
         rlutil::locate(35, 7);
         rlutil::setColor(rlutil::CYAN);
@@ -149,46 +186,88 @@ void UsuarioManager::cargarUsuario(){
         rlutil::locate(97, 7);
         cin >> tipoRol;
 
-    if(tipoRol!=-1&&tipoRol!=0&&tipoRol!=1){
-        rlutil::locate(35, 9);
-        rlutil::setColor(rlutil::RED);
-        cout<<"No existe ese tipo de rol.";
-        rlutil::setColor(rlutil::WHITE);
-    }else{
-        rlutil::locate(35, 9);
-        cout<<"                           ";
-        if (tipoRol == -1) {
-            nombreRol = "Administrador";
-        } else if (tipoRol == 0) {
-            nombreRol = "Recepcionista";
-        } else if (tipoRol == 1){
-            nombreRol = "Medico";
-            rlutil::cls();
-            rlutil::locate(40, 3);
-            cout << "Cargando datos del medico asociado...";
-            MedicoManager medicM;
-            int idMedico = medicM.cargarMedico();
-            if (idMedico == -1) {
-                rlutil::locate(40, 5);
-                rlutil::setColor(rlutil::RED);
-                cout << "No se pudo cargar correctamente el ID del medico.";
-                rlutil::setColor(rlutil::WHITE);
-                rlutil::anykey();
-                rlutil::cls();
-                return;
-            }
-            usuario.setIDMedico(idMedico);
+        if(cin.fail()){
+            cin.clear();
+            cin.ignore(1000, '\n');
+            rolValido = false;// Marcar como invalido
+            rlutil::locate(35, 9);
+            rlutil::setColor(rlutil::RED);
+            cout << "Rol invalido. Solo puede ingresar -1, 0 o 1.";
+            rlutil::setColor(rlutil::YELLOW);
+            rlutil::locate(35, 10);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::WHITE);
+            rlutil::anykey();
+
+            // Limpiar las lineas
+            rlutil::locate(35, 9);
+            cout << "                                                        ";
+            rlutil::locate(35, 10);
+            cout << "                                                        ";
+            rlutil::locate(97, 7);
+            cout << "         ";
         }
-    }
-    }while(tipoRol!=-1&&tipoRol!=0&&tipoRol!=1);
+        // Validar que el numero este dentro de los valores permitidos
+        else if (tipoRol != -1 && tipoRol != 0 && tipoRol != 1) {
+            rolValido = false; // Marcar como invalido
+            rlutil::locate(35, 9);
+            rlutil::setColor(rlutil::RED);
+            cout << "Rol invï¿½lido. Solo puede ingresar -1, 0 o 1.";
+            rlutil::setColor(rlutil::YELLOW);
+            rlutil::locate(35, 10);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::WHITE);
+            rlutil::anykey();
 
-    Rol rol(tipoRol, nombreRol);
+            rlutil::locate(35, 9);
+            cout << "                                                        ";
+            rlutil::locate(35, 10);
+            cout << "                                                        ";
+        }
+        else{
+            rolValido = true; // Marcar como valido
+            rlutil::locate(35, 9);
+            cout << "                                                        ";
+            rlutil::locate(35, 10);
+            cout << "                                                        ";
 
+            // Asignar nombre del rol
+            if (tipoRol == -1){
+                nombreRol = "Administrador";
+            }
+            else if (tipoRol == 0) {
+                nombreRol = "Recepcionista";
+            }
+            else if (tipoRol == 1) {
+                nombreRol = "Medico";
+                rlutil::cls();
+                rlutil::locate(40, 3);
+                cout << "Cargando datos del medico asociado...";
+                MedicoManager medicM;
+                int idMedico = medicM.cargarMedico();
+                if (idMedico == -1) {
+                    rlutil::locate(40, 5);
+                    rlutil::setColor(rlutil::RED);
+                    cout << "No se pudo cargar correctamente el ID del medico.";
+                    rlutil::setColor(rlutil::WHITE);
+                    rlutil::anykey();
+                    rlutil::cls();
+                    return;
+                }
+                usuario.setIDMedico(idMedico);
+            }
+        }
+    }while(!rolValido);
+
+    Rol rol(tipoRol, nombreRol.c_str());
+
+    // Configurar el usuario
     usuario.setNombreUsuario(nombre);
     usuario.setContrasenia(contrasenia);
     usuario.setTipoRol(rol);
     usuario.setEstado(true);
 
+    // Guardar el usuario
     rlutil::locate(35, 9);
     if (_archivo.guardar(usuario)) {
         rlutil::setColor(rlutil::GREEN);
@@ -306,8 +385,11 @@ void UsuarioManager::mostrarUsuario(){
 
 void UsuarioManager::DarBajaUsuario(){
     string user;
-    bool encontrado = false;
+    char confirmacion;
+    bool confirmacionValida, encontrado;
+    Validador val;
 
+    encontrado=false;
     while (!encontrado) {
         rlutil::cls();
         rlutil::setColor(rlutil::COLOR::YELLOW);
@@ -320,6 +402,19 @@ void UsuarioManager::DarBajaUsuario(){
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(75, 6);
         cin>>user;
+
+        // Validacion del nombre ingresado
+        if (!val.esTextoSinEspacios(user)) {
+            rlutil::setColor(rlutil::COLOR::RED);
+            rlutil::locate(30, 8);
+            cout << "Nombre invalido. Use solo letras sin numeros ni simbolos.";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 9);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            continue;
+        }
 
         int pos = _archivo.Buscar(user);
         Usuario posUsuario;
@@ -335,14 +430,63 @@ void UsuarioManager::DarBajaUsuario(){
                 rlutil::setColor(rlutil::COLOR::RED);
                 rlutil::locate(30, 8);
                 cout << "El usuario ya esta dado de baja. Presione enter e intente nuevamente.";
+                rlutil::setColor(rlutil::COLOR::YELLOW);
+                rlutil::locate(30, 9);
+                cout << "Presione una tecla para continuar...";
+                rlutil::setColor(rlutil::COLOR::WHITE);
                 rlutil::anykey();
             }else{
-                rlutil::setColor(rlutil::COLOR::CYAN);
-                rlutil::locate(30, 9);
-                cout << "Esta seguro que desea dar de baja a '" << user << "'? (s/n): ";
-                rlutil::setColor(rlutil::COLOR::WHITE);
-                char confirmacion;
-                cin >> confirmacion;
+                confirmacionValida = false;
+                cin.ignore();
+                do {
+                    rlutil::setColor(rlutil::COLOR::CYAN);
+                    rlutil::locate(30, 9);
+                    cout << "Esta seguro que desea dar de baja a '" << user << "'? (s/n): ";
+                    rlutil::setColor(rlutil::COLOR::WHITE);
+                    rlutil::locate(85, 9);
+                    cin >> confirmacion;
+
+                    if (cin.fail()) {
+                        cin.clear();
+                        cin.ignore(1000, '\n');
+                        rlutil::setColor(rlutil::COLOR::RED);
+                        rlutil::locate(30, 11);
+                        cout << "Opcion invalida. Ingrese 's' o 'n'.";
+                        rlutil::setColor(rlutil::COLOR::YELLOW);
+                        rlutil::locate(30, 12);
+                        cout << "Presione una tecla para continuar...";
+                        rlutil::setColor(rlutil::COLOR::WHITE);
+                        rlutil::anykey();
+                        rlutil::locate(30, 11);
+                        cout << "                                                     ";
+                        rlutil::locate(30, 12);
+                        cout << "                                                     ";
+                        rlutil::locate(85, 9);
+                        cout << "                                                     ";
+                    }
+                    else if(!val.esConfirmacionSN(confirmacion)){
+                        cin.clear();
+                        cin.ignore(1000, '\n');
+                        rlutil::setColor(rlutil::COLOR::RED);
+                        rlutil::locate(30, 11);
+                        cout << "Opcion invalida. Ingrese 's' o 'n'.";
+                        rlutil::setColor(rlutil::COLOR::YELLOW);
+                        rlutil::locate(30, 12);
+                        cout << "Presione una tecla para continuar...";
+                        rlutil::setColor(rlutil::COLOR::WHITE);
+                        rlutil::anykey();
+                        rlutil::locate(30, 11);
+                        cout << "                                                     ";
+                        rlutil::locate(30, 12);
+                        cout << "                                                     ";
+                        rlutil::locate(85, 9);
+                        cout << "                                                     ";
+                    }
+                    else{
+                        confirmacionValida = true;
+                    }
+
+                } while (!confirmacionValida);
 
                 if (confirmacion == 's' || confirmacion == 'S') {
                     posUsuario.setEstado(false);
@@ -376,8 +520,9 @@ void UsuarioManager::modificarUsuario() {
     string user, nuevoNombre, nuevaContrasenia;
     char confirmacion;
     int nuevoRol, pos;
-    bool modificado = false;
+    bool  confirmacionValida = false, nombreValido=false, modificado = false, nuevoNombreValido = false, contraseniaValida = false, rolValido = false;
     Usuario usuario;
+    Validador validador;
 
     while (!modificado) {
         rlutil::cls();
@@ -385,12 +530,34 @@ void UsuarioManager::modificarUsuario() {
         rlutil::locate(40, 3);
         cout << " MODIFICAR USUARIO ";
 
-        rlutil::setColor(rlutil::COLOR::CYAN);
-        rlutil::locate(30, 6);
-        cout << "Ingrese el nombre del usuario a modificar: ";
-        rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::locate(73, 6);
-        cin >> user;
+        // Validacion del nombre de usuario a buscar
+        while (!nombreValido) {
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            rlutil::locate(30, 6);
+            cout << "Ingrese el nombre del usuario a modificar: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::locate(73, 6);
+            cin >> user;
+
+            if (validador.esTextoSinEspacios(user)) {
+                nombreValido = true;
+            } else {
+                rlutil::setColor(rlutil::COLOR::RED);
+                rlutil::locate(30, 8);
+                cout << "Nombre de usuario invalido. Debe contener solo letras, sin espacios.";
+                rlutil::setColor(rlutil::COLOR::YELLOW);
+                rlutil::locate(30, 9);
+                cout << "Presione una tecla para continuar...";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+                rlutil::locate(30, 8);
+                cout << "                                                                        ";
+                rlutil::locate(30, 9);
+                cout << "                                                                        ";
+                rlutil::locate(73, 6);
+                cout << "                                                                        ";
+            }
+        }
 
         pos = _archivo.Buscar(user);
 
@@ -398,18 +565,67 @@ void UsuarioManager::modificarUsuario() {
             rlutil::setColor(rlutil::COLOR::RED);
             rlutil::locate(30, 8);
             cout << "Usuario no encontrado. Intente nuevamente.";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 9);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(30, 8);
+            cout << "                                                                        ";
+            rlutil::locate(30, 9);
+            cout << "                                                                        ";
+            rlutil::locate(73, 6);
+            cout << "                                                                        ";
+            nombreValido = false;
         } else {
             usuario = _archivo.Leer(pos);
             if (!usuario.getEstado()) {
                 rlutil::setColor(rlutil::COLOR::RED);
                 rlutil::locate(30, 8);
                 cout << "El usuario esta dado de baja. No se puede modificar.";
-            } else {
-                rlutil::setColor(rlutil::COLOR::CYAN);
+                rlutil::setColor(rlutil::COLOR::YELLOW);
                 rlutil::locate(30, 9);
-                cout << "Esta seguro que desea modificar al usuario '" << user << "'? (s/n): ";
+                cout << "Presione una tecla para continuar...";
                 rlutil::setColor(rlutil::COLOR::WHITE);
-                cin >> confirmacion;
+                rlutil::anykey();
+                rlutil::locate(30, 8);
+                cout << "                                                                        ";
+                rlutil::locate(30, 9);
+                cout << "                                                                        ";
+                rlutil::locate(73, 6);
+                cout << "                                                                        ";
+                nombreValido = false;
+
+            } else {
+                while (!confirmacionValida) {
+                    rlutil::setColor(rlutil::COLOR::CYAN);
+                    rlutil::locate(30, 9);
+                    cout << "Esta seguro que desea modificar al usuario '" << user << "'? (s/n): ";
+                    rlutil::setColor(rlutil::COLOR::WHITE);
+                    rlutil::locate(90, 9);
+                    cin >> confirmacion;
+
+                    if (cin.fail() || !validador.esConfirmacionSN(confirmacion)) {
+                        cin.clear();
+                        cin.ignore(1000, '\n');
+                        rlutil::setColor(rlutil::COLOR::RED);
+                        rlutil::locate(30, 11);
+                        cout << "Respuesta invalida. Ingrese 's' para Si o 'n' para No.";
+                        rlutil::setColor(rlutil::COLOR::YELLOW);
+                        rlutil::locate(30, 12);
+                        cout << "Presione una tecla para continuar...";
+                        rlutil::setColor(rlutil::COLOR::WHITE);
+                        rlutil::anykey();
+                        rlutil::locate(30, 11);
+                        cout << "                                                                        ";
+                        rlutil::locate(30, 12);
+                        cout << "                                                                        ";
+                        rlutil::locate(90, 9);
+                        cout << "                                                                        ";
+                    } else {
+                        confirmacionValida = true;
+                    }
+                }
 
                 if (confirmacion == 's' || confirmacion == 'S') {
                     rlutil::cls();
@@ -417,57 +633,115 @@ void UsuarioManager::modificarUsuario() {
                     rlutil::locate(40, 3);
                     cout << " INGRESO DE NUEVOS DATOS ";
 
-                    rlutil::setColor(rlutil::COLOR::CYAN);
-                    rlutil::locate(30, 6);
-                    cout << "Nuevo nombre de usuario (sin espacios): ";
-                    rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(75, 6);
-                    cin >> nuevoNombre;
+                    // Validacion del nuevo nombre de usuario
+                    while (!nuevoNombreValido) {
+                        rlutil::setColor(rlutil::COLOR::CYAN);
+                        rlutil::locate(30, 6);
+                        cout << "Nuevo nombre de usuario (sin espacios): ";
+                        rlutil::setColor(rlutil::COLOR::WHITE);
+                        rlutil::locate(71, 6);
+                        cin.ignore();
+                        cin >> nuevoNombre;
 
-                    rlutil::setColor(rlutil::COLOR::CYAN);
-                    rlutil::locate(30, 7);
-                    cout << "Nueva contrasenia (minimo 6 caracteres): ";
-                    rlutil::setColor(rlutil::COLOR::WHITE);
+                        if (validador.esTextoSinEspacios(nuevoNombre)) {
+                            nuevoNombreValido = true;
+                        } else {
+                            rlutil::setColor(rlutil::COLOR::RED);
+                            rlutil::locate(30, 8);
+                            cout << "Nombre invalido. Debe contener solo letras, sin espacios.";
+                            rlutil::setColor(rlutil::COLOR::YELLOW);
+                            rlutil::locate(30, 9);
+                            cout << "Presione una tecla para continuar...";
+                            rlutil::setColor(rlutil::COLOR::WHITE);
+                            rlutil::anykey();
+                            rlutil::locate(30, 8);
+                            cout << "                                                                        ";
+                            rlutil::locate(30, 9);
+                            cout << "                                                                        ";
+                            rlutil::locate(71, 6);
+                            cout << "                                                                        ";
+                        }
+                    }
 
-                    do {
-                        rlutil::locate(71, 7);
-                        cout << "                                                    ";
+                    // Validacion de la nueva contraseÃ±a
+                    while (!contraseniaValida) {
+                        rlutil::setColor(rlutil::COLOR::CYAN);
+                        rlutil::locate(30, 7);
+                        cout << "Nueva contrasenia (minimo 6 caracteres): ";
+                        rlutil::setColor(rlutil::COLOR::WHITE);
                         rlutil::locate(71, 7);
                         cin >> nuevaContrasenia;
 
-                        if (nuevaContrasenia.length() < 6) {
-                            rlutil::locate(35, 8);
+                        if (nuevaContrasenia.length() >= 6) {
+                            contraseniaValida = true;
+                        } else {
+                            rlutil::locate(30, 9);
                             rlutil::setColor(rlutil::COLOR::RED);
                             cout << "La contrasenia es muy corta. Intente de nuevo.";
+                            rlutil::setColor(rlutil::COLOR::YELLOW);
+                            rlutil::locate(30, 10);
+                            cout << "Presione una tecla para continuar...";
                             rlutil::setColor(rlutil::COLOR::WHITE);
-                        } else {
-                            rlutil::locate(35, 8);
+                            rlutil::anykey();
+                            rlutil::locate(30, 9);
+                            cout << "                                                                        ";
+                            rlutil::locate(30, 10);
+                            cout << "                                                                        ";
+                            rlutil::locate(71, 7);
                             cout << "                                                    ";
                         }
-                    } while (nuevaContrasenia.length() < 6);
+                    }
 
                     // Validacion duplicados
                     if (VerificarLoginDuplicados(nuevoNombre, nuevaContrasenia)) {
                         rlutil::setColor(rlutil::COLOR::RED);
-                        rlutil::locate(35, 9);
+                        rlutil::locate(30, 9);
                         cout << "Ya existe un usuario con ese nombre y contrasenia.";
+                        rlutil::setColor(rlutil::COLOR::YELLOW);
+                        rlutil::locate(30, 10);
+                        cout << "Presione una tecla para continuar...";
                         rlutil::setColor(rlutil::COLOR::WHITE);
-                    } else {
-                        rlutil::setColor(rlutil::COLOR::CYAN);
-                        rlutil::locate(30, 8);
-                        cout << "Nuevo Rol ID ( -1:Administrador | 0:Recepcionista | 1:Medico ): ";
-                        rlutil::setColor(rlutil::COLOR::WHITE);
-                        rlutil::locate(94, 8);
-                        cin >> nuevoRol;
+                        rlutil::anykey();
+                        rlutil::locate(30, 9);
+                        cout << "                                                                        ";
+                        rlutil::locate(30, 10);
+                        cout << "                                                                        ";
+                        rlutil::locate(71, 6);
+                        cout << "                                                                        ";
+                        rlutil::locate(71, 7);
+                        cout << "                                                                        ";
+                        nuevoNombreValido = false;
+                        contraseniaValida = false;
 
-                        if (nuevoRol != -1 && nuevoRol != 0 && nuevoRol != 1) {
-                            rlutil::locate(30, 9);
-                            rlutil::setColor(rlutil::COLOR::RED);
-                            cout << "No existe ese rol";
+                    } else {
+                        while (!rolValido) {
+                            rlutil::setColor(rlutil::COLOR::CYAN);
+                            rlutil::locate(30, 11);
+                            cout << "Nuevo Rol ID ( -1:Administrador | 0:Recepcionista | 1:Medico ): ";
                             rlutil::setColor(rlutil::COLOR::WHITE);
-                            rlutil::anykey();
-                            rlutil::cls();
-                            return;
+                            rlutil::locate(94, 11);
+                            cin >> nuevoRol;
+
+                            if (cin.fail() || !(nuevoRol == -1 || nuevoRol == 0 || nuevoRol == 1)){
+                                cin.clear();
+                                cin.ignore(1000, '\n');
+                                rlutil::locate(30, 13);
+                                rlutil::setColor(rlutil::COLOR::RED);
+                                cout << "Rol invalido. Debe ser -1, 0 o 1.";
+                                rlutil::setColor(rlutil::COLOR::YELLOW);
+                                rlutil::locate(30, 14);
+                                cout << "Presione una tecla para continuar...";
+                                rlutil::setColor(rlutil::COLOR::WHITE);
+                                rlutil::anykey();
+                                rlutil::locate(30, 13);
+                                cout << "                                                                        ";
+                                rlutil::locate(30, 14);
+                                cout << "                                                                        ";
+                                rlutil::locate(94, 11);
+                                cout << "                                                                        ";
+                            } else {
+                                rolValido = true;
+                            }
                         }
 
                         Rol nuevoRolObj;
@@ -479,28 +753,39 @@ void UsuarioManager::modificarUsuario() {
 
                         if (_archivo.guardar(usuario, pos)) {
                             rlutil::setColor(rlutil::COLOR::GREEN);
-                            rlutil::locate(30, 10);
+                            rlutil::locate(30, 13);
                             cout << "Usuario modificado correctamente.";
+                            rlutil::setColor(rlutil::COLOR::YELLOW);
+                            rlutil::locate(30, 14);
+                            cout << "Presione una tecla para continuar...";
+                            rlutil::setColor(rlutil::COLOR::WHITE);
                         } else {
                             rlutil::setColor(rlutil::COLOR::RED);
-                            rlutil::locate(30, 10);
+                            rlutil::locate(30, 13);
                             cout << "Error al intentar modificar el usuario.";
+                            rlutil::setColor(rlutil::COLOR::YELLOW);
+                            rlutil::locate(30, 14);
+                            cout << "Presione una tecla para continuar...";
+                            rlutil::setColor(rlutil::COLOR::WHITE);
                         }
                         modificado = true;
                     }
                 } else {
                     rlutil::setColor(rlutil::COLOR::YELLOW);
-                    rlutil::locate(30, 11);
+                    rlutil::locate(30, 13);
                     cout << "Modificacion cancelada por el usuario.";
+                    rlutil::setColor(rlutil::COLOR::YELLOW);
+                    rlutil::locate(30, 14);
+                    cout << "Presione una tecla para continuar...";
+                    rlutil::setColor(rlutil::COLOR::WHITE);
+                    rlutil::anykey();
                     modificado = true;
                 }
             }
         }
-
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::anykey();
     }
-
     rlutil::cls();
 }
 
@@ -539,6 +824,8 @@ void UsuarioManager::reactivarUsuario(){
 
     int contador, fila, cantidad, posicion, contadorInactivos;
     char confirmacion;
+    bool confirmacionValida=false;
+    Validador val;
 
     cantidad = _archivo.getCantidadRegistros();
     if (cantidad == 0) {
@@ -627,12 +914,35 @@ void UsuarioManager::reactivarUsuario(){
                 rlutil::setColor(rlutil::WHITE);
                 cout << vecUsuarios[i].getIDMedico();
             }
+            while(!confirmacionValida){
+                rlutil::locate(32, fila + 5);
+                rlutil::setColor(rlutil::COLOR::GREEN);
+                cout<<"DESEA ACTIVAR EL USUARIO? (s/n): ";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::locate(66, fila + 5 );
+                cin >> confirmacion;
 
-            rlutil::locate(32, fila + 5);
-            rlutil::setColor(rlutil::COLOR::GREEN);
-            cout<<"DESEA ACTIVAR EL USUARIO? (s/n): ";
-            rlutil::setColor(rlutil::COLOR::WHITE);
-            cin >> confirmacion;
+                if (cin.fail() || !val.esConfirmacionSN(confirmacion)) {
+                            cin.clear();
+                            cin.ignore(1000, '\n');
+                            rlutil::setColor(rlutil::COLOR::RED);
+                            rlutil::locate(30, fila + 11);
+                            cout << "Respuesta invalida. Ingrese 's' para Si o 'n' para No.";
+                            rlutil::setColor(rlutil::COLOR::YELLOW);
+                            rlutil::locate(30, fila + 12);
+                            cout << "Presione una tecla para continuar...";
+                            rlutil::setColor(rlutil::COLOR::WHITE);
+                            rlutil::anykey();
+                            rlutil::locate(30, fila + 11);
+                            cout << "                                                                        ";
+                            rlutil::locate(30, fila + 12);
+                            cout << "                                                                        ";
+                            rlutil::locate(66, fila + 5);
+                            cout << "                                                                        ";
+                        } else {
+                            confirmacionValida = true;
+                        }
+            }
 
             if (confirmacion == 's' || confirmacion == 'S') {
                 vecUsuarios[i].setEstado(true);
@@ -670,9 +980,7 @@ void UsuarioManager::reactivarUsuario(){
                     rlutil::anykey();
                     rlutil::cls();
                 }
-
                 contador++;
         }
     }
-
 }

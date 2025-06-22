@@ -215,6 +215,8 @@ int MenuRecepcionista::menuRecepcionista() {
                 rlutil::setColor(rlutil::COLOR::YELLOW);
                 rlutil::locate(50, 12);
                 cout << "Cerrando sesion..." << endl;
+                rlutil::locate(50, 13);
+                cout << "Presione una tecla para salir.";
                 rlutil::setColor(rlutil::COLOR::WHITE);
                 rlutil::anykey();
                 opc = 0;

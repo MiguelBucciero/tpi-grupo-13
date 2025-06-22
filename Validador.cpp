@@ -80,4 +80,50 @@ bool Validador::esConfirmacionSN(char c) {
     return false;
 }
 
+bool Validador::esTextoSinEspacios(const std::string &texto) {
+    int cantidadLetras = 0;
+    char caracter;
+
+    for (int i = 0; texto[i] != '\0'; i++) {
+        caracter = texto[i];
+
+        // Si no es letra, inválido
+        if (caracter == ' ' || !((caracter >= 'A' && caracter <= 'Z') || (caracter >= 'a' && caracter <= 'z'))) {
+            return false;
+        }
+
+        cantidadLetras++;
+    }
+    if(cantidadLetras > 0){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+bool Validador::esEmailValido(const std::string &email) {
+    int cantidadArrobas = 0;
+
+    // Verificar que no este vacio
+    if (email[0] == '\0') {
+        return false;
+    }
+
+    // Contar las arrobas
+    for (int i = 0; email[i] != '\0'; i++) {
+        if (email[i] == '@') {
+            cantidadArrobas++;
+        }
+    }
+
+    // Debe tener un @
+    if(cantidadArrobas == 1){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
 
