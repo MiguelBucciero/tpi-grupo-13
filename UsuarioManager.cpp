@@ -384,10 +384,9 @@ void UsuarioManager::mostrarUsuario(){
 void UsuarioManager::DarBajaUsuario(){
     string user;
     char confirmacion;
-    bool confirmacionValida=false, encontrado;
+    bool confirmacionValida=false, encontrado=false;
     Validador val;
 
-    encontrado=false;
     while (!encontrado) {
         rlutil::cls();
         rlutil::setColor(rlutil::COLOR::YELLOW);
@@ -447,7 +446,7 @@ void UsuarioManager::DarBajaUsuario(){
                     rlutil::locate(85, 9);
                     cin >> confirmacion;
 
-                    if (cin.fail() || !val.esConfirmacionSN(confirmacion)) {
+                    if (!val.esConfirmacionSN(confirmacion)) {
                         cin.clear();
                         cin.ignore(1000, '\n');
                         rlutil::setColor(rlutil::COLOR::RED);
@@ -580,8 +579,6 @@ void UsuarioManager::modificarUsuario() {
                 nombreValido = false;
 
             } else {
-                //confirmacionValida=false;
-                //cin.ignore();
                 while(!confirmacionValida){
                     rlutil::setColor(rlutil::COLOR::CYAN);
                     rlutil::locate(30, 9);
@@ -626,7 +623,6 @@ void UsuarioManager::modificarUsuario() {
                         cout << "Nuevo nombre de usuario (sin espacios): ";
                         rlutil::setColor(rlutil::COLOR::WHITE);
                         rlutil::locate(71, 6);
-                        cin.ignore();
                         cin >> nuevoNombre;
 
                         if (validador.esTextoSinEspacios(nuevoNombre)) {
@@ -810,7 +806,6 @@ void UsuarioManager::reactivarUsuario(){
 
     int contador, fila, cantidad, posicion, contadorInactivos;
     char confirmacion;
-    bool confirmacionValida=false;
     Validador val;
 
     cantidad = _archivo.getCantidadRegistros();
@@ -900,6 +895,7 @@ void UsuarioManager::reactivarUsuario(){
                 rlutil::setColor(rlutil::WHITE);
                 cout << vecUsuarios[i].getIDMedico();
             }
+            bool confirmacionValida=false;
             while(!confirmacionValida){
                 rlutil::locate(32, fila + 5);
                 rlutil::setColor(rlutil::COLOR::GREEN);
@@ -937,7 +933,7 @@ void UsuarioManager::reactivarUsuario(){
                 if(_archivo.guardar(vecUsuarios[i], posicion)){
                         rlutil::locate(32, fila + 6);
                         rlutil::setColor(rlutil::COLOR::GREEN);
-                        cout<<"Paciente activado correctamente.";
+                        cout<<"Usuario activado correctamente.";
                     }else{
                         rlutil::locate(32, fila + 6);
                         rlutil::setColor(rlutil::COLOR::RED);
