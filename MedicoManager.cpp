@@ -26,6 +26,9 @@ int MedicoManager::cargarMedico() {
     cout << "INGRESO DE NUEVO MEDICO";
     rlutil::setColor(rlutil::COLOR::WHITE);
 
+    // Limpiar buffer antes de usar getline
+    cin.ignore(1000, '\n');
+
     // Apellido
     do {
         rlutil::locate(30, 4);
@@ -33,9 +36,8 @@ int MedicoManager::cargarMedico() {
         cout << "Apellido: ";
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(45, 4);
-        cin.clear();
-        cin.ignore(1000, '\n');
         getline(cin, aux);
+
         if (!val.esTextoValido(aux)) {
             rlutil::locate(30, 23);
             rlutil::setColor(rlutil::COLOR::RED);
@@ -63,9 +65,10 @@ int MedicoManager::cargarMedico() {
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(45, 5);
         getline(cin, aux);
+
         if (!val.esTextoValido(aux)) {
-            rlutil::locate(30, 23);
             rlutil::setColor(rlutil::COLOR::RED);
+            rlutil::locate(30, 23);
             cout << "Nombre invalido. Ingrese solo letras.                        ";
             rlutil::setColor(rlutil::COLOR::YELLOW);
             rlutil::locate(30, 24);
@@ -90,6 +93,7 @@ int MedicoManager::cargarMedico() {
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(45, 6);
         cin >> dni;
+
         if (cin.fail() || !val.esEnteroPositivo(dni)) {
             cin.clear();
             cin.ignore(1000, '\n');
@@ -166,6 +170,8 @@ int MedicoManager::cargarMedico() {
     cin.ignore();
     medico.setFechaNacimiento(Fecha(dia, mes, anio));
 
+    // Limpiar buffer antes de usar getline
+    cin.ignore(1000, '\n');
     // Genero
     do {
         rlutil::locate(30, 11);
@@ -174,6 +180,7 @@ int MedicoManager::cargarMedico() {
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(45, 11);
         getline(cin, aux);
+
         if (!val.esTextoValido(aux)) {
             rlutil::locate(30, 23);
             rlutil::setColor(rlutil::COLOR::RED);
@@ -201,6 +208,7 @@ int MedicoManager::cargarMedico() {
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(45, 12);
         getline(cin, aux);
+
         if (!val.esEmailValido(aux)) {
             rlutil::locate(30, 23);
             rlutil::setColor(rlutil::COLOR::RED);
@@ -228,6 +236,7 @@ int MedicoManager::cargarMedico() {
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(45, 13);
         getline(cin, aux);
+
         if (!val.esNumeroValido(aux)) {
             rlutil::locate(30, 23);
             rlutil::setColor(rlutil::COLOR::RED);
@@ -261,6 +270,7 @@ int MedicoManager::cargarMedico() {
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(45, 15);
         getline(cin, aux);
+
         if (!val.esTextoValido(aux)) {
             rlutil::locate(30, 23);
             rlutil::setColor(rlutil::COLOR::RED);
@@ -288,6 +298,7 @@ int MedicoManager::cargarMedico() {
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(45, 16);
         cin >> altura;
+
         if (cin.fail() || !val.esEnteroPositivo(altura)) {
             cin.clear();
             cin.ignore(1000, '\n');
@@ -310,6 +321,8 @@ int MedicoManager::cargarMedico() {
     cin.ignore();
     domicilio.setAltura(altura);
 
+    // Limpiar buffer antes de usar getline
+    cin.ignore(1000, '\n');
     // Localidad
     do {
         rlutil::locate(30, 17);
@@ -318,6 +331,7 @@ int MedicoManager::cargarMedico() {
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(45, 17);
         getline(cin, aux);
+
         if (!val.esTextoValido(aux)) {
             rlutil::locate(30, 23);
             rlutil::setColor(rlutil::COLOR::RED);
@@ -345,6 +359,7 @@ int MedicoManager::cargarMedico() {
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(45, 18);
         getline(cin, aux);
+
         if (!val.esTextoValido(aux)) {
             rlutil::locate(30, 23);
             rlutil::setColor(rlutil::COLOR::RED);
@@ -372,6 +387,7 @@ int MedicoManager::cargarMedico() {
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(45, 19);
         getline(cin, aux);
+
         if (!val.esNumeroValido(aux)) {
             rlutil::locate(30, 23);
             rlutil::setColor(rlutil::RED);
@@ -409,6 +425,7 @@ int MedicoManager::cargarMedico() {
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(45, 21);
         cin >> matricula;
+
         if (cin.fail() || !val.esEnteroPositivo(matricula)) {
             cin.clear();
             cin.ignore(1000, '\n');
@@ -439,6 +456,7 @@ int MedicoManager::cargarMedico() {
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(52, 22);
         cin >> idEspecialidad;
+
         if (cin.fail() || !val.esEnteroPositivo(idEspecialidad)) {
             cin.clear();
             cin.ignore(1000, '\n');
@@ -667,7 +685,6 @@ void MedicoManager::buscarMedicoPorEspecialidad() {
 
         }
     } while (cin.fail() || !val.esEnteroPositivo(idEspecialidad));
-    cin.ignore();
 
     int cantidad = _archivo.getCantidadRegistros();
     if (cantidad == 0) {
@@ -861,7 +878,7 @@ void MedicoManager::DarBajaMedico(){
     Validador val;
     int id;
     char confirmacion;
-    bool encontrado = false, idValido=false, confirmarValidacion=false;
+    bool encontrado = false, idValido=false;
 
     while (!encontrado) {
         rlutil::cls();
@@ -869,37 +886,36 @@ void MedicoManager::DarBajaMedico(){
         rlutil::locate(40, 3);
         cout << " DAR DE BAJA MEDICO ";
         do{
-        rlutil::setColor(rlutil::COLOR::CYAN);
-        rlutil::locate(30, 6);
-        cout << "Ingrese el ID del medico a dar de baja: ";
-        rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::locate(75, 6);
-        cin >> id;
-
-        if (cin.fail() || !val.esEnteroPositivo(id)) {
-            cin.clear();
-            cin.ignore(1000, '\n');
-            rlutil::locate(30, 8);
-            rlutil::setColor(rlutil::COLOR::RED);
-            cout << "ID invalido. Ingrese un numero entero positivo.";
-            rlutil::setColor(rlutil::COLOR::YELLOW);
-            rlutil::locate(30, 9);
-            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            rlutil::locate(30, 6);
+            cout << "Ingrese el ID del medico a dar de baja: ";
             rlutil::setColor(rlutil::COLOR::WHITE);
-            rlutil::anykey();
             rlutil::locate(75, 6);
-            cout << "                                                       ";
-            rlutil::locate(30, 8);
-            cout << "                                                       ";
-            rlutil::locate(30, 9);
-            cout << "                                                       ";
+            cin >> id;
 
-        }
-        else{
-                idValido=true;
-        }
+            if (cin.fail() || !val.esEnteroPositivo(id)) {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                rlutil::locate(30, 8);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "ID invalido. Ingrese un numero entero positivo.";
+                rlutil::setColor(rlutil::COLOR::YELLOW);
+                rlutil::locate(30, 9);
+                cout << "Presione una tecla para continuar...";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+                rlutil::locate(75, 6);
+                cout << "                                                       ";
+                rlutil::locate(30, 8);
+                cout << "                                                       ";
+                rlutil::locate(30, 9);
+                cout << "                                                       ";
+
+            }
+            else{
+                    idValido=true;
+            }
         }while(!idValido);
-        cin.ignore();
 
         int pos = _archivo.Buscar(id);
         Medico posMedico;
@@ -924,8 +940,8 @@ void MedicoManager::DarBajaMedico(){
                     rlutil::setColor(rlutil::COLOR::WHITE);
                     rlutil::locate(92, 9);
                     cin >> confirmacion;
-                    cin.ignore();
-                    if (!val.esConfirmacionSN(confirmacion)) {
+
+                    if (cin.fail() || !val.esConfirmacionSN(confirmacion)) {
                         cin.clear();
                         cin.ignore(1000, '\n');
                         rlutil::locate(30, 13);
@@ -943,7 +959,7 @@ void MedicoManager::DarBajaMedico(){
                         rlutil::locate(30, 14);
                         cout << "                                                       ";
                     }
-                }while(!val.esConfirmacionSN(confirmacion));
+                }while(cin.fail() || !val.esConfirmacionSN(confirmacion));
 
                 if (confirmacion == 's' || confirmacion == 'S') {
                     posMedico.setEstado(false);
@@ -968,7 +984,6 @@ void MedicoManager::DarBajaMedico(){
         }
         rlutil::setColor(rlutil::COLOR::WHITE);
     }
-
     rlutil::cls();
 }
 
@@ -1008,7 +1023,6 @@ void MedicoManager::modificarMedico(){
             cout<<"                                                                           ";
         }
         }while(cin.fail() || !val.esEnteroPositivo(id));
-        cin.ignore();
 
         int pos = _archivo.Buscar(id);
         Medico medico;
@@ -1030,22 +1044,22 @@ void MedicoManager::modificarMedico(){
                     cout << "Esta seguro que desea modificar al medico ID '" << id << "'? (s/n): ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
                     rlutil::locate(93, 9);
-                    cout << "                                                             ";
-                    rlutil::locate(93, 9);
                     cin >> confirmacion;
+
                     if (cin.fail() || !val.esConfirmacionSN(confirmacion)) {
                         cin.clear();
                         cin.ignore(1000, '\n');
-                        rlutil::locate(30, 9);
+                        rlutil::locate(30,11);
                         rlutil::setColor(rlutil::COLOR::RED);
                         cout << "Ingrese solo 's' o 'n'. Presione una tecla para continuar";
                         rlutil::setColor(rlutil::COLOR::WHITE);
                         rlutil::anykey();
-                        rlutil::locate(30, 9);
+                        rlutil::locate(30, 11);
                         cout << "                                                         ";
+                        rlutil::locate(93, 9);
+                        cout << "                                                             ";
                     }else{
                         confirmacionValida=true;
-                        cin.ignore(1000, '\n');
                     }
                 }
 
@@ -1055,6 +1069,9 @@ void MedicoManager::modificarMedico(){
                     rlutil::locate(40, 3);
                     cout << " INGRESO DE NUEVOS DATOS ";
 
+                    // Limpiar buffer antes de usar getline
+                    cin.ignore(1000, '\n');
+
                     // Apellido
                     do {
                         rlutil::locate(30, 6);
@@ -1063,10 +1080,11 @@ void MedicoManager::modificarMedico(){
                         rlutil::setColor(rlutil::COLOR::WHITE);
                         rlutil::locate(60, 6);
                         getline(cin, aux);
+
                         if (!val.esTextoValido(aux)) {
                             rlutil::locate(30, 25);
                             rlutil::setColor(rlutil::COLOR::RED);
-                            cout << "Apellido invalido. Ingrese solo letras.                        ";
+                            cout << "Apellido invalido. Ingrese solo letras.";
                             rlutil::setColor(rlutil::COLOR::YELLOW);
                             rlutil::locate(30, 26);
                             cout << "Presione una tecla para continuar...";
@@ -1074,6 +1092,10 @@ void MedicoManager::modificarMedico(){
                             rlutil::anykey();
                             rlutil::locate(60, 6);
                             cout << "                                                                           ";//Limpiar el campo
+                            rlutil::locate(30, 25);
+                            cout << "                                                                           ";
+                            rlutil::locate(30, 26);
+                            cout << "                                                                           ";
                         }
                     } while (!val.esTextoValido(aux));
                     medico.setApellido(aux);
@@ -1086,10 +1108,11 @@ void MedicoManager::modificarMedico(){
                         rlutil::setColor(rlutil::COLOR::WHITE);
                         rlutil::locate(60, 7);
                         getline(cin, aux);
+
                         if (!val.esTextoValido(aux)) {
                             rlutil::locate(30, 25);
                             rlutil::setColor(rlutil::COLOR::RED);
-                            cout << "Nombre invalido. Ingrese solo letras.                         ";
+                            cout << "Nombre invalido. Ingrese solo letras.";
                             rlutil::setColor(rlutil::COLOR::YELLOW);
                             rlutil::locate(30, 26);
                             cout << "Presione una tecla para continuar...";
@@ -1097,6 +1120,10 @@ void MedicoManager::modificarMedico(){
                             rlutil::anykey();
                             rlutil::locate(60, 7);
                             cout << "                                                                           ";//Limpiar el campo
+                            rlutil::locate(30, 25);
+                            cout << "                                                                           ";
+                            rlutil::locate(30, 26);
+                            cout << "                                                                           ";
                         }
                     } while (!val.esTextoValido(aux));
                     medico.setNombre(aux);
@@ -1109,12 +1136,13 @@ void MedicoManager::modificarMedico(){
                         rlutil::setColor(rlutil::COLOR::WHITE);
                         rlutil::locate(60, 8);
                         cin >> dni;
+
                         if (cin.fail() || !val.esEnteroPositivo(dni)) {
                             cin.clear();
                             cin.ignore(1000, '\n');
                             rlutil::locate(30, 25);
                             rlutil::setColor(rlutil::COLOR::RED);
-                            cout << "DNI invalido.Ingrese solo numeros.                     ";
+                            cout << "DNI invalido.Ingrese solo numeros.";
                             rlutil::setColor(rlutil::COLOR::YELLOW);
                             rlutil::locate(30, 26);
                             cout << "Presione una tecla para continuar...";
@@ -1122,9 +1150,12 @@ void MedicoManager::modificarMedico(){
                             rlutil::anykey();
                             rlutil::locate(60, 8);
                             cout << "                                                                           ";//Limpiar el campo
+                            rlutil::locate(30, 25);
+                            cout << "                                                                           ";
+                            rlutil::locate(30, 26);
+                            cout << "                                                                           ";
                         }
                     } while (cin.fail() || !val.esEnteroPositivo(dni));
-                    cin.ignore();
                     medico.setDni(dni);
 
                     // Fecha nacimiento
@@ -1145,12 +1176,13 @@ void MedicoManager::modificarMedico(){
                         cout << "Anio: ";
                         rlutil::locate(60, 12);
                         cin >> anio;
+
                         if (cin.fail() || !val.esFechaValida(dia, mes, anio)) {
                             cin.clear();
                             cin.ignore(1000, '\n');
                             rlutil::locate(30, 25);
                             rlutil::setColor(rlutil::COLOR::RED);
-                            cout << "Fecha invalida.Ingrese de nuevo la fecha...                        ";
+                            cout << "Fecha invalida.Ingrese de nuevo la fecha...";
                             rlutil::setColor(rlutil::COLOR::YELLOW);
                             rlutil::locate(30, 26);
                             cout << "Presione una tecla para continuar...";
@@ -1163,11 +1195,16 @@ void MedicoManager::modificarMedico(){
                             cout << "                                                                           ";//Limpiar el campo
                             rlutil::locate(60, 12);
                             cout << "                                                                           ";//Limpiar el campo
+                            rlutil::locate(30, 25);
+                            cout << "                                                                           ";
+                            rlutil::locate(30, 26);
+                            cout << "                                                                           ";
                         }
                     } while (cin.fail() || !val.esFechaValida(dia, mes, anio));
-                    cin.ignore();
                     medico.setFechaNacimiento(Fecha(dia, mes, anio));
 
+                    // Limpiar buffer antes de usar getline
+                    cin.ignore(1000, '\n');
                     // Genero
                     do {
                         rlutil::locate(30, 13);
@@ -1176,10 +1213,11 @@ void MedicoManager::modificarMedico(){
                         rlutil::setColor(rlutil::COLOR::WHITE);
                         rlutil::locate(60, 13);
                         getline(cin, aux);
+
                         if (!val.esTextoValido(aux)) {
                             rlutil::locate(30, 25);
                             rlutil::setColor(rlutil::COLOR::RED);
-                            cout << "Genero invalido.Ingrese solo letras.                       ";
+                            cout << "Genero invalido.Ingrese solo letras.";
                             rlutil::setColor(rlutil::COLOR::YELLOW);
                             rlutil::locate(30, 26);
                             cout << "Presione una tecla para continuar...";
@@ -1187,26 +1225,68 @@ void MedicoManager::modificarMedico(){
                             rlutil::anykey();
                             rlutil::locate(60, 13);
                             cout << "                                                                           ";//Limpiar el campo
+                            rlutil::locate(30, 25);
+                            cout << "                                                                           ";
+                            rlutil::locate(30, 26);
+                            cout << "                                                                           ";
                         }
                     } while (!val.esTextoValido(aux));
                     medico.setGenero(aux);
 
                     // Email
-                    rlutil::locate(30, 14);
-                    rlutil::setColor(rlutil::COLOR::CYAN);
-                    cout << "Nuevo Email: ";
-                    rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(60, 14);
-                    getline(cin, aux);
+                    do {
+                        rlutil::locate(30, 14);
+                        rlutil::setColor(rlutil::COLOR::CYAN);
+                        cout << "Email: ";
+                        rlutil::setColor(rlutil::COLOR::WHITE);
+                        rlutil::locate(60, 14);
+                        getline(cin, aux);
+
+                        if (!val.esEmailValido(aux)) {
+                            rlutil::locate(30, 25);
+                            rlutil::setColor(rlutil::COLOR::RED);
+                            cout << "El email invalido.";
+                            rlutil::setColor(rlutil::COLOR::YELLOW);
+                            rlutil::locate(30, 26);
+                            cout << "Presione una tecla para continuar...";
+                            rlutil::setColor(rlutil::COLOR::WHITE);
+                            rlutil::anykey();
+                            rlutil::locate(60, 14);
+                            cout << "                                                                           ";
+                            rlutil::locate(30, 25);
+                            cout << "                                                                           ";
+                            rlutil::locate(30, 26);
+                            cout << "                                                                           ";
+                        }
+                    } while (!val.esEmailValido(aux));
                     medico.setEmail(aux);
 
                     // Telefono
-                    rlutil::locate(30, 15);
-                    rlutil::setColor(rlutil::COLOR::CYAN);
-                    cout << "Nuevo Telefono: ";
-                    rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(60, 15);
-                    getline(cin, aux);
+                    do {
+                        rlutil::locate(30, 15);
+                        rlutil::setColor(rlutil::COLOR::CYAN);
+                        cout << "Telefono: ";
+                        rlutil::setColor(rlutil::COLOR::WHITE);
+                        rlutil::locate(60, 15);
+                        getline(cin, aux);
+
+                        if (!val.esNumeroValido(aux)) {
+                            rlutil::locate(30, 25);
+                            rlutil::setColor(rlutil::COLOR::RED);
+                            cout << "Numero de telefono invalido. Ingrese solo numeros ";
+                            rlutil::setColor(rlutil::COLOR::YELLOW);
+                            rlutil::locate(30, 26);
+                            cout << "Presione una tecla para continuar...";
+                            rlutil::setColor(rlutil::COLOR::WHITE);
+                            rlutil::anykey();
+                            rlutil::locate(60, 15);
+                            cout << "                                                                           ";
+                            rlutil::locate(30, 25);
+                            cout << "                                                                           ";
+                            rlutil::locate(30, 26);
+                            cout << "                                                                           ";
+                        }
+                    } while (!val.esNumeroValido(aux));
                     medico.setTelefono(aux);
 
                     // Domicilio
@@ -1222,10 +1302,11 @@ void MedicoManager::modificarMedico(){
                         rlutil::locate(60, 17);
                         rlutil::setColor(rlutil::COLOR::WHITE);
                         getline(cin, aux);
+
                         if (!val.esTextoValido(aux)) {
                             rlutil::locate(30, 25);
                             rlutil::setColor(rlutil::COLOR::RED);
-                            cout << "Calle invalida. Ingrese solo letras.                       ";
+                            cout << "Calle invalida. Ingrese solo letras.";
                             rlutil::setColor(rlutil::COLOR::YELLOW);
                             rlutil::locate(30, 26);
                             cout << "Presione una tecla para continuar...";
@@ -1233,6 +1314,10 @@ void MedicoManager::modificarMedico(){
                             rlutil::anykey();
                             rlutil::locate(60, 17);
                             cout << "                                                                           ";//Limpiar el campo
+                            rlutil::locate(30, 25);
+                            cout << "                                                                           ";
+                            rlutil::locate(30, 26);
+                            cout << "                                                                           ";
                         }
                     } while (!val.esTextoValido(aux));
                     domicilio.setCalle(aux);
@@ -1245,6 +1330,7 @@ void MedicoManager::modificarMedico(){
                         rlutil::setColor(rlutil::COLOR::WHITE);
                         rlutil::locate(60, 18);
                         cin >> altura;
+
                         if (cin.fail() || !val.esEnteroPositivo(altura)) {
                             cin.clear();
                             cin.ignore(1000, '\n');
@@ -1258,11 +1344,16 @@ void MedicoManager::modificarMedico(){
                             rlutil::anykey();
                             rlutil::locate(60, 18);
                             cout << "                                                                           ";//Limpiar el campo
+                            rlutil::locate(30, 25);
+                            cout << "                                                                           ";
+                            rlutil::locate(30, 26);
+                            cout << "                                                                           ";
                         }
                     } while (cin.fail() || !val.esEnteroPositivo(altura));
-                    cin.ignore();
                     domicilio.setAltura(altura);
 
+                    // Limpiar buffer antes de usar getline
+                    cin.ignore(1000, '\n');
                     // Localidad
                     do {
                         rlutil::locate(30, 19);
@@ -1271,6 +1362,7 @@ void MedicoManager::modificarMedico(){
                         rlutil::setColor(rlutil::COLOR::WHITE);
                         rlutil::locate(60, 19);
                         getline(cin, aux);
+
                         if (!val.esTextoValido(aux)) {
                             rlutil::locate(30, 25);
                             rlutil::setColor(rlutil::COLOR::RED);
@@ -1282,6 +1374,10 @@ void MedicoManager::modificarMedico(){
                             rlutil::anykey();
                             rlutil::locate(60, 19);
                             cout << "                                                                           ";//Limpiar el campo
+                            rlutil::locate(30, 25);
+                            cout << "                                                                           ";
+                            rlutil::locate(30, 26);
+                            cout << "                                                                           ";
                         }
                     } while (!val.esTextoValido(aux));
                     domicilio.setLocalidad(aux);
@@ -1294,6 +1390,7 @@ void MedicoManager::modificarMedico(){
                         rlutil::setColor(rlutil::COLOR::WHITE);
                         rlutil::locate(60, 20);
                         getline(cin, aux);
+
                         if (!val.esTextoValido(aux)) {
                             rlutil::locate(30, 25);
                             rlutil::setColor(rlutil::COLOR::RED);
@@ -1305,17 +1402,40 @@ void MedicoManager::modificarMedico(){
                             rlutil::anykey();
                             rlutil::locate(60, 20);
                             cout << "                                                                           ";//Limpiar el campo
+                            rlutil::locate(30, 25);
+                            cout << "                                                                           ";
+                            rlutil::locate(30, 26);
+                            cout << "                                                                           ";
                         }
                     } while (!val.esTextoValido(aux));
                     domicilio.setProvincia(aux);
 
                     // Codigo Postal
-                    rlutil::locate(30, 21);
-                    rlutil::setColor(rlutil::COLOR::CYAN);
-                    cout << "Codigo Postal: ";
-                    rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::locate(60, 21);
-                    getline(cin, aux);
+                    do {
+                        rlutil::locate(30, 21);
+                        rlutil::setColor(rlutil::COLOR::CYAN);
+                        cout << "Codigo Postal: ";
+                        rlutil::setColor(rlutil::COLOR::WHITE);
+                        rlutil::locate(60, 21);
+                        getline(cin, aux);
+
+                        if (!val.esNumeroValido(aux)) {
+                            rlutil::locate(30, 25);
+                            rlutil::setColor(rlutil::RED);
+                            cout << "Codigo postal invalido.Ingrese solo numeros.                       ";
+                            rlutil::setColor(rlutil::COLOR::YELLOW);
+                            rlutil::locate(30, 26);
+                            cout << "Presione una tecla para continuar...";
+                            rlutil::setColor(rlutil::WHITE);
+                            rlutil::anykey();
+                            rlutil::locate(60, 21);
+                            cout << "                                                                           ";
+                            rlutil::locate(30, 25);
+                            cout << "                                                                           ";
+                            rlutil::locate(30, 26);
+                            cout << "                                                                           ";
+                        }
+                    } while (!val.esNumeroValido(aux));
                     domicilio.setCodigoPostal(aux);
 
                     medico.setDomicilio(domicilio);
@@ -1328,6 +1448,7 @@ void MedicoManager::modificarMedico(){
                         rlutil::setColor(rlutil::COLOR::WHITE);
                         rlutil::locate(60, 22);
                         cin >> matricula;
+
                         if (cin.fail() || !val.esEnteroPositivo(matricula)) {
                             cin.clear();
                             cin.ignore(1000, '\n');
@@ -1341,9 +1462,12 @@ void MedicoManager::modificarMedico(){
                             rlutil::anykey();
                             rlutil::locate(60, 22);
                             cout << "                                                                           ";//Limpiar el campo
+                            rlutil::locate(30, 25);
+                            cout << "                                                                           ";
+                            rlutil::locate(30, 26);
+                            cout << "                                                                           ";
                         }
                     } while (cin.fail() || !val.esEnteroPositivo(matricula));
-                    cin.ignore();
                     medico.setMatricula(matricula);
 
                     // ID Especialidad
@@ -1354,10 +1478,11 @@ void MedicoManager::modificarMedico(){
                         rlutil::setColor(rlutil::COLOR::WHITE);
                         rlutil::locate(60, 23);
                         cin >> idEspecialidad;
+
                         if (cin.fail() || !val.esEnteroPositivo(idEspecialidad)) {
                             cin.clear();
                             cin.ignore(1000, '\n');
-                            rlutil::locate(60, 25);
+                            rlutil::locate(30, 25);
                             rlutil::setColor(rlutil::COLOR::RED);
                             cout << "ID invalido. Ingrese solo numeros.                       ";
                             rlutil::setColor(rlutil::COLOR::YELLOW);
@@ -1367,9 +1492,12 @@ void MedicoManager::modificarMedico(){
                             rlutil::anykey();
                             rlutil::locate(60, 23);
                             cout << "                                                                           ";//Limpiar el campo
+                            rlutil::locate(30, 25);
+                            cout << "                                                                           ";
+                            rlutil::locate(30, 26);
+                            cout << "                                                                           ";
                         }
                     } while (cin.fail() || !val.esEnteroPositivo(idEspecialidad));
-                    cin.ignore();
                     medico.setIDEspecialidad(idEspecialidad);
 
                     if (_archivo.guardar(medico, pos)) {
@@ -1434,7 +1562,6 @@ void MedicoManager::buscarPacientePorDNI(int IDMedico){
             cout << "                                                    ";
         }
     } while (cin.fail() || !val.esEnteroPositivo(dni));
-    cin.ignore();
 
     PacienteArchivo archip("Pacientes.dat");
     int cantidadP=archip.getCantidadRegistros();
@@ -1474,19 +1601,21 @@ void MedicoManager::buscarPacientePorDNI(int IDMedico){
             rlutil::locate(30, fila++);
             cout<<"Hora: ";
             if (turno.getHoraTurno().getHora() < 10) {
-            h = "0" + to_string(turno.getHoraTurno().getHora());
-            } else {
-            h = to_string(turno.getHoraTurno().getHora());
+                h = "0" + to_string(turno.getHoraTurno().getHora());
+            }
+            else {
+                h = to_string(turno.getHoraTurno().getHora());
             }
 
             if (turno.getHoraTurno().getMinutos() < 10) {
-            m = "0" + to_string(turno.getHoraTurno().getMinutos());
-            } else {
-            m = to_string(turno.getHoraTurno().getMinutos());
+                m = "0" + to_string(turno.getHoraTurno().getMinutos());
+            }
+            else {
+                m = to_string(turno.getHoraTurno().getMinutos());
             }
             cout<<h + ":" + m + " hs.";
             hayTurnos=true;
-            }
+        }
     }
     if(!hayTurnos){
         rlutil::locate(30, fila++);
@@ -1569,8 +1698,7 @@ void MedicoManager::reactivarMedico(){
             rlutil::locate(75, fila);
             cout << "                                                                  ";
         }
-    } while (std::cin.fail() || !val.esEnteroPositivo(id));
-    cin.ignore();
+    } while (cin.fail() || !val.esEnteroPositivo(id));
 
     // Buscar el medico por ID
     for(int i = 0; i < cantidad; i++){

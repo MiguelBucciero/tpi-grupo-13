@@ -291,12 +291,12 @@ int MenuRecepcionista::menuConsultasRecepcionista(){
 
         // Flecha
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
-        rlutil::locate(28, 5 + y);
+        rlutil::locate(48, 5 + y);
         cout << (char)175;
 
         switch(rlutil::getkey()){
         case 14: //UP
-            rlutil::locate(28, 5 + y);
+            rlutil::locate(48, 5 + y);
             cout<<" "<<endl;
             y--;
             if(y<0){
@@ -304,7 +304,7 @@ int MenuRecepcionista::menuConsultasRecepcionista(){
             }
         break;
         case 15: //DOWN
-            rlutil::locate(28, 5 + y);
+            rlutil::locate(48, 5 + y);
             cout<<" "<<endl;
             y++;
             if(y>4){
