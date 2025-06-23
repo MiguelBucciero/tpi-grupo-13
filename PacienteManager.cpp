@@ -2,10 +2,12 @@
 #include "rlutil.h"
 #include <iostream>
 #include <string>
+#include "Validador.h"
 using namespace std;
 
 void PacienteManager::cargarPaciente() {
     Paciente paciente;
+    Validador val;
     string aux;
     int dni, carnet, id, altura, dia, mes, anio;
     Fecha fechaNacimiento;
@@ -16,122 +18,387 @@ void PacienteManager::cargarPaciente() {
     rlutil::locate(40, 2);
     cout << "INGRESO DE NUEVO PACIENTE";
     rlutil::setColor(rlutil::COLOR::WHITE);
+        cin.clear();
+        cin.ignore(1000, '\n');
 
-    rlutil::locate(30, 4);
-    rlutil::setColor(rlutil::COLOR::CYAN);
-    cout << "Apellido: ";
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::locate(45, 4);
-    getline(cin, aux);
+        //Apellido
+
+do {
+        rlutil::locate(30, 4);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Apellido: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(45, 4);
+        getline(cin, aux);
+        if (!val.esTextoValido(aux)) {
+            rlutil::locate(30, 23);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Apellido invalido. Ingrese solo letras.                        ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 24);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+
+            rlutil::locate(45, 4);
+            cout << "                                                                           ";
+            rlutil::locate(30, 23);
+            cout << "                                                                           ";
+            rlutil::locate(30, 24);
+            cout << "                                                                           ";
+        }
+    } while (!val.esTextoValido(aux));
     paciente.setApellido(aux);
 
-    rlutil::locate(30, 5);
-    rlutil::setColor(rlutil::COLOR::CYAN);
-    cout << "Nombre: ";
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::locate(45, 5);
-    getline(cin, aux);
+//Nombre
+
+    do {
+        rlutil::locate(30, 5);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Nombre: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(45, 5);
+        getline(cin, aux);
+        if (!val.esTextoValido(aux)) {
+        rlutil::locate(30, 23);
+        rlutil::setColor(rlutil::COLOR::RED);
+        cout << "Nombre invalido. Ingrese solo letras.                        ";
+        rlutil::setColor(rlutil::COLOR::YELLOW);
+        rlutil::locate(30, 24);
+        cout << "Presione una tecla para continuar...";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::anykey();
+        rlutil::locate(45, 5);
+        cout << "                                                                           ";
+        rlutil::locate(30, 23);
+        cout << "                                                                           ";
+        rlutil::locate(30, 24);
+        cout << "                                                                           ";
+        }
+    } while (!val.esTextoValido(aux));
     paciente.setNombre(aux);
 
-    rlutil::locate(30, 6);
-    rlutil::setColor(rlutil::COLOR::CYAN);
-    cout << "DNI: ";
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::locate(45, 6);
-    cin >> dni;
+//DNI
+    do {
+        rlutil::locate(30, 6);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "DNI: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(45, 6);
+        cin >> dni;
+        if (cin.fail() || !val.esEnteroPositivo(dni)) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            rlutil::locate(30, 23);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "DNI invalido. Solo numeros.                        ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 24);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(45, 6);
+            cout << "                                                                           ";
+            rlutil::locate(30, 23);
+            cout << "                                                                           ";
+            rlutil::locate(30, 24);
+            cout << "                                                                           ";
+        }
+    } while (cin.fail() || !val.esEnteroPositivo(dni));
     cin.ignore();
     paciente.setDni(dni);
 
-    rlutil::setColor(rlutil::COLOR::CYAN);
-    rlutil::locate(30, 7);
-    cout << "Fecha de nacimiento:";
-    rlutil::setColor(rlutil::COLOR::WHITE);
 
-    rlutil::locate(30, 8);
-    cout << "Dia: ";
-    rlutil::locate(45, 8);
-    cin >> dia;
-    rlutil::locate(30, 9);
-    cout << "Mes: ";
-    rlutil::locate(45, 9);
-    cin >> mes;
-    rlutil::locate(30, 10);
-    cout << "Anio: ";
-    rlutil::locate(45, 10);
-    cin >> anio;
+//Fecha Nacimiento
+
+    do {
+        rlutil::locate(30, 7);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Fecha de nacimiento:";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+
+        rlutil::locate(30, 8);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Dia: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(45, 8);
+        cin >> dia;
+
+        rlutil::locate(30, 9);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Mes: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(45, 9);
+        cin >> mes;
+
+        rlutil::locate(30, 10);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Anio: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(45, 10);
+        cin >> anio;
+
+        if (cin.fail() || !val.esFechaValida(dia, mes, anio)) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            rlutil::locate(30, 23);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Fecha invalida.                        ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 24);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(45, 8);
+            cout << "   ";
+            rlutil::locate(45, 9);
+            cout << "   ";
+            rlutil::locate(45, 10);
+            cout << "     ";
+            rlutil::locate(30, 23);
+            cout << "                                                                           ";
+            rlutil::locate(30, 24);
+            cout << "                                                                           ";
+        }
+    } while (cin.fail() || !val.esFechaValida(dia, mes, anio));
     cin.ignore();
     paciente.setFechaNacimiento(Fecha(dia, mes, anio));
 
-    rlutil::locate(30, 11);
-    rlutil::setColor(rlutil::COLOR::CYAN);
-    cout << "Genero: ";
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::locate(45, 11);
-    getline(cin, aux);
+
+//Genero
+
+    do {
+        rlutil::locate(30, 11);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Genero: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(45, 11);
+        getline(cin, aux);
+        if (!val.esTextoValido(aux)) {
+            rlutil::locate(30, 23);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Genero invalido. Ingrese solo letras.                        ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 24);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(45, 11);
+            cout << "                                                                           ";
+            rlutil::locate(30, 23);
+            cout << "                                                                           ";
+            rlutil::locate(30, 24);
+            cout << "                                                                           ";
+        }
+    } while (!val.esTextoValido(aux));
     paciente.setGenero(aux);
 
-    rlutil::locate(30, 12);
-    rlutil::setColor(rlutil::COLOR::CYAN);
-    cout << "Email: ";
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::locate(45, 12);
-    getline(cin, aux);
+
+//Mail
+ do {
+        rlutil::locate(30, 12);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Email: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(45, 12);
+        getline(cin, aux);
+        if (!val.esEmailValido(aux)) {
+            rlutil::locate(30, 23);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "El email es invalido.Vuelva a intentar                        ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 24);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(45, 12);
+            cout << "                                                                           ";
+            rlutil::locate(30, 23);
+            cout << "                                                                           ";
+            rlutil::locate(30, 24);
+            cout << "                                                                           ";
+        }
+    } while (!val.esEmailValido(aux));
     paciente.setEmail(aux);
 
-    rlutil::locate(30, 13);
-    rlutil::setColor(rlutil::COLOR::CYAN);
-    cout << "Telefono: ";
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::locate(45, 13);
-    getline(cin, aux);
+
+//Telefono
+    do {
+        rlutil::locate(30, 13);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Telefono: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(45, 13);
+        getline(cin, aux);
+        if (!val.esNumeroValido(aux)) {
+            rlutil::locate(30, 23);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Numero de telefono invalido. Ingrese solo numeros                        ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 24);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(45, 13);
+            cout << "                                                                           ";
+            rlutil::locate(30, 23);
+            cout << "                                                                           ";
+            rlutil::locate(30, 24);
+            cout << "                                                                           ";
+        }
+    } while (!val.esNumeroValido(aux));
     paciente.setTelefono(aux);
+
+
+//Domicilio
 
     rlutil::locate(30, 14);
     rlutil::setColor(rlutil::COLOR::CYAN);
-    cout << "Domicilio: ";
-    rlutil::locate(33, 15);
-    rlutil::setColor(rlutil::COLOR::CYAN);
-    cout << "Calle: ";
+    cout << "Domicilio:";
     rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::locate(45, 15);
-    getline(cin, aux);
+
+    // Calle
+    do {
+        rlutil::locate(30, 15);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Calle: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(45, 15);
+        getline(cin, aux);
+        if (!val.esTextoValido(aux)) {
+            rlutil::locate(30, 23);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Calle invalida. Ingrese solo letras.                        ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 24);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(45, 15);
+            cout << "                                                                           ";
+            rlutil::locate(30, 23);
+            cout << "                                                                           ";
+            rlutil::locate(30, 24);
+            cout << "                                                                           ";
+        }
+    } while (!val.esTextoValido(aux));
     domicilio.setCalle(aux);
 
-    rlutil::locate(30, 16);
-    rlutil::setColor(rlutil::COLOR::CYAN);
-    cout << "Altura: ";
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::locate(45, 16);
-    cin >> altura;
-    domicilio.setAltura(altura);
+    // Altura
+    do {
+        rlutil::locate(30, 16);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Altura: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(45, 16);
+        cin >> altura;
+        if (cin.fail() || !val.esEnteroPositivo(altura)) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            rlutil::locate(30, 23);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Altura invalida. Ingrese solo numeros.                        ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 24);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(45, 16);
+            cout << "                                                                           ";
+            rlutil::locate(30, 23);
+            cout << "                                                                           ";
+            rlutil::locate(30, 24);
+            cout << "                                                                           ";
+        }
+    } while (cin.fail() || !val.esEnteroPositivo(altura));
     cin.ignore();
+    domicilio.setAltura(altura);
 
-    rlutil::locate(30, 17);
-    rlutil::setColor(rlutil::COLOR::CYAN);
-    cout << "Localidad: ";
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::locate(45, 17);
-    getline(cin, aux);
+    // Localidad
+    do {
+        rlutil::locate(30, 17);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Localidad: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(45, 17);
+        getline(cin, aux);
+        if (!val.esTextoValido(aux)) {
+            rlutil::locate(30, 23);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Localidad invalida.                        ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 24);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(45, 17);
+            cout << "                                                                           ";
+            rlutil::locate(30, 23);
+            cout << "                                                                           ";
+            rlutil::locate(30, 24);
+            cout << "                                                                           ";
+        }
+    } while (!val.esTextoValido(aux));
     domicilio.setLocalidad(aux);
 
-    rlutil::locate(30, 18);
-    rlutil::setColor(rlutil::COLOR::CYAN);
-    cout << "Provincia: ";
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::locate(45, 18);
-    getline(cin, aux);
+    // Provincia
+    do {
+        rlutil::locate(30, 18);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Provincia: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(45, 18);
+        getline(cin, aux);
+        if (!val.esTextoValido(aux)) {
+            rlutil::locate(30, 23);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Provincia invalida.                        ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 24);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(45, 18);
+            cout << "                                                                           ";
+            rlutil::locate(30, 23);
+            cout << "                                                                           ";
+            rlutil::locate(30, 24);
+            cout << "                                                                           ";
+        }
+    } while (!val.esTextoValido(aux));
     domicilio.setProvincia(aux);
 
-    rlutil::locate(30, 19);
-    rlutil::setColor(rlutil::COLOR::CYAN);
-    cout << "Codigo Postal: ";
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::locate(45, 19);
-    getline(cin, aux);
+    // Codigo Postal
+    do {
+        rlutil::locate(30, 19);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Codigo Postal: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(45, 19);
+        getline(cin, aux);
+        if (!val.esNumeroValido(aux)) {
+            rlutil::locate(30, 23);
+            rlutil::setColor(rlutil::RED);
+            cout << "Codigo postal invalido.Ingrese solo numeros.                       ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 24);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::WHITE);
+            rlutil::anykey();
+            rlutil::locate(45, 19);
+            cout << "                                                                           ";
+            rlutil::locate(30, 23);
+            cout << "                                                                           ";
+            rlutil::locate(30, 24);
+            cout << "                                                                           ";
+        }
+    } while (!val.esNumeroValido(aux));
     domicilio.setCodigoPostal(aux);
 
     paciente.setDomicilio(domicilio);
 
+
+//ID
     id = _archivo.getNuevoID();
     rlutil::locate(30, 20);
     rlutil::setColor(rlutil::COLOR::CYAN);
@@ -141,12 +408,34 @@ void PacienteManager::cargarPaciente() {
     cout << id;
     paciente.setIDPaciente(id);
 
-    rlutil::locate(30, 21);
-    rlutil::setColor(rlutil::COLOR::CYAN);
-    cout << "Numero de carnet: ";
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::locate(48, 21);
-    cin >> carnet;
+//Carnet
+
+   do {
+        rlutil::locate(30, 21);
+        rlutil::setColor(rlutil::COLOR::CYAN);
+        cout << "Numero de carnet: ";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::locate(48, 21);
+        cin >> carnet;
+        if (cin.fail() || !val.esEnteroPositivo(carnet)) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            rlutil::locate(30, 23);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Numero de Carnet invalido.                        ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 24);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(45, 21);
+            cout << "                                                                           ";
+            rlutil::locate(30, 23);
+            cout << "                                                                           ";
+            rlutil::locate(30, 24);
+            cout << "                                                                           ";
+        }
+    } while (cin.fail() || !val.esEnteroPositivo(carnet));
     cin.ignore();
     paciente.setCarnet(carnet);
     paciente.setEstado(true);
@@ -318,10 +607,11 @@ void PacienteManager::mostrarPaciente() {
 }
 
 void PacienteManager::DarBajaPaciente(){
-
-
+    Validador val;
+    char confirmacion;
     int id;
-    bool encontrado = false;
+    bool encontrado = false, idValido=false, confirmarValidacion=false;
+
 
     while (!encontrado) {
         rlutil::cls();
@@ -329,6 +619,7 @@ void PacienteManager::DarBajaPaciente(){
         rlutil::locate(40, 3);
         cout << " DAR DE BAJA PACIENTE ";
 
+    do{
         rlutil::setColor(rlutil::COLOR::CYAN);
         rlutil::locate(30, 6);
         cout << "Ingrese el ID del paciente a dar de baja: ";
@@ -336,34 +627,78 @@ void PacienteManager::DarBajaPaciente(){
         rlutil::locate(75, 6);
         cin >> id;
 
+                if (cin.fail() || !val.esEnteroPositivo(id)) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            rlutil::locate(30, 8);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "ID invalido. Ingrese un numero entero positivo.";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 9);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(75, 6);
+            cout << "                                                       ";
+            rlutil::locate(30, 8);
+            cout << "                                                       ";
+            rlutil::locate(30, 9);
+            cout << "                                                       ";
+
+        }
+        else{
+                idValido=true;
+        }
+        }while(!idValido);
+        cin.ignore();
+
         int pos=_archivo.Buscar(id);
         Paciente posPaciente;
 
         if (pos == -1) {
             rlutil::setColor(rlutil::COLOR::RED);
             rlutil::locate(30, 8);
-            cout << "Paciente no encontrado. Intente nuevamente.";
+            cout << "Paciente no encontrado. Presione enter e intente nuevamente.";
             rlutil::setColor(rlutil::COLOR::WHITE);
             rlutil::anykey();
-            continue;
-        }
+        }else{
 
         posPaciente = _archivo.Leer(pos);
         if (!posPaciente.getEstado()) {
             rlutil::setColor(rlutil::COLOR::RED);
             rlutil::locate(30, 8);
-            cout << "El Paciente ya esta dado de baja.";
-            rlutil::setColor(rlutil::COLOR::WHITE);
+            cout << "El Paciente ya esta dado de baja. Presione enter e intente nuevamente";
             rlutil::anykey();
-            continue;
-        }
+        }else{
+            do{
 
         rlutil::setColor(rlutil::COLOR::CYAN);
         rlutil::locate(30, 9);
         cout << "Esta seguro que desea dar de baja al Paciente de ID '" << id << "'? (s/n): ";
         rlutil::setColor(rlutil::COLOR::WHITE);
-        char confirmacion;
+        rlutil::locate(95, 9);
+
         cin >> confirmacion;
+        cin.ignore();
+        if (!val.esConfirmacionSN(confirmacion)) {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        rlutil::locate(30, 13);
+        rlutil::setColor(rlutil::COLOR::RED);
+        cout << "Opcion invalida. Ingrese solo 's' o 'n'.";
+        rlutil::setColor(rlutil::COLOR::YELLOW);
+        rlutil::locate(30, 14);
+        cout << "Presione una tecla para continuar...";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::anykey();
+        rlutil::locate(92, 9);
+        cout << "                                                      ";
+        rlutil::locate(30, 13);
+        cout << "                                                       ";
+        rlutil::locate(30, 14);
+        cout << "                                                       ";
+        }
+        }while(!val.esConfirmacionSN(confirmacion));
 
         if (confirmacion == 's' || confirmacion == 'S') {
             posPaciente.setEstado(false);
@@ -391,14 +726,17 @@ void PacienteManager::DarBajaPaciente(){
     rlutil::cls();
 
     }
+    }
+}
 
 void PacienteManager::modificarPaciente(){
+    Validador val;
     string aux;
     int dni, carnet, id, altura, dia, mes, anio;
     Fecha fechaNacimiento;
     Domicilio domicilio;
     char confirmacion;
-    bool modificado = false;
+    bool modificado = false, confirmacionValida=false;
 
 
         while (!modificado) {
@@ -406,13 +744,28 @@ void PacienteManager::modificarPaciente(){
         rlutil::setColor(rlutil::COLOR::YELLOW);
         rlutil::locate(40, 3);
         cout << " MODIFICAR PACIENTE ";
-
+do{
         rlutil::setColor(rlutil::COLOR::CYAN);
         rlutil::locate(30, 6);
         cout << "Ingrese el ID del paciente a modificar: ";
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(73, 6);
         cin >> id;
+            if (cin.fail() || !val.esEnteroPositivo(id)) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            rlutil::locate(30, 8);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "ID invalido. Presione enter e intente nuevamente.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(73, 6);
+            cout<<"                                                                           ";
+            rlutil::locate(30, 8);
+            cout<<"                                                                           ";
+            }
+            }while(cin.fail() || !val.esEnteroPositivo(id));
+            cin.ignore();
 
         int pos = _archivo.Buscar(id);
         Paciente paciente;
@@ -420,111 +773,279 @@ void PacienteManager::modificarPaciente(){
         if (pos == -1) {
             rlutil::setColor(rlutil::COLOR::RED);
             rlutil::locate(30, 8);
-            cout << "Paciente no encontrado. Intente nuevamente.";
+            cout << "Paciente no encontrado. Presione enter e intente nuevamente.";
             rlutil::setColor(rlutil::COLOR::WHITE);
             rlutil::anykey();
-            continue;
-        }
-
+        }else{
         paciente = _archivo.Leer(pos);
 
         if (!paciente.getEstado()) {
             rlutil::setColor(rlutil::COLOR::RED);
             rlutil::locate(30, 8);
-            cout << "El paciente esta dado de baja. No se puede modificar.";
+            cout << "El paciente esta dado de baja. No se puede modificar. Presione enter e intente nuevamente.";
             rlutil::setColor(rlutil::COLOR::WHITE);
             rlutil::anykey();
-            continue;
-        }
+        }else{
+        while(!confirmacionValida){
 
         rlutil::setColor(rlutil::COLOR::CYAN);
         rlutil::locate(30, 9);
         cout << "Esta seguro que desea modificar al Paciente ID '" << id << "'? (s/n): ";
         rlutil::setColor(rlutil::COLOR::WHITE);
-        cin >> confirmacion;
-        cin.ignore();
+                    rlutil::locate(93, 9);
+                    cout << "                                                             ";
+                    rlutil::locate(93, 9);
+                    cin >> confirmacion;
+                    if (cin.fail() || !val.esConfirmacionSN(confirmacion)) {
+                        cin.clear();
+                        cin.ignore(1000, '\n');
+                        rlutil::locate(30, 11);
+                        rlutil::setColor(rlutil::COLOR::RED);
+                        cout << "Ingrese solo 's' o 'n'. Presione una tecla para continuar";
+                        rlutil::setColor(rlutil::COLOR::WHITE);
+                        rlutil::anykey();
+                        rlutil::locate(30, 9);
+                        cout << "                                                         ";
+                    }else{
+                        confirmacionValida=true;
+                        cin.ignore(1000, '\n');
+                    }
+                }
 
-        if (confirmacion != 's' && confirmacion != 'S') {
-            rlutil::setColor(rlutil::COLOR::YELLOW);
-            rlutil::locate(30, 11);
-            cout << "Modificacion cancelada por el usuario.";
-            rlutil::setColor(rlutil::COLOR::WHITE);
-            rlutil::anykey();
-            break;
-        }
 
+        if (confirmacion == 's' || confirmacion == 'S') {
         rlutil::cls();
         rlutil::setColor(rlutil::COLOR::YELLOW);
         rlutil::locate(40, 3);
         cout << " INGRESO DE NUEVOS DATOS ";
 
-        rlutil::setColor(rlutil::COLOR::CYAN);
+
+//Apellido
+        do {
         rlutil::locate(30, 6);
+        rlutil::setColor(rlutil::COLOR::CYAN);
         cout << "Nuevo Apellido: ";
         rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::locate(55, 6);
-        getline(cin, aux); paciente.setApellido(aux);
-
-
-        rlutil::setColor(rlutil::COLOR::CYAN);
-        rlutil::locate(30, 7);
-        cout << "Nuevo Nombre: ";
+        rlutil::locate(60, 6);
+        getline(cin, aux);
+        if (!val.esTextoValido(aux)) {
+        rlutil::locate(30, 25);
+        rlutil::setColor(rlutil::COLOR::RED);
+        cout << "Apellido invalido. Ingrese solo letras.                        ";
+        rlutil::setColor(rlutil::COLOR::YELLOW);
+        rlutil::locate(30, 26);
+        cout << "Presione una tecla para continuar...";
         rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::locate(55, 7);
-        getline(cin, aux); paciente.setNombre(aux);
+        rlutil::anykey();
+        rlutil::locate(60, 6);
+        cout << "                                                                           ";
+        rlutil::locate(30, 25);
+        cout << "                                                                           ";
+        rlutil::locate(30, 26);
+        cout << "                                                                           ";
+        }
+        } while (!val.esTextoValido(aux));
+        paciente.setApellido(aux);
 
-        rlutil::setColor(rlutil::COLOR::CYAN);
+//Nombre
+
+do {
+            rlutil::locate(30, 7);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Nuevo Nombre: ";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::locate(60, 7);
+            getline(cin, aux);
+            if (!val.esTextoValido(aux)) {
+            rlutil::locate(30, 25);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Nombre invalido. Ingrese solo letras.                         ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 26);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(60, 7);
+            cout << "                                                                           ";
+            rlutil::locate(30, 25);
+            cout << "                                                                           ";
+            rlutil::locate(30, 26);
+            cout << "                                                                           ";
+        }//Limpiar el campo
+            } while (!val.esTextoValido(aux));
+        paciente.setNombre(aux);
+
+
+//DNI
+
+do {
         rlutil::locate(30, 8);
+        rlutil::setColor(rlutil::COLOR::CYAN);
         cout << "Nuevo DNI: ";
         rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::locate(55, 8);
-        cin >> dni; cin.ignore(); paciente.setDni(dni);
+        rlutil::locate(60, 8);
+        cin >> dni;
+        if (cin.fail() || !val.esEnteroPositivo(dni)) {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        rlutil::locate(30, 25);
+        rlutil::setColor(rlutil::COLOR::RED);
+        cout << "DNI invalido.Ingrese solo numeros.                     ";
+        rlutil::setColor(rlutil::COLOR::YELLOW);
+        rlutil::locate(30, 26);
+        cout << "Presione una tecla para continuar...";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::anykey();
+        rlutil::locate(60, 8);
+        cout << "                                                                           ";
+        rlutil::locate(30, 25);
+        cout << "                                                                           ";
+        rlutil::locate(30, 26);
+        cout << "                                                                           ";
+}//Limpiar el campo
+        } while (cin.fail() || !val.esEnteroPositivo(dni));
+        cin.ignore();
+        paciente.setDni(dni);
 
+
+//Fecha de Nacimiento
+
+do {
         rlutil::locate(30, 9);
         rlutil::setColor(rlutil::COLOR::CYAN);
         cout << "Nueva fecha de nacimiento:";
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(30, 10);
         cout << "Dia: ";
-        rlutil::locate(55, 10);
+        rlutil::locate(60, 10);
         cin >> dia;
         rlutil::locate(30, 11);
         cout << "Mes: ";
-        rlutil::locate(55, 11);
+        rlutil::locate(60, 11);
         cin >> mes;
         rlutil::locate(30, 12);
         cout << "Anio: ";
-        rlutil::locate(55, 12);
+        rlutil::locate(60, 12);
         cin >> anio;
-        cin.ignore();
-  	fechaNacimiento = Fecha(dia, mes, anio);
-  	paciente.setFechaNacimiento(fechaNacimiento);
+        if (cin.fail() || !val.esFechaValida(dia, mes, anio)) {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        rlutil::locate(30, 25);
+        rlutil::setColor(rlutil::COLOR::RED);
+        cout << "Fecha invalida.Ingrese de nuevo la fecha...                        ";
+        rlutil::setColor(rlutil::COLOR::YELLOW);
+        rlutil::locate(30, 26);
+        cout << "Presione una tecla para continuar...";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::anykey();
+        // Limpiar los campos
+        rlutil::locate(60, 10);
+        cout << "                                                                           ";//Limpiar el campo
+        rlutil::locate(60, 11);
+        cout << "                                                                           ";//Limpiar el campo
+        rlutil::locate(60, 12);
+        cout << "                                                                           ";
+        rlutil::locate(30, 25);
+        cout << "                                                                           ";
 
-        rlutil::setColor(rlutil::COLOR::CYAN);
+        rlutil::locate(30, 26);
+        cout << "                                                                           ";
+        }//Limpiar el campo
+
+        } while (cin.fail() || !val.esFechaValida(dia, mes, anio));
+        cin.ignore();
+        paciente.setFechaNacimiento(fechaNacimiento);
+
+
+//Genero
+ do {
         rlutil::locate(30, 13);
+        rlutil::setColor(rlutil::COLOR::CYAN);
         cout << "Nuevo Genero: ";
         rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::locate(55, 13);
+        rlutil::locate(60, 13);
         getline(cin, aux);
+        if (!val.esTextoValido(aux)) {
+        rlutil::locate(30, 25);
+        rlutil::setColor(rlutil::COLOR::RED);
+        cout << "Genero invalido.Ingrese solo letras.                       ";
+        rlutil::setColor(rlutil::COLOR::YELLOW);
+        rlutil::locate(30, 26);
+        cout << "Presione una tecla para continuar...";
+        rlutil::setColor(rlutil::COLOR::WHITE);
+        rlutil::anykey();
+        rlutil::locate(60, 13);
+        cout << "                                                                           ";
+        rlutil::locate(30, 25);
+        cout << "                                                                           ";
+
+        rlutil::locate(30, 26);
+        cout << "                                                                           ";
+        //Limpiar el campo
+        }
+        } while (!val.esTextoValido(aux));
         paciente.setGenero(aux);
 
+
+//Mail
+ do {
         rlutil::setColor(rlutil::COLOR::CYAN);
         rlutil::locate(30, 14);
         cout << "Nuevo Email: ";
         rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::locate(55, 14);
+        rlutil::locate(60, 14);
         getline(cin, aux);
+
+        if (!val.esEmailValido(aux)) {
+            rlutil::locate(30, 25);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "El email es invalido. Vuelva a intentar                       ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 26);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(60, 14);
+            cout << "                                                                           ";
+            rlutil::locate(30, 25);
+            cout << "                                                                           ";
+            rlutil::locate(30, 26);
+            cout << "                                                                           ";
+        }
+
+        } while (!val.esEmailValido(aux));
         paciente.setEmail(aux);
 
-
+//Telefono
+do{
         rlutil::setColor(rlutil::COLOR::CYAN);
         rlutil::locate(30, 15);
         cout << "Nuevo Telefono: ";
         rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::locate(55, 15);
+        rlutil::locate(60, 15);
         getline(cin, aux);
+
+        if (!val.esNumeroValido(aux)) {
+            rlutil::locate(30, 25);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Numero de telefono invalido. Ingrese solo numeros.                        ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 26);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(60, 15);
+            cout << "                                                                           ";
+            rlutil::locate(30, 25);
+            cout << "                                                                           ";
+            rlutil::locate(30, 26);
+            cout << "                                                                           ";
+        }
+        } while (!val.esNumeroValido(aux));
         paciente.setTelefono(aux);
 
+
+//Domicilio
 
         rlutil::setColor(rlutil::COLOR::CYAN);
         rlutil::locate(30, 16);
@@ -532,59 +1053,179 @@ void PacienteManager::modificarPaciente(){
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(55, 16);
 
-
-
+//Calle
+ do {
         rlutil::locate(30, 17);
         rlutil::setColor(rlutil::COLOR::CYAN);
         cout << "Calle: ";
+        rlutil::locate(60, 17);
         rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::locate(55, 17);
         getline(cin, aux);
+        if (!val.esTextoValido(aux)) {
+            rlutil::locate(30, 25);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Calle invalida. Ingrese solo letras.                       ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 26);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(60, 17);
+            cout << "                                                                           ";
+            rlutil::locate(30, 25);
+            cout << "                                                                           ";
+            rlutil::locate(30, 26);
+            cout << "                                                                           ";//Limpiar el campo
+    }
+    } while (!val.esTextoValido(aux));
         domicilio.setCalle(aux);
 
+
+//Altura
+
+do {
         rlutil::locate(30, 18);
         rlutil::setColor(rlutil::COLOR::CYAN);
         cout << "Altura: ";
         rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::locate(55, 18);
+        rlutil::locate(60, 18);
         cin >> altura;
-        domicilio.setAltura(altura);
+        if (cin.fail() || !val.esEnteroPositivo(altura)) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            rlutil::locate(30, 25);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Altura invalida. Ingrese solo numeros.                          ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 26);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(60, 18);
+            cout << "                                                                           ";
+            rlutil::locate(30, 25);
+            cout << "                                                                           ";
+            rlutil::locate(30, 26);
+            cout << "                                                                           ";//Limpiar el campo
+            }
+        } while (cin.fail() || !val.esEnteroPositivo(altura));
         cin.ignore();
+        domicilio.setAltura(altura);
 
+//Localidad
+do {
         rlutil::locate(30, 19);
         rlutil::setColor(rlutil::COLOR::CYAN);
         cout << "Localidad: ";
         rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::locate(55, 19);
+        rlutil::locate(60, 19);
         getline(cin, aux);
+        if (!val.esTextoValido(aux)) {
+            rlutil::locate(30, 25);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Localidad invalida.Ingrese solo letras.                        ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 26);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(60, 19);
+            cout << "                                                                           ";
+            rlutil::locate(30, 25);
+            cout << "                                                                           ";
+            rlutil::locate(30, 26);
+            cout << "                                                                           ";//Limpiar el campo
+            }
+        } while (!val.esTextoValido(aux));
         domicilio.setLocalidad(aux);
 
+ // Provincia
+        do {
         rlutil::locate(30, 20);
         rlutil::setColor(rlutil::COLOR::CYAN);
         cout << "Provincia: ";
         rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::locate(55, 20);
+        rlutil::locate(60, 20);
         getline(cin, aux);
+        if (!val.esTextoValido(aux)) {
+            rlutil::locate(30, 25);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Provincia invalida. Ingrese solo letras.                      ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 26);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(60, 20);
+            cout << "                                                                           ";
+            rlutil::locate(30, 25);
+            cout << "                                                                           ";
+            rlutil::locate(30, 26);
+            cout << "                                                                           ";//Limpiar el campo
+            }
+        } while (!val.esTextoValido(aux));
         domicilio.setProvincia(aux);
 
+
+//Codigo Postal
+ do {
         rlutil::locate(30, 21);
         rlutil::setColor(rlutil::COLOR::CYAN);
         cout << "Codigo Postal: ";
         rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::locate(55, 21);
+        rlutil::locate(60, 21);
         getline(cin, aux);
+        if (!val.esNumeroValido(aux)) {
+            rlutil::locate(30, 25);
+            rlutil::setColor(rlutil::RED);
+            cout << "Codigo postal invalido.Ingrese solo numeros.                       ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 26);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::WHITE);
+            rlutil::anykey();
+            rlutil::locate(60, 21);
+            cout << "                                                                           ";
+            rlutil::locate(30, 25);
+            cout << "                                                                           ";
+            rlutil::locate(30, 26);
+            cout << "                                                                           ";
+        }
+    } while (!val.esNumeroValido(aux));
         domicilio.setCodigoPostal(aux);
-
         paciente.setDomicilio(domicilio);
 
 
+//Carnet
+    do {
         rlutil::setColor(rlutil::COLOR::CYAN);
         rlutil::locate(30, 22);
         cout << "Nuevo numero de carnet: ";
         rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::locate(55, 22);
+        rlutil::locate(60, 22);
         cin >> carnet;
-        paciente.setCarnet(carnet);
+
+        if (cin.fail() || !val.esEnteroPositivo(carnet)) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            rlutil::locate(30, 25);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Numero de Carnet invalido.                        ";
+            rlutil::setColor(rlutil::COLOR::YELLOW);
+            rlutil::locate(30, 26);
+            cout << "Presione una tecla para continuar...";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::locate(60, 22);
+            cout << "                                                                           ";
+            rlutil::locate(30, 25);
+            cout << "                                                                           ";
+            rlutil::locate(30, 26);
+            cout << "                                                                           ";
+        }
+    } while (cin.fail() || !val.esEnteroPositivo(carnet));
+    cin.ignore();
+    paciente.setCarnet(carnet);
 
         if (_archivo.guardar(paciente, pos)) {
                       system("cls");
@@ -597,16 +1238,23 @@ void PacienteManager::modificarPaciente(){
             rlutil::locate(30, 10);
             cout << "Error al intentar modificar el paciente.";
         }
-
+modificado = true;
+                } else {
+                    rlutil::setColor(rlutil::COLOR::YELLOW);
+                    rlutil::locate(30, 11);
+                    cout << "Modificacion cancelada por el usuario.                                             ";
+                    modificado = true;
+                }
+            }
+        }
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::anykey();
-        modificado = true;
     }
-
     rlutil::cls();
 }
 
 void PacienteManager::reactivarPaciente(){
+    Validador val;
     int cantidad, fila, contador, contadorInactivos, posicion;
     bool noActivo=false;
     char confirmacion;
@@ -739,11 +1387,28 @@ void PacienteManager::reactivarPaciente(){
             rlutil::setColor(rlutil::COLOR::WHITE);
             cout << vecPaciente[i].getIDPaciente();
 
+            do{
             rlutil::locate(32, fila + 17);
             rlutil::setColor(rlutil::COLOR::GREEN);
             cout<<"DESEA ACTIVAR EL PACIENTE? (s/n): ";
             rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::locate(70, fila + 17);
             cin >> confirmacion;
+            if (!val.esConfirmacionSN(confirmacion)) {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                rlutil::locate(32, fila + 18);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "Opcion invalida. Ingrese solo 's' o 'n'. Presione una tecla para continuar...";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+                rlutil::locate(70, fila + 17);
+                cout << "                                                      ";
+                rlutil::locate(32, fila + 18);
+                cout << "                                                                                       ";
+                }
+
+            }while (confirmacion!='s' && confirmacion!='S' && confirmacion!='n' && confirmacion!='N');
 
             if (confirmacion == 's' || confirmacion == 'S') {
                 vecPaciente[i].setEstado(true);
@@ -800,4 +1465,5 @@ void PacienteManager::reactivarPaciente(){
     rlutil::cls();
 
 }
+
 
