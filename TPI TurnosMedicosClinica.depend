@@ -1649,7 +1649,7 @@
 	"PacienteArchivo.h"
 	"PacienteManager.h"
 
-1750656399 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\pacientemanager.cpp
+1750692243 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\pacientemanager.cpp
 	"PacienteManager.h"
 	"rlutil.h"
 	<iostream>
@@ -1700,7 +1700,7 @@
 	<iostream>
 	<string>
 
-1750656399 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turnomanager.cpp
+1750696899 source:c:\users\slkf_\desktop\repoooo\tpi-grupo-13\turnomanager.cpp
 	"TurnoManager.h"
 	"PacienteArchivo.h"
 	"MedicoArchivo.h"
