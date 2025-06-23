@@ -11,222 +11,260 @@
 #include "Medico.h"
 #include "Especialidad.h"
 #include "rlutil.h"
+#include "Validador.h"
 
 
 using namespace std;
 
-void TurnoManager::cargarTurno(){
+void TurnoManager::cargarTurno() {
     Turno turno;
     PacienteArchivo archiP;
     Medico medico;
     MedicoArchivo archiM;
     EspecialidadArchivo archiE;
+    Validador val;
     int idPaciente, idMedico, idEspecialidad, dia, mes, anio, horas, minutos;
-    int fila=2;
-    Fecha fecha;
-    Fecha fechaActual;
-    bool fechaValida = false;
+    int fila = 2;
+    Fecha fecha, fechaActual;
     Hora hora;
     char opcion;
+    string inputStr;
+    bool entradaValida;
 
-
-    opcion='s';
+    opcion = 's';
     turno.setIDTurno(_archivo.getNuevoID());
-    while(opcion=='S' || opcion=='s'){
-    //validacion de paciente
-    do {
+
+    while (opcion == 's' || opcion == 'S') {
         rlutil::cls();
         rlutil::setColor(rlutil::YELLOW);
         rlutil::locate(40, fila);
         cout << "CARGAR NUEVO TURNO";
         rlutil::setColor(rlutil::WHITE);
-        rlutil::locate(30, fila+2);
-        cout << "ID Paciente: ";
-        rlutil::locate(45, fila+2);
-        cout<<"                                                                                      "; //limpia para que vuelva a escribir
-        rlutil::locate(55, fila+2);
-        cin >> idPaciente;
-        if (!archiP.esPacienteActivo(idPaciente)) {
-            rlutil::locate(30, fila+3);
-            rlutil::setColor(rlutil::COLOR::RED);
-            cout << "ID invalido o paciente dado de baja. Presione alguna tecla y vuelva a escribir.";
-            rlutil::setColor(rlutil::COLOR::WHITE);
-            rlutil::anykey();
-            rlutil::locate(30, fila+3);
-            rlutil::cls();
-            rlutil::locate(30, fila+3);
-            cout<<"                                                                                      "; //limpia para que vuelva a escribir
-        }
-    } while (!archiP.esPacienteActivo(idPaciente));
-    turno.setIDPaciente(idPaciente);
 
-    //validacion de la fecha
+        // Validación ID Paciente
+        do {
+            rlutil::locate(30, fila + 2);
+            cout << "ID Paciente: ";
+            rlutil::locate(45, fila + 2);
+            cout << "                                                                                      ";
+            rlutil::locate(55, fila + 2);
+            cin >> inputStr;
 
+            entradaValida = val.esNumeroValido(inputStr);
+            if (cin.fail() || !entradaValida) {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                rlutil::locate(30, fila + 3);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "Debe ingresar un numero valido. Presione una tecla.";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+                continue;
+            }
 
-    do {
-        rlutil::locate(30, fila+3);
-        cout << "Fecha del turno - Dia: ";
-        rlutil::locate(55, fila+3);
-        cout<<"                                                                                      "; //limpia para que vuelva a escribir
-        rlutil::locate(55, fila+3);
-        cin >> dia;
-        rlutil::locate(30, fila+4);
-        cout << "Mes: ";
-        rlutil::locate(55, fila+4);
-        cout<<"                                                                                      "; //limpia para que vuelva a escribir
-        rlutil::locate(55, fila+4);
-        cin >> mes;
-        rlutil::locate(30, fila+5);
-        cout << "Anio: ";
-        rlutil::locate(55, fila+5);
-        cout<<"                                                                                      "; //limpia para que vuelva a escribir
-        rlutil::locate(55, fila+5);
-        cin >> anio;
+            idPaciente = stoi(inputStr);
 
-        fechaActual.obtenerFechaActual();
-        if (dia < 1 || dia > 31 || mes < 1 || mes > 12 || anio < 1900 || anio > 2100) {
-            rlutil::locate(30, fila+6);
-            rlutil::setColor(rlutil::COLOR::RED);
-            cout << "Fecha invalida. Presione alguna tecla y vuelva a escribir.";
-            rlutil::setColor(rlutil::COLOR::WHITE);
-            rlutil::anykey();
-            rlutil::locate(30, fila+6);
-            cout<<"                                                                                      "; //limpia para que vuelva a escribir
-        }
-        else if (anio < fechaActual.getAnio() || (anio == fechaActual.getAnio() && mes < fechaActual.getMes()) ||
-            (anio == fechaActual.getAnio() && mes == fechaActual.getMes() && dia < fechaActual.getDia())) {
-            rlutil::locate(30, fila+6);
-            rlutil::setColor(rlutil::COLOR::RED);
-            cout << "La fecha ingresada ya paso. Solo se permiten fechas desde hoy en adelante.";
-            rlutil::setColor(rlutil::COLOR::WHITE);
-            rlutil::anykey();
-            rlutil::locate(30, fila+6);
-            cout<<"                                                                                      "; //limpia para que vuelva a escribir
-        }
-        else{
-           fechaValida = true;
-        }
-    } while (!fechaValida);
+            if (!archiP.esPacienteActivo(idPaciente)) {
+                rlutil::locate(30, fila + 3);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "ID invalido o paciente dado de baja. Presione una tecla.";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+            }
+        } while (!archiP.esPacienteActivo(idPaciente));
+        turno.setIDPaciente(idPaciente);
 
+        // Validación Fecha
+        bool fechaValida = false;
+        do {
+            rlutil::locate(30, fila + 3);
+            cout << "Fecha del turno - Dia: ";
+            rlutil::locate(55, fila + 3);
+            cin >> inputStr;
+            if (cin.fail() || !val.esNumeroValido(inputStr)) {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                rlutil::locate(30, fila + 4);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "Dato invalido. Ingrese un numero correcto.";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+                continue;
+            }
+            dia = stoi(inputStr);
+
+            rlutil::locate(30, fila + 4);
+            cout << "Mes: ";
+            rlutil::locate(55, fila + 4);
+            cin >> inputStr;
+            if (cin.fail() || !val.esNumeroValido(inputStr)) {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                rlutil::locate(30, fila + 5);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "Dato invalido. Ingrese un numero correcto.";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+                continue;
+            }
+            mes = stoi(inputStr);
+
+            rlutil::locate(30, fila + 5);
+            cout << "Anio: ";
+            rlutil::locate(55, fila + 5);
+            cin >> inputStr;
+            if (cin.fail() || !val.esNumeroValido(inputStr)) {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                rlutil::locate(30, fila + 6);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "Dato invalido. Ingrese un numero correcto.";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+                continue;
+            }
+            anio = stoi(inputStr);
+
+            fechaActual.obtenerFechaActual();
+            if (!val.esFechaValida(dia, mes, anio)) {
+                rlutil::locate(30, fila + 6);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "Fecha invalida. Presione una tecla.";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+            } else if (anio < fechaActual.getAnio() ||
+                       (anio == fechaActual.getAnio() && mes < fechaActual.getMes()) ||
+                       (anio == fechaActual.getAnio() && mes == fechaActual.getMes() && dia < fechaActual.getDia())) {
+                rlutil::locate(30, fila + 6);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "Fecha pasada. Ingrese una fecha desde hoy en adelante.";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+            } else {
+                fechaValida = true;
+            }
+        } while (!fechaValida);
         fecha.setDia(dia);
         fecha.setMes(mes);
         fecha.setAnio(anio);
 
-    //validacio de hora y minutos
-    do {
-        rlutil::locate(30, fila+6);
-        cout << "Hora - Horas (0-23): ";
-        rlutil::locate(50, fila+6);
-        cout<<"                                                                                      "; //limpia para que vuelva a escribir
-        rlutil::locate(55, fila+6);
-        cin >> horas;
-        rlutil::locate(30, fila+7);
-        cout << "Minutos (0-59): ";
-        rlutil::locate(55, fila+7);
-        cout<<"                                                                                      "; //limpia para que vuelva a escribir
-        rlutil::locate(55, fila+7);
-        cin >> minutos;
-
-        if (horas < 0 || horas > 23 || minutos < 0 || minutos > 59) {
-            rlutil::locate(30, fila+8);
-            rlutil::setColor(rlutil::COLOR::RED);
-            cout << "Hora invalida. Presione alguna tecla y vuelva a escribir.";
-            rlutil::setColor(rlutil::COLOR::WHITE);
-            rlutil::anykey();
-            rlutil::locate(30, fila+8);
-            cout<<"                                                                                      "; //limpia para que vuelva a escribir
-        }
-    } while (horas < 0 || horas > 23 || minutos < 0 || minutos > 59);
-
+        // Validar hora
+        val.validarHora(horas, minutos, fila + 6);
         hora.setHora(horas);
         hora.setMinutos(minutos);
 
-        //validacion de especialidad
-    do {
-        rlutil::locate(30, fila+8);
-        cout << "ID Especialidad: ";
-        rlutil::locate(55, fila+8);
-        cout<<"                                                                                      "; //limpia para que vuelva a escribir
-        rlutil::locate(55, fila+8);
-        cin >> idEspecialidad;
-        if (!archiE.esEspecialidadValida(idEspecialidad)) {
-            rlutil::locate(30, fila+9);
-            rlutil::setColor(rlutil::COLOR::RED);
-            cout << "Especialidad invalida. Presione alguna tecla y vuelva a escribir.";
-            rlutil::setColor(rlutil::COLOR::WHITE);
-            rlutil::anykey();
-            rlutil::locate(30, fila+9);
-            cout<<"                                                                                      "; //limpia para que vuelva a escribir
-        }
-    } while (!archiE.esEspecialidadValida(idEspecialidad));
+        // Validar ID especialidad
+        do {
+            rlutil::locate(30, fila + 8);
+            cout << "ID Especialidad: ";
+            rlutil::locate(55, fila + 8);
+            cin >> inputStr;
 
-    //medicos disponibles de esa especialidad
-    bool hayMedico=false;
-    int cantidad=archiM.getCantidadRegistros();
-        for(int i=0; i<cantidad; i++){
-            medico=archiM.Leer(i);
-            if(medico.getIDEspecialidad() == idEspecialidad && medico.getEstado() == true){
-                if(!_archivo.existeTurno(medico.getIDMedico(), fecha, hora)){
-                    rlutil::locate(30, fila+10);
-                    cout<<"Medico disponible: "<<medico.getApellido()<<", "<<medico.getNombre()<<" (ID: "<<medico.getIDMedico()<<") "<<endl;
+            entradaValida = val.esNumeroValido(inputStr);
+            if (cin.fail() || !entradaValida) {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                rlutil::locate(30, fila + 9);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "Debe ingresar un numero valido. Presione una tecla.";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+                continue;
+            }
+
+            idEspecialidad = stoi(inputStr);
+
+            if (!archiE.esEspecialidadValida(idEspecialidad)) {
+                rlutil::locate(30, fila + 9);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "Especialidad invalida. Presione una tecla.";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+            }
+        } while (!archiE.esEspecialidadValida(idEspecialidad));
+
+        // Mostrar médicos disponibles
+        bool hayMedico = false;
+        int cantidad = archiM.getCantidadRegistros();
+        for (int i = 0; i < cantidad; i++) {
+            medico = archiM.Leer(i);
+            if (medico.getIDEspecialidad() == idEspecialidad && medico.getEstado()) {
+                if (!_archivo.existeTurno(medico.getIDMedico(), fecha, hora)) {
+                    rlutil::locate(30, fila + 10);
+                    cout << "Medico disponible: " << medico.getApellido() << ", " << medico.getNombre() << " (ID: " << medico.getIDMedico() << ")";
                     fila++;
-                    hayMedico=true;
+                    hayMedico = true;
                     opcion = 'n';
                 }
             }
         }
 
-        if(!hayMedico){
-            rlutil::locate(30, fila+11);
-            cout<<"No hay medicos disponibles en esa fecha y hora"<<endl;
-            rlutil::locate(30, fila+12);
-            cout << "Desea intentar otra fecha y hora? (s/n): "; ///falta validar la opcion
-            rlutil::locate(32, fila+32);
+        if (!hayMedico) {
+            rlutil::locate(30, fila + 11);
+            cout << "No hay medicos disponibles en esa fecha y hora.";
+            rlutil::locate(30, fila + 12);
+            cout << "Desea intentar otra fecha y hora? (s/n): ";
             cin >> opcion;
-            if (opcion == 'N' || opcion == 'n') {
-                rlutil::locate(30, fila+13);
+            if (cin.fail() || !val.esConfirmacionSN(opcion)) {
+                cin.clear();
+                cin.ignore(1000, '\n');
+                rlutil::locate(30, fila + 13);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "Opcion invalida. Presione una tecla.";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+                continue;
+            }
+            if (opcion == 'n' || opcion == 'N') {
+                rlutil::locate(30, fila + 14);
                 cout << "Cancelando carga de turno.";
                 rlutil::anykey();
                 rlutil::cls();
-            return; //salir de la funcion si no hay medicos disponibles
+                return;
             }
-
         }
-    };
+    }
 
-    //seleccion de medico
-    bool idValido=false;
-    do{
-        rlutil::locate(30, fila+11);
+    // Seleccion de médico
+    do {
+        rlutil::locate(30, fila + 11);
         cout << "ID Medico: ";
-        rlutil::locate(40, fila+11);
-        cout<<"                                                                                      "; //limpia para que vuelva a escribir
-        rlutil::locate(45, fila+11);
-        cin >> idMedico;
-        int pos=archiM.Buscar(idMedico); //buscar la posicion del medico
-        if(pos!=-1){
-            medico=archiM.Leer(pos);
-            if(medico.getEstado() && medico.getIDEspecialidad()==idEspecialidad) {
-                idValido=true;
-            }else{
-                rlutil::locate(30, fila+12);
-                rlutil::setColor(rlutil::COLOR::RED);
-                cout << "ID invalido o no es de esta especialidad. Presione alguna tecla y vuelva a escribir.";
-                rlutil::setColor(rlutil::COLOR::WHITE);
-                rlutil::anykey();
-                rlutil::locate(30, fila+12);
-                cout<<"                                                                                      "; //limpia para que vuelva a escribir
-            }
-        }else{
-            rlutil::locate(30, fila+12);
+        rlutil::locate(45, fila + 11);
+        cin >> inputStr;
+
+        entradaValida = val.esNumeroValido(inputStr);
+        if (cin.fail() || !entradaValida) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            rlutil::locate(30, fila + 12);
             rlutil::setColor(rlutil::COLOR::RED);
-            cout << "ID invalido o no existe. Presione alguna tecla y vuelva a escribir.";
+            cout << "Debe ingresar un número válido. Presione una tecla.";
             rlutil::setColor(rlutil::COLOR::WHITE);
             rlutil::anykey();
-            rlutil::locate(30, fila+12);
-            cout<<"                                                                                      "; //limpia para que vuelva a escribir
+            continue;
         }
-    } while (!idValido);
+
+        idMedico = stoi(inputStr);
+        int pos = archiM.Buscar(idMedico);
+        if (pos != -1) {
+            medico = archiM.Leer(pos);
+            if (medico.getEstado() && medico.getIDEspecialidad() == idEspecialidad) {
+                break;
+            } else {
+                rlutil::locate(30, fila + 12);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "ID invalido o no es de esta especialidad. Presione una tecla.";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+            }
+        } else {
+            rlutil::locate(30, fila + 12);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "ID invalido o no existe. Presione una tecla.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+        }
+    } while (true);
 
     turno.setIDMedico(idMedico);
     turno.setFechaTurno(fecha);
@@ -235,17 +273,14 @@ void TurnoManager::cargarTurno(){
     turno.setEstado(1); // Activo
 
     if (_archivo.guardar(turno)) {
-        rlutil::locate(45, fila+15);
+        rlutil::locate(45, fila + 15);
         rlutil::setColor(rlutil::COLOR::GREEN);
         cout << "Turno guardado correctamente.";
     } else {
-        rlutil::locate(45, fila+15);
+        rlutil::locate(45, fila + 15);
         rlutil::setColor(rlutil::COLOR::RED);
         cout << "Error al guardar el turno.";
         rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::anykey();
-        rlutil::cls();
-        return;
     }
 
     rlutil::setColor(rlutil::COLOR::WHITE);

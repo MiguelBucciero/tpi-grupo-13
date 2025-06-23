@@ -1,5 +1,8 @@
 #include "Validador.h"
 #include "rlutil.h"
+#include <iostream>
+using namespace std;
+
 
 Validador::Validador() {
 }
@@ -125,5 +128,58 @@ bool Validador::esEmailValido(const std::string &email) {
     }
 }
 
+bool Validador::validarHora(int &horas, int &minutos, int fila) {
+    rlutil::cls();
+
+
+    while (true) {
+        rlutil::locate(30, fila);
+        cout << "Hora - Horas (0-23): ";
+        rlutil::locate(55, fila);
+        cin >> horas;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            rlutil::locate(30, fila + 1);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Debe ingresar un numero entero para las horas. Presione una tecla.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::cls();
+            continue;
+        }
+
+        rlutil::locate(30, fila + 1);
+        cout << "Minutos (0-59): ";
+        rlutil::locate(55, fila + 1);
+        cin >> minutos;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(1000, '\n');
+            rlutil::locate(30, fila + 2);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Debe ingresar un numero entero para los minutos. Presione una tecla.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::cls();
+            continue;
+        }
+
+        if (horas < 0 || horas > 23 || minutos < 0 || minutos > 59) {
+            rlutil::locate(30, fila + 2);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "Hora invalida. Presione una tecla para volver a intentar.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::anykey();
+            rlutil::cls();
+            continue;
+        }
+
+        // Si pasó todas las validaciones
+        return true;
+    }
+}
 
 
