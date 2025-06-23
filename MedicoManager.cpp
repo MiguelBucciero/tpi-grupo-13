@@ -170,8 +170,6 @@ int MedicoManager::cargarMedico() {
     cin.ignore();
     medico.setFechaNacimiento(Fecha(dia, mes, anio));
 
-    // Limpiar buffer antes de usar getline
-    cin.ignore(1000, '\n');
     // Genero
     do {
         rlutil::locate(30, 11);
@@ -321,8 +319,6 @@ int MedicoManager::cargarMedico() {
     cin.ignore();
     domicilio.setAltura(altura);
 
-    // Limpiar buffer antes de usar getline
-    cin.ignore(1000, '\n');
     // Localidad
     do {
         rlutil::locate(30, 17);
