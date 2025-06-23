@@ -25,16 +25,15 @@ void EspecialidadManager::cargarEspecialidad() {
     rlutil::setColor(rlutil::COLOR::WHITE);
     cout << id;
 
-    cin.ignore();
+    //Limpiar el buffer antes de usar getline
+    cin.ignore(1000, '\n');
 
+    //Nombre especialidad
     do{
     rlutil::locate(35, 7);
     rlutil::setColor(rlutil::COLOR::CYAN);
     cout << "Nombre de la especialidad: ";
     rlutil::setColor(rlutil::COLOR::WHITE);
-
-    rlutil::locate(35, 8);
-    cout<<"                                                   ";
     rlutil::locate(35, 8);
     getline(cin, nombre);
 
@@ -44,6 +43,8 @@ void EspecialidadManager::cargarEspecialidad() {
             cout << "Nombre invalido. Letras y espacios. Presione enter e intente nuevamente.";
             rlutil::setColor(rlutil::COLOR::WHITE);
             rlutil::anykey();
+            rlutil::locate(35, 8);
+            cout<<"                                                   ";
             rlutil::locate(35, 9);
             cout<<"                                                                           ";
         }
@@ -114,10 +115,10 @@ void EspecialidadManager::mostrarEspecialidad() {
             fila += 5;
             mostrar++;
 
-            if (fila > 20) { //verificar si hay mas despues de activar las inactivas y mostrar el mensaje si hay mas
+            if (fila > 20) { //verificar si hay mas despues de activar las inactivas, mostrar el mensaje si hay mas
                 bool hayMas=false;
-                //este for chequea si hay mas especialidades activas despues de la actual.
-                for (int j=i+1; j<cantidad; j++) { //i+1=despues de la actual posicion (i), si hay otra espe mas
+                //2do for-> chequea si hay mas especialidades activas despues de la actual.
+                for (int j=i+1; j<cantidad; j++) { //i+1=despues de la actual posicion (i), si hay otra especialidad mas
                     if (vecEspecialidad[j].getEstado()) {
                         hayMas=true;
                         break;
@@ -153,7 +154,7 @@ void EspecialidadManager::mostrarEspecialidad() {
 void EspecialidadManager::DarBajaEspecialidad(){
     int id;
     char confirmacion;
-    bool encontrado=false, confirmacionValida=false;
+    bool encontrado=false, idValido=false;
     Validador val;
 
     while(!encontrado){
@@ -163,31 +164,29 @@ void EspecialidadManager::DarBajaEspecialidad(){
         cout << " DAR BAJA ESPECIALIDAD ";
         rlutil::setColor(rlutil::COLOR::WHITE);
         do{
-        rlutil::locate(35, 5);
-        rlutil::setColor(rlutil::COLOR::CYAN);
-        cout << "Ingrese el ID de la especialidad a dar de baja: ";
-        rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::locate(35, 6);
-        cin>>id;
-
-        if(cin.fail()||!val.esEnteroPositivo(id)){
-            cin.clear();
-            cin.ignore(1000, '\n');
-
-            rlutil::locate(35, 8);
-            rlutil::setColor(rlutil::COLOR::RED);
-            cout << "ID invalido. solo numeros positivos. Presione enter e intente nuevamente.";
+            rlutil::locate(35, 5);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Ingrese el ID de la especialidad a dar de baja: ";
             rlutil::setColor(rlutil::COLOR::WHITE);
-
-            rlutil::anykey();
-
             rlutil::locate(35, 6);
-            cout<<"                                                                           ";
-            rlutil::locate(35, 8);
-            cout<<"                                                                           ";
-        }
-        }while(cin.fail()||!val.esEnteroPositivo(id));
-        cin.ignore(1000, '\n');
+            cin>>id;
+
+            if(cin.fail()||!val.esEnteroPositivo(id)){
+                cin.clear();
+                cin.ignore(1000, '\n');
+                rlutil::locate(35, 8);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "ID invalido. solo numeros positivos. Presione enter e intente nuevamente.";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+                rlutil::locate(35, 6);
+                cout<<"                                                                           ";
+                rlutil::locate(35, 8);
+                cout<<"                                                                           ";
+            }else{
+                idValido=true;
+            }
+        }while(!idValido);
 
         int pos = _archivo.Buscar(id);
         Especialidad esp;
@@ -204,30 +203,28 @@ void EspecialidadManager::DarBajaEspecialidad(){
                 cout << "Especialidad ya dada de baja. Presione enter e intente nuevamente.";
                 rlutil::anykey();
             }else{
-                while(!confirmacionValida){
+                do{
                     rlutil::setColor(rlutil::COLOR::CYAN);
                     rlutil::locate(35, 9);
                     cout << "Esta seguro que desea dar de baja la especialidad '" << id << "'? (s/n): ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
                     rlutil::locate(98, 9);
-                    cout<<"                                                 ";
-                    rlutil::locate(98, 9);
                     cin >> confirmacion;
+
                     if (cin.fail() || !val.esConfirmacionSN(confirmacion)) {
                         cin.clear();
                         cin.ignore(1000, '\n');
-                        rlutil::setColor(rlutil::COLOR::RED);
                         rlutil::locate(35, 10);
+                        rlutil::setColor(rlutil::COLOR::RED);
                         cout << "Ingrese solo 's' o 'n'. Presione una tecla para continuar";
                         rlutil::setColor(rlutil::COLOR::WHITE);
                         rlutil::anykey();
+                        rlutil::locate(98, 9);
+                        cout<<"                                                                       ";
                         rlutil::locate(35, 10);
                         cout << "                                                                     ";
-                    }else{
-                        confirmacionValida=true;
-                        cin.ignore(1000, '\n'); //por prevencion, por si alguien puse una letra de mas (ej:'ss')
                     }
-                }
+                }while(cin.fail() || !val.esConfirmacionSN(confirmacion));
 
                 if (confirmacion == 's' || confirmacion == 'S') {
                     esp.setEstado(false);
@@ -269,28 +266,27 @@ void EspecialidadManager::ModificarEspecialidad(){
         cout << " MODIFICAR ESPECIALIDAD ";
         rlutil::setColor(rlutil::COLOR::WHITE);
         do{
-        rlutil::locate(35, 5);
-        rlutil::setColor(rlutil::COLOR::CYAN);
-        cout << "Ingrese el ID de la especialidad a modificar: ";
-        rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::locate(35, 6);
-        cout<<"                            ";
-        rlutil::locate(35, 6);
-        cin >> id;
-        if(cin.fail()||!val.esEnteroPositivo(id)){
-            cin.clear();
-            cin.ignore(1000, '\n');
-
-            rlutil::locate(35, 7);
-            rlutil::setColor(rlutil::COLOR::RED);
-            cout << "ID invalido. solo numeros positivos. Presione enter e intente nuevamente.";
+            rlutil::locate(35, 5);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout << "Ingrese el ID de la especialidad a modificar: ";
             rlutil::setColor(rlutil::COLOR::WHITE);
-            rlutil::anykey();
-            rlutil::locate(35, 7);
-            cout<<"                                                                           ";
-        }
-        }while(cin.fail()||!val.esEnteroPositivo(id));
-        cin.ignore(1000, '\n');
+            rlutil::locate(35, 6);
+            cin >> id;
+
+            if(cin.fail() || !val.esEnteroPositivo(id)){
+                cin.clear();
+                cin.ignore(1000, '\n');
+                rlutil::locate(35, 7);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "ID invalido. solo numeros positivos. Presione enter e intente nuevamente.";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+                rlutil::locate(35, 6);
+                cout<<"                                                                           ";
+                rlutil::locate(35, 7);
+                cout<<"                                                                           ";
+            }
+        }while(cin.fail() || !val.esEnteroPositivo(id));
 
         int pos = _archivo.Buscar(id);
         if (pos == -1) {
@@ -310,9 +306,8 @@ void EspecialidadManager::ModificarEspecialidad(){
                     cout << "Esta seguro que desea modificar la especialidad '"<< id <<"'? (s/n): ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
                     rlutil::locate(98, 7);
-                    cout<<"                                                                  ";
-                    rlutil::locate(98, 7);
                     cin >> confirmacion;
+
                     if (cin.fail() || !val.esConfirmacionSN(confirmacion)) {
                         cin.clear();
                         cin.ignore(1000, '\n');
@@ -321,11 +316,12 @@ void EspecialidadManager::ModificarEspecialidad(){
                         cout << "Ingrese solo 's' o 'n'. Presione una tecla para continuar";
                         rlutil::setColor(rlutil::COLOR::WHITE);
                         rlutil::anykey();
+                        rlutil::locate(98, 7);
+                        cout<<"                                                           ";
                         rlutil::locate(35, 8);
                         cout << "                                                         ";
                     }else{
                         confirmacionValida=true;
-                        cin.ignore(1000, '\n');
                     }
                 }
 
@@ -340,21 +336,26 @@ void EspecialidadManager::ModificarEspecialidad(){
                     cout << "Nombre actual: ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
                     cout << esp.getNombre();
+
+                    //Limpiar buffer antes de usar getline
+                    cin.ignore(1000, '\n');
+
                     do{
                     rlutil::locate(35, 9);
                     rlutil::setColor(rlutil::COLOR::CYAN);
                     cout << "Ingrese el nuevo nombre de la especialidad: ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
                     rlutil::locate(35, 10);
-                    cout<<"                                              ";
-                    rlutil::locate(35, 10);
                     getline(cin, nombreNuevo);
+
                     if(!val.esTextoValido(nombreNuevo)){
                         rlutil::locate(35, 11);
                         rlutil::setColor(rlutil::COLOR::RED);
                         cout << "Nombre invalido. Letras y espacios. Presione enter e intente nuevamente.";
                         rlutil::setColor(rlutil::COLOR::WHITE);
                         rlutil::anykey();
+                        rlutil::locate(35, 10);
+                        cout<<"                                                                           ";
                         rlutil::locate(35, 11);
                         cout<<"                                                                           ";
                     }
@@ -387,7 +388,7 @@ void EspecialidadManager::ModificarEspecialidad(){
 
 void EspecialidadManager::ReactivarEspecialidad(){
     int cantidad=_archivo.getCantidadRegistros();
-    bool noActivo=false, confirmacionValida=false;
+    bool noActivo=false, confirmacionValida=false, idValido=false;
     int fila=4;
     Validador val;
 
@@ -413,6 +414,7 @@ void EspecialidadManager::ReactivarEspecialidad(){
         cout<<"No hay especialidades inactivas";
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::anykey();
+        rlutil::cls();
         return;
     }
 
@@ -423,9 +425,8 @@ void EspecialidadManager::ReactivarEspecialidad(){
         cout<<"Desea activar alguna especialidad? (s/n) ";
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(70, fila + 2);
-        cout << "                                                             ";
-        rlutil::locate(70, fila + 2);
         cin >> confirmacion;
+
         if (cin.fail() || !val.esConfirmacionSN(confirmacion)) {
             cin.clear();
             cin.ignore(1000, '\n');
@@ -434,6 +435,8 @@ void EspecialidadManager::ReactivarEspecialidad(){
             cout << "Ingrese solo 's' o 'n'. Presione una tecla para continuar";
             rlutil::setColor(rlutil::COLOR::WHITE);
             rlutil::anykey();
+            rlutil::locate(70, fila + 2);
+            cout << "                                                             ";
             rlutil::locate(30, fila + 3);
             cout << "                                                         ";
         }else{
@@ -445,31 +448,31 @@ void EspecialidadManager::ReactivarEspecialidad(){
     if (confirmacion == 's' || confirmacion == 'S') {
         int id;
         do{
-        rlutil::locate(30, fila + 4);
-        rlutil::setColor(rlutil::COLOR::CYAN);
-        cout<<"Que especialidad desea activar?";
-        rlutil::locate(31, fila + 5);
-        cout<<"ID: ";
-        rlutil::setColor(rlutil::COLOR::WHITE);
-        rlutil::locate(35, fila + 5);
-        cout<<"                              ";
-        rlutil::locate(35, fila + 5);
-        cin>>id;
-        if(cin.fail()||!val.esEnteroPositivo(id)){
-            cin.clear();
-            cin.ignore(1000, '\n');
-
-            rlutil::locate(35, fila + 6);
-            rlutil::setColor(rlutil::COLOR::RED);
-            cout << "ID invalido. solo numeros positivos. Presione enter e intente nuevamente.";
+            rlutil::locate(30, fila + 4);
+            rlutil::setColor(rlutil::COLOR::CYAN);
+            cout<<"Que especialidad desea activar?";
+            rlutil::locate(31, fila + 5);
+            cout<<"ID: ";
             rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::locate(35, fila + 5);
+            cin>>id;
 
-            rlutil::anykey();
-            rlutil::locate(35, fila + 6);
-            cout<<"                                                                           ";
-        }
-        }while(cin.fail()||!val.esEnteroPositivo(id));
-        cin.ignore(1000, '\n');
+            if(cin.fail()||!val.esEnteroPositivo(id)){
+                cin.clear();
+                cin.ignore(1000, '\n');
+                rlutil::locate(35, fila + 6);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "ID invalido. solo numeros positivos. Presione enter e intente nuevamente.";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+                rlutil::locate(35, fila + 5);
+                cout<<"                                                                           ";
+                rlutil::locate(35, fila + 6);
+                cout<<"                                                                           ";
+            }else{
+                idValido=true;
+            }
+        }while(!idValido);
 
         int pos=_archivo.Buscar(id);
         if(pos==-1){
