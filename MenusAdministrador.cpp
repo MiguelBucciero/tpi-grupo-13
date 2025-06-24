@@ -244,6 +244,9 @@ int MenuAdministrador::menuAdministrador() {
                     rlutil::setColor(rlutil::COLOR::WHITE);
                     rlutil::anykey();
                     opc = 0;
+                    //Liampia el buffer para el siguente login
+                    cin.clear();
+                    cin.ignore(1000, '\n');
                     break;
                 default:
                     break;

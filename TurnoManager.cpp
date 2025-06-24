@@ -1447,28 +1447,55 @@ void TurnoManager::CantidadTurnosPorEspecialidadAdmin(int anio){
 void TurnoManager::buscarTurnosPorFecha(int idMedico) {
     int dia, mes, anio;
     string h, m;
+    Validador val;
 
-    rlutil::cls();
-    rlutil::setColor(rlutil::YELLOW);
-    rlutil::locate(35, 3);
-    cout << "TURNOS POR FECHA";
-    rlutil::setColor(rlutil::CYAN);
-    rlutil::locate(30, 5);
-    cout << "Ingrese la fecha para buscar turnos:"<<endl;
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::locate(30, 6);
-    cout << "Dia: ";
-    rlutil::locate(35, 6);
-    cin >> dia;
-    rlutil::locate(30, 7);
-    cout << "Mes: ";
-    rlutil::locate(35, 7);
-    cin >> mes;
-    rlutil::locate(30, 8);
-    cout << "Anio: ";
-    rlutil::locate(35, 8);
-    cin >> anio;
+    do{
+            rlutil::cls();
+            rlutil::setColor(rlutil::YELLOW);
+            rlutil::locate(35, 3);
+            cout << "TURNOS POR FECHA";
+            rlutil::setColor(rlutil::CYAN);
+            rlutil::locate(30, 5);
+            cout << "Ingrese la fecha para buscar turnos:"<<endl;
+            rlutil::setColor(rlutil::COLOR::WHITE);
+            rlutil::locate(30, 6);
+            cout << "Dia: ";
+            rlutil::locate(35, 6);
+            cin >> dia;
+            rlutil::locate(30, 7);
+            cout << "Mes: ";
+            rlutil::locate(35, 7);
+            cin >> mes;
+            rlutil::locate(30, 8);
+            cout << "Anio: ";
+            rlutil::locate(35, 8);
+            cin >> anio;
 
+            if (cin.fail() || !val.esFechaValida(dia, mes, anio)) {
+                    cin.clear();
+                    cin.ignore(1000, '\n');
+                    rlutil::locate(30, 23);
+                    rlutil::setColor(rlutil::COLOR::RED);
+                    cout << "Fecha invalida.                        ";
+                    rlutil::setColor(rlutil::COLOR::YELLOW);
+                    rlutil::locate(30, 24);
+                    cout << "Presione una tecla para continuar...";
+                    rlutil::setColor(rlutil::COLOR::WHITE);
+                    rlutil::anykey();
+                    rlutil::locate(30, 6);
+                    cout << "   ";
+                    rlutil::locate(30, 7);
+                    cout << "   ";
+                    rlutil::locate(30, 8);
+                    cout << "     ";
+                    rlutil::locate(30, 23);
+                    cout << "                                                                           ";
+                    rlutil::locate(30, 24);
+                    cout << "                                                                           ";
+                }
+
+    }
+    while(cin.fail() || !val.esFechaValida(dia, mes, anio));
     Fecha fechaBuscada(dia, mes, anio);
 
     PacienteArchivo archivoPacientes("pacientes.dat");

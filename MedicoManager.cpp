@@ -113,8 +113,10 @@ int MedicoManager::cargarMedico() {
             cout << "                                                                           ";
         }
     } while (cin.fail() || !val.esEnteroPositivo(dni));
-    cin.ignore();
     medico.setDni(dni);
+
+    // Limpiar buffer antes de usar getline
+    cin.ignore(1000, '\n');
 
     // Fecha de nacimiento
     do {
@@ -167,8 +169,10 @@ int MedicoManager::cargarMedico() {
             cout << "                                                                           ";
         }
     } while (cin.fail() || !val.esFechaValida(dia, mes, anio));
-    cin.ignore();
     medico.setFechaNacimiento(Fecha(dia, mes, anio));
+
+    // Limpiar buffer antes de usar getline
+    cin.ignore(1000, '\n');
 
     // Genero
     do {
@@ -316,8 +320,10 @@ int MedicoManager::cargarMedico() {
             cout << "                                                                           ";
         }
     } while (cin.fail() || !val.esEnteroPositivo(altura));
-    cin.ignore();
     domicilio.setAltura(altura);
+
+    // Limpiar buffer antes de usar getline
+    cin.ignore(1000, '\n');
 
     // Localidad
     do {
@@ -441,7 +447,6 @@ int MedicoManager::cargarMedico() {
             cout << "                                                                           ";
         }
     } while (cin.fail() || !val.esEnteroPositivo(matricula));
-    cin.ignore();
     medico.setMatricula(matricula);
 
     // ID Especialidad
@@ -472,7 +477,6 @@ int MedicoManager::cargarMedico() {
             cout << "                                                                           ";
         }
     } while (cin.fail() || !val.esEnteroPositivo(idEspecialidad));
-    cin.ignore();
     medico.setIDEspecialidad(idEspecialidad);
 
     medico.setEstado(true);

@@ -610,7 +610,7 @@ void PacienteManager::DarBajaPaciente(){
     Validador val;
     char confirmacion;
     int id;
-    bool encontrado = false, idValido=false, confirmarValidacion=false;
+    bool encontrado = false, idValido=false;
 
 
     while (!encontrado) {

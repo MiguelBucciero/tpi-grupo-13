@@ -16,7 +16,7 @@ int MenuMedico::menuMedico(Usuario usuarioLogeado){
         rlutil::locate(50, 3);
         cout << " MENU MEDICO ";
 
-        // OPCIONES DEL MENÚ
+        // OPCIONES DEL MENU
         if (y == 0) rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
         else rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::locate(50, 5);
@@ -43,7 +43,7 @@ int MenuMedico::menuMedico(Usuario usuarioLogeado){
         cout << " 0. CERRAR SESION ";
 
 
-        // FLECHA DE SELECCIÓN
+        // FLECHA DE SELECCION
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::locate(48, 5 + y);
         cout << (char)175;
@@ -92,6 +92,9 @@ int MenuMedico::menuMedico(Usuario usuarioLogeado){
                     rlutil::setColor(rlutil::COLOR::WHITE);
                     rlutil::anykey();
                     opc = 0;
+                    //Liampia el buffer para el siguente login
+                    cin.clear();
+                    cin.ignore(1000, '\n');
                     break;
                 default:
                     break;
