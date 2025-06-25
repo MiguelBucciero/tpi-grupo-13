@@ -27,7 +27,7 @@ void TurnoManager::cargarTurno() {
     Fecha fecha;
     Hora hora;
     Medico medico;
-    int idPaciente, idMedico, idEspecialidad;
+    int idPaciente, idMedico, idEspecialidad, estado = 1;
     int dia, mes, anio;
     int horas, minutos;
     char opcion;
@@ -37,60 +37,60 @@ void TurnoManager::cargarTurno() {
         rlutil::cls();
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::locate(30, fila);
-        std::cout << "CARGAR NUEVO TURNO";
+        cout << "CARGAR NUEVO TURNO";
 
         // Validación ID Paciente
         do {
             rlutil::locate(30, fila + 2);
-            std::cout << "ID Paciente: ";
+            cout << "ID Paciente: ";
             rlutil::locate(45, fila + 2);
-            std::cout << "                                                                                      ";
+            cout << "                                                                                      ";
             rlutil::locate(55, fila + 2);
-            std::cin >> idPaciente;
+            cin >> idPaciente;
 
-            if (std::cin.fail() || !val.esEnteroPositivo(idPaciente)) {
-                std::cin.clear();
-                std::cin.ignore(1000, '\n');
+            if (cin.fail() || !val.esEnteroPositivo(idPaciente)) {
+                cin.clear();
+                cin.ignore(1000, '\n');
                 rlutil::locate(30, fila + 3);
                 rlutil::setColor(rlutil::COLOR::RED);
-                std::cout << "Debe ingresar un numero valido. Presione una tecla.";
+                cout << "Debe ingresar un numero valido. Presione una tecla.";
                 rlutil::setColor(rlutil::COLOR::WHITE);
                 rlutil::anykey();
                 rlutil::locate(30, fila + 3);
-                std::cout << "                                                                                      ";
+                cout << "                                                                                      ";
                 rlutil::locate(55, fila + 2);
-                std::cout << "                             ";
+                cout << "                             ";
             }
             else if (!archiP.esPacienteActivo(idPaciente)) {
                 rlutil::locate(30, fila + 3);
                 rlutil::setColor(rlutil::COLOR::RED);
-                std::cout << "ID invalido o paciente dado de baja. Presione una tecla.";
+                cout << "ID invalido o paciente dado de baja. Presione una tecla.";
                 rlutil::setColor(rlutil::COLOR::WHITE);
                 rlutil::anykey();
                 rlutil::locate(30, fila + 3);
-                std::cout << "                                                                ";
+                cout << "                                                                ";
             }
-        } while (std::cin.fail() || !val.esEnteroPositivo(idPaciente) || !archiP.esPacienteActivo(idPaciente));
+        } while (cin.fail() || !val.esEnteroPositivo(idPaciente) || !archiP.esPacienteActivo(idPaciente));
         turno.setIDPaciente(idPaciente);
 
         // Validación Fecha
         do {
             rlutil::locate(30, fila + 5);
-            std::cout << "Ingrese dia: ";
-            std::cin >> dia;
+            cout << "Ingrese dia: ";
+            cin >> dia;
             rlutil::locate(30, fila + 6);
-            std::cout << "Ingrese mes: ";
-            std::cin >> mes;
+            cout << "Ingrese mes: ";
+            cin >> mes;
             rlutil::locate(30, fila + 7);
-            std::cout << "Ingrese anio: ";
-            std::cin >> anio;
+            cout << "Ingrese anio: ";
+            cin >> anio;
 
-            if (std::cin.fail() || !val.esEnteroPositivo(dia) || !val.esEnteroPositivo(mes) || !val.esEnteroPositivo(anio)) {
-                std::cin.clear();
-                std::cin.ignore(1000, '\n');
+            if (cin.fail() || !val.esEnteroPositivo(dia) || !val.esEnteroPositivo(mes) || !val.esEnteroPositivo(anio)) {
+                cin.clear();
+                cin.ignore(1000, '\n');
                 rlutil::locate(30, fila + 8);
                 rlutil::setColor(rlutil::COLOR::RED);
-                std::cout << "Debe ingresar numeros validos. Presione una tecla.";
+                cout << "Debe ingresar numeros validos. Presione una tecla.";
                 rlutil::setColor(rlutil::COLOR::WHITE);
                 rlutil::anykey();
             }
@@ -104,18 +104,18 @@ void TurnoManager::cargarTurno() {
         // Validación Hora
         do {
             rlutil::locate(30, fila + 10);
-            std::cout << "Ingrese hora: ";
-            std::cin >> horas;
+            cout << "Ingrese hora: ";
+            cin >> horas;
             rlutil::locate(30, fila + 11);
-            std::cout << "Ingrese minutos: ";
-            std::cin >> minutos;
+            cout << "Ingrese minutos: ";
+            cin >> minutos;
 
-            if (std::cin.fail() || !val.esEnteroPositivo(horas) || !val.esEnteroPositivo(minutos)) {
-                std::cin.clear();
-                std::cin.ignore(1000, '\n');
+            if (cin.fail() || !val.esEnteroPositivo(horas) || !val.esEnteroPositivo(minutos)) {
+                cin.clear();
+                cin.ignore(1000, '\n');
                 rlutil::locate(30, fila + 12);
                 rlutil::setColor(rlutil::COLOR::RED);
-                std::cout << "Debe ingresar numeros validos. Presione una tecla.";
+                cout << "Debe ingresar numeros validos. Presione una tecla.";
                 rlutil::setColor(rlutil::COLOR::WHITE);
                 rlutil::anykey();
             }
@@ -128,26 +128,26 @@ void TurnoManager::cargarTurno() {
         // Validación ID Especialidad
         do {
             rlutil::locate(30, fila + 14);
-            std::cout << "ID Especialidad: ";
-            std::cin >> idEspecialidad;
+            cout << "ID Especialidad: ";
+            cin >> idEspecialidad;
 
-            if (std::cin.fail() || !val.esEnteroPositivo(idEspecialidad)) {
-                std::cin.clear();
-                std::cin.ignore(1000, '\n');
+            if (cin.fail() || !val.esEnteroPositivo(idEspecialidad)) {
+                cin.clear();
+                cin.ignore(1000, '\n');
                 rlutil::locate(30, fila + 15);
                 rlutil::setColor(rlutil::COLOR::RED);
-                std::cout << "Debe ingresar un ID valido. Presione una tecla.";
+                cout << "Debe ingresar un ID valido. Presione una tecla.";
                 rlutil::setColor(rlutil::COLOR::WHITE);
                 rlutil::anykey();
             }
             else if (!archiE.esEspecialidadValida(idEspecialidad)) {
                 rlutil::locate(30, fila + 16);
                 rlutil::setColor(rlutil::COLOR::RED);
-                std::cout << "La especialidad no se encuentra activa. Presione una tecla.";
+                cout << "La especialidad no se encuentra activa. Presione una tecla.";
                 rlutil::setColor(rlutil::COLOR::WHITE);
                 rlutil::anykey();
             }
-        } while (std::cin.fail() || !val.esEnteroPositivo(idEspecialidad) || !archiE.esEspecialidadValida(idEspecialidad));
+        } while (cin.fail() || !val.esEnteroPositivo(idEspecialidad) || !archiE.esEspecialidadValida(idEspecialidad));
         turno.setEspecialidad(idEspecialidad);
 
         // Verificar disponibilidad de médicos
@@ -158,7 +158,7 @@ void TurnoManager::cargarTurno() {
             if (medico.getIDEspecialidad() == idEspecialidad && medico.getEstado()) {
                 if (!_archivo.existeTurno(medico.getIDMedico(), fecha, hora)) {
                     rlutil::locate(30, fila + 17);
-                    std::cout << "Medico disponible: " << medico.getApellido() << ", " << medico.getNombre() << " (ID: " << medico.getIDMedico() << ")";
+                    cout << "Medico disponible: " << medico.getApellido() << ", " << medico.getNombre() << " (ID: " << medico.getIDMedico() << ")";
                     fila++;
                     hayMedico = true;
                     opcion = 'n';
@@ -168,23 +168,23 @@ void TurnoManager::cargarTurno() {
 
         if (!hayMedico) {
             rlutil::locate(30, fila + 18);
-            std::cout << "No hay medicos disponibles en esa fecha y hora.";
+            cout << "No hay medicos disponibles en esa fecha y hora.";
             char intentoOtra = 'n';
             bool opcionValida = false;
             do {
                 rlutil::locate(30, fila + 19);
-                std::cout << "Desea intentar otra fecha y hora? (s/n): ";
-                std::cin >> intentoOtra;
-                if (std::cin.fail() || !val.esConfirmacionSN(intentoOtra)) {
-                    std::cin.clear();
-                    std::cin.ignore(1000, '\n');
+                cout << "Desea intentar otra fecha y hora? (s/n): ";
+                cin >> intentoOtra;
+                if (cin.fail() || !val.esConfirmacionSN(intentoOtra)) {
+                    cin.clear();
+                    cin.ignore(1000, '\n');
                     rlutil::locate(30, fila + 20);
                     rlutil::setColor(rlutil::COLOR::RED);
-                    std::cout << "Opcion invalida. Presione una tecla.";
+                    cout << "Opcion invalida. Presione una tecla.";
                     rlutil::setColor(rlutil::COLOR::WHITE);
                     rlutil::anykey();
                     rlutil::locate(30, fila + 20);
-                    std::cout << "                                                            ";
+                    cout << "                                                            ";
                 } else {
                     opcionValida = true;
                 }
@@ -192,37 +192,38 @@ void TurnoManager::cargarTurno() {
 
             if (intentoOtra == 'n' || intentoOtra == 'N') {
                 rlutil::locate(30, fila + 21);
-                std::cout << "Cancelando carga de turno.";
+                cout << "Cancelando carga de turno.";
                 rlutil::anykey();
                 rlutil::cls();
                 return;
+            } else {
+                continue; // Esta línea debe ser revisada si se quiere evitar el uso de continue
             }
-            continue;
         }
 
         // Validación ID Medico
         do {
             rlutil::locate(30, fila + 22);
-            std::cout << "ID Medico: ";
-            std::cin >> idMedico;
+            cout << "ID Medico: ";
+            cin >> idMedico;
 
-            if (std::cin.fail() || !val.esEnteroPositivo(idMedico)) {
-                std::cin.clear();
-                std::cin.ignore(1000, '\n');
+            if (cin.fail() || !val.esEnteroPositivo(idMedico)) {
+                cin.clear();
+                cin.ignore(1000, '\n');
                 rlutil::locate(30, fila + 23);
                 rlutil::setColor(rlutil::COLOR::RED);
-                std::cout << "Debe ingresar un ID valido. Presione una tecla.";
+                cout << "Debe ingresar un ID valido. Presione una tecla.";
                 rlutil::setColor(rlutil::COLOR::WHITE);
                 rlutil::anykey();
             }
             else if (!archiM.esMedicoActivo(idMedico)) {
                 rlutil::locate(30, fila + 24);
                 rlutil::setColor(rlutil::COLOR::RED);
-                std::cout << "El medico no se encuentra activo. Presione una tecla.";
+                cout << "El medico no se encuentra activo. Presione una tecla.";
                 rlutil::setColor(rlutil::COLOR::WHITE);
                 rlutil::anykey();
             }
-        } while (std::cin.fail() || !val.esEnteroPositivo(idMedico) || !archiM.esMedicoActivo(idMedico));
+        } while (cin.fail() || !val.esEnteroPositivo(idMedico) || !archiM.esMedicoActivo(idMedico));
         turno.setIDMedico(idMedico);
 
         turno.setEstado(1);
@@ -230,11 +231,11 @@ void TurnoManager::cargarTurno() {
         if (_archivo.guardar(turno)) {
             rlutil::locate(30, fila + 26);
             rlutil::setColor(rlutil::COLOR::GREEN);
-            std::cout << "Turno guardado correctamente.";
+            cout << "Turno guardado correctamente.";
         } else {
             rlutil::locate(30, fila + 26);
             rlutil::setColor(rlutil::COLOR::RED);
-            std::cout << "Error al guardar el turno.";
+            cout << "Error al guardar el turno.";
         }
 
         rlutil::setColor(rlutil::COLOR::WHITE);
@@ -242,28 +243,28 @@ void TurnoManager::cargarTurno() {
         bool opcionValida = false;
         do {
             rlutil::locate(30, fila + 28);
-            std::cout << "Desea cargar otro turno? (s/n): ";
-            std::cin >> opcion;
+            cout << "Desea cargar otro turno? (s/n): ";
+            cin >> opcion;
 
-            if (std::cin.fail()) {
-                std::cin.clear();
-                std::cin.ignore(1000, '\n');
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(1000, '\n');
                 rlutil::locate(30, fila + 29);
                 rlutil::setColor(rlutil::COLOR::RED);
-                std::cout << "Entrada invalida. Presione una tecla.";
+                cout << "Entrada invalida. Presione una tecla.";
                 rlutil::setColor(rlutil::COLOR::WHITE);
                 rlutil::anykey();
                 rlutil::locate(30, fila + 29);
-                std::cout << "                                                            ";
+                cout << "                                                            ";
             }
             else if (!val.esConfirmacionSN(opcion)) {
                 rlutil::locate(30, fila + 29);
                 rlutil::setColor(rlutil::COLOR::RED);
-                std::cout << "Ingrese 's' o 'n'. Presione una tecla.";
+                cout << "Ingrese 's' o 'n'. Presione una tecla.";
                 rlutil::setColor(rlutil::COLOR::WHITE);
                 rlutil::anykey();
                 rlutil::locate(30, fila + 29);
-                std::cout << "                                                            ";
+                cout << "                                                            ";
             }
             else {
                 opcionValida = true;
