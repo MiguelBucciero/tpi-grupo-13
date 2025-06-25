@@ -129,5 +129,11 @@ bool Validador::esEmailValido(const std::string &email) {
 }
 
 bool Validador::validarHora(int &hora, int &minutos) {
-    return (hora >= 0 && hora <= 23 && minutos >= 0 && minutos <= 59);
+
+    if(hora >= 0 && hora <= 23 && minutos >= 0 && minutos <= 59){
+        return true;
+    }
+    else {
+        return false;
+    }
 }
