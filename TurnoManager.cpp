@@ -465,7 +465,7 @@ void TurnoManager::reprogramarTurno() {
     Turno turno;
     Validador val;
     int idTurno, cantidad, pos;
-    int dia, mes, anio, hora, minuto;;
+    int dia, mes, anio, hora, minuto;
 
     cantidad = _archivo.getCantidadRegistros();
     if (cantidad == 0) {
