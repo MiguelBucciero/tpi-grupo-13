@@ -631,6 +631,7 @@ void TurnoManager::cancelarTurno(){
 }
 
 void TurnoManager::TurnoNoAsistido(){
+    Validador val;
     int cantidad = _archivo.getCantidadRegistros();
     bool algunTurnoProcesado = false;
     int fila;
@@ -643,6 +644,7 @@ void TurnoManager::TurnoNoAsistido(){
         cout << "No hay turnos cargados.";
         rlutil::setColor(rlutil::WHITE);
         rlutil::anykey();
+        rlutil::cls();
         return;
     }
 
@@ -654,6 +656,7 @@ void TurnoManager::TurnoNoAsistido(){
         cout << "No se pudieron leer los turnos.";
         rlutil::setColor(rlutil::WHITE);
         rlutil::anykey();
+        rlutil::cls();
         delete[] lista;
         return;
     }
@@ -703,11 +706,58 @@ void TurnoManager::TurnoNoAsistido(){
             rlutil::locate(30, fila++);
             cout << "Especialidad: " << lista[i].getEspecialidad();
             rlutil::locate(30, fila++);
-            cout << "Estado: " << (lista[i].getEstado() == 1 ? "Activo" : "Reprogramado");
-            rlutil::locate(30, fila++);
-            cout << "El paciente asistio al turno? (s/n): ";
+            cout << "Estado: ";
+            switch(lista[i].getEstado()){
+            case 1: cout<<"Activo";
+                break;
+            case 3: cout<<"Reprogramado";
+                break;
+            }
             char opcion;
-            cin >> opcion;
+            bool entradaValida=false;
+            do{
+                rlutil::locate(30, fila+1);
+                cout << "El paciente asistio al turno? (s/n): ";
+                rlutil::locate(67, fila+1);
+                cin >> opcion;
+
+                if (cin.fail()) {
+                        cin.clear();
+                        cin.ignore(1000, '\n');
+                        rlutil::locate(30, fila+2);
+                        rlutil::setColor(rlutil::COLOR::RED);
+                        cout << "Opcion invalida. Ingrese solo 's' o 'n'.";
+                        rlutil::setColor(rlutil::COLOR::YELLOW);
+                        rlutil::locate(30, fila+3);
+                        cout << "Presione una tecla para continuar...";
+                        rlutil::setColor(rlutil::COLOR::WHITE);
+                        rlutil::anykey();
+
+                        rlutil::locate(30, fila+1);
+                        cout<<"                                                                   ";
+                        rlutil::locate(30, fila+2);
+                        cout<<"                                                                   ";
+                        rlutil::locate(30, fila+3);
+                        cout<<"                                                                   ";
+                }else if(!val.esConfirmacionSN(opcion)){ //si no es 's' o 'n'
+                        cin.ignore(1000, '\n');
+                        rlutil::locate(30, fila+2);
+                        rlutil::setColor(rlutil::COLOR::RED);
+                        cout << "Opcion invalida. Ingrese solo 's' o 'n'.";
+                        rlutil::setColor(rlutil::COLOR::WHITE);
+                        rlutil::anykey();
+
+                        rlutil::locate(30, fila+1);
+                        cout<<"                                                                   ";
+                        rlutil::locate(30, fila+2);
+                        cout<<"                                                                   ";
+                        rlutil::locate(30, fila+3);
+                        cout<<"                                                                   ";
+                }else{
+                    entradaValida=true;
+                    cin.ignore(1000, '\n');
+                }
+            }while(!entradaValida);
 
             int pos = _archivo.Buscar(lista[i].getIDTurno());
             if (pos != -1) {
@@ -746,7 +796,7 @@ void TurnoManager::TurnoNoAsistido(){
 
             rlutil::setColor(rlutil::WHITE);
             rlutil::locate(30, fila++);
-            cout << "Presione una tecla para continuar...";
+            cout << "Presione una tecla para continuar...   ";
             rlutil::anykey();
 
             rlutil::cls();
@@ -1259,6 +1309,7 @@ void TurnoManager::HistorialTurnosAtendidos(int idMedico) {
         cout << "No hay turnos cargados.";
         rlutil::setColor(rlutil::WHITE);
         rlutil::anykey();
+        rlutil::cls();
         return;
     }
 
@@ -1582,6 +1633,7 @@ void TurnoManager::cantidadTurnosPorMedico() {
         cout << "No hay medicos cargados.";
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::anykey();
+        rlutil::cls();
         return;
     }
 
@@ -1666,6 +1718,7 @@ void TurnoManager::cantidadTurnosPorPaciente() {
         cout << "No hay pacientes cargados." << endl;
         rlutil::setColor(rlutil::WHITE);
         rlutil::anykey();
+        rlutil::cls();
         return;
     }
 
@@ -1752,6 +1805,7 @@ void TurnoManager::cantidadTurnosCanceladosPorMes() {
         cout << "No hay turnos cargados.";
         rlutil::setColor(rlutil::WHITE);
         rlutil::anykey();
+        rlutil::cls();
         return;
     }
 
