@@ -466,8 +466,6 @@ void TurnoManager::reprogramarTurno() {
     Validador val;
     int idTurno, cantidad, pos;
     int dia, mes, anio, hora, minuto;;
-    //bool encontrado = false, modificado=false;;
-    //bool horaMinutosOK=false;
 
     cantidad = _archivo.getCantidadRegistros();
     if (cantidad == 0) {
@@ -684,7 +682,6 @@ void TurnoManager::reprogramarTurno() {
     rlutil::anykey();
     rlutil::cls();
 }
-
 
 void TurnoManager::cancelarTurno() {
     int idTurno, pos;
