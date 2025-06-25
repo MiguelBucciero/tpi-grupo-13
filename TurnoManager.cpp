@@ -465,10 +465,9 @@ void TurnoManager::reprogramarTurno() {
     Turno turno;
     Validador val;
     int idTurno, cantidad, pos;
-    int dia, mes, anio;
-    int hora, minuto;
-    bool encontrado = false;
-    char opcion;
+    int dia, mes, anio, hora, minuto;;
+    //bool encontrado = false, modificado=false;;
+    //bool horaMinutosOK=false;
 
     cantidad = _archivo.getCantidadRegistros();
     if (cantidad == 0) {
@@ -482,14 +481,15 @@ void TurnoManager::reprogramarTurno() {
         return;
     }
 
-    bool idValido = false;
-    while (!encontrado) {
+    bool TurnoEncontrado=false;
+    while (!TurnoEncontrado) {
         rlutil::cls();
         rlutil::setColor(rlutil::YELLOW);
         rlutil::locate(40, 2);
         cout << "REPROGRAMAR TURNO";
         rlutil::setColor(rlutil::WHITE);
 
+        bool idValido = false;
         do {
             rlutil::locate(30, 4);
             cout << "Ingrese el ID del turno a reprogramar (0 para cancelar): ";
@@ -506,29 +506,32 @@ void TurnoManager::reprogramarTurno() {
                 rlutil::anykey();
                 rlutil::locate(30, 6);
                 cout << "                                                                 ";
+                rlutil::locate(87, 4);
+                cout << "                                                                 ";
             } else {
                 idValido = true;
+                cin.ignore(1000, '\n');
             }
         } while (!idValido);
 
         if (idTurno == 0) {
             rlutil::locate(30, 7);
-            cout << "Reprogramación cancelada.";
+            cout << "Reprogramacion cancelada.";
             rlutil::anykey();
             rlutil::cls();
             return;
         }
-
+        bool encontrado=false;
         for (int i = 0; i < cantidad; i++) {
             turno = _archivo.Leer(i);
-            if (turno.getIDTurno() == idTurno && (turno.getEstado() == 1 || turno.getEstado() == 3)) {
-                encontrado = true;
+            if (turno.getIDTurno() == idTurno && (turno.getEstado()==1||turno.getEstado()==3)){
                 pos = i;
+                encontrado=true;
+                TurnoEncontrado = true;
                 break;
             }
         }
-
-        if (!encontrado) {
+        if(!encontrado){
             rlutil::locate(30, 6);
             rlutil::setColor(rlutil::RED);
             cout << "Turno no encontrado o no activo.";
@@ -540,30 +543,28 @@ void TurnoManager::reprogramarTurno() {
     Fecha fechaNueva;
     Hora horaNueva;
     Fecha fechaActual;
-    fechaActual.obtenerFechaActual();
-
-    // Validación de fecha
-    bool fechaValida = false;
-    while (!fechaValida) {
+    bool fechaHoraValida=false;
+    while (!fechaHoraValida) {
         rlutil::cls();
         rlutil::setColor(rlutil::YELLOW);
         rlutil::locate(40, 2);
         cout << "INGRESO DE NUEVA FECHA Y HORA";
         rlutil::setColor(rlutil::COLOR::WHITE);
 
+        // Validación de fecha
+        bool fechaValida = false;
+        do{
         rlutil::locate(30, 4);
         cout << "Dia: ";
         cin >> dia;
-
         rlutil::locate(30, 5);
         cout << "Mes: ";
         cin >> mes;
-
         rlutil::locate(30, 6);
         cout << "Anio: ";
         cin >> anio;
 
-        if (cin.fail() || !val.esEnteroPositivo(dia) || !val.esEnteroPositivo(mes) || !val.esEnteroPositivo(anio) || !val.esFechaValida(dia, mes, anio)) {
+        if (cin.fail() || !val.esFechaValida(dia, mes, anio)) {
             cin.clear();
             cin.ignore(1000, '\n');
             rlutil::locate(30, 7);
@@ -571,101 +572,110 @@ void TurnoManager::reprogramarTurno() {
             cout << "Fecha invalida. Presione una tecla.";
             rlutil::setColor(rlutil::COLOR::WHITE);
             rlutil::anykey();
-        } else {
-            fechaNueva.setDia(dia);
-            fechaNueva.setMes(mes);
-            fechaNueva.setAnio(anio);
-
-            if (fechaNueva.esAnterior(fechaActual)) {
-                rlutil::locate(30, 7);
-                rlutil::setColor(rlutil::COLOR::RED);
-                cout << "La fecha no puede ser anterior a la actual. Presione una tecla.";
-                rlutil::setColor(rlutil::COLOR::WHITE);
-                rlutil::anykey();
-            } else {
-                fechaValida = true;
-            }
+            rlutil::locate(34, 4);
+            cout<<"                                             ";
+            rlutil::locate(34, 5);
+            cout<<"                                             ";
+            rlutil::locate(34, 6);
+            cout<<"                                             ";
+            rlutil::locate(30, 7);
+            cout<<"                                             ";
+        }else{
+            fechaValida=true;
         }
-    }
+        }while(!fechaValida);
+        fechaNueva.setDia(dia);
+        fechaNueva.setMes(mes);
+        fechaNueva.setAnio(anio);
 
-    // Validación de hora
-    bool horaValida = false;
-    while (!horaValida) {
-        rlutil::locate(30, 8);
-        cout << "Hora (0-23): ";
-        cin >> hora;
+        // Validación Hora y Minutos
+        bool horaMinutosOK = false;
+        do {
+            rlutil::locate(30, 8);
+            cout << "Ingrese hora: ";
+            cin >> hora;
+            rlutil::locate(30, 9);
+            cout << "Ingrese minutos: ";
+            cin >> minuto;
 
-        rlutil::locate(30, 9);
-        cout << "Minuto (0-59): ";
-        cin >> minuto;
-
-        if (cin.fail() || !val.esEnteroPositivo(hora) || !val.esEnteroPositivo(minuto) || !val.validarHora(hora, minuto)) {
-            cin.clear();
-            cin.ignore(1000, '\n');
-            rlutil::locate(30, 10);
-            rlutil::setColor(rlutil::COLOR::RED);
-            cout << "Hora invalida. Presione una tecla.";
-            rlutil::setColor(rlutil::COLOR::WHITE);
-            rlutil::anykey();
-        } else {
-            horaValida = true;
-        }
-    }
-
-    horaNueva.setHora(hora);
-    horaNueva.setMinutos(minuto);
-
-    if (_archivo.existeTurno(turno.getIDMedico(), fechaNueva, horaNueva)) {
-        rlutil::locate(30, 12);
-        rlutil::setColor(rlutil::COLOR::RED);
-        cout << "Ya existe un turno para el medico en esa fecha y hora.";
-        rlutil::setColor(rlutil::COLOR::WHITE);
-
-        char opcionFecha;
-        bool entradaValida = false;
-        while (!entradaValida) {
-            rlutil::locate(30, 13);
-            cout << "Desea intentar otra fecha y hora? (s/n): ";
-            cin >> opcionFecha;
-
-            if (cin.fail() || !val.esConfirmacionSN(opcionFecha)) {
+            if (cin.fail() || !val.validarHora(hora, minuto)) {
                 cin.clear();
                 cin.ignore(1000, '\n');
-                rlutil::locate(30, 14);
+                rlutil::locate(30, 11);
                 rlutil::setColor(rlutil::COLOR::RED);
-                cout << "Entrada invalida. Presione una tecla.";
+                cout << "Hora invalida. Presione una tecla.";
                 rlutil::setColor(rlutil::COLOR::WHITE);
                 rlutil::anykey();
-                rlutil::locate(30, 14);
-                cout << "                                                  ";
-            } else {
-                entradaValida = true;
-                opcion = opcionFecha;
+                rlutil::locate(43, 8);
+                cout << "                                                                                      ";
+                rlutil::locate(43, 9);
+                cout << "                                                                                      ";
+                rlutil::locate(30, 11);
+                cout << "                                                                                      ";
+            }else {
+                horaMinutosOK = true;
             }
-        }
+        }while (!horaMinutosOK);
+        horaNueva.setHora(hora);
+        horaNueva.setMinutos(minuto);
 
-        if (opcion == 'n' || opcion == 'N') {
-            rlutil::locate(30, 15);
-            cout << "Cancelando reprogramacion...";
+        if (turno.getFechaTurno().esIgual(fechaNueva)&&turno.getHoraTurno().esIgual(horaNueva)) { //verificar si es la misma fecha y hora
+            rlutil::locate(30, 11);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "La fecha y hora no puede ser igual al turno actual. Presione una tecla.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
             rlutil::anykey();
-            rlutil::cls();
-            return;
-        } else {
-            reprogramarTurno();
-            return;
+            rlutil::locate(30, 11);
+        }else if (_archivo.existeTurno(turno.getIDMedico(), fechaNueva, horaNueva)) {
+            rlutil::locate(30, 12);
+            rlutil::setColor(rlutil::COLOR::RED);
+            cout << "No hay turnos disponibles para esa fecha y hora.";
+            rlutil::setColor(rlutil::COLOR::WHITE);
+
+            char opcionFecha;
+            bool entradaValida = false;
+            do{
+                rlutil::locate(30, 13);
+                cout << "Desea intentar otra fecha y hora? (s/n): ";
+                cin >> opcionFecha;
+
+                if (cin.fail() || !val.esConfirmacionSN(opcionFecha)) {
+                    cin.clear();
+                    cin.ignore(1000, '\n');
+                    rlutil::locate(30, 14);
+                    rlutil::setColor(rlutil::COLOR::RED);
+                    cout << "Entrada invalida. Presione una tecla.";
+                    rlutil::setColor(rlutil::COLOR::WHITE);
+                    rlutil::anykey();
+                    rlutil::locate(30, 13);
+                    cout << "                                                  ";
+                    rlutil::locate(30, 14);
+                    cout << "                                                  ";
+                } else {
+                    entradaValida = true;
+                    if (opcionFecha == 'n' || opcionFecha == 'N') {
+                        rlutil::locate(30, 15);
+                        cout << "Cancelando reprogramacion...";
+                        rlutil::anykey();
+                        rlutil::cls();
+                        return;
+                    } //si pone 's' continua el bucle para pedir una nueva fecha y hora
+                }
+            }while(!entradaValida);
+        }else{
+            fechaHoraValida=true;
         }
     }
-
     turno.setFechaTurno(fechaNueva);
     turno.setHoraTurno(horaNueva);
-    turno.setEstado(3);
+    turno.setEstado(3); //reprogramado
 
     if (_archivo.modificar(turno, pos)) {
-        rlutil::locate(30, 15);
+        rlutil::locate(30, 16);
         rlutil::setColor(rlutil::COLOR::GREEN);
         cout << "Turno reprogramado correctamente.";
     } else {
-        rlutil::locate(30, 15);
+        rlutil::locate(30, 16);
         rlutil::setColor(rlutil::COLOR::RED);
         cout << "Error al reprogramar el turno.";
     }
@@ -680,7 +690,6 @@ void TurnoManager::cancelarTurno() {
     int idTurno, pos;
     char confirmacion;
     Validador val;
-    bool idValido = false;
     bool turnoEncontrado = false;
 
     while (!turnoEncontrado) {
@@ -689,7 +698,7 @@ void TurnoManager::cancelarTurno() {
         rlutil::locate(35, 3);
         cout << "CANCELACION DE TURNO";
         rlutil::setColor(rlutil::WHITE);
-
+        bool idValido = false;
         do {
             rlutil::locate(30, 5);
             cout << "Ingrese el ID del turno que desea cancelar: ";
@@ -706,79 +715,77 @@ void TurnoManager::cancelarTurno() {
                 rlutil::anykey();
                 rlutil::locate(30, 6);
                 cout << "                                                          ";
+                rlutil::locate(75, 5);
+                cout << "                                                          ";
             } else {
                 idValido = true;
             }
         } while (!idValido);
 
         pos = _archivo.Buscar(idTurno);
+        Turno turno;
+
         if (pos == -1) {
             rlutil::locate(30, 7);
             rlutil::setColor(rlutil::COLOR::RED);
             cout << "No hay un turno con ese ID. Presione una tecla.";
-            rlutil::setColor(rlutil::COLOR::WHITE);
             rlutil::anykey();
-            continue;
-        }
-
-        Turno turno = _archivo.Leer(pos);
-
-        if (turno.getEstado() != 1 && turno.getEstado() != 3) {
-            rlutil::locate(30, 7);
-            rlutil::setColor(rlutil::COLOR::RED);
-            cout << "El turno ya fue cancelado o no esta activo/reprogramado.";
-            rlutil::setColor(rlutil::COLOR::WHITE);
-            rlutil::anykey();
-        } else {
-            turnoEncontrado = true;
-            bool confirmacionValida = false;
-            do {
-                rlutil::locate(30, 8);
-                rlutil::setColor(rlutil::COLOR::CYAN);
-                cout << "Esta seguro que desea cancelar el turno? (s/n): ";
-                rlutil::setColor(rlutil::COLOR::WHITE);
-                cin >> confirmacion;
-
-                if (cin.fail() || !val.esConfirmacionSN(confirmacion)) {
-                    cin.clear();
-                    cin.ignore(1000, '\n');
-                    rlutil::locate(30, 9);
-                    rlutil::setColor(rlutil::COLOR::RED);
-                    cout << "Opcion invalida. Presione una tecla.";
+        }else{
+            turno = _archivo.Leer(pos);
+            if (turno.getEstado() != 1 && turno.getEstado() != 3) {
+                rlutil::locate(30, 7);
+                rlutil::setColor(rlutil::COLOR::RED);
+                cout << "El turno ya fue cancelado o no esta activo/reprogramado.";
+                rlutil::anykey();
+            } else {
+                do {
+                    rlutil::locate(30, 8);
+                    rlutil::setColor(rlutil::COLOR::CYAN);
+                    cout << "Esta seguro que desea cancelar el turno? (s/n): ";
                     rlutil::setColor(rlutil::COLOR::WHITE);
-                    rlutil::anykey();
-                    rlutil::locate(30, 9);
-                    cout << "                                                    ";
-                } else {
-                    confirmacionValida = true;
-                }
-            } while (!confirmacionValida);
+                    cin >> confirmacion;
 
-            if (confirmacion == 's' || confirmacion == 'S') {
+                    if (cin.fail() || !val.esConfirmacionSN(confirmacion)) {
+                        cin.clear();
+                        cin.ignore(1000, '\n');
+                        rlutil::locate(30, 9);
+                        rlutil::setColor(rlutil::COLOR::RED);
+                        cout << "Ingrese 's' o 'n'. Presione una tecla.";
+                        rlutil::setColor(rlutil::COLOR::WHITE);
+                        rlutil::anykey();
+                        rlutil::locate(30, 9);
+                        cout << "                                                    ";
+                        rlutil::locate(78, 8);
+                        cout << "                                                    ";
+                    }
+                } while (cin.fail() || !val.esConfirmacionSN(confirmacion));
+
+                if (confirmacion == 's' || confirmacion == 'S') {
                 turno.setEstado(2);  // Estado 2 = Cancelado
 
-                if (_archivo.modificar(turno, pos)) {
-                    rlutil::locate(30, 10);
-                    rlutil::setColor(rlutil::COLOR::GREEN);
-                    cout << "El turno fue cancelado correctamente.";
+                    if (_archivo.modificar(turno, pos)) {
+                        rlutil::locate(30, 10);
+                        rlutil::setColor(rlutil::COLOR::GREEN);
+                        cout << "El turno fue cancelado correctamente.";
+                    } else {
+                        rlutil::locate(30, 10);
+                        rlutil::setColor(rlutil::COLOR::RED);
+                        cout << "Error al cancelar el turno.";
+                    }
                 } else {
                     rlutil::locate(30, 10);
-                    rlutil::setColor(rlutil::COLOR::RED);
-                    cout << "Error al cancelar el turno.";
+                    rlutil::setColor(rlutil::COLOR::YELLOW);
+                    cout << "Cancelacion abortada por el usuario.";
                 }
-            } else {
-                rlutil::locate(30, 10);
-                rlutil::setColor(rlutil::COLOR::YELLOW);
-                cout << "Cancelacion abortada por el usuario.";
+                rlutil::setColor(rlutil::COLOR::WHITE);
+                rlutil::anykey();
+                turnoEncontrado=true;
             }
         }
+        rlutil::setColor(rlutil::COLOR::WHITE);
     }
-
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::anykey();
     rlutil::cls();
 }
-
 
 void TurnoManager::TurnoNoAsistido(){
     Validador val;
@@ -1008,7 +1015,9 @@ void TurnoManager::BuscarTurnoEstado() {
             rlutil::setColor(rlutil::COLOR::WHITE);
             rlutil::anykey();
             rlutil::locate(30, 8);
-            cout << string(80, ' ');
+            cout << "                                                                                ";
+            rlutil::locate(37, 7);
+            cout << "                                                                                ";
         } else {
             estadoValido = true;
         }
@@ -1106,7 +1115,6 @@ void TurnoManager::BuscarTurnoEstado() {
     delete[] turnos;
     rlutil::cls();
 }
-
 
 void TurnoManager::TurnosDelDia(){
     int cantidad, mostrados, fila;

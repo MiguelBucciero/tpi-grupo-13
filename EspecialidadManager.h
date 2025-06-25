@@ -8,7 +8,6 @@ public:
     void DarBajaEspecialidad();
     void ModificarEspecialidad();
     void ReactivarEspecialidad();
-    bool esEspecialidadActiva(int idEspecialidad);
 
 private:
     EspecialidadArchivo _archivo;

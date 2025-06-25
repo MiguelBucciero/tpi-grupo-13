@@ -12,17 +12,6 @@
 
 using namespace std;
 
-bool MedicoManager::esMedicoActivo(int id) {
-    int cantidad = _archivo.getCantidadRegistros();
-    for (int i = 0; i < cantidad; i++) {
-        Medico m = _archivo.Leer(i);
-        if (m.getIDMedico() == id && m.getEstado()) {
-            return true;
-        }
-    }
-    return false;
-}
-
 int MedicoManager::cargarMedico() {
     Medico medico;
     Domicilio domicilio;

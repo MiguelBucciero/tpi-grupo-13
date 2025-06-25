@@ -1,4 +1,5 @@
 #include "EspecialidadManager.h"
+#include "EspecialidadArchivo.h"
 #include "Especialidad.h"
 #include "Validador.h"
 #include "rlutil.h"
@@ -6,18 +7,6 @@
 #include <string>
 using namespace std;
 
-
-
-bool EspecialidadManager::esEspecialidadActiva(int idEspecialidad) {
-    int cantidad = _archivo.getCantidadRegistros();
-    for (int i = 0; i < cantidad; i++) {
-        Especialidad esp = _archivo.Leer(i);
-        if (esp.getIDEspecialidad() == idEspecialidad && esp.getEstado()) {
-            return true;
-        }
-    }
-    return false;
-}
 
 void EspecialidadManager::cargarEspecialidad() {
     Especialidad registro;
@@ -88,6 +77,7 @@ void EspecialidadManager::mostrarEspecialidad() {
         cout << "No hay especialidades cargadas.";
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::anykey();
+        rlutil::cls();
         return;
     }
 
