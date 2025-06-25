@@ -35,6 +35,7 @@ void TurnoManager::cargarTurno() {
     int fila = 0;
     bool horaOK = false, horaMinutosOK=false,fechaHoraOK = false, idValido=false;
 
+
     do {
         rlutil::cls();
         rlutil::locate(50, 2);
@@ -305,8 +306,8 @@ void TurnoManager::cargarTurno() {
 
         } while (cin.fail() || !val.esEnteroPositivo(idMedico) || !archiM.esMedicoActivo(idMedico)|| !(medico.getEstado() && medico.getIDEspecialidad()==idEspecialidad));
         turno.setIDMedico(idMedico);
-
         turno.setEstado(1);
+        turno.setIDTurno(_archivo.getNuevoID());
 
         if (_archivo.guardar(turno)) {
             rlutil::locate(30, 17);
@@ -350,12 +351,14 @@ void TurnoManager::cargarTurno() {
                 opcionValida = true;
             }
         } while (!opcionValida);
+        if(opcion== 'n' || opcion == 'N'){
         rlutil::locate(30, 20);
         rlutil::setColor(rlutil::COLOR::YELLOW);
         cout << "Cancelando carga de nuevo turno. Presione una tecla para salir.";
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::anykey();
         rlutil::cls();
+        }
     } while (opcion == 's' || opcion == 'S');
 }
 
