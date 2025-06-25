@@ -12,6 +12,7 @@ public:
     void modificarMedico();
     void buscarPacientePorDNI(int idMedico);
     void reactivarMedico();
+    bool esMedicoActivo(int id);
 private:
     MedicoArchivo _archivo;
 };

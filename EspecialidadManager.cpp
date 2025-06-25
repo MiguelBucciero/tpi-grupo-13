@@ -7,6 +7,18 @@
 using namespace std;
 
 
+
+bool EspecialidadManager::esEspecialidadActiva(int idEspecialidad) {
+    int cantidad = _archivo.getCantidadRegistros();
+    for (int i = 0; i < cantidad; i++) {
+        Especialidad esp = _archivo.Leer(i);
+        if (esp.getIDEspecialidad() == idEspecialidad && esp.getEstado()) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void EspecialidadManager::cargarEspecialidad() {
     Especialidad registro;
     int id = _archivo.getNuevoID();

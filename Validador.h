@@ -14,5 +14,5 @@ public:
     bool esConfirmacionSN(char c);
     bool esTextoSinEspacios(const std::string &texto);
     bool esEmailValido(const std::string &email);
-    bool validarHora(int &horas, int &minutos, int fila);
+    bool validarHora(int &hora, int &minutos);
 };
