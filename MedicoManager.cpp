@@ -788,6 +788,7 @@ void MedicoManager::verTurnosAsignados(int idMedico) {
     bool hayTurnos = false;
     int fila = 4;
     string h, m;
+    int turnosMostrados = 0;
 
     rlutil::cls();
     rlutil::setColor(rlutil::COLOR::YELLOW);
@@ -835,12 +836,12 @@ void MedicoManager::verTurnosAsignados(int idMedico) {
             }
             rlutil::locate(30, fila++);
             cout << "------------------------------------------------------------";
-
             fila++;  // Espacio entre turnos
 
+            turnosMostrados++;
             hayTurnos = true;
 
-            if (fila > 43) {
+            if (turnosMostrados % 2 == 0) {
                 rlutil::locate(40, fila);
                 rlutil::setColor(rlutil::COLOR::YELLOW);
                 cout << "Presione una tecla para continuar...";

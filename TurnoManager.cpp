@@ -1672,6 +1672,8 @@ void TurnoManager::CantidadTurnosPorEspecialidadAdmin(int anio){
 
 void TurnoManager::buscarTurnosPorFecha(int idMedico) {
     int dia, mes, anio;
+    int cantidad, fila, turnosMostrados;
+    bool hayTurnos;
     string h, m;
     Validador val;
 
@@ -1727,9 +1729,10 @@ void TurnoManager::buscarTurnosPorFecha(int idMedico) {
     PacienteArchivo archivoPacientes("pacientes.dat");
     EspecialidadArchivo archivoEspecialidades("especialidad.dat");
 
-    int cantidad = _archivo.getCantidadRegistros();
-    bool hayTurnos = false;
-    int fila=11;
+    cantidad = _archivo.getCantidadRegistros();
+    hayTurnos = false;
+    fila=11;
+    turnosMostrados = 0;
 
     for (int i = 0; i < cantidad; i++) {
         Turno t = _archivo.Leer(i);
@@ -1762,7 +1765,10 @@ void TurnoManager::buscarTurnosPorFecha(int idMedico) {
             rlutil::locate(30, fila++);
             cout << "Especialidad: " << e.getNombre();
 
-            if(fila>=45){
+            fila++;
+            turnosMostrados++;
+
+            if(turnosMostrados % 2 == 0){
                 rlutil::locate(40, fila);
                 rlutil::setColor(rlutil::YELLOW);
                 cout << "Presione una tecla para continuar...";

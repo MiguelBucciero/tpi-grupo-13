@@ -53,11 +53,16 @@ bool Fecha::esIgual(Fecha &otra) {
 }
 
 void Fecha::obtenerFechaActual(){
+
+    //fecha/hora actual basado en el sistema actual
     time_t fechaActual = time(0);
+
+    //objeto de una estructura tm con fecha/hora local
     tm* fecha = localtime(&fechaActual);
-    setDia(fecha->tm_mday);
-    setMes(fecha->tm_mon + 1);
-    setAnio(fecha->tm_year + 1900);
+
+    setDia(fecha->tm_mday); //dia 1 a 31
+    setMes(fecha->tm_mon + 1);//mes de 0 a 11
+    setAnio(fecha->tm_year + 1900); // te da la cantidad de años desde 1900 (125+1900 = 2025)
 }
 
 void Fecha::obtenerInicioDeSemana(){

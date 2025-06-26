@@ -6,6 +6,7 @@ using namespace std;
 TurnoArchivo::TurnoArchivo(string nombreArchivo){
     _nombreArchivo=nombreArchivo;
 }
+
 bool TurnoArchivo::guardar(Turno registro){
     bool resultado;
     FILE *pFile;
@@ -21,6 +22,7 @@ bool TurnoArchivo::guardar(Turno registro){
 
     return resultado;
 }
+
 bool TurnoArchivo::guardar(Turno registro, int posicion){
     bool resultado;
     FILE *pArchivo;
